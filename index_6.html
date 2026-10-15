@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="NAM — women's sleepwear, parfum and perfumed body powder from the UAE">
+<title>nam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Noto+Naskh+Arabic:wght@500;600&display=swap">
+<style>
+/* Layout: vintage members-club shop in night navy — full-bleed 3D hero under a transparent header, script headings, tabbed product grid with a feature tile, illustrated still-life band, cloth-bound collection covers, textured green showcase, FAQ, closing call, green footer */
+:root{
+  --bg:#FFF5E9; --bg-2:#F7EBDB; --card:#FBEFE1; --fg:#14234A; --mute:#58617A; --line:rgba(20,35,74,.16);
+  --band:#14234A; --band-2:#0F1C3D; --on-band:#FFF5E9; --plinth:#D9CAB0; --shadow:.25;
+  --red:#8B2B24; --gold:#B8955C; --beige:#DCCBB0; --navy-cover:#1B2A55; --blush:#E9CBC5; --sticker:#F4EEE6;
+  --f-script:"Cormorant Garamond","Didot","Bodoni 72",serif;
+  --f-ar-script:"Amiri","Noto Naskh Arabic",serif;
+  --f-serif:"Cormorant Garamond","Didot","Bodoni 72",serif;
+  --f-ar-serif:"Noto Naskh Arabic","Amiri",serif;
+  --f-ui:"DM Sans","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1020; --bg-2:#10172B; --card:#141C33; --fg:#F1E5D1; --mute:#A3ACC2; --line:rgba(241,229,209,.14);
+  --band:#0A1330; --band-2:#081028; --on-band:#F1E5D1; --plinth:#1B2340; --shadow:.5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1020; --bg-2:#10172B; --card:#141C33; --fg:#F1E5D1; --mute:#A3ACC2; --line:rgba(241,229,209,.14);
+  --band:#0A1330; --band-2:#081028; --on-band:#F1E5D1; --plinth:#1B2340; --shadow:.5; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-weight:400;font-size:15px;line-height:1.75;overflow-x:hidden;transition:background .4s,color .4s}
+a{color:inherit}
+#app{font-family:var(--f-body)}
+#app[lang="en"]{--f-body:"DM Sans","Helvetica Neue",Arial,sans-serif}
+.lang-btn{background:none;border:1px solid currentColor;color:inherit;font:500 .72rem var(--f-ui);letter-spacing:.06em;padding:5px 10px;cursor:pointer;opacity:.85;margin-inline-end:4px}
+.lang-btn:hover{opacity:1}
+.f-lang{display:flex;gap:12px;font-size:.72rem}
+.f-lang button{all:unset;cursor:pointer;opacity:.7;border-bottom:1px solid transparent}
+.f-lang button[aria-pressed="true"]{opacity:1;border-color:currentColor}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+.wrap{max-width:1360px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.caps{font-family:var(--f-ui);text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;font-weight:500}
+.script{font-family:var(--f-script);font-style:italic;font-weight:500;letter-spacing:0;text-transform:none}
+.paper{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+section[id]{scroll-margin-top:72px}
+
+/* header */
+header{position:fixed;inset-inline:0;top:0;z-index:30;color:#FFF5E9;transition:background .35s,color .35s,box-shadow .35s;padding-top:env(safe-area-inset-top,0px)}
+header.solid{background:var(--bg);color:var(--fg);box-shadow:0 1px 0 var(--line)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:64px}
+.logo{display:inline-flex;align-items:baseline;gap:8px;text-decoration:none;line-height:1}
+.logo .script{font-size:1.45rem}
+.logo .caps{font-size:1.25rem;letter-spacing:.42em;font-weight:500}
+.links{display:flex;gap:30px;align-items:center}
+.links>a,.dd>button{font-family:var(--f-body);font-size:.84rem;text-decoration:none;opacity:.92}
+.dd{position:relative}
+.dd>button{all:unset;cursor:pointer;opacity:.92}
+.dd-menu{position:absolute;top:calc(100% + 20px);inset-inline-start:-24px;min-width:240px;background:var(--bg);color:var(--fg);border:1px solid var(--line);padding:14px 0;display:flex;flex-direction:column;opacity:0;visibility:hidden;translate:0 6px;transition:opacity .2s,translate .2s,visibility 0s .2s}
+.dd-menu::before{content:"";position:absolute;inset-inline:0;top:-22px;height:22px}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;translate:0 0;transition:opacity .2s,translate .2s}
+.dd-menu a{padding:8px 24px;text-decoration:none;font-size:.86rem}
+.dd-menu a:hover{background:var(--bg-2)}
+.dd-menu .script{padding:0 24px 6px;font-size:1.25rem}
+.nav-end{display:flex;justify-content:flex-end;align-items:center;gap:6px}
+.icon-btn{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;background:none;border:0;color:inherit;cursor:pointer;padding:0}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:3px;inset-inline-end:1px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--gold);color:#FFF5E9;font:500 .64rem/17px var(--f-ui);text-align:center}
+.badge[data-n="0"]{display:none}
+.menu-btn{display:none}
+@media (max-width:900px){.links{display:none}.menu-btn{display:inline-grid}.nav{grid-template-columns:auto 1fr}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:40px;padding:0 20px;font-family:var(--f-body);font-size:.82rem;text-decoration:none;border:1px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--fg)}
+.btn.line{background:transparent;color:var(--fg)}
+.btn.line:hover{background:var(--fg);color:var(--bg)}
+.btn.cream{background:#FFF5E9;color:#14234A;border-color:#FFF5E9}
+.btn.cream:hover{background:transparent;color:#FFF5E9}
+
+/* hero */
+.hero{position:relative;height:min(92vh,880px);min-height:560px;background:var(--band);overflow:hidden;color:#FFF5E9}
+.hero-art{position:absolute;left:max(3%,calc((100% - 1360px)/2));bottom:0;height:94%;width:auto;max-width:58%}
+.hero-sub{font-size:.95rem;opacity:.85;max-width:36ch}
+@media (min-width:901px){[dir="ltr"] .hero-art{left:auto;right:max(3%,calc((100% - 1360px)/2))}}
+@media (max-width:900px){.hero{height:auto;min-height:0;display:flex;flex-direction:column}.hero-art{position:relative;left:auto;bottom:auto;display:block;width:min(78%,420px);height:auto;max-width:none;margin:72px auto 0}.hero .hero-copy{position:relative;inset:auto;padding-top:20px}}
+.hero .grain{position:absolute;inset:0;pointer-events:none;opacity:.9;mix-blend-mode:overlay}
+.hero-copy{position:absolute;inset-inline:0;bottom:0;padding-bottom:max(44px,env(safe-area-inset-bottom,0px));pointer-events:none}
+.hero-copy .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.hero-copy>*{pointer-events:auto}
+.hero h1{font-family:var(--f-ui);font-weight:500;text-transform:uppercase;letter-spacing:.22em;font-size:clamp(1.3rem,2.6vw,2.2rem);line-height:1.2}
+.hero .ar{font-family:var(--f-ar-script);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.35;letter-spacing:0}
+#app[lang="en"] .hero .ar{font-family:var(--f-script);font-style:italic;font-weight:500}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap;pointer-events:auto}
+.drag i::before{left:0;border-left:1px solid currentColor;rotate:-45deg}
+.drag i::after{right:0;border-right:1px solid currentColor;rotate:45deg}
+
+/* section heads */
+.block{padding-block:72px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font-family:var(--f-script);font-style:italic;font-weight:500;letter-spacing:-.01em;font-size:clamp(2.2rem,4vw,3rem);line-height:1}
+.head .ar-t{font-family:var(--f-ar-script);font-size:1.5rem;line-height:1.4}
+.head p{font-size:.85rem;color:var(--mute)}
+.head.center{flex-direction:column;align-items:center;text-align:center}
+.head.center h2{text-align:center}
+.tabs{display:flex;gap:22px;flex-wrap:wrap}
+.tab{all:unset;cursor:pointer;font-size:.82rem;padding-bottom:3px;border-bottom:1px solid transparent;color:var(--mute)}
+.tab[aria-pressed="true"]{border-color:var(--fg);color:var(--fg)}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 14px}
+.feature{grid-row:span 2;position:relative;background:var(--band);color:var(--on-band);display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:26px;min-height:520px;overflow:hidden}
+.feature svg{position:absolute;inset-inline:12%;top:8%;width:76%;height:auto;opacity:.95;filter:drop-shadow(0 20px 26px rgba(0,0,0,.35))}
+.feature p{position:relative;font-size:.92rem;max-width:26ch}
+.feature .btn{position:relative;align-self:flex-start}
+.prod{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;min-width:0}
+.prod figure{position:relative;margin:0 0 10px;width:100%;aspect-ratio:4/5;max-width:100%;background:var(--card);display:grid;place-items:center;overflow:hidden;transition:background .4s}
+.prod figure svg{width:72%;height:auto;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(0 14px 16px rgba(0,0,0,.14))}
+.prod:hover figure svg{transform:scale(1.05)}
+.prod h3{font-family:var(--f-body);font-weight:500;font-size:.86rem}
+.prod .pr{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.08em;color:var(--mute);font-variant-numeric:tabular-nums}
+.prod .pr s{margin-inline-start:6px;opacity:.7}
+.prod .meta{font-size:.74rem;color:var(--mute)}
+.quick{position:absolute;inset-inline:10px;bottom:10px;display:flex;gap:4px;justify-content:center;flex-wrap:wrap;background:var(--bg);padding:8px;opacity:0;translate:0 8px;transition:opacity .25s,translate .25s}
+.prod:hover .quick,.prod:focus-within .quick{opacity:1;translate:0 0}
+@media (hover:none){.quick{opacity:1;translate:0 0;position:static;background:none;padding:8px 0 0}}
+.quick .lbl{width:100%;font-size:.72rem;color:var(--mute)}
+.quick button{all:unset;cursor:pointer;min-width:30px;height:28px;padding:0 8px;border:1px solid var(--line);font:500 .7rem/28px var(--f-ui);text-align:center;color:var(--fg)}
+.quick button:hover{border-color:var(--fg)}
+.quick button.wide{flex:1;font-family:var(--f-body)}
+.sticker{position:absolute;top:16px;inset-inline-start:14px;rotate:-9deg;background:var(--sticker);color:var(--red);font:500 .66rem var(--f-ui);letter-spacing:.14em;padding:7px 12px;box-shadow:0 3px 8px rgba(0,0,0,.18);background-image:repeating-linear-gradient(90deg,transparent 0 6px,rgba(139,43,36,.12) 6px 8px);z-index:2}
+.prod.out .quick{display:none}
+.prod[hidden],.feature[hidden]{display:none}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.grid{grid-template-columns:repeat(2,1fr);gap:18px 10px}.feature{grid-column:1/-1;grid-row:auto;min-height:0;align-items:center;text-align:center}.feature svg{position:relative;inset:auto;width:min(46%,200px);margin:0 auto 6px}.feature .btn{align-self:center}.feature p{margin-inline:auto}}
+@media (max-width:380px){.grid{gap:16px 8px}.prod h3{font-size:.8rem}.quick button{min-width:26px;padding:0 5px}}
+
+/* still life band */
+.still{position:relative;background:linear-gradient(180deg,#1a2650,#0e1734);color:#F3E3CB;overflow:hidden}
+.still .wrap{position:relative;padding-block:64px 0}
+.still .title{font-family:var(--f-script);font-style:italic;font-weight:500;font-size:clamp(2.4rem,5vw,4rem);direction:ltr;text-align:center;line-height:1}
+.still .sub{text-align:center;font-size:.9rem;opacity:.8;margin-top:8px}
+.shelf{display:flex;justify-content:center;align-items:flex-end;gap:clamp(4px,2vw,28px);margin-top:36px;padding-inline:4%}
+.shelf svg{height:auto;filter:drop-shadow(0 18px 20px rgba(0,0,0,.45))}
+.plank{height:22px;background:linear-gradient(180deg,#2a3766,#1b2648 70%,#141d3a);border-top:2px solid var(--gold);box-shadow:0 -10px 24px rgba(0,0,0,.25)}
+
+/* covers */
+.covers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin-inline:auto}
+.cover{position:relative;aspect-ratio:3/4;max-width:100%;padding:28px 26px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;overflow:hidden;box-shadow:inset 6px 0 0 rgba(0,0,0,.08),0 12px 26px -12px rgba(0,0,0,.4);transition:translate .4s cubic-bezier(.2,.7,.2,1)}
+.cover:hover{translate:0 -6px}
+.cover .t{font-family:var(--f-serif);font-weight:500;font-size:clamp(2.4rem,4vw,3.4rem);line-height:1;direction:ltr;text-align:left}
+.cover .a{font-family:var(--f-ar-serif);font-size:1rem}
+#app[lang="en"] .cover .a{font-family:var(--f-script);font-style:italic;font-size:1.15rem}
+.cover .win{align-self:center;width:62%;aspect-ratio:1;border:6px solid rgba(255,255,255,.5);display:grid;place-items:center;background:rgba(255,255,255,.12)}
+.cover .win svg{width:80%;height:auto}
+.cover .club{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;text-align:end}
+.c-silk{background-color:var(--beige);color:#1B2A55}
+.c-parfum{background-color:var(--navy-cover);color:#E9C98F}
+.c-powder{background-color:var(--blush);color:#1B2A55}
+@media (max-width:820px){.covers{grid-template-columns:1fr;max-width:420px}}
+
+/* showcase */
+.show{background:var(--band);color:var(--on-band)}
+.show .wrap{display:grid;grid-template-columns:1fr 1.4fr;align-items:center;gap:32px;padding-block:80px}
+.show .small{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.show .small svg{width:min(260px,70%);height:auto;filter:drop-shadow(0 18px 18px rgba(0,0,0,.4))}
+.show .big svg{width:100%;max-width:560px;height:auto;display:block;margin-inline:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.45))}
+.show h3{font-family:var(--f-body);font-weight:500;font-size:.9rem}
+.show .pr{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.08em;opacity:.85}
+.show ul{list-style:none;margin:6px 0 10px;padding:0;font-size:.82rem;opacity:.8}
+@media (max-width:820px){.show .wrap{grid-template-columns:1fr}.show .big{order:-1}}
+
+/* faq */
+.faq{max-width:820px;margin-inline:auto;border-top:1px solid var(--fg)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding-block:18px;font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.3rem;line-height:1;transition:rotate .2s}
+.faq details[open] summary::after{rotate:45deg}
+.faq details p{padding-bottom:18px;color:var(--mute);max-width:65ch}
+
+/* closing */
+.closing{text-align:center;position:relative}
+.rose{position:absolute;left:7%;bottom:24px;width:150px;height:auto}
+@media (max-width:760px){.rose{position:static;display:block;margin:6px auto 0;width:110px}}
+#butterfly{position:absolute;top:0;left:0;width:58px;height:auto;z-index:24;pointer-events:none;will-change:transform;filter:drop-shadow(0 6px 8px rgba(0,0,0,.18))}
+#butterfly .wings{transform-origin:50px 50px;animation:flap .32s ease-in-out infinite alternate}
+#butterfly.landed .wings{animation:rest 2.6s ease-in-out infinite}
+@keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.28)}}
+@keyframes rest{0%,70%,100%{transform:scaleX(.9)}82%{transform:scaleX(.45)}}
+@media (max-width:760px){#butterfly{width:44px}}
+@media (prefers-reduced-motion:reduce){#butterfly .wings{animation:none}}
+.closing .wrap{display:flex;flex-direction:column;align-items:center;gap:18px;padding-block:90px}
+.closing h2{font-family:var(--f-script);font-style:italic;font-weight:500;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;direction:ltr}
+.closing .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* footer */
+footer{background:var(--band);color:var(--on-band)}
+footer .wrap{padding-block:72px 28px}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:36px;align-items:start}
+.f-grid h4{font-family:var(--f-script);font-style:italic;font-weight:500;font-size:1.6rem;margin:0 0 12px}
+.f-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:.82rem}
+.f-grid a{text-decoration:none;opacity:.9}
+.f-grid a:hover{opacity:1;text-decoration:underline}
+.f-about{font-size:.85rem;opacity:.9;max-width:36ch}
+.wa{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:.85rem}
+.wa b{font-weight:400;direction:ltr;user-select:all}
+.wa button{all:unset;cursor:pointer;font-size:.75rem;border-bottom:1px solid currentColor}
+.f-join p{font-size:.82rem;opacity:.9;margin-bottom:14px}
+.f-join .btn{width:100%}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:56px;font-size:.72rem}
+.cur{border:1px solid rgba(255,245,233,.3);padding:6px 12px;font-family:var(--f-ui);font-size:.7rem}
+@media (max-width:900px){.f-grid{grid-template-columns:1fr 1fr}.f-grid>div:first-child,.f-join{grid-column:1/-1}}
+
+/* drawers */
+.scrim{position:fixed;inset:0;background:rgba(8,14,32,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;width:min(420px,100%);background:var(--bg);color:var(--fg);z-index:41;display:flex;flex-direction:column;visibility:hidden;transition:transform .38s cubic-bezier(.2,.7,.2,1),visibility 0s .38s;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.cart{inset-inline-end:0;transform:translateX(-100%);padding-left:env(safe-area-inset-left,0px)}
+.drawer.menu{inset-inline-start:0;transform:translateX(100%);padding-right:env(safe-area-inset-right,0px)}
+[dir="ltr"] .drawer.cart{transform:translateX(100%)}
+[dir="ltr"] .drawer.menu{transform:translateX(-100%)}
+#app .drawer.open{transform:none;visibility:visible;transition:transform .38s cubic-bezier(.2,.7,.2,1)}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--line)}
+.d-head h2{font-family:var(--f-script);font-style:italic;font-weight:500;font-size:1.8rem;line-height:1;direction:ltr}
+.d-body{flex:1;overflow-y:auto;padding:6px 22px}
+.d-foot{border-top:1px solid var(--line);padding:18px 22px;display:flex;flex-direction:column;gap:10px}
+.d-foot .sum{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.d-foot .sum b{font-weight:500}
+.d-foot small{color:var(--mute);font-size:.78rem}
+.d-foot .btn{width:100%;height:44px}
+.empty{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding-block:60px;color:var(--mute)}
+.item{display:grid;grid-template-columns:1fr auto;gap:6px 14px;padding-block:16px;border-bottom:1px solid var(--line)}
+.item h3{font-size:.92rem;font-weight:500}
+.item .var{color:var(--mute);font-size:.78rem}
+.item .ip{font-variant-numeric:tabular-nums;font-size:.85rem;text-align:end}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);justify-self:start}
+.qty button{all:unset;cursor:pointer;width:30px;height:28px;text-align:center}
+.qty span{min-width:22px;text-align:center;font-variant-numeric:tabular-nums;font-size:.85rem}
+.rm{all:unset;cursor:pointer;color:var(--mute);font-size:.76rem;border-bottom:1px solid var(--line);justify-self:end;align-self:center}
+.m-links{display:flex;flex-direction:column}
+.m-links a{padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:1.05rem}
+.m-links a small{display:block;color:var(--mute);font-size:.78rem}
+.toast{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;translate:-50% 20px;background:var(--fg);color:var(--bg);padding:11px 20px;font-size:.85rem;opacity:0;pointer-events:none;transition:opacity .25s,translate .25s;z-index:50;white-space:nowrap}
+.toast.on{opacity:1;translate:-50% 0}
+.totop{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-end:max(18px,env(safe-area-inset-left,0px));width:34px;height:34px;display:grid;place-items:center;background:#0d0d0d;color:#fff;border:0;cursor:pointer;z-index:25;opacity:0;pointer-events:none;transition:opacity .3s}
+.totop.on{opacity:1;pointer-events:auto}
+.totop svg{width:14px;height:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div id="app" dir="ltr" lang="en">
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="nam"><span class="caps">NAM</span></a>
+    <nav class="links" aria-label="Menu" data-ta="k57">
+      <div class="dd"><button type="button" aria-haspopup="true"><span data-t="k0">Sleepwear</span></button>
+        <div class="dd-menu"><span class="script">Sleepwear</span><a href="#shop" data-filter="pj"><span data-t="k1">All sleepwear</span></a><a href="#shop" data-filter="pj"><span data-t="k2">Satin sets</span></a><a href="#shop" data-filter="pj"><span data-t="k3">Nightgowns</span></a></div></div>
+      <div class="dd"><button type="button" aria-haspopup="true"><span data-t="k4">Parfum & Poudre</span></button>
+        <div class="dd-menu"><span class="script">Parfum &amp; Poudre</span><a href="#shop" data-filter="parfum"><span data-t="k5">Parfum</span></a><a href="#shop" data-filter="powder"><span data-t="k6">Perfumed body powder</span></a></div></div>
+      <a href="#gifts"><span data-t="k7">Gifts</span></a>
+      <a href="#faq"><span data-t="k8">Help</span></a>
+    </nav>
+    <div class="nav-end">
+      <button class="lang-btn" type="button" id="langBtn" lang="ar">العربية</button>
+      <button class="icon-btn" type="button" id="themeToggle" aria-label="Night mode" data-ta="k58" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></button>
+      <button class="icon-btn" type="button" id="cartBtn" aria-label="Bag" data-ta="k59"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" id="badge" data-n="0">0</span></button>
+      <button class="icon-btn menu-btn" type="button" id="menuBtn" aria-label="Menu" data-ta="k57"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <svg class="hero-art" viewBox="0 0 600 800" role="img" aria-label="Illustration of a mother and daughter in matching white satin pyjamas under the moon" data-ta="k60" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <radialGradient id="hg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF5E9" stop-opacity=".16"/><stop offset="1" stop-color="#FFF5E9" stop-opacity="0"/></radialGradient>
+        <linearGradient id="sat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".4" stop-color="#f1ede7"/><stop offset=".55" stop-color="#ffffff"/><stop offset=".8" stop-color="#e6e0d8"/><stop offset="1" stop-color="#f6f3ee"/></linearGradient>
+        <linearGradient id="hair" x1="0" x2="1"><stop offset="0" stop-color="#2c1a10"/><stop offset=".5" stop-color="#4a2e1e"/><stop offset="1" stop-color="#2c1a10"/></linearGradient>
+        <mask id="moonm"><rect width="600" height="800" fill="#fff"/><circle cx="492" cy="96" r="36" fill="#000"/></mask>
+      </defs>
+      <circle cx="300" cy="430" r="320" fill="url(#hg)"/>
+      <circle cx="474" cy="110" r="40" fill="#F3E3C3" mask="url(#moonm)"/>
+      <g fill="#F3E3C3"><circle cx="90" cy="120" r="2"/><circle cx="160" cy="70" r="1.4"/><circle cx="560" cy="220" r="1.8"/><circle cx="60" cy="300" r="1.3"/><circle cx="420" cy="40" r="1.5"/><circle cx="250" cy="110" r="1.2"/></g>
+      <ellipse cx="300" cy="776" rx="240" ry="14" fill="#000" opacity=".22"/>
+      <!-- mother -->
+      <path d="M290 120 C240 130 236 220 246 300 C252 350 262 380 272 392 L410 392 C420 360 432 320 432 260 C434 170 410 118 360 112 Z" fill="url(#hair)"/>
+      <rect x="326" y="214" width="28" height="44" rx="10" fill="#D49C7A"/>
+      <path d="M318 250 L340 292 L362 250 Z" fill="#E2B08F"/>
+      <path d="M276 495 L262 760 L334 760 L340 560 L346 760 L418 760 L404 495 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M340 560 L340 515 M300 520 Q296 640 290 750 M380 520 Q384 640 390 750" stroke="#e2dbd1" fill="none"/>
+      <path d="M268 752 L332 752 M348 752 L414 752" stroke="#1B2A55" stroke-width="3"/>
+      <ellipse cx="298" cy="770" rx="22" ry="8" fill="#D49C7A"/><ellipse cx="382" cy="770" rx="22" ry="8" fill="#D49C7A"/>
+      <path d="M268 262 L246 290 L228 470 L256 474 L280 330 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M412 262 L434 290 L452 470 L424 474 L400 330 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M268 262 L318 248 L340 292 L362 248 L412 262 L404 330 L414 502 Q340 514 266 502 L276 330 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M318 248 L302 262 L318 302 L340 336 L362 302 L378 262 L362 248" fill="url(#sat)" stroke="#1B2A55" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M340 336 L340 506" stroke="#1B2A55" stroke-width="2.5"/>
+      <g fill="#f6f3ee" stroke="#bdb5aa"><circle cx="346" cy="370" r="3"/><circle cx="346" cy="410" r="3"/><circle cx="346" cy="450" r="3"/></g>
+      <path d="M362 350 L392 350 L392 384 Q377 388 362 384 Z" fill="none" stroke="#d6cec3"/><path d="M362 350 L392 350" stroke="#1B2A55" stroke-width="2.5"/>
+      <path d="M229 462 L257 466 M451 462 L423 466" stroke="#1B2A55" stroke-width="3"/>
+      <ellipse cx="440" cy="488" rx="13" ry="17" fill="#E2B08F"/>
+      <ellipse cx="341" cy="170" rx="44" ry="54" fill="#E2B08F"/>
+      <path d="M296 166 C294 112 330 100 352 104 C394 110 392 152 388 178 C376 142 350 128 322 140 C308 146 300 158 297 178 Z" fill="url(#hair)"/>
+      <path d="M384 150 C402 210 400 282 390 344 C408 302 416 230 400 158 Z" fill="url(#hair)"/>
+      <path d="M318 176 q8 6 16 0 M348 176 q8 6 16 0" stroke="#5a3a2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M334 201 q7 5 14 0" stroke="#a5604f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <circle cx="318" cy="192" r="9" fill="#e48a7a" opacity=".22"/><circle cx="364" cy="192" r="9" fill="#e48a7a" opacity=".22"/>
+      <!-- child -->
+      <circle cx="170" cy="470" r="40" fill="url(#hair)"/><circle cx="170" cy="424" r="16" fill="url(#hair)"/>
+      <rect x="162" y="506" width="16" height="22" rx="6" fill="#D49C7A"/>
+      <path d="M134 645 L126 762 L166 762 L170 690 L174 762 L214 762 L206 645 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M128 755 L164 755 M176 755 L212 755" stroke="#1B2A55" stroke-width="2.5"/>
+      <ellipse cx="146" cy="769" rx="15" ry="6" fill="#D49C7A"/><ellipse cx="194" cy="769" rx="15" ry="6" fill="#D49C7A"/>
+      <path d="M128 534 L114 552 L104 640 L124 644 L134 580 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M206 530 L224 520 L248 494 L236 484 L214 506 L202 548 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M160 524 L170 546 L180 524 Z" fill="#E2B08F"/>
+      <path d="M128 534 L158 524 L170 546 L182 524 L212 534 L206 570 L212 650 Q170 658 128 650 L134 570 Z" fill="url(#sat)" stroke="#d6cec3"/>
+      <path d="M158 524 L150 532 L160 556 L170 570 L180 556 L190 532 L182 524" fill="url(#sat)" stroke="#1B2A55" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M170 570 L170 652" stroke="#1B2A55" stroke-width="2"/>
+      <path d="M105 634 L125 638" stroke="#1B2A55" stroke-width="2.4"/>
+      <ellipse cx="114" cy="654" rx="9" ry="11" fill="#E2B08F"/>
+      <ellipse cx="240" cy="486" rx="13" ry="17" fill="#E2B08F"/>
+      <ellipse cx="244" cy="490" rx="9" ry="10" fill="#D49C7A"/>
+      <ellipse cx="170" cy="480" rx="33" ry="36" fill="#E2B08F"/>
+      <path d="M137 474 C138 440 166 432 188 440 C202 446 206 462 204 476 C192 456 170 452 150 464 Z" fill="url(#hair)"/>
+      <path d="M154 486 q6 4 12 0 M176 486 q6 4 12 0" stroke="#5a3a2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M165 502 q5 4 10 0" stroke="#a5604f" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="152" cy="496" r="7" fill="#e48a7a" opacity=".25"/><circle cx="188" cy="496" r="7" fill="#e48a7a" opacity=".25"/>
+    </svg>
+    <div class="grain paper" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <div class="wrap">
+        <span class="ar"><span data-t="k9">Nights, lived in elegance</span></span>
+        <h1>Live your nights well</h1>
+        <p class="hero-sub"><span data-t="k10">Matching satin sets for mother and daughter, made for the sweetest moments before sleep.</span></p>
+        <div class="row">
+          <a class="btn cream" href="#shop" data-filter="pj"><span data-t="k11">Shop sleepwear</span></a>
+          <a class="btn cream" href="#shop" style="background:transparent;color:#FFF5E9"><span data-t="k12">All products</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="shop">
+    <div class="wrap">
+      <div class="head">
+        <div><h2>The Nam Shop</h2><p><span data-t="k13">Curated pieces for nights lived well.</span></p></div>
+        <div class="tabs" role="group" aria-label="Filter products" data-ta="k61">
+          <button class="tab" type="button" data-filter="all" aria-pressed="true"><span data-t="k14">All</span></button>
+          <button class="tab" type="button" data-filter="pj" aria-pressed="false"><span data-t="k0">Sleepwear</span></button>
+          <button class="tab" type="button" data-filter="parfum" aria-pressed="false"><span data-t="k5">Parfum</span></button>
+          <button class="tab" type="button" data-filter="powder" aria-pressed="false"><span data-t="k15">Poudre</span></button>
+        </div>
+      </div>
+      <div class="grid" id="grid">
+        <div class="feature paper" id="feature">
+          <svg viewBox="0 0 300 400" aria-hidden="true" data-art="gown"></svg>
+          <span class="caps" style="position:relative">Night-tested · Nam-approved</span>
+          <p><span data-t="k16">Night-tested, NAM-approved. A white collection in satin and modal for calmer sleep.</span></p>
+          <button class="btn cream" type="button" data-filter="pj"><span data-t="k11">Shop sleepwear</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="still" aria-label="Night essentials" data-ta="k62">
+    <div class="wrap">
+      <p class="title">Night essentials</p>
+      <p class="sub"><span data-t="k17">Everything for a quiet night, on one shelf.</span></p>
+      <div class="shelf" id="shelf"></div>
+    </div>
+    <div class="plank"></div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head center"><h2>Our Collections</h2><p><span data-t="k18">Three collections, each with its own story.</span></p></div>
+      <div class="covers">
+        <a class="cover c-silk paper" href="#shop" data-filter="pj"><div><div class="t">Silk</div><div class="a"><span data-t="k19">Satin & modal sleepwear</span></div></div><div class="win"><svg viewBox="0 0 300 400" aria-hidden="true" data-art="set" data-piping="#1a1817"></svg></div><div class="club">NAM · sleepwear</div></a>
+        <a class="cover c-parfum paper" href="#shop" data-filter="parfum"><div><div class="t">Parfum</div><div class="a"><span data-t="k20">Eau de parfum</span></div></div><div class="win"><svg viewBox="0 0 300 400" aria-hidden="true" data-art="perfume"></svg></div><div class="club">NAM · parfums</div></a>
+        <a class="cover c-powder paper" href="#shop" data-filter="powder"><div><div class="t">Poudre</div><div class="a"><span data-t="k6">Perfumed body powder</span></div></div><div class="win"><svg viewBox="0 0 300 400" aria-hidden="true" data-art="powder"></svg></div><div class="club">NAM · poudre</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="show paper" id="gifts">
+    <div class="wrap">
+      <div class="small">
+        <span class="script" style="font-size:2rem;line-height:1">Coffret du mois</span>
+        <svg viewBox="0 0 300 300" aria-hidden="true" data-art="gift"></svg>
+        <h3><span data-t="k21">The Night Box</span></h3>
+        <ul><li><span data-t="k22">Classic satin set</span></li><li><span data-t="k23">Soir · 50 ml</span></li><li><span data-t="k24">Handwritten gift card</span></li></ul>
+        <span class="pr"><span data-money="980.00">AED 980.00</span></span>
+        <div style="display:flex;gap:6px;margin-top:8px"><select id="sz-gift" aria-label="Set size" data-ta="k63" style="background:transparent;color:inherit;border:1px solid rgba(255,245,233,.4);font:inherit;padding:0 8px;height:40px"><option>XS</option><option selected>S</option><option>M</option><option>L</option><option>XL</option></select><button class="btn cream" type="button" data-add="gift-night" data-price="980" data-sel="sz-gift"><span data-t="k25">Add to bag</span></button></div>
+      </div>
+      <div class="big"><svg viewBox="0 0 300 300" role="img" aria-label="Illustration of a navy gift box with a gold ribbon" data-ta="k64" data-art="gift" data-dark="1"></svg>
+        <div style="text-align:center;margin-top:14px"><h3><span data-t="k26">The Poudre Box</span></h3><p style="font-size:.82rem;opacity:.8"><span data-t="k27">Soir body powder · Soir parfum 50 ml · silk puff</span></p><span class="pr"><span data-money="690.00">AED 690.00</span></span><div style="margin-top:10px"><button class="btn cream" type="button" data-add="gift-powder" data-price="690"><span data-t="k25">Add to bag</span></button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="head center"><h2>Help</h2><p><span data-t="k28">Frequently asked questions</span></p></div>
+      <div class="faq">
+        <details id="delivery"><summary><span data-t="k29">How long does delivery take?</span></summary><p><span data-t="k30">Same day within Dubai for orders before 4 pm, and 24 to 48 hours across the rest of the UAE. Delivery is free nationwide.</span></p></details>
+        <details id="returns"><summary><span data-t="k31">Can I exchange or return?</span></summary><p><span data-t="k32">Sleepwear can be exchanged within 7 days in its original condition with tags. Parfum and powder cannot be returned once opened.</span></p></details>
+        <details id="payment"><summary><span data-t="k33">Which payment methods do you accept?</span></summary><p><span data-t="k34">Cash on delivery, or card and Apple Pay through a payment link we send on WhatsApp after confirming your order.</span></p></details>
+        <details id="sizes"><summary><span data-t="k35">How do I choose my size?</span></summary><p><span data-t="k36">Our cuts are relaxed. If you are between sizes, choose the smaller one. We can send the size chart in centimetres on WhatsApp.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>live your nights well</h2>
+      <p style="color:var(--mute)"><span data-t="k37">From satin to perfumed powder, everything that makes the evening softer.</span></p>
+      <div class="row"><a class="btn" href="#shop"><span data-t="k38">Shop the collection</span></a><a class="btn line" href="https://wa.me/971500000000" target="_blank" rel="noopener"><span data-t="k39">Contact us</span></a></div>
+    </div>
+    <svg class="rose" id="rose" viewBox="0 0 160 240" aria-hidden="true">
+      <path d="M80 92 C78 140 84 190 78 238" stroke="#3f6b4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M80 150 C52 136 34 146 26 162 C48 168 66 164 80 150 Z" fill="#4f8159"/><path d="M80 150 C60 152 42 158 26 162" stroke="#3a6544" fill="none"/>
+      <path d="M81 186 C106 168 128 176 138 190 C116 198 96 196 81 186 Z" fill="#4f8159"/><path d="M81 186 C102 186 120 188 138 190" stroke="#3a6544" fill="none"/>
+      <path d="M46 70 C40 40 62 22 80 30 C98 22 120 40 114 70 C110 96 92 106 80 106 C68 106 50 96 46 70 Z" fill="#9e2f3e"/>
+      <path d="M54 66 C52 44 70 34 82 40 C96 36 110 50 104 70 C100 88 88 96 80 96 C70 96 58 86 54 66 Z" fill="#b8434f"/>
+      <path d="M64 60 C64 46 78 42 86 48 C96 48 100 60 94 70 C90 80 82 84 78 82 C70 80 64 72 64 60 Z" fill="#c95560"/>
+      <path d="M72 58 C74 50 86 50 88 58 C90 66 82 72 78 70 C74 68 72 64 76 60" fill="none" stroke="#8a2533" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M46 70 C56 84 66 92 80 94 M114 70 C104 84 94 92 80 94" stroke="#8a2533" stroke-width="1.6" fill="none"/>
+      <path d="M62 102 C70 112 90 112 98 102 L88 110 L80 104 L72 110 Z" fill="#3f6b4a"/>
+    </svg>
+  </section>
+</main>
+
+<footer class="paper">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="#top" style="color:inherit"><span class="caps">NAM</span></a>
+        <p class="f-about" style="margin-top:14px"><span data-t="k40">Women's sleepwear, parfum and perfumed body powder from the UAE. Curated pieces for your evening ritual, delivered in a NAM box.</span></p>
+        <div class="wa"><span><span data-t="k41">WhatsApp</span></span><b>+971 50 000 0000</b><button type="button" data-copy="+971500000000"><span data-t="k42">Copy</span></button></div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#shop" data-filter="pj"><span data-t="k0">Sleepwear</span></a></li><li><a href="#shop" data-filter="parfum"><span data-t="k5">Parfum</span></a></li><li><a href="#shop" data-filter="powder"><span data-t="k15">Poudre</span></a></li><li><a href="#gifts"><span data-t="k7">Gifts</span></a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#delivery"><span data-t="k43">Delivery</span></a></li><li><a href="#returns"><span data-t="k44">Exchanges & returns</span></a></li><li><a href="#payment"><span data-t="k45">Payment</span></a></li><li><a href="#sizes"><span data-t="k46">Sizing</span></a></li></ul></div>
+      <div class="f-join"><h4>Join the Club</h4><p><span data-t="k47">Join the NAM list on WhatsApp and hear about new releases first.</span></p><a class="btn cream" href="https://wa.me/971500000000?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85%20%D9%84%D9%82%D8%A7%D8%A6%D9%85%D8%A9%20%D9%86%D8%A7%D9%85" target="_blank" rel="noopener"><span data-t="k48">Join now</span></a></div>
+    </div>
+    <div class="f-bottom"><div class="f-lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">English</button><button type="button" data-lang="ar" lang="ar" aria-pressed="false">العربية</button></div><span class="cur"><span data-t="k49">United Arab Emirates (AED)</span></span><span class="caps" style="font-size:.64rem">© NAM 2026</span></div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer cart" id="cart" aria-label="Bag" data-ta="k59" aria-hidden="true">
+  <div class="d-head"><h2>Your Bag</h2><button class="icon-btn" type="button" data-close aria-label="Close" data-ta="k65"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="d-body" id="cartBody"></div>
+  <div class="d-foot" id="cartFoot">
+    <div class="sum"><span><span data-t="k50">Subtotal</span></span><b id="cartTotal">0 د.إ</b></div>
+    <small><span data-t="k51">Free delivery across the UAE. We confirm your order and payment with you on WhatsApp.</span></small>
+    <a class="btn" id="waLink" href="https://wa.me/971500000000" target="_blank" rel="noopener"><span data-t="k52">Send order on WhatsApp</span></a>
+    <button class="btn line" type="button" id="copyOrder"><span data-t="k53">Copy order details</span></button>
+  </div>
+</aside>
+<aside class="drawer menu" id="menu" aria-label="Menu" data-ta="k57" aria-hidden="true">
+  <div class="d-head"><span class="logo"><span class="caps">NAM</span></span><button class="icon-btn" type="button" data-close aria-label="Close" data-ta="k65"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="d-body"><nav class="m-links">
+    <a href="#shop" data-filter="pj"><span data-t="k0">Sleepwear</span><small><span data-t="k54">Satin sets · Nightgowns</span></small></a>
+    <a href="#shop" data-filter="parfum"><span data-t="k5">Parfum</span><small><span data-t="k55">Soir · Eau de parfum</span></small></a>
+    <a href="#shop" data-filter="powder"><span data-t="k15">Poudre</span><small><span data-t="k56">Body powder · Silk puff</span></small></a>
+    <a href="#gifts"><span data-t="k7">Gifts</span></a>
+    <a href="#faq"><span data-t="k8">Help</span></a>
+  </nav></div>
+</aside>
+<svg id="butterfly" viewBox="0 0 100 100" aria-hidden="true">
+  <g class="wings">
+    <path d="M50 50 C36 20 8 14 6 32 C4 48 28 56 50 52 Z" fill="#E9B8B2" stroke="#B8955C" stroke-width="1.2"/>
+    <path d="M50 52 C30 56 14 70 22 84 C30 94 46 76 50 56 Z" fill="#F3D3CC" stroke="#B8955C" stroke-width="1.2"/>
+    <path d="M50 50 C64 20 92 14 94 32 C96 48 72 56 50 52 Z" fill="#E9B8B2" stroke="#B8955C" stroke-width="1.2"/>
+    <path d="M50 52 C70 56 86 70 78 84 C70 94 54 76 50 56 Z" fill="#F3D3CC" stroke="#B8955C" stroke-width="1.2"/>
+    <g fill="#14234A" opacity=".55"><circle cx="20" cy="30" r="3"/><circle cx="80" cy="30" r="3"/><circle cx="30" cy="74" r="2"/><circle cx="70" cy="74" r="2"/></g>
+  </g>
+  <ellipse cx="50" cy="56" rx="3.4" ry="18" fill="#14234A"/>
+  <path d="M49 40 C46 30 42 26 38 24 M51 40 C54 30 58 26 62 24" stroke="#14234A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+</svg>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<button class="totop" id="totop" type="button" aria-label="Back to top" data-ta="k66"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id), root=document.documentElement;
+
+  /* ---------- language ---------- */
+  const DICT={"ar": {"k0": "البجايم", "k1": "كل البجايم", "k2": "أطقم الساتان", "k3": "قمصان النوم", "k4": "العطور والبودرة", "k5": "العطور", "k6": "بودرة الجسم المعطّرة", "k7": "الهدايا", "k8": "المساعدة", "k9": "ليالٍ تُعاش بأناقة", "k10": "أطقم ساتان متطابقة للأم وطفلتها، لأجمل لحظات قبل النوم.", "k11": "تسوّقي البجايم", "k12": "كل المنتجات", "k13": "قطع مختارة لمن تعيش لياليها بأناقة.", "k14": "الكل", "k15": "البودرة", "k16": "مجرّبة ليلًا، معتمدة من نام. مجموعة بيضاء من الساتان والمودال لنوم أهدأ.", "k17": "كل ما تحتاجينه لليلة هادئة، على رفّ واحد.", "k18": "ثلاث مجموعات، ولكل واحدة حكايتها.", "k19": "بجايم الساتان والمودال", "k20": "عطور أو دو بارفان", "k21": "صندوق الليلة", "k22": "طقم الساتان الكلاسيكي", "k23": "Soir · 50 مل", "k24": "بطاقة إهداء بخط اليد", "k25": "أضيفي للسلة", "k26": "صندوق البودرة", "k27": "بودرة الجسم Soir · عطر Soir 50 مل · إسفنجة حريرية", "k28": "الأسئلة الشائعة", "k29": "كم يستغرق التوصيل؟", "k30": "داخل دبي في نفس اليوم للطلبات قبل الساعة 4 عصرًا، وباقي الإمارات خلال 24 إلى 48 ساعة. التوصيل مجاني داخل الدولة.", "k31": "هل يمكنني الاستبدال أو الإرجاع؟", "k32": "يمكن استبدال البجايم خلال 7 أيام إذا كانت بحالتها الأصلية مع البطاقة. العطور والبودرة لا تُرجع بعد فتح الغلاف.", "k33": "ما طرق الدفع المتاحة؟", "k34": "الدفع عند الاستلام، أو بالبطاقة وApple Pay عبر رابط دفع نرسله على واتساب بعد تأكيد الطلب.", "k35": "كيف أختار المقاس؟", "k36": "القصّات واسعة. إذا كنتِ بين مقاسين اختاري الأصغر، ونرسل جدول المقاسات بالسنتيمتر على واتساب.", "k37": "من الساتان إلى البودرة المعطّرة، كل ما يجعل المساء أجمل.", "k38": "تسوّقي المجموعة", "k39": "تواصلي معنا", "k40": "بجايم نسائية وعطور وبودرة معطّرة من الإمارات. قطع مختارة لطقس المساء، تصلكِ في صندوق نام.", "k41": "واتساب", "k42": "نسخ", "k43": "التوصيل", "k44": "الاستبدال والإرجاع", "k45": "طرق الدفع", "k46": "المقاسات", "k47": "انضمي لقائمة نام على واتساب لتصلكِ الإصدارات الجديدة أولًا.", "k48": "انضمي الآن", "k49": "الإمارات العربية المتحدة (AED د.إ)", "k50": "المجموع", "k51": "التوصيل مجاني داخل الإمارات. نؤكد الطلب وطريقة الدفع معكِ على واتساب.", "k52": "إرسال الطلب عبر واتساب", "k53": "نسخ تفاصيل الطلب", "k54": "أطقم الساتان · قمصان النوم", "k55": "Soir · أو دو بارفان", "k56": "بودرة الجسم المعطّرة · الإسفنجة الحريرية", "k57": "القائمة", "k58": "الوضع الليلي", "k59": "السلة", "k60": "رسم توضيحي لأم وطفلتها بطقم بجامة ساتان أبيض متطابق تحت ضوء القمر", "k61": "تصفية المنتجات", "k62": "مستلزمات المساء", "k63": "مقاس الطقم", "k64": "رسم توضيحي لصندوق هدية كحلي بشريطة ذهبية", "k65": "إغلاق", "k66": "العودة للأعلى", "k67": "الوضع النهاري", "k68": "تم النسخ", "k69": "سلتكِ فارغة حاليًا.", "k70": "ابدئي التسوّق", "k71": "زيادة", "k72": "إنقاص", "k73": "إزالة", "k74": "أُضيفت إلى السلة", "k75": "تم نسخ الطلب", "k76": "تعذّر النسخ، انسخي الطلب يدويًا", "k77": "نفدت الكمية", "k78": "إضافة سريعة · اختاري المقاس", "k79": "+ إضافة سريعة", "k80": "مقاس", "k81": "رسم توضيحي: ", "k82": "مرحبًا NAM، أرغب بطلب:", "k83": "العربية", "k84": "English"}, "en": {"k0": "Sleepwear", "k1": "All sleepwear", "k2": "Satin sets", "k3": "Nightgowns", "k4": "Parfum & Poudre", "k5": "Parfum", "k6": "Perfumed body powder", "k7": "Gifts", "k8": "Help", "k9": "Nights, lived in elegance", "k10": "Matching satin sets for mother and daughter, made for the sweetest moments before sleep.", "k11": "Shop sleepwear", "k12": "All products", "k13": "Curated pieces for nights lived well.", "k14": "All", "k15": "Poudre", "k16": "Night-tested, NAM-approved. A white collection in satin and modal for calmer sleep.", "k17": "Everything for a quiet night, on one shelf.", "k18": "Three collections, each with its own story.", "k19": "Satin & modal sleepwear", "k20": "Eau de parfum", "k21": "The Night Box", "k22": "Classic satin set", "k23": "Soir · 50 ml", "k24": "Handwritten gift card", "k25": "Add to bag", "k26": "The Poudre Box", "k27": "Soir body powder · Soir parfum 50 ml · silk puff", "k28": "Frequently asked questions", "k29": "How long does delivery take?", "k30": "Same day within Dubai for orders before 4 pm, and 24 to 48 hours across the rest of the UAE. Delivery is free nationwide.", "k31": "Can I exchange or return?", "k32": "Sleepwear can be exchanged within 7 days in its original condition with tags. Parfum and powder cannot be returned once opened.", "k33": "Which payment methods do you accept?", "k34": "Cash on delivery, or card and Apple Pay through a payment link we send on WhatsApp after confirming your order.", "k35": "How do I choose my size?", "k36": "Our cuts are relaxed. If you are between sizes, choose the smaller one. We can send the size chart in centimetres on WhatsApp.", "k37": "From satin to perfumed powder, everything that makes the evening softer.", "k38": "Shop the collection", "k39": "Contact us", "k40": "Women's sleepwear, parfum and perfumed body powder from the UAE. Curated pieces for your evening ritual, delivered in a NAM box.", "k41": "WhatsApp", "k42": "Copy", "k43": "Delivery", "k44": "Exchanges & returns", "k45": "Payment", "k46": "Sizing", "k47": "Join the NAM list on WhatsApp and hear about new releases first.", "k48": "Join now", "k49": "United Arab Emirates (AED)", "k50": "Subtotal", "k51": "Free delivery across the UAE. We confirm your order and payment with you on WhatsApp.", "k52": "Send order on WhatsApp", "k53": "Copy order details", "k54": "Satin sets · Nightgowns", "k55": "Soir · Eau de parfum", "k56": "Body powder · Silk puff", "k57": "Menu", "k58": "Night mode", "k59": "Bag", "k60": "Illustration of a mother and daughter in matching white satin pyjamas under the moon", "k61": "Filter products", "k62": "Night essentials", "k63": "Set size", "k64": "Illustration of a navy gift box with a gold ribbon", "k65": "Close", "k66": "Back to top", "k67": "Day mode", "k68": "Copied", "k69": "Your bag is empty.", "k70": "Start shopping", "k71": "Increase", "k72": "Decrease", "k73": "Remove", "k74": "Added to bag", "k75": "Order copied", "k76": "Copy failed, please copy the order manually", "k77": "Sold out", "k78": "Quick add · choose size", "k79": "+ Quick add", "k80": "Size", "k81": "Illustration: ", "k82": "Hello NAM, I'd like to order:", "k83": "العربية", "k84": "English"}}, KEY={"البجايم": "k0", "كل البجايم": "k1", "أطقم الساتان": "k2", "قمصان النوم": "k3", "العطور والبودرة": "k4", "العطور": "k5", "بودرة الجسم المعطّرة": "k6", "الهدايا": "k7", "المساعدة": "k8", "ليالٍ تُعاش بأناقة": "k9", "أطقم ساتان متطابقة للأم وطفلتها، لأجمل لحظات قبل النوم.": "k10", "تسوّقي البجايم": "k11", "كل المنتجات": "k12", "قطع مختارة لمن تعيش لياليها بأناقة.": "k13", "الكل": "k14", "البودرة": "k15", "مجرّبة ليلًا، معتمدة من نام. مجموعة بيضاء من الساتان والمودال لنوم أهدأ.": "k16", "كل ما تحتاجينه لليلة هادئة، على رفّ واحد.": "k17", "ثلاث مجموعات، ولكل واحدة حكايتها.": "k18", "بجايم الساتان والمودال": "k19", "عطور أو دو بارفان": "k20", "صندوق الليلة": "k21", "طقم الساتان الكلاسيكي": "k22", "Soir · 50 مل": "k23", "بطاقة إهداء بخط اليد": "k24", "أضيفي للسلة": "k25", "صندوق البودرة": "k26", "بودرة الجسم Soir · عطر Soir 50 مل · إسفنجة حريرية": "k27", "الأسئلة الشائعة": "k28", "كم يستغرق التوصيل؟": "k29", "داخل دبي في نفس اليوم للطلبات قبل الساعة 4 عصرًا، وباقي الإمارات خلال 24 إلى 48 ساعة. التوصيل مجاني داخل الدولة.": "k30", "هل يمكنني الاستبدال أو الإرجاع؟": "k31", "يمكن استبدال البجايم خلال 7 أيام إذا كانت بحالتها الأصلية مع البطاقة. العطور والبودرة لا تُرجع بعد فتح الغلاف.": "k32", "ما طرق الدفع المتاحة؟": "k33", "الدفع عند الاستلام، أو بالبطاقة وApple Pay عبر رابط دفع نرسله على واتساب بعد تأكيد الطلب.": "k34", "كيف أختار المقاس؟": "k35", "القصّات واسعة. إذا كنتِ بين مقاسين اختاري الأصغر، ونرسل جدول المقاسات بالسنتيمتر على واتساب.": "k36", "من الساتان إلى البودرة المعطّرة، كل ما يجعل المساء أجمل.": "k37", "تسوّقي المجموعة": "k38", "تواصلي معنا": "k39", "بجايم نسائية وعطور وبودرة معطّرة من الإمارات. قطع مختارة لطقس المساء، تصلكِ في صندوق نام.": "k40", "واتساب": "k41", "نسخ": "k42", "التوصيل": "k43", "الاستبدال والإرجاع": "k44", "طرق الدفع": "k45", "المقاسات": "k46", "انضمي لقائمة نام على واتساب لتصلكِ الإصدارات الجديدة أولًا.": "k47", "انضمي الآن": "k48", "الإمارات العربية المتحدة (AED د.إ)": "k49", "المجموع": "k50", "التوصيل مجاني داخل الإمارات. نؤكد الطلب وطريقة الدفع معكِ على واتساب.": "k51", "إرسال الطلب عبر واتساب": "k52", "نسخ تفاصيل الطلب": "k53", "أطقم الساتان · قمصان النوم": "k54", "Soir · أو دو بارفان": "k55", "بودرة الجسم المعطّرة · الإسفنجة الحريرية": "k56", "القائمة": "k57", "الوضع الليلي": "k58", "السلة": "k59", "رسم توضيحي لأم وطفلتها بطقم بجامة ساتان أبيض متطابق تحت ضوء القمر": "k60", "تصفية المنتجات": "k61", "مستلزمات المساء": "k62", "مقاس الطقم": "k63", "رسم توضيحي لصندوق هدية كحلي بشريطة ذهبية": "k64", "إغلاق": "k65", "العودة للأعلى": "k66", "الوضع النهاري": "k67", "تم النسخ": "k68", "سلتكِ فارغة حاليًا.": "k69", "ابدئي التسوّق": "k70", "زيادة": "k71", "إنقاص": "k72", "إزالة": "k73", "أُضيفت إلى السلة": "k74", "تم نسخ الطلب": "k75", "تعذّر النسخ، انسخي الطلب يدويًا": "k76", "نفدت الكمية": "k77", "إضافة سريعة · اختاري المقاس": "k78", "+ إضافة سريعة": "k79", "مقاس": "k80", "رسم توضيحي: ": "k81", "مرحبًا NAM، أرغب بطلب:": "k82", "العربية": "k83", "English": "k84"};
+  const app=$('app');
+  let lang='en';try{const l=localStorage.getItem('nam-lang');if(l==='ar'||l==='en')lang=l}catch(e){}
+  const T=ar=>(DICT[lang]||{})[KEY[ar]]||ar;
+  const L=o=>o?(o[lang]||o.en):'';
+  const fmt=n=>{const v=Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return lang==='ar'?v+' د.إ':'AED '+v};
+
+  /* ---------- catalogue ---------- */
+  const SIZES=['XS','S','M','L','XL'];
+  const PRODUCTS=[
+    {k:'pj-classic',n:{en:'Classic satin set',ar:'طقم الساتان الكلاسيكي'},p:620,cat:'pj',art:'set',piping:'#1a1817',sized:1,meta:{en:'White · black piping',ar:'أبيض · حواف سوداء'}},
+    {k:'soir-100',n:{en:'Soir · Eau de parfum',ar:'Soir · أو دو بارفان'},p:650,cat:'parfum',art:'perfume',v:{en:'100 ml',ar:'100 مل'},meta:{en:'100 ml',ar:'100 مل'}},
+    {k:'pj-stripe',n:{en:'Striped satin set',ar:'طقم الساتان المقلّم'},p:590,cat:'pj',art:'set',stripes:1,piping:'#d4ccc1',sized:1,meta:{en:'White · ivory stripes',ar:'أبيض · خطوط عاجية'}},
+    {k:'pw-soir',n:{en:'Perfumed body powder · Soir',ar:'بودرة الجسم المعطّرة · Soir'},p:240,cat:'powder',art:'powder',v:{en:'100 g',ar:'100 غ'},meta:{en:'100 g · scented with Soir',ar:'100 غ · برائحة عطر Soir'}},
+    {k:'pj-gown',n:{en:'Lace-trim nightgown',ar:'قميص النوم بالدانتيل'},p:480,cat:'pj',art:'gown',sized:1,meta:{en:'White · lace square neck',ar:'أبيض · ياقة دانتيل'}},
+    {k:'pw-blanc',n:{en:'Perfumed body powder · Blanc',ar:'بودرة الجسم المعطّرة · Blanc'},p:240,cat:'powder',art:'powder',tone:'ivory',v:{en:'100 g',ar:'100 غ'},meta:{en:'100 g · white musk',ar:'100 غ · مسك أبيض'}},
+    {k:'pj-bow',n:{en:'Bow print set',ar:'طقم الفيونكات'},p:560,cat:'pj',art:'set',bows:1,sized:1,out:1,meta:{en:'White · tonal bow print',ar:'أبيض · نقشة فيونكات'}},
+    {k:'soir-50',n:{en:'Soir · Eau de parfum',ar:'Soir · أو دو بارفان'},p:420,was:470,cat:'parfum',art:'perfume',v:{en:'50 ml',ar:'50 مل'},meta:{en:'50 ml',ar:'50 مل'}},
+    {k:'pw-puff',n:{en:'Silk powder puff',ar:'الإسفنجة الحريرية'},p:85,cat:'powder',art:'puff',v:{en:'1 piece',ar:'قطعة'},meta:{en:'Powder puff with satin ribbon',ar:'إسفنجة بودرة بشريطة ساتان'}},
+    {k:'pw-travel',n:{en:'Body powder · travel size',ar:'بودرة الجسم · حجم السفر'},p:110,was:130,cat:'powder',art:'powder',v:{en:'30 g',ar:'30 غ'},meta:{en:'30 g · Soir',ar:'30 غ · Soir'}}
+  ];
+  const CAT=Object.fromEntries(PRODUCTS.map(p=>[p.k,p]));
+  CAT['gift-night']={n:{en:'The Night Box',ar:'صندوق الليلة'},p:980,sized:1};
+  CAT['gift-powder']={n:{en:'The Poudre Box',ar:'صندوق البودرة'},p:690,v:{en:'Powder · parfum 50 ml · puff',ar:'بودرة · عطر 50 مل · إسفنجة'}};
+  const varLabel=(id,code)=>code?T('مقاس')+' '+code:L(CAT[id].v);
+
+  /* ---------- illustrations ---------- */
+  let gid=0;
+  const ART={
+    perfume:(id,d)=>`<defs><linearGradient id="${id}j" x1="0" x2="1"><stop offset="0" stop-color="#a9622a"/><stop offset=".45" stop-color="#e0a35c"/><stop offset="1" stop-color="#9a5524"/></linearGradient><linearGradient id="${id}g" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".18" stop-color="#fff" stop-opacity=".15"/><stop offset=".82" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".7"/></linearGradient><linearGradient id="${id}c" x1="0" x2="1"><stop offset="0" stop-color="#2a2826"/><stop offset=".3" stop-color="#050505"/><stop offset="1" stop-color="#1b1a19"/></linearGradient></defs>
+      <rect x="114" y="74" width="72" height="66" rx="7" fill="url(#${id}c)"/><rect x="136" y="140" width="28" height="16" fill="#c8a46a"/><rect x="128" y="154" width="44" height="5" fill="#b8955c"/>
+      <rect x="82" y="158" width="136" height="196" rx="14" fill="#f1eee9" stroke="#d7d0c6"/><rect x="96" y="206" width="108" height="136" rx="7" fill="url(#${id}j)"/>
+      <rect x="82" y="158" width="136" height="196" rx="14" fill="url(#${id}g)"/>
+      <text x="150" y="258" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-size="22" letter-spacing="7" fill="#14120f">NAM</text><rect x="132" y="266" width="36" height="1" fill="#14120f"/>
+      <text x="150" y="284" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-style="italic" font-size="12" fill="#14120f">Soir</text>`,
+    oil:(id,d)=>`<defs><linearGradient id="${id}o" x1="0" x2="1"><stop offset="0" stop-color="${d.dark?'#160a03':'#3b1c08'}"/><stop offset=".45" stop-color="${d.dark?'#4a220b':'#7a3e14'}"/><stop offset="1" stop-color="#2d1406"/></linearGradient><linearGradient id="${id}m" x1="0" x2="1"><stop offset="0" stop-color="#9c7a45"/><stop offset=".45" stop-color="#e8cc94"/><stop offset="1" stop-color="#8a6a3a"/></linearGradient></defs>
+      <path d="M150 64 l7 14 h-14 z" fill="url(#${id}m)"/><rect x="138" y="78" width="24" height="96" rx="4" fill="url(#${id}m)"/><rect x="132" y="168" width="36" height="12" rx="2" fill="url(#${id}m)"/>
+      <path d="M124 180 H176 L206 214 V318 L176 352 H124 L94 318 V214 Z" fill="url(#${id}o)" stroke="#c8a46a" stroke-width="1"/>
+      <path d="M124 180 L132 214 V318 L124 352 M176 180 L168 214 V318 L176 352 M94 214 H206 M94 318 H206" stroke="#e8cc94" stroke-opacity=".35" fill="none"/>
+      <path d="M100 222 L112 222 L112 300 L100 300Z" fill="#fff" opacity=".18"/>
+      <text x="150" y="272" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-size="14" letter-spacing="5" fill="#e8cc94">NAM</text>`,
+    bakhoor:(id)=>`<defs><linearGradient id="${id}w" x1="0" x2="1"><stop offset="0" stop-color="#2a1d14"/><stop offset=".5" stop-color="#4f3626"/><stop offset="1" stop-color="#241810"/></linearGradient></defs>
+      <path d="M78 190 V300 A72 20 0 0 0 222 300 V190 Z" fill="url(#${id}w)"/>
+      <ellipse cx="150" cy="190" rx="72" ry="20" fill="#5c4130"/><ellipse cx="150" cy="186" rx="72" ry="20" fill="#3a2a1f" stroke="#c8a46a" stroke-width="1"/>
+      <path d="M78 268 A72 20 0 0 0 222 268" stroke="#c8a46a" fill="none" stroke-width="1.2"/>
+      <text x="150" y="246" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-size="16" letter-spacing="6" fill="#d8b779">NAM</text>
+      <path d="M96 336 l14 -8 l12 6 l-10 9z M128 342 l16 -6 l10 7 l-14 6z M168 338 l12 -9 l14 5 l-9 10z" fill="#3b2617"/>`,
+    powder:(id,d)=>{const iv=d.tone==='ivory',c0=iv?'#f3eee6':'#eccac3',c1=iv?'#ddd3c5':'#d5a39b',ink=iv?'#14234A':'#5a2a2a';return `<defs><linearGradient id="${id}p" x1="0" x2="1"><stop offset="0" stop-color="${c1}"/><stop offset=".45" stop-color="${c0}"/><stop offset="1" stop-color="${c1}"/></linearGradient><radialGradient id="${id}f" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#f7f1ec"/><stop offset="1" stop-color="#e8ddd4"/></radialGradient><linearGradient id="${id}m" x1="0" x2="1"><stop offset="0" stop-color="#9c7a45"/><stop offset=".45" stop-color="#e8cc94"/><stop offset="1" stop-color="#8a6a3a"/></linearGradient></defs>
+      <path d="M66 236 V318 A84 24 0 0 0 234 318 V236 Z" fill="url(#${id}p)"/>
+      <path d="M66 300 A84 24 0 0 0 234 300 V306 A84 24 0 0 1 66 306 Z" fill="url(#${id}m)"/>
+      <ellipse cx="150" cy="236" rx="84" ry="24" fill="${c0}"/><ellipse cx="150" cy="238" rx="74" ry="18" fill="#fbf7f3"/>
+      <text x="150" y="282" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-size="17" letter-spacing="6" fill="${ink}">NAM</text>
+      <text x="150" y="296" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-style="italic" font-size="9" fill="${ink}">poudre parfumée</text>
+      <g transform="rotate(-10 160 212)"><ellipse cx="160" cy="214" rx="64" ry="24" fill="url(#${id}f)" stroke="#e6dad0"/><ellipse cx="160" cy="206" rx="54" ry="15" fill="#fff" opacity=".7"/><rect x="134" y="194" width="52" height="12" rx="6" fill="${iv?'#14234A':'#c98f87'}"/><path d="M160 196 l-12 -10 l0 16z M160 196 l12 -10 l0 16z" fill="${iv?'#14234A':'#c98f87'}"/></g>
+      <g fill="#fff" opacity=".7"><circle cx="78" cy="214" r="2"/><circle cx="232" cy="200" r="1.6"/><circle cx="96" cy="196" r="1.2"/><circle cx="214" cy="226" r="1.4"/></g>`},
+    puff:(id)=>`<defs><radialGradient id="${id}f" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#f8f1ed"/><stop offset="1" stop-color="#e6d8ce"/></radialGradient></defs>
+      <ellipse cx="150" cy="250" rx="108" ry="44" fill="url(#${id}f)" stroke="#e4d7cc"/><ellipse cx="150" cy="236" rx="90" ry="26" fill="#fff" opacity=".75"/>
+      <rect x="104" y="214" width="92" height="20" rx="10" fill="#c98f87"/><path d="M150 218 l-22 -18 l0 30z M150 218 l22 -18 l0 30z" fill="#c98f87"/><circle cx="150" cy="218" r="6" fill="#b87e76"/>
+      <ellipse cx="150" cy="300" rx="96" ry="7" fill="#000" opacity=".06"/>`,
+    gift:(id,d)=>{const box=d.dark?'#1c2647':'#f6f3ee',lid=d.dark?'#26325c':'#fbfaf8',rib=d.dark?'#c8a46a':'#151413',ink=d.dark?'#d8b779':'#151413';return `
+      <rect x="62" y="132" width="176" height="140" fill="${box}" stroke="#cfc7bc" stroke-opacity=".6"/>
+      <rect x="54" y="112" width="192" height="34" fill="${lid}" stroke="#cfc7bc" stroke-opacity=".6"/>
+      <rect x="142" y="112" width="16" height="160" fill="${rib}"/>
+      <path d="M150 112 C120 70 92 92 112 108 C122 116 140 114 150 112 Z M150 112 C180 70 208 92 188 108 C178 116 160 114 150 112 Z" fill="none" stroke="${rib}" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M146 116 L132 146 M154 116 L168 146" stroke="${rib}" stroke-width="6"/>
+      <text x="104" y="212" text-anchor="middle" font-family="Cormorant Garamond,Didot,serif" font-size="15" letter-spacing="5" fill="${ink}">NAM</text>`}
+  };
+  function garment(id,d){
+    const pip=d.piping,out='#cfc7bc';
+    const defs=`<defs><linearGradient id="${id}s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#f3f0eb"/><stop offset=".5" stop-color="#fff"/><stop offset=".75" stop-color="#ebe6df"/><stop offset="1" stop-color="#f8f6f2"/></linearGradient>
+      <pattern id="${id}p" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#fff"/>${d.stripes?'<rect width="5" height="14" fill="#ece6dd"/>':''}</pattern>
+      <pattern id="${id}b" width="28" height="28" patternUnits="userSpaceOnUse"><rect width="28" height="28" fill="#fff"/><g fill="#e2dacd" transform="translate(7 7)"><path d="M0 0 L-5 -3 L-5 3Z M0 0 L5 -3 L5 3Z"/><circle r="1.3"/></g><g fill="#e2dacd" transform="translate(21 21) rotate(-20)"><path d="M0 0 L-5 -3 L-5 3Z M0 0 L5 -3 L5 3Z"/><circle r="1.3"/></g></pattern></defs>`;
+    const base=d.bows?`url(#${id}b)`:`url(#${id}p)`,sheen=`url(#${id}s)`;
+    const shape=p=>`<path d="${p}" fill="${base}" stroke="${out}" stroke-width="1.2" stroke-linejoin="round"/><path d="${p}" fill="${sheen}" opacity=".55"/>`;
+    let g='';
+    if(d.art==='set'){
+      g+=shape('M96 190 L84 386 L146 386 L150 236 L154 386 L216 386 L204 190 Z')+`<path d="M150 236 L150 196" stroke="${out}"/><rect x="96" y="190" width="108" height="10" fill="none" stroke="${out}"/>`;
+      g+=shape('M86 50 L54 70 L34 196 L62 202 L93 102 Z')+shape('M214 50 L246 70 L266 196 L238 202 L207 102 Z')+shape('M86 50 L124 38 L150 74 L176 38 L214 50 L207 102 L214 218 Q150 226 86 218 L93 102 Z')+shape('M124 37 L108 46 L122 80 L150 114 L150 74 Z')+shape('M176 37 L192 46 L178 80 L150 114 L150 74 Z');
+      g+=`<path d="M150 114 L150 220" stroke="${out}"/>`+[132,158,184,206].map(y=>`<circle cx="154" cy="${y}" r="2.6" fill="#f6f3ee" stroke="#bdb5aa"/>`).join('');
+      g+=`<path d="M168 112 L194 112 L194 140 Q181 144 168 140 Z" fill="none" stroke="${out}"/><path d="M104 120 Q112 160 106 210 M196 150 Q190 180 196 212" stroke="#e6e0d7" fill="none"/>`;
+      if(pip){const P=`stroke="${pip}" stroke-width="2.2" fill="none" stroke-linecap="round"`;g+=`<path d="M124 37 L108 46 L122 80 L150 114 L178 80 L192 46 L176 37" ${P}/><path d="M150 114 L150 220" ${P}/><path d="M168 112 L194 112" ${P}/><path d="M35 190 L63 196 M265 190 L237 196" ${P}/><path d="M85 380 L145 380 M155 380 L215 380" ${P}/>`}
+    }else{
+      g+=shape('M118 44 L100 47 L62 64 L48 118 L88 128 L56 384 Q150 398 244 384 L212 128 L252 118 L238 64 L200 47 L182 44 L182 92 L118 92 Z');
+      g+=`<path d="M118 44 L118 92 L182 92 L182 44" fill="none" stroke="#d8d0c4" stroke-width="6" stroke-dasharray="0.1 6.5" stroke-linecap="round"/><path d="M114 44 L114 96 L186 96 L186 44" fill="none" stroke="#dcd5ca"/>`;
+      g+=`<g transform="translate(150 101)" fill="#f5f2ed" stroke="#c8bfb3"><path d="M0 0 L-9 -5 L-9 5Z M0 0 L9 -5 L9 5Z"/><circle r="2"/><path d="M-1 1 L-5 12 M1 1 L5 12" fill="none"/></g>`;
+      g+=[126,138,162,174].map(x=>`<path d="M${x} 98 Q${x+(x<150?-6:6)} 170 ${x+(x<150?-14:14)} 250" stroke="#e7e1d8" fill="none"/>`).join('');
+      g+=`<path d="M52 114 L88 124 M248 114 L212 124" stroke="#d8d0c4" fill="none"/><path d="M84 190 L80 236 M216 190 L220 236" stroke="#d4ccc0" fill="none"/>`;
+    }
+    return defs+g;
+  }
+  function draw(svg,d){const id='a'+(gid++);svg.innerHTML=ART[d.art]?ART[d.art](id,d):garment(id,d)}
+  const art=(d,vb='0 0 300 400',label='')=>{const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);if(label){s.setAttribute('role','img');s.setAttribute('aria-label',label)}else s.setAttribute('aria-hidden','true');draw(s,d);return s};
+  document.querySelectorAll('svg[data-art]').forEach(s=>draw(s,s.dataset));
+
+  /* product grid */
+  const grid=$('grid');
+  function renderGrid(){
+    const f=document.querySelector('.tab[aria-pressed="true"]')?.dataset.filter||'all';
+    grid.querySelectorAll('.prod').forEach(n=>n.remove());
+    PRODUCTS.forEach(p=>{
+      const a=document.createElement('article');a.className='prod'+(p.out?' out':'');a.dataset.cat=p.cat;
+      const fig=document.createElement('figure');
+      if(p.out)fig.insertAdjacentHTML('beforeend',`<span class="sticker">${T('نفدت الكمية')}</span>`);
+      fig.appendChild(art({art:p.art,piping:p.piping||'',stripes:p.stripes||'',bows:p.bows||'',dark:p.dark||'',tone:p.tone||''},'0 0 300 400',T('رسم توضيحي: ')+L(p.n)));
+      const q=document.createElement('div');q.className='quick';
+      q.innerHTML=p.sized?`<span class="lbl">${T('إضافة سريعة · اختاري المقاس')}</span>`+SIZES.map(z=>`<button type="button" data-add="${p.k}" data-size="${z}" aria-label="${T('مقاس')} ${z}">${z}</button>`).join('')
+        :`<button type="button" class="wide" data-add="${p.k}">${T('+ إضافة سريعة')}</button>`;
+      fig.appendChild(q);a.appendChild(fig);
+      a.insertAdjacentHTML('beforeend',`<h3>${L(p.n)}</h3><span class="meta">${L(p.meta)}</span><span class="pr">${fmt(p.p)}${p.was?`<s>${fmt(p.was)}</s>`:''}</span>`);
+      a.hidden=!(f==='all'||p.cat===f);
+      grid.appendChild(a);
+    });
+  }
+  renderGrid();
+
+  /* still-life shelf */
+  const shelf=$('shelf');
+  [[{art:'powder',tone:'ivory'},140],[{art:'perfume'},150],[{art:'gift',dark:1},210,'0 0 300 300'],[{art:'set',piping:'#1a1817'},170],[{art:'powder'},130],[{art:'gift'},170,'0 0 300 300'],[{art:'puff'},110]]
+    .forEach(([d,w,vb])=>{const s=art(d,vb);s.style.width=`clamp(${w*.32}px,${w/12}vw,${w}px)`;shelf.appendChild(s)});
+
+  /* filters */
+  function setFilter(f){
+    grid.querySelectorAll('.prod').forEach(c=>c.hidden=!(f==='all'||c.dataset.cat===f));
+    $('feature').hidden=f!=='all'&&f!=='pj';
+    document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-pressed',t.dataset.filter===f));
+  }
+  document.addEventListener('click',e=>{const f=e.target.closest('[data-filter]');if(!f)return;setFilter(f.dataset.filter);if(f.tagName==='BUTTON'&&f.closest('.feature'))$('shop').scrollIntoView();closeAll()});
+
+  /* header + back to top */
+  const hdr=$('hdr'),hero=$('hero'),totop=$('totop');
+  function onScroll(){const y=scrollY;hdr.classList.toggle('solid',y>hero.offsetHeight-70);totop.classList.toggle('on',y>innerHeight)}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  totop.addEventListener('click',()=>scrollTo({top:0}));
+
+  /* copy */
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+    const old=b.textContent,done=()=>{b.textContent=T('تم النسخ');setTimeout(()=>b.textContent=old,1500)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+    navigator.clipboard?navigator.clipboard.writeText(b.dataset.copy).then(done,sel):sel();
+  }));
+
+  /* cart */
+  let cart=[],orderText='';
+  try{cart=JSON.parse(localStorage.getItem('nam-cart2')||'[]').filter(i=>CAT[i.id])}catch(e){cart=[]}
+  function renderCart(){
+    const n=cart.reduce((a,i)=>a+i.q,0),total=cart.reduce((a,i)=>a+i.q*CAT[i.id].p,0);
+    $('badge').textContent=n;$('badge').dataset.n=n;$('cartTotal').textContent=fmt(total);$('cartFoot').hidden=!n;
+    $('cartBody').innerHTML=!n?`<div class="empty"><p>${T('سلتكِ فارغة حاليًا.')}</p><a class="btn line" href="#shop" data-close>${T('ابدئي التسوّق')}</a></div>`
+      :cart.map((i,x)=>`<div class="item"><div><h3>${L(CAT[i.id].n)}</h3><span class="var">${varLabel(i.id,i.size)}</span></div><span class="ip">${fmt(CAT[i.id].p*i.q)}</span><div class="qty"><button type="button" data-q="${x}" data-d="1" aria-label="${T('زيادة')}">+</button><span>${i.q}</span><button type="button" data-q="${x}" data-d="-1" aria-label="${T('إنقاص')}">−</button></div><button class="rm" type="button" data-rm="${x}">${T('إزالة')}</button></div>`).join('');
+    orderText=`${T('مرحبًا NAM، أرغب بطلب:')}\n${cart.map(i=>`• ${L(CAT[i.id].n)} (${varLabel(i.id,i.size)}) × ${i.q} = ${fmt(CAT[i.id].p*i.q)}`).join('\n')}\n${T('المجموع')}: ${fmt(total)}`;
+    $('waLink').href='https://wa.me/971500000000?text='+encodeURIComponent(orderText);
+    try{localStorage.setItem('nam-cart2',JSON.stringify(cart))}catch(e){}
+  }
+  $('cartBody').addEventListener('click',e=>{
+    const q=e.target.closest('[data-q]'),r=e.target.closest('[data-rm]');
+    if(q){const i=cart[+q.dataset.q];i.q+=+q.dataset.d;if(i.q<1)cart.splice(+q.dataset.q,1);renderCart()}
+    if(r){cart.splice(+r.dataset.rm,1);renderCart()}
+    if(e.target.closest('[data-close]'))closeAll();
+  });
+  let tt;const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800)};
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-add]');if(!b)return;
+    const id=b.dataset.add;if(!CAT[id])return;
+    const size=b.dataset.size||(b.dataset.sel?$(b.dataset.sel).value:'')||null;
+    const ex=cart.find(i=>i.id===id&&i.size===size);
+    ex?ex.q++:cart.push({id,size,q:1});
+    renderCart();toast(T('أُضيفت إلى السلة'));open('cart');
+  });
+  $('copyOrder').addEventListener('click',()=>{const b=$('copyOrder'),old=b.textContent;(navigator.clipboard?navigator.clipboard.writeText(orderText):Promise.reject()).then(()=>{b.textContent=T('تم نسخ الطلب');setTimeout(()=>b.textContent=old,1500)},()=>toast(T('تعذّر النسخ، انسخي الطلب يدويًا')))});
+  let lastFocus=null;
+  function open(w){closeAll(true);lastFocus=document.activeElement;const d=$(w);d.classList.add('open');d.setAttribute('aria-hidden','false');$('scrim').classList.add('on');setTimeout(()=>d.querySelector('[data-close]')?.focus(),60)}
+  function closeAll(silent){document.querySelectorAll('.drawer.open').forEach(d=>{d.classList.remove('open');d.setAttribute('aria-hidden','true')});$('scrim').classList.remove('on');if(!silent&&lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})}
+  $('cartBtn').addEventListener('click',()=>open('cart'));$('menuBtn').addEventListener('click',()=>open('menu'));$('scrim').addEventListener('click',()=>closeAll());
+  document.querySelectorAll('.drawer [data-close],.m-links a').forEach(b=>b.addEventListener('click',()=>closeAll()));
+  addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+  document.querySelectorAll('.f-grid a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const t=document.querySelector(a.getAttribute('href'));if(t&&t.tagName==='DETAILS')t.open=true}));
+  renderCart();
+
+  /* night mode */
+  const tbtn=$('themeToggle'),mq=matchMedia('(prefers-color-scheme: dark)');
+  const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':mq.matches;
+  let onTheme=()=>{};
+  const sync=()=>{const d=isDark();tbtn.setAttribute('aria-pressed',d);tbtn.setAttribute('aria-label',d?T('الوضع النهاري'):T('الوضع الليلي'))};
+  try{const s=localStorage.getItem('nam-theme');if(s)root.dataset.theme=s}catch(e){}
+  sync();
+  tbtn.addEventListener('click',()=>{const n=isDark()?'light':'dark';root.dataset.theme=n;try{localStorage.setItem('nam-theme',n)}catch(e){}sync();onTheme()});
+  mq.addEventListener&&mq.addEventListener('change',()=>{sync();onTheme()});
+
+  /* language switch */
+  function applyLang(l){
+    lang=l;app.lang=l;app.dir=l==='ar'?'rtl':'ltr';root.lang=l;
+    document.querySelectorAll('[data-t]').forEach(e=>e.textContent=DICT[l][e.dataset.t]);
+    document.querySelectorAll('[data-ta]').forEach(e=>e.setAttribute('aria-label',DICT[l][e.dataset.ta]));
+    document.querySelectorAll('[data-money]').forEach(e=>e.textContent=fmt(e.dataset.money));
+    $('langBtn').textContent=l==='ar'?'English':'العربية';$('langBtn').lang=l==='ar'?'en':'ar';
+    document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+    renderGrid();renderCart();sync();
+    try{localStorage.setItem('nam-lang',l)}catch(e){}
+    window.dispatchEvent(new Event('resize'));
+  }
+  $('langBtn').addEventListener('click',()=>applyLang(lang==='ar'?'en':'ar'));
+  document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+  applyLang(lang);
+
+  /* ---------- butterfly: flies in from the left and lands on the rose as you scroll ---------- */
+  const bf=$('butterfly'),rose=$('rose'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let ticking=false;
+  function fly(){
+    ticking=false;
+    const vh=innerHeight,vw=document.documentElement.clientWidth,rr=rose.getBoundingClientRect(),bw=bf.getBoundingClientRect().width,bh=bw;
+    const roseX=rr.left+rr.width*.5-bw/2,roseY=rr.top+scrollY+rr.height*.13-bh*.62;
+    const end=Math.max(1,roseY-vh*.55),off=bw+20,sy=Math.min(120,vh*.15);
+    let p=reduce?1:Math.min(1,Math.max(0,scrollY/end));
+    const io=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    // leg 1 (0 → .5): enters from the left and crosses diagonally down to the right edge
+    // leg 2 (.5 → 1): re-enters from the left and glides down onto the rose
+    function pos(q){
+      if(q<.5){const t=q/.5;return{x:-off+(vw+off*2)*t,vy:sy+(vh*.42-sy)*t+Math.sin(t*Math.PI*6)*10}}
+      const u=(q-.5)/.5,t=1-Math.pow(1-u,2.2);return{x:-off+(roseX+off)*t,vy:vh*.22+(vh*.55-vh*.22)*t+Math.sin(t*Math.PI*5)*12*(1-t)}
+    }
+    const a=pos(p),b=pos(Math.min(1,p+.004));
+    const ang=Math.atan2(b.vy-a.vy,b.x-a.x)*180/Math.PI+90;
+    const settle=p<.5?1:1-io((p-.5)/.5);
+    const x=a.x,y=p>=1?roseY:a.vy;
+    bf.style.position=p>=1?'absolute':'fixed';
+    const tilt=p>=1?0:((ang+540)%360-180)*settle;
+    bf.style.transform=`translate(${x}px,${y}px) rotate(${tilt}deg)`;
+    bf.classList.toggle('landed',p>=1);
+  }
+  const queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(fly)}};
+  addEventListener('scroll',queue,{passive:true});addEventListener('resize',queue);
+  new ResizeObserver(queue).observe(document.body);
+  if(document.fonts)document.fonts.ready.then(queue);
+  fly();
+})();
+</script>
+</body>
+</html>

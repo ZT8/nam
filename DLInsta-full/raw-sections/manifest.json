@@ -1,0 +1,272 @@
+[
+  {
+    "file": "00___TEXT___text.bin",
+    "segment": "__TEXT",
+    "section": "__text",
+    "virtual_address": "0x4688",
+    "virtual_size": 757572,
+    "file_offset": 18056,
+    "extracted_bytes": 757572
+  },
+  {
+    "file": "01___TEXT___stubs.bin",
+    "segment": "__TEXT",
+    "section": "__stubs",
+    "virtual_address": "0xbd5cc",
+    "virtual_size": 1848,
+    "file_offset": 775628,
+    "extracted_bytes": 1848
+  },
+  {
+    "file": "02___TEXT___stub_helper.bin",
+    "segment": "__TEXT",
+    "section": "__stub_helper",
+    "virtual_address": "0xbdd04",
+    "virtual_size": 1872,
+    "file_offset": 777476,
+    "extracted_bytes": 1872
+  },
+  {
+    "file": "03___TEXT___gcc_except_tab.bin",
+    "segment": "__TEXT",
+    "section": "__gcc_except_tab",
+    "virtual_address": "0xbe454",
+    "virtual_size": 98972,
+    "file_offset": 779348,
+    "extracted_bytes": 98972
+  },
+  {
+    "file": "04___TEXT___const.bin",
+    "segment": "__TEXT",
+    "section": "__const",
+    "virtual_address": "0xd66f0",
+    "virtual_size": 1632,
+    "file_offset": 878320,
+    "extracted_bytes": 1632
+  },
+  {
+    "file": "05___TEXT___objc_methname.bin",
+    "segment": "__TEXT",
+    "section": "__objc_methname",
+    "virtual_address": "0xd6d50",
+    "virtual_size": 41277,
+    "file_offset": 879952,
+    "extracted_bytes": 41277
+  },
+  {
+    "file": "06___TEXT___cstring.bin",
+    "segment": "__TEXT",
+    "section": "__cstring",
+    "virtual_address": "0xe0e8d",
+    "virtual_size": 13489,
+    "file_offset": 921229,
+    "extracted_bytes": 13489
+  },
+  {
+    "file": "07___TEXT___objc_classname.bin",
+    "segment": "__TEXT",
+    "section": "__objc_classname",
+    "virtual_address": "0xe433e",
+    "virtual_size": 1514,
+    "file_offset": 934718,
+    "extracted_bytes": 1514
+  },
+  {
+    "file": "08___TEXT___ustring.bin",
+    "segment": "__TEXT",
+    "section": "__ustring",
+    "virtual_address": "0xe4928",
+    "virtual_size": 346,
+    "file_offset": 936232,
+    "extracted_bytes": 346
+  },
+  {
+    "file": "09___TEXT___objc_methtype.bin",
+    "segment": "__TEXT",
+    "section": "__objc_methtype",
+    "virtual_address": "0xe4a82",
+    "virtual_size": 7488,
+    "file_offset": 936578,
+    "extracted_bytes": 7488
+  },
+  {
+    "file": "10___TEXT___unwind_info.bin",
+    "segment": "__TEXT",
+    "section": "__unwind_info",
+    "virtual_address": "0xe67c4",
+    "virtual_size": 5780,
+    "file_offset": 944068,
+    "extracted_bytes": 5780
+  },
+  {
+    "file": "11___TEXT___eh_frame.bin",
+    "segment": "__TEXT",
+    "section": "__eh_frame",
+    "virtual_address": "0xe7e58",
+    "virtual_size": 424,
+    "file_offset": 949848,
+    "extracted_bytes": 424
+  },
+  {
+    "file": "12___DATA___got.bin",
+    "segment": "__DATA",
+    "section": "__got",
+    "virtual_address": "0xe8000",
+    "virtual_size": 728,
+    "file_offset": 950272,
+    "extracted_bytes": 728
+  },
+  {
+    "file": "13___DATA___la_symbol_ptr.bin",
+    "segment": "__DATA",
+    "section": "__la_symbol_ptr",
+    "virtual_address": "0xe82d8",
+    "virtual_size": 1232,
+    "file_offset": 951000,
+    "extracted_bytes": 1232
+  },
+  {
+    "file": "14___DATA___mod_init_func.bin",
+    "segment": "__DATA",
+    "section": "__mod_init_func",
+    "virtual_address": "0xe87a8",
+    "virtual_size": 16,
+    "file_offset": 952232,
+    "extracted_bytes": 16
+  },
+  {
+    "file": "15___DATA___const.bin",
+    "segment": "__DATA",
+    "section": "__const",
+    "virtual_address": "0xe87b8",
+    "virtual_size": 5712,
+    "file_offset": 952248,
+    "extracted_bytes": 5712
+  },
+  {
+    "file": "16___DATA___cfstring.bin",
+    "segment": "__DATA",
+    "section": "__cfstring",
+    "virtual_address": "0xe9e08",
+    "virtual_size": 16992,
+    "file_offset": 957960,
+    "extracted_bytes": 16992
+  },
+  {
+    "file": "17___DATA___objc_classlist.bin",
+    "segment": "__DATA",
+    "section": "__objc_classlist",
+    "virtual_address": "0xee068",
+    "virtual_size": 448,
+    "file_offset": 974952,
+    "extracted_bytes": 448
+  },
+  {
+    "file": "18___DATA___objc_catlist.bin",
+    "segment": "__DATA",
+    "section": "__objc_catlist",
+    "virtual_address": "0xee228",
+    "virtual_size": 16,
+    "file_offset": 975400,
+    "extracted_bytes": 16
+  },
+  {
+    "file": "19___DATA___objc_protolist.bin",
+    "segment": "__DATA",
+    "section": "__objc_protolist",
+    "virtual_address": "0xee238",
+    "virtual_size": 128,
+    "file_offset": 975416,
+    "extracted_bytes": 128
+  },
+  {
+    "file": "20___DATA___objc_imageinfo.bin",
+    "segment": "__DATA",
+    "section": "__objc_imageinfo",
+    "virtual_address": "0xee2b8",
+    "virtual_size": 8,
+    "file_offset": 975544,
+    "extracted_bytes": 8
+  },
+  {
+    "file": "21___DATA___objc_const.bin",
+    "segment": "__DATA",
+    "section": "__objc_const",
+    "virtual_address": "0xee2c0",
+    "virtual_size": 52440,
+    "file_offset": 975552,
+    "extracted_bytes": 52440
+  },
+  {
+    "file": "22___DATA___objc_selrefs.bin",
+    "segment": "__DATA",
+    "section": "__objc_selrefs",
+    "virtual_address": "0xfaf98",
+    "virtual_size": 9600,
+    "file_offset": 1027992,
+    "extracted_bytes": 9600
+  },
+  {
+    "file": "23___DATA___objc_classrefs.bin",
+    "segment": "__DATA",
+    "section": "__objc_classrefs",
+    "virtual_address": "0xfd518",
+    "virtual_size": 1096,
+    "file_offset": 1037592,
+    "extracted_bytes": 1096
+  },
+  {
+    "file": "24___DATA___objc_superrefs.bin",
+    "segment": "__DATA",
+    "section": "__objc_superrefs",
+    "virtual_address": "0xfd960",
+    "virtual_size": 352,
+    "file_offset": 1038688,
+    "extracted_bytes": 352
+  },
+  {
+    "file": "25___DATA___objc_ivar.bin",
+    "segment": "__DATA",
+    "section": "__objc_ivar",
+    "virtual_address": "0xfdac0",
+    "virtual_size": 716,
+    "file_offset": 1039040,
+    "extracted_bytes": 716
+  },
+  {
+    "file": "26___DATA___objc_data.bin",
+    "segment": "__DATA",
+    "section": "__objc_data",
+    "virtual_address": "0xfdd90",
+    "virtual_size": 5224,
+    "file_offset": 1039760,
+    "extracted_bytes": 5224
+  },
+  {
+    "file": "27___DATA___data.bin",
+    "segment": "__DATA",
+    "section": "__data",
+    "virtual_address": "0xff1f8",
+    "virtual_size": 1560,
+    "file_offset": 1044984,
+    "extracted_bytes": 1560
+  },
+  {
+    "file": "28___DATA___bss.bin",
+    "segment": "__DATA",
+    "section": "__bss",
+    "virtual_address": "0xff810",
+    "virtual_size": 3480,
+    "file_offset": 0,
+    "extracted_bytes": 0
+  },
+  {
+    "file": "29___DATA___common.bin",
+    "segment": "__DATA",
+    "section": "__common",
+    "virtual_address": "0x1005a8",
+    "virtual_size": 315,
+    "file_offset": 0,
+    "extracted_bytes": 0
+  }
+]

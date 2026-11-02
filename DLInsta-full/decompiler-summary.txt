@@ -1,0 +1,7 @@
+decompiled=1291
+failed=0
+skipped_stubs_or_non_executable=644
+text_bytes=757572
+text_bytes_in_function_bodies=599696
+text_bytes_outside_function_bodies=157876
+imagebase=00000000

@@ -1,0 +1,12 @@
+/* Address: 0009da50 | Name: FUN_0009da50 | Body bytes: 24 */
+
+void FUN_0009da50(long param_1)
+
+{
+                    /* WARNING: Could not recover jumptable at 0x0009da64. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)(*(long *)(param_1 + 0x20) + 0x10))
+            (*(long *)(param_1 + 0x20),0,0,*(undefined8 *)(param_1 + 0x28));
+  return;
+}
+

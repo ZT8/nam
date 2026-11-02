@@ -1,0 +1,282 @@
+[
+  {
+    "name": "DLCrashViewController",
+    "address": "0xfde30",
+    "methods": 11
+  },
+  {
+    "name": "DLHelper",
+    "address": "0xfde80",
+    "methods": 27
+  },
+  {
+    "name": "DLInsta",
+    "address": "0xfdef8",
+    "methods": 3
+  },
+  {
+    "name": "MBProgressHUD",
+    "address": "0xfdf20",
+    "methods": 96
+  },
+  {
+    "name": "MBRoundProgressView",
+    "address": "0xfdfc0",
+    "methods": 13
+  },
+  {
+    "name": "MBBarProgressView",
+    "address": "0xfdfe8",
+    "methods": 13
+  },
+  {
+    "name": "MBBackgroundView",
+    "address": "0xfdf48",
+    "methods": 13
+  },
+  {
+    "name": "MBProgressHUDRoundedButton",
+    "address": "0xfdf70",
+    "methods": 5
+  },
+  {
+    "name": "MBProgressHUDRoundedButton2",
+    "address": "0xfdf98",
+    "methods": 5
+  },
+  {
+    "name": "ABMenuActionItem",
+    "address": "0xfe128",
+    "methods": 1
+  },
+  {
+    "name": "ABMenuViewController",
+    "address": "0xfe1a0",
+    "methods": 10
+  },
+  {
+    "name": "DLSystemAlertController",
+    "address": "0xfe150",
+    "methods": 2
+  },
+  {
+    "name": "DLAACAudioConverter",
+    "address": "0xfe218",
+    "methods": 8
+  },
+  {
+    "name": "DLButton",
+    "address": "0xfe240",
+    "methods": 4
+  },
+  {
+    "name": "DLTapGestureRecognizer",
+    "address": "0xfe290",
+    "methods": 3
+  },
+  {
+    "name": "DLBarButtonItem",
+    "address": "0xfe2e0",
+    "methods": 4
+  },
+  {
+    "name": "DLAuthenticationView",
+    "address": "0xfe330",
+    "methods": 11
+  },
+  {
+    "name": "DLDownloadManager",
+    "address": "0xfe3a8",
+    "methods": 7
+  },
+  {
+    "name": "DLDownloaderMinimizeView",
+    "address": "0xfe3d0",
+    "methods": 5
+  },
+  {
+    "name": "DLInstaDownloader",
+    "address": "0xfe420",
+    "methods": 24
+  },
+  {
+    "name": "DLMediaData",
+    "address": "0xfe498",
+    "methods": 19
+  },
+  {
+    "name": "DLSaveMedia",
+    "address": "0xfe4c0",
+    "methods": 7
+  },
+  {
+    "name": "DLInfoSheetViewController",
+    "address": "0xfe510",
+    "methods": 14
+  },
+  {
+    "name": "DLInfoSheetPresentationController",
+    "address": "0xfe560",
+    "methods": 10
+  },
+  {
+    "name": "DLInfoSheetControllerDelegate",
+    "address": "0xfe5d8",
+    "methods": 1
+  },
+  {
+    "name": "MyCustomPresentationController",
+    "address": "0xfe600",
+    "methods": 8
+  },
+  {
+    "name": "DLMaxAlertButton",
+    "address": "0xfe650",
+    "methods": 6
+  },
+  {
+    "name": "DLMaxAlertAction",
+    "address": "0xfe6a0",
+    "methods": 4
+  },
+  {
+    "name": "DLMaxAlertTextView",
+    "address": "0xfe6f0",
+    "methods": 2
+  },
+  {
+    "name": "DLMaxAlertViewController",
+    "address": "0xfe740",
+    "methods": 26
+  },
+  {
+    "name": "DLMentionViewCell",
+    "address": "0xfe790",
+    "methods": 14
+  },
+  {
+    "name": "DLMentionsViewController",
+    "address": "0xfe7e0",
+    "methods": 17
+  },
+  {
+    "name": "DLUser",
+    "address": "0xfe858",
+    "methods": 12
+  },
+  {
+    "name": "DLVisualEffectView",
+    "address": "0xfeac8",
+    "methods": 1
+  },
+  {
+    "name": "DLPopupViewController",
+    "address": "0xfeb18",
+    "methods": 24
+  },
+  {
+    "name": "FRPCell",
+    "address": "0xfeb68",
+    "methods": 16
+  },
+  {
+    "name": "FRPDeveloperCell",
+    "address": "0xfebb8",
+    "methods": 9
+  },
+  {
+    "name": "FRPLinkCell",
+    "address": "0xfec08",
+    "methods": 4
+  },
+  {
+    "name": "FRPListCell",
+    "address": "0xfec58",
+    "methods": 11
+  },
+  {
+    "name": "FRPSection",
+    "address": "0xfeca8",
+    "methods": 14
+  },
+  {
+    "name": "FRPSegmentCell",
+    "address": "0xfecf8",
+    "methods": 13
+  },
+  {
+    "name": "DLRadioSelectView",
+    "address": "0xfed48",
+    "methods": 6
+  },
+  {
+    "name": "FRPSelectListTable",
+    "address": "0xfed98",
+    "methods": 15
+  },
+  {
+    "name": "FRPSettings",
+    "address": "0xfede8",
+    "methods": 13
+  },
+  {
+    "name": "FRPSliderCell",
+    "address": "0xfee38",
+    "methods": 19
+  },
+  {
+    "name": "FRPSwitchCell",
+    "address": "0xfee88",
+    "methods": 7
+  },
+  {
+    "name": "FRPTextFieldCell",
+    "address": "0xfeed8",
+    "methods": 8
+  },
+  {
+    "name": "FRPValueCell",
+    "address": "0xfef28",
+    "methods": 2
+  },
+  {
+    "name": "FRPViewCell",
+    "address": "0xfef78",
+    "methods": 9
+  },
+  {
+    "name": "FRPViewSection",
+    "address": "0xfefc8",
+    "methods": 5
+  },
+  {
+    "name": "FRPreferences",
+    "address": "0xff018",
+    "methods": 24
+  },
+  {
+    "name": "DLSSProfileViewController",
+    "address": "0xff068",
+    "methods": 22
+  },
+  {
+    "name": "DLCollectionViewFlowLayout",
+    "address": "0xff0e0",
+    "methods": 1
+  },
+  {
+    "name": "DLMultiMediaOptionCell",
+    "address": "0xff108",
+    "methods": 8
+  },
+  {
+    "name": "DLMultiMediaViewCell",
+    "address": "0xff158",
+    "methods": 26
+  },
+  {
+    "name": "DLMultiMediaViewController",
+    "address": "0xff1a8",
+    "methods": 31
+  }
+]

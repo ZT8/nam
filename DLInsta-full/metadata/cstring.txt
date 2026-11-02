@@ -1,0 +1,658 @@
+0xe0e8d	IGVideoPlayerConfig
+0xe0ea1	IGVideoPlaybackConfiguration
+0xe0ebe	IGStoryViewerViewController
+0xe0eda	IGStoryFullscreenSectionController
+0xe0efd	%s@:
+0xe0f02	B
+0xe0f04	v@:%s
+0xe0f0a	IGGalleryDataSource
+0xe0f1e	IGLiveViewerCountIntervalPuller
+0xe0f3e	IGFollowController
+0xe0f51	IGUnifiedVideoFollowButton
+0xe0f6c	IGFeedPhotoView
+0xe0f7c	IGFeedItemVideoView
+0xe0f90	IGModernFeedVideoCell
+0xe0fa6	IGModernFeedVideoCell.IGModernFeedVideoCell
+0xe0fd2	IGUFIButtonBarView
+0xe0fe5	IGFeedItemUFICell
+0xe0ff7	IGSundialViewerVideoCell
+0xe1010	IGCoreTextView
+0xe101f	@
+0xe1021	IGCommentActionMenu.IGCommentActionMenu
+0xe1049	IGProfileSimpleAvatarStatsCell
+0xe1068	IGLikerConfig
+0xe1076	IGMedia
+0xe107e	IGFeedItemUFICellViewModel.IGFeedItemUFICellViewModel
+0xe10b4	IGVideoPlayerTimeIndicatorOverlay
+0xe10d6	UIViewController
+0xe10e7	IGMainFeedListAdapterDataSource
+0xe1107	IGVideoFeedViewController
+0xe1121	IGChainingFeedViewController
+0xe113e	IGSundialFeedDataSource
+0xe1156	IGSearchListKitDataSource
+0xe1170	IGContextualFeedViewController
+0xe118f	IGStoryAdPool
+0xe119d	IGStoryAdsManager
+0xe11af	IGStoryAdsMediaManager
+0xe11c6	IGStoryAdsFetcher
+0xe11d8	IGStoryAdsResponseParser
+0xe11f1	IGStoryAdsOptInTextView
+0xe1209	IGStoryAdsTextManager
+0xe121f	IGSundialAdsResponseParser
+0xe123a	IGExploreAdsResponseParser
+0xe1255	IGExploreListKitDataSource
+0xe1270	IGActionSheetController
+0xe1288	q
+0xe128a	DL_EnableDisableLoopVideo
+0xe12a4	DL_SeeStoryWithoutOtherPartyKnowing
+0xe12c8	DL_DisableMoveToNextStory
+0xe12e2	DL_SelectVideoFromStickers
+0xe12fd	DL_WatchLiveAnonymously
+0xe1315	DL_EnableConfirmFollow_Unfollow
+0xe1335	POPUP_CONFIRM_FOLLOW_CELL
+0xe134f	v8@?0
+0xe1355	POPUP_CONFIRM_UNFOLLOW_CELL
+0xe1371	DL_EnableConfirmLike
+0xe1386	_tagsProvider
+0xe1394	POPUP_CONFIRM_LIKE_CELL
+0xe13ac	_delegate
+0xe13b6	_media
+0xe13bd	_tagDelegate
+0xe13ca	IGFeedSectionController
+0xe13e2	Like
+0xe13e7	Liked
+0xe13ed	POPUP_CONFIRM_UNLIKE_CELL
+0xe1407	IGUFIInteractionCountsView
+0xe1422	_video
+0xe1429	DL_EnableCopyText
+0xe143b	ACTION_COPY_TEXT
+0xe144c	ACTION_COPY_USERNAME
+0xe1461	IGProfileViewController
+0xe1479	actionProvider
+0xe1488	copy_24pt
+0xe1492	UIAction
+0xe149b	Copy
+0xe14a0	v16@?0@"UIAction"8
+0xe14b3	UIMenu
+0xe14ba	@"UIMenu"16@?0@"NSArray"8
+0xe14d4	UIContextMenuConfiguration
+0xe14ef	DL_FollowStatus
+0xe14ff	profile
+0xe1507	_followersButton
+0xe1518	_identityCell
+0xe1526	YOU_DONT_FOLLOW_EACH_OTHER
+0xe1541	YOU_FOLLOW_EACH_OTHER
+0xe1557	IS_NOT_FOLLOWING_YOU
+0xe156c	IS_FOLLOWING_YOU
+0xe157d	DL_ShowLikeViewCount
+0xe1592	%@ likes
+0xe159b	DL_AlwaysShowTimerVideos
+0xe15b4	DL_EnableOpenLinksInSafari
+0xe15cf	_browserViewController
+0xe15e6	IGBrowserViewController
+0xe15fe	IGBrowserNavigationController
+0xe161c	NSURL
+0xe1622	DL_EnableRemoveAds
+0xe1636	v32@?0@8Q16^B24
+0xe1646	IGAdItem
+0xe164f	_cancelButton
+0xe165d	ACTION_CANCEL
+0xe166b	IGAppDelegate
+0xe1679	v12@?0B8
+0xe1682	v16@?0@8
+0xe168b	DLAlertInfoFirst
+0xe169c	DLInsta
+0xe16a4	ALERT_INFO_INSTAGRAM
+0xe16b9	alertInfoOnce
+0xe16c7	%@M: %@
+0xe16cf	-
+0xe16d1	+
+0xe16d3	ivar
+0xe16d8	property
+0xe16e1	info
+0xe16e6	DLInsta :(
+0xe16f1	Exception: %@ - %@
+0xe1704	DLDebuggingVC
+0xe1712	[DL
+0xe1716	%@]
+0xe171a	[close]
+0xe1722	myDebug
+0xe172a	 [No Error] 
+0xe1737	X
+0xe1739	M:
+0xe173c	C:
+0xe173f	IGProfileAvatarView
+0xe1753	[DLInsta],[DownloadProfile]
+0xe176f	IGProfilePhotoView
+0xe1782	IGUser
+0xe1789	[DLInstaAddons],[Show Follow Status]
+0xe17ae	[DLInsta],[DownloadImage]
+0xe17c8	IGFeedItemPhotoCell
+0xe17dc	[DLInsta],[DownloadVideo]
+0xe17f6	[DLInsta],[DownloadItems]
+0xe1810	[DLInsta],[DownloadVideo],[DownloadImage]
+0xe183a	[DLInstaAddons],[ShowLikesViewsCount]
+0xe1860	[DLInstaAddons],[ConfirmLike]
+0xe187e	[DLInstaAddons],[For compare story]
+0xe18a2	[DLInstaAddons],[RemoveAds]
+0xe18be	[DLInstaAddons],[ShowUserMentions]
+0xe18e1	[DLInstaAddons],[Show Likes Count & Views]
+0xe190c	IGPhoto
+0xe1914	[DLInsta],[For check seen Story]
+0xe1935	IGImageURL
+0xe1940	IGFeedItemPagePhotoCell
+0xe1958	IGFeedItemPageCellState
+0xe1970	[DLInsta],[DownloadMultiableMedia]
+0xe1993	IGPageMediaView
+0xe19a3	IGPostItem
+0xe19ae	IGVideo
+0xe19b6	[DLInsta],[For check seen story]
+0xe19d7	[DLInstaAddons],[Confirm Like video - Double Tap]
+0xe1a09	IGStoryPhotoView
+0xe1a1a	[DLInsta],[DownloadPhotoStory]
+0xe1a39	IGStoryVideoView
+0xe1a4a	[DLInsta],[DownloadVideoStory]
+0xe1a69	IGDirectVisualMessageStoryItemWrapper
+0xe1a8f	[DLInsta],[DownloadStory],[Private]
+0xe1ab3	IGDirectVisualMessage
+0xe1ac9	[DLInsta],[For check seen story DM]
+0xe1aed	IGSundialViewerVerticalUFI
+0xe1b08	[DLInsta],[DownloadReels]
+0xe1b22	IGSundialFeedViewController
+0xe1b3e	IGSundialViewerPhotoCell
+0xe1b57	IGSundialViewerCarouselCell
+0xe1b73	[DLInstaAddons],[Confirm Like Reels - Tap Button]
+0xe1ba5	[DLInstaAddons],[Looping video]
+0xe1bc5	[DLInstaAddons],[Seen Story]
+0xe1be2	[DLInstaAddons],[Seen Story],[Auto Next Story]
+0xe1c11	[DLInstaAddons],[Support Video in Sticker Gallery]
+0xe1c44	[DLInstaAddons],[Seen into live]
+0xe1c65	IGTallNavigationBarView
+0xe1c7d	[DLInstaAddons],[Seen Direct Message]
+0xe1ca3	IGStoryViewerContainerView
+0xe1cbe	IGStoryFullscreenCell
+0xe1cd4	IGDirectThreadViewListAdapterDataSource
+0xe1cfc	IGDirectVisualMessageViewerController
+0xe1d22	[DLInstaAddons],[seen live video or photo in DM]
+0xe1d53	IGDirectCache
+0xe1d61	[DLInstaAddons],[Deleting Message]
+0xe1d84	IGDirectMessageListViewController
+0xe1da6	IGDirectMessageMenuActionHandler
+0xe1dc7	IGDirectMessageKey
+0xe1dda	IGDirectUIMessageMetadata
+0xe1df4	IGDirectTextMessageViewModel
+0xe1e11	[DLInstaAddons],[Deleting MessageText]
+0xe1e38	IGDirectTextMessageSectionController
+0xe1e5d	IGDirectTextMessageBubbleView
+0xe1e7b	IGDirectInboxDjangoPullToRefreshCoordinator
+0xe1ea7	[DLInstaAddons],[disable refresh messages]
+0xe1ed2	IGDirectTypingStatusService
+0xe1eee	[DLInstaAddons],[Typing Indecator]
+0xe1f11	IGDirectMessageMark
+0xe1f25	[DLInstaAddons],[Disable send screenshot, Replayed media]
+0xe1f5f	[DLInstaAddons],[Disable screenshot protection, Direcrt message]
+0xe1fa0	[DLInstaAddons],[Confirm Following & Unfollowing]
+0xe1fd2	[DLInstaAddons],[Confirm Following on Reels]
+0xe1fff	[DLInstaAddons],[Confirm Like photo & video - Double Tap]
+0xe2039	[DLInstaAddons],[Confirm Like photo & video - Button]
+0xe206f	IGStyledString
+0xe207e	[DLInstaAddons],[Copy Text]
+0xe209a	[DLInstaAddons],[Compare Text For ToastView]
+0xe20c7	[DLInstaAddons]: [Show Follow Status], [DLShowProfileImage]: [Download Image]
+0xe2115	[DLInstaAddons],[Remove Ads]
+0xe2132	IGDSMenuItem
+0xe213f	[DLInstaAddons],[Save Record Audio]
+0xe2163	IGProfileNavigationItemsController
+0xe2186	[DLInstaSettings],[Settings]
+0xe21a3	IGInstagramAppDelegate
+0xe21ba	[DLInstaLockApp],[Lock App]
+0xe21d6	FBSDKKeychainStore
+0xe21e9	[DLInstaLogin],[Login]
+0xe2200	FBKeychainItemController
+0xe2219	UICKeyChainStore
+0xe222a	NSFileManager
+0xe2238	IGTapButton
+0xe2244	[Public],[For ActionSheet seen Story]
+0xe226a	IGActionSheetControllerAction
+0xe2288	[Public],[ActionSheet]
+0xe229f	[Public],[This is just for change action title Cancel to arabic]
+0xe22e0	IGDSAlertAction
+0xe22f0	[Public],[AlertView]
+0xe2305	IGDSAlertDialogStyle
+0xe231a	IGDSAlertDialogView
+0xe232e	[DLInsta],[For Download All Stories]
+0xe2353	IGDate
+0xe235a	IGStoryViewerViewModel
+0xe2371	IGDirectMessageActionsViewController
+0xe2396	[DLDirectMessage],[Download Voice]
+0xe23b9	id
+0xe23bc	date
+0xe23c1	_audioRecorder
+0xe23d0	audioRecorder
+0xe23de	_messageUpdate
+0xe23ed	_removeMessages_messageKeys
+0xe2409	_messageServerId
+0xe241a	reloadData_bubble
+0xe242c	IGDirectVisualMessageViewerEventHandler
+0xe2454	IGDirectMessageUpdate
+0xe246a	IGDirectMessageUpdateMatcher
+0xe2487	IGDirectThreadUpdate
+0xe249c	IGDirectMessageCell
+0xe24b0	IGDirectMessageMarkType
+0xe24c8	IGDirectMessageMarkTypeMatcher
+0xe24e7	IGDirectVoiceRecordViewController
+0xe2509	IGDirectThreadViewController
+0xe2526	IGDirectVoiceRecordInputView
+0xe2543	IGDirectComposer
+0xe2554	NSString
+0xe255d	DL_SeeDMWithoutOtherPartyKnowing
+0xe257e	StatusSeenIcon.png
+0xe2591	d_updateMarkAsSeenIfNeededDM
+0xe25ae	dlUserNeedSeenLiveDM
+0xe25c3	_currentVisualMessageFromPlaylistWhenViewerWasLaunched
+0xe25fa	_eventResponders
+0xe260b	_currentVisualMessageIndex
+0xe2626	_viewerContainerView
+0xe263b	DL_KeepDeletedDM
+0xe264c	_collectionView
+0xe265c	_messageContentContainerView
+0xe2679	_forwardShortcutIcon
+0xe268e	unavailable_24pt
+0xe269f	EEEE, d MMMM yyyy, h:mm a
+0xe26b9	ar
+0xe26bc	DIRECT_MESSAGE_DELETE_DATE
+0xe26d7	DL_DisableTypingIndicatorInDM
+0xe26f5	DL_DisableScreenshotNotificationInDM
+0xe271a	DL_DisableReplayedLiveMediaInDM
+0xe273a	_subtype
+0xe2743	DL_DisableScreenshotProtectionInDM
+0xe2766	DL_BypassVoiceMessageLimit
+0xe2781	_startTime
+0xe278c	DL_DownloadVoiceMessage
+0xe27a4	_contentContainerView
+0xe27ba	_viewModel
+0xe27c5	_server_audio
+0xe27d3	_menuItems
+0xe27de	Save
+0xe27e3	ig_download_24pt
+0xe27f4	_dismissBlock
+0xe2802	v16@?0@"IGMenuItem"8
+0xe2817	IGDirectMessageBubbleContainerView
+0xe283a	IGDirectAudioMessageViewModel
+0xe2858	IGMenuItem
+0xe2863	menuItemGroups
+0xe2872	IGDirectMessageMenuConfiguration.IGDirectMessageMenuConfiguration
+0xe28b4	mainMenuOptions
+0xe28c4	submenuOptions
+0xe28d3	DL_UploadVoiceMessage
+0xe28e9	_galleryButton
+0xe28f8	DM_UPLOAD_VOICE_TITLE_OPTION
+0xe2915	DM_UPLOAD_VOICE_FORM_FILES_OPTION
+0xe2937	v16@?0@"UIAlertAction"8
+0xe294f	DM_UPLOAD_VOICE_FORM_LIBRARY_OPTION
+0xe2973	story_seen_media_id.plist
+0xe298d	media_ids
+0xe2997	width
+0xe299d	url
+0xe29a1	.mp4?
+0xe29a7	_originalImageVersions
+0xe29be	_videoVersionDictionaries
+0xe29d8	height
+0xe29df	_url
+0xe29e4	DL_EnableAlwaysDLHighQuality
+0xe2a01	_width
+0xe2a08	_height
+0xe2a10	%d x %d
+0xe2a18	ACTION_IMAGE_TITLE
+0xe2a2b	%@ x %@
+0xe2a33	ACTION_VIDEO_TITLE
+0xe2a46	STORIES_MENTIONS_IN_THIS_STROY
+0xe2a65	ACTION_DOWNLOAD
+0xe2a75	ACTION_ITEM
+0xe2a81	delegate
+0xe2a8a	VIEW_ALL_ITEMS
+0xe2a99	rawPhoto
+0xe2aa2	rawVideo
+0xe2aab	ACTION_SEEN
+0xe2ab7	photo
+0xe2abd	video
+0xe2ac3	STORIES_VIEW_ALL_STORIES
+0xe2adc	DL_ShowMentionsInStory
+0xe2af3	STORIES_SHOW_MENTIONS
+0xe2b09	_storyItemContext
+0xe2b1b	download_24pt
+0xe2b29	_items
+0xe2b30	_currentIndex
+0xe2b3e	IGStoryModernVideoView
+0xe2b55	IGDirectAggregatedMediaViewerViewControllerTitleViewModel
+0xe2b8f	_post
+0xe2b95	_pagePhotoPost
+0xe2ba4	IGFeedItemVideoCell
+0xe2bb8	Documents/FakeGroupContainers
+0xe2bd6	NSBundle
+0xe2bdf	Library
+0xe2be7	Library/Caches
+0xe2bf6	com.burbn.instagram
+0xe2c0a	CFBundleIdentifier
+0xe2c1d	CFBundleDisplayName
+0xe2c31	CFBundleName
+0xe2c3e	Instagram
+0xe2c48	DL_EnableAppLock
+0xe2c59	DL_faceIdSaveDate
+0xe2c6b	DL_DelayAppLock
+0xe2c7b	DL_ProtectWithFaceId
+0xe2c90	v20@?0B8@"NSError"12
+0xe2ca5	dummyItem
+0xe2caf	dummyService
+0xe2cbc	Frameworks/FBSharedFramework.framework/FBSharedFramework
+0xe2cf5	Frameworks/IGPyTorchFramework.framework/IGPyTorchFramework
+0xe2d30	DLDebugging
+0xe2d3c	This is only for purpose of showing debugging
+0xe2d6a	v16@?0@"UITextField"8
+0xe2d80	password
+0xe2d89	OK
+0xe2d8c	DL
+0xe2d8f	%ld
+0xe2d93	Cancel
+0xe2d9a	DEVELOPER_SECTITLE
+0xe2dad	twitter.png
+0xe2db9	DEVELOPER_NAME
+0xe2dc8	@Peaceful_0
+0xe2dd4	twitter://user?screen_name=
+0xe2df0	peaceful_0
+0xe2dfb	DEVELOPER_SUPPORT_ACCOUNT
+0xe2e15	@DLTweaks_
+0xe2e20	DLTweaks_
+0xe2e2a	DONATE
+0xe2e31	ABafkir
+0xe2e39	https://paypal.me/ABafkir
+0xe2e53	THANKS_SECTITLE
+0xe2e64	THANKS_FOUADRAHEB
+0xe2e76	@FouadRaheb
+0xe2e82	FouadRaheb
+0xe2e8d	v%@ - %@
+
+0xe2e97	CFBundleShortVersionString
+0xe2eb2	icon.png
+0xe2ebb	ACTION_DISMISS
+0xe2eca	v16@?0@"UITableViewCell"8
+0xe2ee4	ArialRoundedMTBold
+0xe2ef7	DOWNLOAD_SECTITLE
+0xe2f09	DOWNLOAD_HIGHEST_QUALITY
+0xe2f22	MEDIA_SECTITLE
+0xe2f31	MEDIA_SHARE_MEDIA
+0xe2f43	DL_EnableShareMedia
+0xe2f57	MEDIA_NO_REPEAT_VIDEO
+0xe2f6d	STORIES_SECTITLE
+0xe2f7e	STORIES_WATCH_ANONYMOUSLY
+0xe2f98	STORIES_DONT_MOVE_AUTO
+0xe2faf	STORIES_SELECT_VIDEO_FROM_STICKERS
+0xe2fd2	LIVE_SECTITLE
+0xe2fe0	LIVE_WATCH_ANONYMOUSLY
+0xe2ff7	DM_SECTITLE
+0xe3003	DM_WATCH_MESSAGES_ANONYMOSLY
+0xe3020	DM_KEEP_DELETED_MESSAGES
+0xe3039	DM_DISABLE_TYPING_IND
+0xe304f	DM_DISABLE_SCREENSHOT_NOTIFICATIONS
+0xe3073	DM_DISABLE_SCREENSHOT_PROTECTION
+0xe3094	DM_DISABLE_REPLAYED_MEDIA_NOTIFICATIONS
+0xe30bc	DM_BYPASS_VOICE_MESSAGE_LIMIT
+0xe30da	DM_DOWNLOAD_VOICE_MESSAGES
+0xe30f5	DM_UPLOAD_VIDEO_AUDIO_AS_VOICE_MESSAGES
+0xe311d	v16@?0@"UISwitch"8
+0xe3130	DM_UPLOAD_VOICE_NOTE
+0xe3145	POPUP_SECTITLE
+0xe3154	POPUP_CONFIRM_FOLLOW_UNFOLLOW
+0xe3172	POPUP_CONFIRM_LIKE_UNLIKE
+0xe318c	OTHERS_SECTITLE
+0xe319c	OTHERS_COPY_TEXT
+0xe31ad	OTHERS_SHOW_FOLLOWING_STATUS
+0xe31ca	OTHERS_VIEWS_LIKES_NUMBER
+0xe31e4	OTHERS_ALWAYS_SHOW_TIMER
+0xe31fd	BROWSER_SECTITLE
+0xe320e	BROWSER_IN_SAFARI
+0xe3220	ADS_SECTITLE
+0xe322d	ADS_REMOVE_PROMO_ADS
+0xe3242	APP_LOCK_SECTION
+0xe3253	APP_LOCK_TITLE
+0xe3262	0
+0xe3264	APP_LOCK_IMMEDIATELY
+0xe3279	APP_LOCK_AFTER_MINUTE
+0xe328f	APP_LOCK_AFTER_15_MINUTES
+0xe32a9	APP_LOCK_AFTER_HOUR
+0xe32bd	60
+0xe32c0	900
+0xe32c4	3600
+0xe32c9	v16@?0@"NSString"8
+0xe32dc	Did Select Value: %@
+0xe32f1	APP_LOCK_ENABLE
+0xe3301	FRPreferences_reloadTableView
+0xe331f	IGProfileSideTrayDataSource
+0xe333b	IGProfileMenuSheetViewController
+0xe335c	IGTabBarController
+0xe336f	side_tray_profile
+0xe3381	settings.png
+0xe338e	ACTION_SETTINGS_INSTAGRAM
+0xe33a8	ACTION_SETTINGS_DLINSTA
+0xe33c0	IGProfilePhotoCoinFlipUI.IGProfilePhotoCoinFlipView
+0xe33f4	IGStoryTrayController
+0xe340a	ACTION_SHOW_PHOTO
+0xe341c	ACTION_SHOW_COVER_STORY
+0xe3434	ACTION_DEFAULT_OPTIONS
+0xe344b	IGStorySectionController
+0xe3464	IGStoryTrayCell
+0xe3474	IGActionableConfirmationToastView
+0xe3496	IGAlertDialogView
+0xe34a8	DLIGAlertDialogView
+0xe34bc	_titleView
+0xe34c7	HUD_SEEN_STORY
+0xe34d6	_buttons
+0xe34df	[^A-Za-z0-9+/=]
+0xe34ef	
+
+0xe34f2	CFBundleExecutable
+0xe3505	YouTube
+0xe350d	DLTube
+0xe3514	Twitter
+0xe351c	DLTwitter
+0xe3526	TikTok
+0xe352d	DLTikTok
+0xe3536	The reason for this issue has been sent, the issue will be fixed as soon as possible, Thank you.
+0xe3597	UINavigationBarAppearance
+0xe35b1	ACTION_SEND
+0xe35bd	DLCrash :(
+0xe35c8	CFBundleIcons
+0xe35d6	CFBundlePrimaryIcon
+0xe35ea	CFBundleIconFiles
+0xe35fc	v
+0xe35fe	Reason:
+0xe3606	reason
+0xe360d	More:
+0xe3613	more_info
+0xe361d	Tweak: %@
+
+iOS: %@
+
+Reason:
+%@
+
+More:
+%@
+0xe3646	 %@
+0xe364a	prooxy0@gmail.com
+0xe365c	DLCrash
+0xe3664	ALERT_OK_BUTTON
+0xe3674	bundle
+0xe367b	Langauge.bundle
+0xe368b	%@/ar.lproj
+0xe3697	%@/en.lproj
+0xe36a3	
+%@
+0xe36a7	SETTINGS_STATUS
+0xe36b7	HUD_CONNECTION
+0xe36c6	SETTINGS_UPDATE
+0xe36d6	HUD_ERROR
+0xe36e0	-[%@ %@]+%d
+0xe36ec	Documents
+0xe36f6	DLLog
+0xe36fc	%@.txt
+0xe3703	jg_hud_success.png
+0xe3716	jg_hud_error.png
+0xe3727	HUD_SUCCESS
+0xe3733	HUD_COPIED
+0xe373e	lineView
+0xe3747	H:|[lineView]|
+0xe3756	V:|-0-[lineView(width)]
+0xe376e	V:[lineView(width)]|
+0xe3783	v24@?0@"NSString"8@"NSString"16
+0xe37a3	IGAlertAction
+0xe37b1	IGAlertDialogStyle
+0xe37c4	ACTION_MESSAGE_SAVE_SHARE
+0xe37de	ACTION_SAVE
+0xe37ea	ACTION_SHARE
+0xe37f7	v32@?0@"NSData"8@"NSURLResponse"16@"NSError"24
+0xe3826	HEAD
+0xe382b	https://i.instagram.com/api/v1/users/%@/info/
+0xe3859	IGURLRequest
+0xe3866	IGScopedNetworker
+0xe3878	v24@?0@8@"NSDictionary"16
+0xe3892	v16@?0@"NSError"8
+0xe38a4	instagram://user?username=%@
+0xe38c1	Helper/MBProgressHUD.m
+0xe38d8	<Unknown File>
+0xe38e7	View must not be nil.
+0xe38fd	MBProgressHUD needs to be accessed on the main thread.
+0xe3934	progress
+0xe393d	center.x
+0xe3946	center.y
+0xe394f	margin
+0xe3956	|-(>=margin)-[bezel]-(>=margin)-|
+0xe3978	bezel
+0xe397e	V:|-(>=margin)-[bezel]-(>=margin)-|
+0xe39a2	|-(>=margin)-[view]-(>=margin)-|
+0xe39c3	view
+0xe39c8	v32@?0@"UIView"8Q16^B24
+0xe39e0	v32@?0@"NSLayoutConstraint"8Q16^B24
+0xe3a04	The color should not be nil.
+0xe3a21	Q8@?0
+0xe3a27	C8@?0
+0xe3a2d	null
+0xe3a32	v24@?0@"NSString"8Q16
+0xe3a48	@"NSString"8@?0
+0xe3a58	rb
+0xe3a5b	%@
+0xe3a5e	@"NSMutableString"8@?0
+0xe3a75	v20@?0@"NSMutableString"8i16
+0xe3a92	/System/Library/Frameworks/Security.framework/Security
+0xe3ac9	SecTaskCreateFromSelf
+0xe3adf	SecTaskCopyValueForEntitlement
+0xe3afe	com.apple.developer.team-identifier
+0xe3b22	bundleSeedID
+0xe3b2f	.
+0xe3b31	DLDomainError
+0xe3b3f	@8@?0
+0xe3b45	NSOSStatusErrorDomain
+0xe3b5b	titleTextColor
+0xe3b6a	Error reading audio file: %@
+0xe3b87	Error reading into buffer: %@
+0xe3ba5	DLAudio.m4a
+0xe3bb1	Export completed
+0xe3bc2	Export failed: %@
+0xe3bd4	Export cancelled
+0xe3be5	DLAACAudioConverterErrorDomain
+0xe3c04	Export session was cancelled.
+0xe3c22	Export failed with unknown error.
+0xe3c44	Export
+0xe3c4b	Unknown error occurred.
+0xe3c63	The video does not contain an audio track.
+0xe3c8e	Failed to create export session.
+0xe3caf	DLAudioAAC.m4a
+0xe3cbe	Failed to open source file
+0xe3cd9	Failed to get source format
+0xe3cf5	Failed to set destination format
+0xe3d16	Failed to create destination file
+0xe3d38	Couldn't setup intermediate conversion format
+0xe3d66	Error writing to destination file
+0xe3d88	IGDirectAudioWaveform
+0xe3d9e	_threadViewControllerContext
+0xe3dbb	This feature is not supported in this version of the app.
+0xe3df5	public.mpeg-4
+0xe3e03	public.audio
+0xe3e10	Please select a video file that is less than 5 minutes long.
+0xe3e4d	Please select a audio file that is less than 5 minutes long.
+0xe3e8a	ACC File = %@
+0xe3e98	v32@?0@"NSURL"8@"NSArray"16@"NSError"24
+0xe3ec0	v24@?0@"NSURL"8@"NSError"16
+0xe3edc	 
+0xe3ede	merging started
+0xe3eee	%@/%d.mp4
+0xe3ef8	empty.mp3
+0xe3f02	DLMerge.mp4
+0xe3f0e	v16@?0@"AVAssetExportSession"8
+0xe3f2d	DLMerge_1.mp4
+0xe3f3b	DLInstaMultiMedia
+0xe3f4d	HUD_DOWNLOADING
+0xe3f5d	(%lu)
+0xe3f63	%@/%d.jpg
+0xe3f6d	(%d)
+0xe3f72	ALERT_UNKNOWN_ERROR
+0xe3f86	%@/%@
+0xe3f8c	DLImage.jpg
+0xe3f98	0%
+0xe3f9b	HUD_CANCEL
+0xe3fa6	DLVideo.mp4
+0xe3fb2	%2.f%%
+0xe3fb9	Downloading Started
+0xe3fcd	mp4
+0xe3fd1	jpg
+0xe3fd5	png
+0xe3fd9	File in Path %@
+0xe3fe9	gif
+0xe3fed	webp
+0xe3ff2	tiff
+0xe3ff7	%ld:%02ld
+0xe4001	%ld:%02ld:%02ld
+0xe4011	v16@?0@"<UIViewControllerTransitionCoordinatorContext>"8
+0xe404a	[\p{Arabic}]+
+0xe4058	
+
+0xe405a	:
+0xe405c	DLMentionViewCell
+0xe406e	STORIES_NO_MENTIONS
+0xe4082	LinkCellIdentifier
+0xe4095	%.2f
+0xe409a	ERROR_LABEL
+0xe40a6	xmark
+0xe40ac	user
+0xe40b1	hd_profile_pic_url_info
+0xe40c9	v20@?0@"NSDictionary"8B16
+0xe40e3	v20@?0@"UIImage"8B16
+0xe40f8	q24@?0@"DLMediaData"8@"DLMediaData"16
+0xe411e	DLAlertStoriesInfo
+0xe4131	STORIES_ALERT_INFO
+0xe4144	videoMediaCell
+0xe4153	jg_hud_success
+0xe4162	optionMediaCell
+0xe4172	STORIES_SELECT_ALL
+0xe4185	STORIES_UNSELECT_ALL
+0xe419a	Video
+0xe41a0	Photo
+0xe41a6	STORIES_DOWNLOAD_ALL
+0xe41bb	STORIES_DOWNLOAD_ALL_SELECTED
+0xe41d9	Finished
+0xe41e2	STORIES_DOWNLOAD_AND_MERGE
+0xe41fd	_availability_version_check
+0xe4219	kCFAllocatorNull
+0xe422a	CFDataCreateWithBytesNoCopy
+0xe4246	CFPropertyListCreateWithData
+0xe4263	CFPropertyListCreateFromXMLData
+0xe4283	CFStringCreateWithCStringNoCopy
+0xe42a3	CFDictionaryGetValue
+0xe42b8	CFGetTypeID
+0xe42c4	CFStringGetTypeID
+0xe42d6	CFStringGetCString
+0xe42e9	CFRelease
+0xe42f3	/System/Library/CoreServices/SystemVersion.plist
+0xe4324	r
+0xe4326	ProductVersion
+0xe4335	%d.%d.%d

@@ -1,0 +1,189 @@
+{
+  "file": "DLInsta.dylib",
+  "size": 1109152,
+  "sha256": "23b13778267c7b25f7cbb524ac824deb11752a0dd0d35c179366b1fe1905165d",
+  "architecture": "ARM64",
+  "classes": 56,
+  "methods": 704,
+  "libraries": [
+    "@executable_path/DLInsta.dylib",
+    "/usr/lib/libobjc.A.dylib",
+    "/System/Library/Frameworks/Foundation.framework/Foundation",
+    "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+    "/System/Library/Frameworks/UIKit.framework/UIKit",
+    "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+    "/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+    "/System/Library/Frameworks/CoreImage.framework/CoreImage",
+    "/System/Library/Frameworks/Accelerate.framework/Accelerate",
+    "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+    "/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox",
+    "/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices",
+    "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+    "/System/Library/Frameworks/ImageIO.framework/ImageIO",
+    "/System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary",
+    "/System/Library/Frameworks/CoreMedia.framework/CoreMedia",
+    "/System/Library/Frameworks/CoreData.framework/CoreData",
+    "/System/Library/Frameworks/CFNetwork.framework/CFNetwork",
+    "/System/Library/Frameworks/Security.framework/Security",
+    "/System/Library/Frameworks/Twitter.framework/Twitter",
+    "/System/Library/Frameworks/MessageUI.framework/MessageUI",
+    "/System/Library/Frameworks/Social.framework/Social",
+    "/System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentication",
+    "/usr/lib/libc++.1.dylib",
+    "/System/Library/Frameworks/Photos.framework/Photos",
+    "/usr/lib/libSystem.B.dylib",
+    "/System/Library/Frameworks/CoreServices.framework/CoreServices"
+  ],
+  "sections": [
+    {
+      "name": "__text",
+      "address": "0x4688",
+      "size": 757572
+    },
+    {
+      "name": "__stubs",
+      "address": "0xbd5cc",
+      "size": 1848
+    },
+    {
+      "name": "__stub_helper",
+      "address": "0xbdd04",
+      "size": 1872
+    },
+    {
+      "name": "__gcc_except_tab",
+      "address": "0xbe454",
+      "size": 98972
+    },
+    {
+      "name": "__const",
+      "address": "0xd66f0",
+      "size": 1632
+    },
+    {
+      "name": "__objc_methname",
+      "address": "0xd6d50",
+      "size": 41277
+    },
+    {
+      "name": "__cstring",
+      "address": "0xe0e8d",
+      "size": 13489
+    },
+    {
+      "name": "__objc_classname",
+      "address": "0xe433e",
+      "size": 1514
+    },
+    {
+      "name": "__ustring",
+      "address": "0xe4928",
+      "size": 346
+    },
+    {
+      "name": "__objc_methtype",
+      "address": "0xe4a82",
+      "size": 7488
+    },
+    {
+      "name": "__unwind_info",
+      "address": "0xe67c4",
+      "size": 5780
+    },
+    {
+      "name": "__eh_frame",
+      "address": "0xe7e58",
+      "size": 424
+    },
+    {
+      "name": "__got",
+      "address": "0xe8000",
+      "size": 728
+    },
+    {
+      "name": "__la_symbol_ptr",
+      "address": "0xe82d8",
+      "size": 1232
+    },
+    {
+      "name": "__mod_init_func",
+      "address": "0xe87a8",
+      "size": 16
+    },
+    {
+      "name": "__const",
+      "address": "0xe87b8",
+      "size": 5712
+    },
+    {
+      "name": "__cfstring",
+      "address": "0xe9e08",
+      "size": 16992
+    },
+    {
+      "name": "__objc_classlist",
+      "address": "0xee068",
+      "size": 448
+    },
+    {
+      "name": "__objc_catlist",
+      "address": "0xee228",
+      "size": 16
+    },
+    {
+      "name": "__objc_protolist",
+      "address": "0xee238",
+      "size": 128
+    },
+    {
+      "name": "__objc_imageinfo",
+      "address": "0xee2b8",
+      "size": 8
+    },
+    {
+      "name": "__objc_const",
+      "address": "0xee2c0",
+      "size": 52440
+    },
+    {
+      "name": "__objc_selrefs",
+      "address": "0xfaf98",
+      "size": 9600
+    },
+    {
+      "name": "__objc_classrefs",
+      "address": "0xfd518",
+      "size": 1096
+    },
+    {
+      "name": "__objc_superrefs",
+      "address": "0xfd960",
+      "size": 352
+    },
+    {
+      "name": "__objc_ivar",
+      "address": "0xfdac0",
+      "size": 716
+    },
+    {
+      "name": "__objc_data",
+      "address": "0xfdd90",
+      "size": 5224
+    },
+    {
+      "name": "__data",
+      "address": "0xff1f8",
+      "size": 1560
+    },
+    {
+      "name": "__bss",
+      "address": "0xff810",
+      "size": 3480
+    },
+    {
+      "name": "__common",
+      "address": "0x1005a8",
+      "size": 315
+    }
+  ]
+}

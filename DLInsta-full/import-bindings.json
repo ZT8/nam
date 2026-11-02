@@ -1,0 +1,4462 @@
+[
+  {
+    "address": "0xe8000",
+    "symbol": "_AVAssetExportPresetAppleM4A"
+  },
+  {
+    "address": "0xe8008",
+    "symbol": "_AVAssetExportPresetHighestQuality"
+  },
+  {
+    "address": "0xe8010",
+    "symbol": "_AVAudioTimePitchAlgorithmSpectral"
+  },
+  {
+    "address": "0xe8018",
+    "symbol": "_AVFileTypeAppleM4A"
+  },
+  {
+    "address": "0xe8020",
+    "symbol": "_AVFileTypeMPEG4"
+  },
+  {
+    "address": "0xe8028",
+    "symbol": "_AVMediaTypeAudio"
+  },
+  {
+    "address": "0xe8030",
+    "symbol": "_AVMediaTypeVideo"
+  },
+  {
+    "address": "0xe8038",
+    "symbol": "_CGAffineTransformIdentity"
+  },
+  {
+    "address": "0xe8040",
+    "symbol": "_CGRectZero"
+  },
+  {
+    "address": "0xe8048",
+    "symbol": "_CGSizeZero"
+  },
+  {
+    "address": "0xe8050",
+    "symbol": "_NSBackgroundColorAttributeName"
+  },
+  {
+    "address": "0xe8058",
+    "symbol": "_NSDefaultRunLoopMode"
+  },
+  {
+    "address": "0xe8060",
+    "symbol": "_NSFontAttributeName"
+  },
+  {
+    "address": "0xe8068",
+    "symbol": "_NSForegroundColorAttributeName"
+  },
+  {
+    "address": "0xe8070",
+    "symbol": "_NSLocalizedDescriptionKey"
+  },
+  {
+    "address": "0xe8078",
+    "symbol": "_NSPOSIXErrorDomain"
+  },
+  {
+    "address": "0xe8080",
+    "symbol": "_NSParagraphStyleAttributeName"
+  },
+  {
+    "address": "0xe8088",
+    "symbol": "_NSRunLoopCommonModes"
+  },
+  {
+    "address": "0xe8090",
+    "symbol": "_OBJC_EHTYPE_$_NSException"
+  },
+  {
+    "address": "0xe8098",
+    "symbol": "_UIApplicationDidChangeStatusBarOrientationNotification"
+  },
+  {
+    "address": "0xe80a0",
+    "symbol": "_UIEdgeInsetsZero"
+  },
+  {
+    "address": "0xe80a8",
+    "symbol": "_UIFontWeightBold"
+  },
+  {
+    "address": "0xe80b0",
+    "symbol": "_UIFontWeightLight"
+  },
+  {
+    "address": "0xe80b8",
+    "symbol": "_UIFontWeightMedium"
+  },
+  {
+    "address": "0xe80c0",
+    "symbol": "_UIFontWeightRegular"
+  },
+  {
+    "address": "0xe80c8",
+    "symbol": "_UIFontWeightSemibold"
+  },
+  {
+    "address": "0xe80d0",
+    "symbol": "_UIImagePickerControllerMediaURL"
+  },
+  {
+    "address": "0xe80d8",
+    "symbol": "__NSConcreteStackBlock"
+  },
+  {
+    "address": "0xe8240",
+    "symbol": "___NSArray0__"
+  },
+  {
+    "address": "0xe8248",
+    "symbol": "___NSDictionary0__"
+  },
+  {
+    "address": "0xe8250",
+    "symbol": "___gxx_personality_v0"
+  },
+  {
+    "address": "0xe8258",
+    "symbol": "___objc_personality_v0"
+  },
+  {
+    "address": "0xe8260",
+    "symbol": "___stack_chk_guard"
+  },
+  {
+    "address": "0xe8268",
+    "symbol": "__dispatch_main_q"
+  },
+  {
+    "address": "0xe8270",
+    "symbol": "_kCFAllocatorDefault"
+  },
+  {
+    "address": "0xe8278",
+    "symbol": "_kCFBundleNameKey"
+  },
+  {
+    "address": "0xe8280",
+    "symbol": "_kCFHTTPVersion1_1"
+  },
+  {
+    "address": "0xe8288",
+    "symbol": "_kCFStreamPropertyHTTPResponseHeader"
+  },
+  {
+    "address": "0xe8290",
+    "symbol": "_kCMTimeZero"
+  },
+  {
+    "address": "0xe8298",
+    "symbol": "_kSecAttrAccessGroup"
+  },
+  {
+    "address": "0xe82a0",
+    "symbol": "_kSecAttrAccount"
+  },
+  {
+    "address": "0xe82a8",
+    "symbol": "_kSecAttrService"
+  },
+  {
+    "address": "0xe82b0",
+    "symbol": "_kSecClass"
+  },
+  {
+    "address": "0xe82b8",
+    "symbol": "_kSecClassGenericPassword"
+  },
+  {
+    "address": "0xe82c0",
+    "symbol": "_kSecReturnAttributes"
+  },
+  {
+    "address": "0xe82c8",
+    "symbol": "_kUTTypeMovie"
+  },
+  {
+    "address": "0xe82d0",
+    "symbol": "dyld_stub_binder"
+  },
+  {
+    "address": "0xe82d8",
+    "symbol": "_AudioFormatGetProperty"
+  },
+  {
+    "address": "0xe82e0",
+    "symbol": "_CCCrypt"
+  },
+  {
+    "address": "0xe82e8",
+    "symbol": "_CFBundleGetVersionNumber"
+  },
+  {
+    "address": "0xe82f0",
+    "symbol": "_CFDataCreate"
+  },
+  {
+    "address": "0xe82f8",
+    "symbol": "_CFDataGetBytes"
+  },
+  {
+    "address": "0xe8300",
+    "symbol": "_CFDataGetLength"
+  },
+  {
+    "address": "0xe8308",
+    "symbol": "_CFGetTypeID"
+  },
+  {
+    "address": "0xe8310",
+    "symbol": "_CFHTTPMessageCopyBody"
+  },
+  {
+    "address": "0xe8318",
+    "symbol": "_CFHTTPMessageCopyRequestURL"
+  },
+  {
+    "address": "0xe8320",
+    "symbol": "_CFHTTPMessageCreateRequest"
+  },
+  {
+    "address": "0xe8328",
+    "symbol": "_CFHTTPMessageSetBody"
+  },
+  {
+    "address": "0xe8330",
+    "symbol": "_CFHTTPMessageSetHeaderFieldValue"
+  },
+  {
+    "address": "0xe8338",
+    "symbol": "_CFReadStreamClose"
+  },
+  {
+    "address": "0xe8340",
+    "symbol": "_CFReadStreamCopyError"
+  },
+  {
+    "address": "0xe8348",
+    "symbol": "_CFReadStreamCopyProperty"
+  },
+  {
+    "address": "0xe8350",
+    "symbol": "_CFReadStreamCreateForHTTPRequest"
+  },
+  {
+    "address": "0xe8358",
+    "symbol": "_CFReadStreamOpen"
+  },
+  {
+    "address": "0xe8360",
+    "symbol": "_CFReadStreamRead"
+  },
+  {
+    "address": "0xe8368",
+    "symbol": "_CFRelease"
+  },
+  {
+    "address": "0xe8370",
+    "symbol": "_CFStringCreateExternalRepresentation"
+  },
+  {
+    "address": "0xe8378",
+    "symbol": "_CFStringCreateWithFormat"
+  },
+  {
+    "address": "0xe8380",
+    "symbol": "_CFStringGetLength"
+  },
+  {
+    "address": "0xe8388",
+    "symbol": "_CFStringGetTypeID"
+  },
+  {
+    "address": "0xe8390",
+    "symbol": "_CFURLCopyHostName"
+  },
+  {
+    "address": "0xe8398",
+    "symbol": "_CFURLCopyScheme"
+  },
+  {
+    "address": "0xe83a0",
+    "symbol": "_CFURLCreateWithString"
+  },
+  {
+    "address": "0xe83a8",
+    "symbol": "_CFURLGetString"
+  },
+  {
+    "address": "0xe83b0",
+    "symbol": "_CGAffineTransformMakeScale"
+  },
+  {
+    "address": "0xe83b8",
+    "symbol": "_CGAffineTransformMakeTranslation"
+  },
+  {
+    "address": "0xe83c0",
+    "symbol": "_CGColorEqualToColor"
+  },
+  {
+    "address": "0xe83c8",
+    "symbol": "_CGContextAddArc"
+  },
+  {
+    "address": "0xe83d0",
+    "symbol": "_CGContextAddArcToPoint"
+  },
+  {
+    "address": "0xe83d8",
+    "symbol": "_CGContextAddLineToPoint"
+  },
+  {
+    "address": "0xe83e0",
+    "symbol": "_CGContextDrawPath"
+  },
+  {
+    "address": "0xe83e8",
+    "symbol": "_CGContextFillPath"
+  },
+  {
+    "address": "0xe83f0",
+    "symbol": "_CGContextMoveToPoint"
+  },
+  {
+    "address": "0xe83f8",
+    "symbol": "_CGContextSetBlendMode"
+  },
+  {
+    "address": "0xe8400",
+    "symbol": "_CGContextSetFillColorWithColor"
+  },
+  {
+    "address": "0xe8408",
+    "symbol": "_CGContextSetLineWidth"
+  },
+  {
+    "address": "0xe8410",
+    "symbol": "_CGContextSetStrokeColorWithColor"
+  },
+  {
+    "address": "0xe8418",
+    "symbol": "_CGContextStrokeEllipseInRect"
+  },
+  {
+    "address": "0xe8420",
+    "symbol": "_CGRectGetHeight"
+  },
+  {
+    "address": "0xe8428",
+    "symbol": "_CGRectGetMidX"
+  },
+  {
+    "address": "0xe8430",
+    "symbol": "_CGRectGetMidY"
+  },
+  {
+    "address": "0xe8438",
+    "symbol": "_CGRectGetWidth"
+  },
+  {
+    "address": "0xe8440",
+    "symbol": "_CGRectInset"
+  },
+  {
+    "address": "0xe8448",
+    "symbol": "_CMTimeAdd"
+  },
+  {
+    "address": "0xe8450",
+    "symbol": "_CMTimeGetSeconds"
+  },
+  {
+    "address": "0xe8458",
+    "symbol": "_CMTimeRangeMake"
+  },
+  {
+    "address": "0xe8460",
+    "symbol": "_ExtAudioFileCreateWithURL"
+  },
+  {
+    "address": "0xe8468",
+    "symbol": "_ExtAudioFileDispose"
+  },
+  {
+    "address": "0xe8470",
+    "symbol": "_ExtAudioFileGetProperty"
+  },
+  {
+    "address": "0xe8478",
+    "symbol": "_ExtAudioFileOpenURL"
+  },
+  {
+    "address": "0xe8480",
+    "symbol": "_ExtAudioFileRead"
+  },
+  {
+    "address": "0xe8488",
+    "symbol": "_ExtAudioFileSetProperty"
+  },
+  {
+    "address": "0xe8490",
+    "symbol": "_ExtAudioFileWrite"
+  },
+  {
+    "address": "0xe8498",
+    "symbol": "_NSClassFromString"
+  },
+  {
+    "address": "0xe84a0",
+    "symbol": "_NSHomeDirectory"
+  },
+  {
+    "address": "0xe84a8",
+    "symbol": "_NSLog"
+  },
+  {
+    "address": "0xe84b0",
+    "symbol": "_NSSearchPathForDirectoriesInDomains"
+  },
+  {
+    "address": "0xe84b8",
+    "symbol": "_NSStringFromClass"
+  },
+  {
+    "address": "0xe84c0",
+    "symbol": "_NSStringFromSelector"
+  },
+  {
+    "address": "0xe84c8",
+    "symbol": "_SecItemAdd"
+  },
+  {
+    "address": "0xe84d0",
+    "symbol": "_SecItemCopyMatching"
+  },
+  {
+    "address": "0xe84d8",
+    "symbol": "_UIGraphicsBeginImageContextWithOptions"
+  },
+  {
+    "address": "0xe84e0",
+    "symbol": "_UIGraphicsEndImageContext"
+  },
+  {
+    "address": "0xe84e8",
+    "symbol": "_UIGraphicsGetCurrentContext"
+  },
+  {
+    "address": "0xe84f0",
+    "symbol": "_UIGraphicsGetImageFromCurrentImageContext"
+  },
+  {
+    "address": "0xe84f8",
+    "symbol": "_UIImagePNGRepresentation"
+  },
+  {
+    "address": "0xe8500",
+    "symbol": "__Block_object_assign"
+  },
+  {
+    "address": "0xe8508",
+    "symbol": "__Block_object_dispose"
+  },
+  {
+    "address": "0xe8510",
+    "symbol": "__NSDictionaryOfVariableBindings"
+  },
+  {
+    "address": "0xe8518",
+    "symbol": "__Unwind_Resume"
+  },
+  {
+    "address": "0xe8520",
+    "symbol": "___cxa_atexit"
+  },
+  {
+    "address": "0xe8528",
+    "symbol": "___cxa_guard_acquire"
+  },
+  {
+    "address": "0xe8530",
+    "symbol": "___cxa_guard_release"
+  },
+  {
+    "address": "0xe8538",
+    "symbol": "___stack_chk_fail"
+  },
+  {
+    "address": "0xe8540",
+    "symbol": "___strcpy_chk"
+  },
+  {
+    "address": "0xe8548",
+    "symbol": "_acos"
+  },
+  {
+    "address": "0xe8550",
+    "symbol": "_class_addMethod"
+  },
+  {
+    "address": "0xe8558",
+    "symbol": "_class_copyMethodList"
+  },
+  {
+    "address": "0xe8560",
+    "symbol": "_class_getClassMethod"
+  },
+  {
+    "address": "0xe8568",
+    "symbol": "_class_getInstanceMethod"
+  },
+  {
+    "address": "0xe8570",
+    "symbol": "_class_getInstanceVariable"
+  },
+  {
+    "address": "0xe8578",
+    "symbol": "_class_getMethodImplementation"
+  },
+  {
+    "address": "0xe8580",
+    "symbol": "_class_getSuperclass"
+  },
+  {
+    "address": "0xe8588",
+    "symbol": "_dispatch_after"
+  },
+  {
+    "address": "0xe8590",
+    "symbol": "_dispatch_async"
+  },
+  {
+    "address": "0xe8598",
+    "symbol": "_dispatch_get_global_queue"
+  },
+  {
+    "address": "0xe85a0",
+    "symbol": "_dispatch_group_create"
+  },
+  {
+    "address": "0xe85a8",
+    "symbol": "_dispatch_group_enter"
+  },
+  {
+    "address": "0xe85b0",
+    "symbol": "_dispatch_group_leave"
+  },
+  {
+    "address": "0xe85b8",
+    "symbol": "_dispatch_group_notify"
+  },
+  {
+    "address": "0xe85c0",
+    "symbol": "_dispatch_once"
+  },
+  {
+    "address": "0xe85c8",
+    "symbol": "_dispatch_once_f"
+  },
+  {
+    "address": "0xe85d0",
+    "symbol": "_dispatch_time"
+  },
+  {
+    "address": "0xe85d8",
+    "symbol": "_dladdr"
+  },
+  {
+    "address": "0xe85e0",
+    "symbol": "_dlclose"
+  },
+  {
+    "address": "0xe85e8",
+    "symbol": "_dlerror"
+  },
+  {
+    "address": "0xe85f0",
+    "symbol": "_dlopen"
+  },
+  {
+    "address": "0xe85f8",
+    "symbol": "_dlsym"
+  },
+  {
+    "address": "0xe8600",
+    "symbol": "_fclose"
+  },
+  {
+    "address": "0xe8608",
+    "symbol": "_fopen"
+  },
+  {
+    "address": "0xe8610",
+    "symbol": "_fread"
+  },
+  {
+    "address": "0xe8618",
+    "symbol": "_free"
+  },
+  {
+    "address": "0xe8620",
+    "symbol": "_fseek"
+  },
+  {
+    "address": "0xe8628",
+    "symbol": "_ftell"
+  },
+  {
+    "address": "0xe8630",
+    "symbol": "_ivar_getOffset"
+  },
+  {
+    "address": "0xe8638",
+    "symbol": "_malloc"
+  },
+  {
+    "address": "0xe8640",
+    "symbol": "_memcmp"
+  },
+  {
+    "address": "0xe8648",
+    "symbol": "_memmove"
+  },
+  {
+    "address": "0xe8650",
+    "symbol": "_method_getImplementation"
+  },
+  {
+    "address": "0xe8658",
+    "symbol": "_method_getName"
+  },
+  {
+    "address": "0xe8660",
+    "symbol": "_method_getTypeEncoding"
+  },
+  {
+    "address": "0xe8668",
+    "symbol": "_method_setImplementation"
+  },
+  {
+    "address": "0xe8670",
+    "symbol": "_objc_alloc"
+  },
+  {
+    "address": "0xe8678",
+    "symbol": "_objc_allocateClassPair"
+  },
+  {
+    "address": "0xe8680",
+    "symbol": "_objc_autorelease"
+  },
+  {
+    "address": "0xe8688",
+    "symbol": "_objc_autoreleasePoolPop"
+  },
+  {
+    "address": "0xe8690",
+    "symbol": "_objc_autoreleasePoolPush"
+  },
+  {
+    "address": "0xe8698",
+    "symbol": "_objc_autoreleaseReturnValue"
+  },
+  {
+    "address": "0xe86a0",
+    "symbol": "_objc_begin_catch"
+  },
+  {
+    "address": "0xe86a8",
+    "symbol": "_objc_destroyWeak"
+  },
+  {
+    "address": "0xe86b0",
+    "symbol": "_objc_end_catch"
+  },
+  {
+    "address": "0xe86b8",
+    "symbol": "_objc_enumerationMutation"
+  },
+  {
+    "address": "0xe86c0",
+    "symbol": "_objc_exception_rethrow"
+  },
+  {
+    "address": "0xe86c8",
+    "symbol": "_objc_getAssociatedObject"
+  },
+  {
+    "address": "0xe86d0",
+    "symbol": "_objc_getClass"
+  },
+  {
+    "address": "0xe86d8",
+    "symbol": "_objc_getProperty"
+  },
+  {
+    "address": "0xe86e0",
+    "symbol": "_objc_initWeak"
+  },
+  {
+    "address": "0xe86e8",
+    "symbol": "_objc_loadWeakRetained"
+  },
+  {
+    "address": "0xe86f0",
+    "symbol": "_objc_msgSend"
+  },
+  {
+    "address": "0xe86f8",
+    "symbol": "_objc_msgSendSuper2"
+  },
+  {
+    "address": "0xe8700",
+    "symbol": "_objc_registerClassPair"
+  },
+  {
+    "address": "0xe8708",
+    "symbol": "_objc_release"
+  },
+  {
+    "address": "0xe8710",
+    "symbol": "_objc_retain"
+  },
+  {
+    "address": "0xe8718",
+    "symbol": "_objc_retainAutorelease"
+  },
+  {
+    "address": "0xe8720",
+    "symbol": "_objc_retainAutoreleaseReturnValue"
+  },
+  {
+    "address": "0xe8728",
+    "symbol": "_objc_retainAutoreleasedReturnValue"
+  },
+  {
+    "address": "0xe8730",
+    "symbol": "_objc_retainBlock"
+  },
+  {
+    "address": "0xe8738",
+    "symbol": "_objc_setAssociatedObject"
+  },
+  {
+    "address": "0xe8740",
+    "symbol": "_objc_setProperty_atomic"
+  },
+  {
+    "address": "0xe8748",
+    "symbol": "_objc_setProperty_atomic_copy"
+  },
+  {
+    "address": "0xe8750",
+    "symbol": "_objc_setProperty_nonatomic_copy"
+  },
+  {
+    "address": "0xe8758",
+    "symbol": "_objc_storeStrong"
+  },
+  {
+    "address": "0xe8760",
+    "symbol": "_objc_storeWeak"
+  },
+  {
+    "address": "0xe8768",
+    "symbol": "_objc_terminate"
+  },
+  {
+    "address": "0xe8770",
+    "symbol": "_objc_unsafeClaimAutoreleasedReturnValue"
+  },
+  {
+    "address": "0xe8778",
+    "symbol": "_object_getClass"
+  },
+  {
+    "address": "0xe8780",
+    "symbol": "_rewind"
+  },
+  {
+    "address": "0xe8788",
+    "symbol": "_sscanf"
+  },
+  {
+    "address": "0xe8790",
+    "symbol": "_strlen"
+  },
+  {
+    "address": "0xe8798",
+    "symbol": "_strncpy"
+  },
+  {
+    "address": "0xe87a0",
+    "symbol": "_vDSP_rmsqv"
+  },
+  {
+    "address": "0xe88e8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8928",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe89b8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8a08",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8ac8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8c88",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8cd8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8cf8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8d18",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8d58",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8d78",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8d98",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8dd8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8e18",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8e98",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8eb8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8ed8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8ef8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8f18",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8f58",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8f78",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8f98",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe8fb8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9008",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9088",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe91f8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9348",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe93e8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9668",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9778",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9af8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9d48",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9d68",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9d88",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9da8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9dc8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9de8",
+    "symbol": "__NSConcreteGlobalBlock"
+  },
+  {
+    "address": "0xe9e08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9e28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9e48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9e68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9e88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9ea8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9ec8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9ee8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9f08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9f28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9f48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9f68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9f88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9fa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9fc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xe9fe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea008",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea028",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea048",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea068",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea088",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea0a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea0c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea0e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea108",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea128",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea148",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea168",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea188",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea1a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea1c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea1e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea208",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea228",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea248",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea268",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea288",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea2a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea2c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea2e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea308",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea328",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea348",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea368",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea388",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea3a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea3c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea3e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea408",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea428",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea448",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea468",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea488",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea4a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea4c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea4e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea508",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea528",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea548",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea568",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea588",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea5a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea5c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea5e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea608",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea628",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea648",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea668",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea688",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea6a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea6c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea6e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea708",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea728",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea748",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea768",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea788",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea7a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea7c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea7e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea808",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea828",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea848",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea868",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea888",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea8a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea8c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea8e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea908",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea928",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea948",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea968",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea988",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea9a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea9c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xea9e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaa08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaa28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaa48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaa68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaa88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaaa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaac8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaae8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeab08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeab28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeab48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeab68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeab88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaba8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeabc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeabe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeac08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeac28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeac48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeac68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeac88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaca8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeacc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeace8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xead08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xead28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xead48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xead68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xead88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeada8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeadc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeade8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeae08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeae28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeae48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeae68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeae88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaea8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaec8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaee8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaf08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaf28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaf48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaf68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeaf88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeafa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeafc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeafe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb008",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb028",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb048",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb068",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb088",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb0a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb0c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb0e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb108",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb128",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb148",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb168",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb188",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb1a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb1c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb1e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb208",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb228",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb248",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb268",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb288",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb2a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb2c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb2e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb308",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb328",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb348",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb368",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb388",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb3a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb3c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb3e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb408",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb428",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb448",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb468",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb488",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb4a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb4c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb4e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb508",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb528",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb548",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb568",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb588",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb5a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb5c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb5e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb608",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb628",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb648",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb668",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb688",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb6a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb6c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb6e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb708",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb728",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb748",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb768",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb788",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb7a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb7c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb7e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb808",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb828",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb848",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb868",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb888",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb8a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb8c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb8e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb908",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb928",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb948",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb968",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb988",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb9a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb9c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeb9e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeba08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeba28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeba48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeba68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeba88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebaa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebac8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebae8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebb08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebb28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebb48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebb68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebb88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebba8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebbc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebbe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebc08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebc28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebc48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebc68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebc88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebca8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebcc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebce8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebd08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebd28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebd48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebd68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebd88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebda8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebdc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebde8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebe08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebe28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebe48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebe68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebe88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebea8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebec8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebee8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebf08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebf28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebf48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebf68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebf88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebfa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebfc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xebfe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec008",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec028",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec048",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec068",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec088",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec0a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec0c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec0e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec108",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec128",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec148",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec168",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec188",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec1a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec1c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec1e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec208",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec228",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec248",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec268",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec288",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec2a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec2c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec2e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec308",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec328",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec348",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec368",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec388",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec3a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec3c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec3e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec408",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec428",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec448",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec468",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec488",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec4a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec4c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec4e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec508",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec528",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec548",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec568",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec588",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec5a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec5c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec5e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec608",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec628",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec648",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec668",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec688",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec6a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec6c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec6e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec708",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec728",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec748",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec768",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec788",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec7a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec7c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec7e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec808",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec828",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec848",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec868",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec888",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec8a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec8c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec8e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec908",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec928",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec948",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec968",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec988",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec9a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec9c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xec9e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeca08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeca28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeca48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeca68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeca88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecaa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecac8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecae8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecb08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecb28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecb48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecb68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecb88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecba8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecbc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecbe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecc08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecc28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecc48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecc68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecc88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecca8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeccc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecce8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecd08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecd28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecd48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecd68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecd88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecda8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecdc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecde8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xece08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xece28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xece48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xece68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xece88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecea8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecec8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecee8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecf08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecf28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecf48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecf68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecf88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecfa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecfc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xecfe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed008",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed028",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed048",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed068",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed088",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed0a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed0c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed0e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed108",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed128",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed148",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed168",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed188",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed1a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed1c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed1e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed208",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed228",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed248",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed268",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed288",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed2a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed2c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed2e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed308",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed328",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed348",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed368",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed388",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed3a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed3c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed3e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed408",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed428",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed448",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed468",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed488",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed4a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed4c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed4e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed508",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed528",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed548",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed568",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed588",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed5a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed5c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed5e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed608",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed628",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed648",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed668",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed688",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed6a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed6c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed6e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed708",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed728",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed748",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed768",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed788",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed7a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed7c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed7e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed808",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed828",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed848",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed868",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed888",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed8a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed8c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed8e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed908",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed928",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed948",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed968",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed988",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed9a8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed9c8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xed9e8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeda08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeda28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeda48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeda68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeda88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedaa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedac8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedae8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedb08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedb28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedb48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedb68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedb88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedba8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedbc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedbe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedc08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedc28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedc48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedc68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedc88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedca8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedcc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedce8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedd08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedd28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedd48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedd68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedd88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedda8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xeddc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedde8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xede08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xede28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xede48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xede68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xede88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedea8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedec8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedee8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedf08",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedf28",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedf48",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedf68",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedf88",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedfa8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedfc8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xedfe8",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xee008",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xee028",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xee048",
+    "symbol": "___CFConstantStringClassReference"
+  },
+  {
+    "address": "0xee2c8",
+    "symbol": "_OBJC_CLASS_$_NSData"
+  },
+  {
+    "address": "0xee390",
+    "symbol": "_OBJC_CLASS_$_NSString"
+  },
+  {
+    "address": "0xfd518",
+    "symbol": "_OBJC_CLASS_$_NSNumber"
+  },
+  {
+    "address": "0xfd520",
+    "symbol": "_OBJC_CLASS_$_NSString"
+  },
+  {
+    "address": "0xfd528",
+    "symbol": "_OBJC_CLASS_$_NSUserDefaults"
+  },
+  {
+    "address": "0xfd548",
+    "symbol": "_OBJC_CLASS_$_NSArray"
+  },
+  {
+    "address": "0xfd550",
+    "symbol": "_OBJC_CLASS_$_UIApplication"
+  },
+  {
+    "address": "0xfd558",
+    "symbol": "_OBJC_CLASS_$_UILongPressGestureRecognizer"
+  },
+  {
+    "address": "0xfd560",
+    "symbol": "_OBJC_CLASS_$_UIPasteboard"
+  },
+  {
+    "address": "0xfd568",
+    "symbol": "_OBJC_CLASS_$_NSMutableArray"
+  },
+  {
+    "address": "0xfd570",
+    "symbol": "_OBJC_CLASS_$_UIColor"
+  },
+  {
+    "address": "0xfd578",
+    "symbol": "_OBJC_CLASS_$_UILabel"
+  },
+  {
+    "address": "0xfd580",
+    "symbol": "_OBJC_CLASS_$_UIFont"
+  },
+  {
+    "address": "0xfd588",
+    "symbol": "_OBJC_CLASS_$_NSNumberFormatter"
+  },
+  {
+    "address": "0xfd590",
+    "symbol": "_OBJC_CLASS_$_NSDictionary"
+  },
+  {
+    "address": "0xfd5a0",
+    "symbol": "_OBJC_CLASS_$_NSURL"
+  },
+  {
+    "address": "0xfd5b0",
+    "symbol": "_OBJC_CLASS_$_NSBundle"
+  },
+  {
+    "address": "0xfd5b8",
+    "symbol": "_OBJC_CLASS_$_UIBarButtonItem"
+  },
+  {
+    "address": "0xfd5c0",
+    "symbol": "_OBJC_CLASS_$_NSMutableDictionary"
+  },
+  {
+    "address": "0xfd5c8",
+    "symbol": "_OBJC_CLASS_$_UITableView"
+  },
+  {
+    "address": "0xfd5d0",
+    "symbol": "_OBJC_CLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfd5d8",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfd5e0",
+    "symbol": "_OBJC_CLASS_$_NSMutableAttributedString"
+  },
+  {
+    "address": "0xfd5e8",
+    "symbol": "_OBJC_CLASS_$_UITableViewHeaderFooterView"
+  },
+  {
+    "address": "0xfd5f0",
+    "symbol": "_OBJC_CLASS_$_NSFileManager"
+  },
+  {
+    "address": "0xfd5f8",
+    "symbol": "_OBJC_CLASS_$_NSDate"
+  },
+  {
+    "address": "0xfd600",
+    "symbol": "_OBJC_CLASS_$_NSNotificationCenter"
+  },
+  {
+    "address": "0xfd610",
+    "symbol": "_OBJC_CLASS_$_NSDateFormatter"
+  },
+  {
+    "address": "0xfd618",
+    "symbol": "_OBJC_CLASS_$_NSLocale"
+  },
+  {
+    "address": "0xfd640",
+    "symbol": "_OBJC_CLASS_$_UIAlertAction"
+  },
+  {
+    "address": "0xfd650",
+    "symbol": "_OBJC_CLASS_$_NSSortDescriptor"
+  },
+  {
+    "address": "0xfd678",
+    "symbol": "_OBJC_CLASS_$_NSLayoutConstraint"
+  },
+  {
+    "address": "0xfd680",
+    "symbol": "_OBJC_CLASS_$_NSThread"
+  },
+  {
+    "address": "0xfd690",
+    "symbol": "_OBJC_CLASS_$_NSCalendar"
+  },
+  {
+    "address": "0xfd698",
+    "symbol": "_OBJC_CLASS_$_UINavigationController"
+  },
+  {
+    "address": "0xfd6b0",
+    "symbol": "_OBJC_CLASS_$_UIImageView"
+  },
+  {
+    "address": "0xfd6e8",
+    "symbol": "_OBJC_CLASS_$_LAContext"
+  },
+  {
+    "address": "0xfd700",
+    "symbol": "_OBJC_CLASS_$_UIImage"
+  },
+  {
+    "address": "0xfd708",
+    "symbol": "_OBJC_CLASS_$_NSData"
+  },
+  {
+    "address": "0xfd710",
+    "symbol": "_OBJC_CLASS_$_NSMutableString"
+  },
+  {
+    "address": "0xfd718",
+    "symbol": "_OBJC_CLASS_$_MFMailComposeViewController"
+  },
+  {
+    "address": "0xfd720",
+    "symbol": "_OBJC_CLASS_$_UIDevice"
+  },
+  {
+    "address": "0xfd730",
+    "symbol": "_OBJC_CLASS_$_NSOutputStream"
+  },
+  {
+    "address": "0xfd738",
+    "symbol": "_OBJC_CLASS_$_UIScreen"
+  },
+  {
+    "address": "0xfd740",
+    "symbol": "_OBJC_CLASS_$_NSURLSession"
+  },
+  {
+    "address": "0xfd748",
+    "symbol": "_OBJC_CLASS_$_NSMutableURLRequest"
+  },
+  {
+    "address": "0xfd758",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfd760",
+    "symbol": "_OBJC_CLASS_$_UIImpactFeedbackGenerator"
+  },
+  {
+    "address": "0xfd768",
+    "symbol": "_OBJC_CLASS_$_NSAssertionHandler"
+  },
+  {
+    "address": "0xfd770",
+    "symbol": "_OBJC_CLASS_$_NSTimer"
+  },
+  {
+    "address": "0xfd778",
+    "symbol": "_OBJC_CLASS_$_NSRunLoop"
+  },
+  {
+    "address": "0xfd798",
+    "symbol": "_OBJC_CLASS_$_UIActivityIndicatorView"
+  },
+  {
+    "address": "0xfd7b0",
+    "symbol": "_OBJC_CLASS_$_UIInterpolatingMotionEffect"
+  },
+  {
+    "address": "0xfd7b8",
+    "symbol": "_OBJC_CLASS_$_UIMotionEffectGroup"
+  },
+  {
+    "address": "0xfd7c0",
+    "symbol": "_OBJC_CLASS_$_CADisplayLink"
+  },
+  {
+    "address": "0xfd7c8",
+    "symbol": "_OBJC_CLASS_$_UIBezierPath"
+  },
+  {
+    "address": "0xfd7d0",
+    "symbol": "_OBJC_CLASS_$_UIBlurEffect"
+  },
+  {
+    "address": "0xfd7d8",
+    "symbol": "_OBJC_CLASS_$_UIVisualEffectView"
+  },
+  {
+    "address": "0xfd7e0",
+    "symbol": "_OBJC_CLASS_$_NSError"
+  },
+  {
+    "address": "0xfd7e8",
+    "symbol": "_OBJC_CLASS_$_NSMutableData"
+  },
+  {
+    "address": "0xfd7f0",
+    "symbol": "_OBJC_CLASS_$_NSJSONSerialization"
+  },
+  {
+    "address": "0xfd7f8",
+    "symbol": "_OBJC_CLASS_$_AVAudioFile"
+  },
+  {
+    "address": "0xfd800",
+    "symbol": "_OBJC_CLASS_$_AVAudioPCMBuffer"
+  },
+  {
+    "address": "0xfd808",
+    "symbol": "_OBJC_CLASS_$_AVURLAsset"
+  },
+  {
+    "address": "0xfd810",
+    "symbol": "_OBJC_CLASS_$_AVAssetExportSession"
+  },
+  {
+    "address": "0xfd818",
+    "symbol": "_OBJC_CLASS_$_AVAsset"
+  },
+  {
+    "address": "0xfd820",
+    "symbol": "_OBJC_CLASS_$_UIDocumentPickerViewController"
+  },
+  {
+    "address": "0xfd828",
+    "symbol": "_OBJC_CLASS_$_UIImagePickerController"
+  },
+  {
+    "address": "0xfd830",
+    "symbol": "_OBJC_CLASS_$_AVMutableComposition"
+  },
+  {
+    "address": "0xfd848",
+    "symbol": "_OBJC_CLASS_$_NSURLSessionConfiguration"
+  },
+  {
+    "address": "0xfd858",
+    "symbol": "_OBJC_CLASS_$_UITapGestureRecognizer"
+  },
+  {
+    "address": "0xfd860",
+    "symbol": "_OBJC_CLASS_$_UIActivityViewController"
+  },
+  {
+    "address": "0xfd868",
+    "symbol": "_OBJC_CLASS_$_UIPopoverController"
+  },
+  {
+    "address": "0xfd870",
+    "symbol": "_OBJC_CLASS_$_PHPhotoLibrary"
+  },
+  {
+    "address": "0xfd878",
+    "symbol": "_OBJC_CLASS_$_PHAssetChangeRequest"
+  },
+  {
+    "address": "0xfd880",
+    "symbol": "_OBJC_CLASS_$_PHAssetResourceCreationOptions"
+  },
+  {
+    "address": "0xfd888",
+    "symbol": "_OBJC_CLASS_$_PHAssetCreationRequest"
+  },
+  {
+    "address": "0xfd890",
+    "symbol": "_OBJC_CLASS_$_CAShapeLayer"
+  },
+  {
+    "address": "0xfd8a0",
+    "symbol": "_OBJC_CLASS_$_NSRegularExpression"
+  },
+  {
+    "address": "0xfd8b0",
+    "symbol": "_OBJC_CLASS_$_UIStackView"
+  },
+  {
+    "address": "0xfd8c8",
+    "symbol": "_OBJC_CLASS_$_NSMutableParagraphStyle"
+  },
+  {
+    "address": "0xfd8e8",
+    "symbol": "_OBJC_CLASS_$_UIPanGestureRecognizer"
+  },
+  {
+    "address": "0xfd8f8",
+    "symbol": "_OBJC_CLASS_$_UISegmentedControl"
+  },
+  {
+    "address": "0xfd900",
+    "symbol": "_OBJC_CLASS_$_CALayer"
+  },
+  {
+    "address": "0xfd910",
+    "symbol": "_OBJC_CLASS_$_UISlider"
+  },
+  {
+    "address": "0xfd918",
+    "symbol": "_OBJC_CLASS_$_UISwitch"
+  },
+  {
+    "address": "0xfd920",
+    "symbol": "_OBJC_CLASS_$_UITextField"
+  },
+  {
+    "address": "0xfd930",
+    "symbol": "_OBJC_CLASS_$_UIScrollView"
+  },
+  {
+    "address": "0xfd940",
+    "symbol": "_OBJC_CLASS_$_UICollectionView"
+  },
+  {
+    "address": "0xfd958",
+    "symbol": "_OBJC_CLASS_$_NSIndexPath"
+  },
+  {
+    "address": "0xfde38",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfde40",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfde58",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfde60",
+    "symbol": "_OBJC_METACLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfde68",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfde88",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfde90",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdea8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfdeb0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfdeb8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfded0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfded8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfdee0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdf00",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfdf08",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdf28",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfdf30",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdf50",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfdf58",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdf78",
+    "symbol": "_OBJC_CLASS_$_UIButton"
+  },
+  {
+    "address": "0xfdf80",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdfa0",
+    "symbol": "_OBJC_CLASS_$_UIButton"
+  },
+  {
+    "address": "0xfdfa8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdfc8",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfdfd0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfdff0",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfdff8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe010",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe018",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfe020",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe038",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe040",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfe048",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe060",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe068",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfe070",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe088",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe090",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfe098",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe0b0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe0b8",
+    "symbol": "_OBJC_METACLASS_$_UIButton"
+  },
+  {
+    "address": "0xfe0c0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe0d8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe0e0",
+    "symbol": "_OBJC_METACLASS_$_UIButton"
+  },
+  {
+    "address": "0xfe0e8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe100",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe108",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe110",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe130",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe138",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe158",
+    "symbol": "_OBJC_CLASS_$_UIAlertController"
+  },
+  {
+    "address": "0xfe160",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe178",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe180",
+    "symbol": "_OBJC_METACLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfe188",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe1a8",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfe1b0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe1c8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe1d0",
+    "symbol": "_OBJC_METACLASS_$_UIAlertController"
+  },
+  {
+    "address": "0xfe1d8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe1f0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe1f8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe200",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe220",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe228",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe248",
+    "symbol": "_OBJC_CLASS_$_UIButton"
+  },
+  {
+    "address": "0xfe250",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe268",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe270",
+    "symbol": "_OBJC_METACLASS_$_UIButton"
+  },
+  {
+    "address": "0xfe278",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe298",
+    "symbol": "_OBJC_CLASS_$_UITapGestureRecognizer"
+  },
+  {
+    "address": "0xfe2a0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe2b8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe2c0",
+    "symbol": "_OBJC_METACLASS_$_UITapGestureRecognizer"
+  },
+  {
+    "address": "0xfe2c8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe2e8",
+    "symbol": "_OBJC_CLASS_$_UIBarButtonItem"
+  },
+  {
+    "address": "0xfe2f0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe308",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe310",
+    "symbol": "_OBJC_METACLASS_$_UIBarButtonItem"
+  },
+  {
+    "address": "0xfe318",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe338",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfe340",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe358",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe360",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfe368",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe380",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe388",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe390",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe3b0",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe3b8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe3d8",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfe3e0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe3f8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe400",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfe408",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe428",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe430",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe448",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe450",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe458",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe470",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe478",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe480",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe4a0",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe4a8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe4c8",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe4d0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe4e8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe4f0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe4f8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe518",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfe520",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe538",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe540",
+    "symbol": "_OBJC_METACLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfe548",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe568",
+    "symbol": "_OBJC_CLASS_$_UIPresentationController"
+  },
+  {
+    "address": "0xfe570",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe588",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe590",
+    "symbol": "_OBJC_METACLASS_$_UIPresentationController"
+  },
+  {
+    "address": "0xfe598",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe5b0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe5b8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe5c0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe5e0",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe5e8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe608",
+    "symbol": "_OBJC_CLASS_$_UIPresentationController"
+  },
+  {
+    "address": "0xfe610",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe628",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe630",
+    "symbol": "_OBJC_METACLASS_$_UIPresentationController"
+  },
+  {
+    "address": "0xfe638",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe658",
+    "symbol": "_OBJC_CLASS_$_UIButton"
+  },
+  {
+    "address": "0xfe660",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe678",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe680",
+    "symbol": "_OBJC_METACLASS_$_UIButton"
+  },
+  {
+    "address": "0xfe688",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe6a8",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe6b0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe6c8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe6d0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe6d8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe6f8",
+    "symbol": "_OBJC_CLASS_$_UITextView"
+  },
+  {
+    "address": "0xfe700",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe718",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe720",
+    "symbol": "_OBJC_METACLASS_$_UITextView"
+  },
+  {
+    "address": "0xfe728",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe748",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfe750",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe768",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe770",
+    "symbol": "_OBJC_METACLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfe778",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe798",
+    "symbol": "_OBJC_CLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfe7a0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe7b8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe7c0",
+    "symbol": "_OBJC_METACLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfe7c8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe7f0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe808",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe818",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe830",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe838",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe840",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfe860",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfe868",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfead0",
+    "symbol": "_OBJC_CLASS_$_UIVisualEffectView"
+  },
+  {
+    "address": "0xfead8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeaf0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfeaf8",
+    "symbol": "_OBJC_METACLASS_$_UIVisualEffectView"
+  },
+  {
+    "address": "0xfeb00",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeb20",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfeb28",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeb40",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfeb48",
+    "symbol": "_OBJC_METACLASS_$_UIViewController"
+  },
+  {
+    "address": "0xfeb50",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeb70",
+    "symbol": "_OBJC_CLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfeb78",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeb90",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfeb98",
+    "symbol": "_OBJC_METACLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfeba0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfebc8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfebe0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfebf0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfec18",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfec30",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfec40",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfec68",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfec80",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfec90",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfecb0",
+    "symbol": "_OBJC_CLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfecb8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfecd0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfecd8",
+    "symbol": "_OBJC_METACLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xfece0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfed08",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfed20",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfed30",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfed50",
+    "symbol": "_OBJC_CLASS_$_UIView"
+  },
+  {
+    "address": "0xfed58",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfed70",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfed78",
+    "symbol": "_OBJC_METACLASS_$_UIView"
+  },
+  {
+    "address": "0xfed80",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeda0",
+    "symbol": "_OBJC_CLASS_$_UITableViewController"
+  },
+  {
+    "address": "0xfeda8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfedc0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfedc8",
+    "symbol": "_OBJC_METACLASS_$_UITableViewController"
+  },
+  {
+    "address": "0xfedd0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfedf0",
+    "symbol": "_OBJC_CLASS_$_NSObject"
+  },
+  {
+    "address": "0xfedf8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfee10",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfee18",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfee20",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfee48",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfee60",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfee70",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfee98",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeeb0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfeec0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeee8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfef00",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfef10",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfef38",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfef50",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfef60",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfef88",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfefa0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xfefb0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfefd8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xfeff0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff000",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff020",
+    "symbol": "_OBJC_CLASS_$_UITableViewController"
+  },
+  {
+    "address": "0xff028",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff040",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff048",
+    "symbol": "_OBJC_METACLASS_$_UITableViewController"
+  },
+  {
+    "address": "0xff050",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff070",
+    "symbol": "_OBJC_CLASS_$_UIViewController"
+  },
+  {
+    "address": "0xff078",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff090",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff098",
+    "symbol": "_OBJC_METACLASS_$_UIViewController"
+  },
+  {
+    "address": "0xff0a0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff0b8",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff0c0",
+    "symbol": "_OBJC_METACLASS_$_UICollectionViewFlowLayout"
+  },
+  {
+    "address": "0xff0c8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff0e8",
+    "symbol": "_OBJC_CLASS_$_UICollectionViewFlowLayout"
+  },
+  {
+    "address": "0xff0f0",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff110",
+    "symbol": "_OBJC_CLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xff118",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff130",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff138",
+    "symbol": "_OBJC_METACLASS_$_UITableViewCell"
+  },
+  {
+    "address": "0xff140",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff160",
+    "symbol": "_OBJC_CLASS_$_UICollectionViewCell"
+  },
+  {
+    "address": "0xff168",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff180",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff188",
+    "symbol": "_OBJC_METACLASS_$_UICollectionViewCell"
+  },
+  {
+    "address": "0xff190",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff1b8",
+    "symbol": "__objc_empty_cache"
+  },
+  {
+    "address": "0xff1d0",
+    "symbol": "_OBJC_METACLASS_$_NSObject"
+  },
+  {
+    "address": "0xff1e0",
+    "symbol": "__objc_empty_cache"
+  }
+]

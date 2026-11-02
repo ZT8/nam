@@ -1,0 +1,2870 @@
+[
+  {
+    "name": "DLCrashViewController",
+    "address": "0xfde30",
+    "superclass": "_OBJC_CLASS_$_UIViewController",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_infoDict",
+        "encoding": "@\"NSDictionary\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_appName",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_appVersion",
+        "encoding": "@\"NSString\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "appName",
+        "attributes": "T@\"NSString\",&,N,V_appName"
+      },
+      {
+        "name": "appVersion",
+        "attributes": "T@\"NSString\",&,N,V_appVersion"
+      },
+      {
+        "name": "infoDict",
+        "attributes": "T@\"NSDictionary\",&,N,V_infoDict"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "MFMailComposeViewControllerDelegate"
+    ]
+  },
+  {
+    "name": "DLHelper",
+    "address": "0xfde80",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLInsta",
+    "address": "0xfdef8",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "MBProgressHUD",
+    "address": "0xfdf20",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 264,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_removeFromSuperViewOnHide",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_square",
+        "encoding": "B",
+        "offset": 9,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_defaultMotionEffectsEnabled",
+        "encoding": "B",
+        "offset": 10,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_useAnimation",
+        "encoding": "B",
+        "offset": 11,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_finished",
+        "encoding": "B",
+        "offset": 12,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_progress",
+        "encoding": "f",
+        "offset": 16,
+        "alignment_encoding": 2,
+        "size": 4
+      },
+      {
+        "name": "_delegate",
+        "encoding": "@\"<MBProgressHUDDelegate>\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_completionBlock",
+        "encoding": "@?",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_graceTime",
+        "encoding": "d",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_minShowTime",
+        "encoding": "d",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_mode",
+        "encoding": "q",
+        "offset": 56,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_contentColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 64,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_animationType",
+        "encoding": "q",
+        "offset": 72,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_margin",
+        "encoding": "d",
+        "offset": 80,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_progressObject",
+        "encoding": "@\"NSProgress\"",
+        "offset": 88,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_bezelView",
+        "encoding": "@\"MBBackgroundView\"",
+        "offset": 96,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_backgroundView",
+        "encoding": "@\"MBBackgroundView\"",
+        "offset": 104,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_customView",
+        "encoding": "@\"UIView\"",
+        "offset": 112,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_label",
+        "encoding": "@\"UILabel\"",
+        "offset": 120,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_detailsLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 128,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_button",
+        "encoding": "@\"UIButton\"",
+        "offset": 136,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_hideButton",
+        "encoding": "@\"UIButton\"",
+        "offset": 144,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_indicator",
+        "encoding": "@\"UIView\"",
+        "offset": 152,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_showStarted",
+        "encoding": "@\"NSDate\"",
+        "offset": 160,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_paddingConstraints",
+        "encoding": "@\"NSArray\"",
+        "offset": 168,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_bezelConstraints",
+        "encoding": "@\"NSArray\"",
+        "offset": 176,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_topSpacer",
+        "encoding": "@\"UIView\"",
+        "offset": 184,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_bottomSpacer",
+        "encoding": "@\"UIView\"",
+        "offset": 192,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_graceTimer",
+        "encoding": "@\"NSTimer\"",
+        "offset": 200,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_minShowTimer",
+        "encoding": "@\"NSTimer\"",
+        "offset": 208,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_hideDelayTimer",
+        "encoding": "@\"NSTimer\"",
+        "offset": 216,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_progressObjectDisplayLink",
+        "encoding": "@\"CADisplayLink\"",
+        "offset": 224,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_offset",
+        "encoding": "{CGPoint=\"x\"d\"y\"d}",
+        "offset": 232,
+        "alignment_encoding": 3,
+        "size": 16
+      },
+      {
+        "name": "_minSize",
+        "encoding": "{CGSize=\"width\"d\"height\"d}",
+        "offset": 248,
+        "alignment_encoding": 3,
+        "size": 16
+      }
+    ],
+    "properties": [
+      {
+        "name": "useAnimation",
+        "attributes": "TB,N,V_useAnimation"
+      },
+      {
+        "name": "finished",
+        "attributes": "TB,N,GhasFinished,V_finished"
+      },
+      {
+        "name": "indicator",
+        "attributes": "T@\"UIView\",&,N,V_indicator"
+      },
+      {
+        "name": "showStarted",
+        "attributes": "T@\"NSDate\",&,N,V_showStarted"
+      },
+      {
+        "name": "paddingConstraints",
+        "attributes": "T@\"NSArray\",&,N,V_paddingConstraints"
+      },
+      {
+        "name": "bezelConstraints",
+        "attributes": "T@\"NSArray\",&,N,V_bezelConstraints"
+      },
+      {
+        "name": "topSpacer",
+        "attributes": "T@\"UIView\",&,N,V_topSpacer"
+      },
+      {
+        "name": "bottomSpacer",
+        "attributes": "T@\"UIView\",&,N,V_bottomSpacer"
+      },
+      {
+        "name": "graceTimer",
+        "attributes": "T@\"NSTimer\",W,N,V_graceTimer"
+      },
+      {
+        "name": "minShowTimer",
+        "attributes": "T@\"NSTimer\",W,N,V_minShowTimer"
+      },
+      {
+        "name": "hideDelayTimer",
+        "attributes": "T@\"NSTimer\",W,N,V_hideDelayTimer"
+      },
+      {
+        "name": "progressObjectDisplayLink",
+        "attributes": "T@\"CADisplayLink\",W,N,V_progressObjectDisplayLink"
+      },
+      {
+        "name": "delegate",
+        "attributes": "T@\"<MBProgressHUDDelegate>\",W,N,V_delegate"
+      },
+      {
+        "name": "completionBlock",
+        "attributes": "T@?,C,V_completionBlock"
+      },
+      {
+        "name": "graceTime",
+        "attributes": "Td,N,V_graceTime"
+      },
+      {
+        "name": "minShowTime",
+        "attributes": "Td,N,V_minShowTime"
+      },
+      {
+        "name": "removeFromSuperViewOnHide",
+        "attributes": "TB,N,V_removeFromSuperViewOnHide"
+      },
+      {
+        "name": "mode",
+        "attributes": "Tq,N,V_mode"
+      },
+      {
+        "name": "contentColor",
+        "attributes": "T@\"UIColor\",&,N,V_contentColor"
+      },
+      {
+        "name": "animationType",
+        "attributes": "Tq,N,V_animationType"
+      },
+      {
+        "name": "offset",
+        "attributes": "T{CGPoint=dd},N,V_offset"
+      },
+      {
+        "name": "margin",
+        "attributes": "Td,N,V_margin"
+      },
+      {
+        "name": "minSize",
+        "attributes": "T{CGSize=dd},N,V_minSize"
+      },
+      {
+        "name": "square",
+        "attributes": "TB,N,GisSquare,V_square"
+      },
+      {
+        "name": "defaultMotionEffectsEnabled",
+        "attributes": "TB,N,GareDefaultMotionEffectsEnabled,V_defaultMotionEffectsEnabled"
+      },
+      {
+        "name": "progress",
+        "attributes": "Tf,N,V_progress"
+      },
+      {
+        "name": "progressObject",
+        "attributes": "T@\"NSProgress\",&,N,V_progressObject"
+      },
+      {
+        "name": "bezelView",
+        "attributes": "T@\"MBBackgroundView\",R,N,V_bezelView"
+      },
+      {
+        "name": "backgroundView",
+        "attributes": "T@\"MBBackgroundView\",R,N,V_backgroundView"
+      },
+      {
+        "name": "customView",
+        "attributes": "T@\"UIView\",&,N,V_customView"
+      },
+      {
+        "name": "label",
+        "attributes": "T@\"UILabel\",R,N,V_label"
+      },
+      {
+        "name": "detailsLabel",
+        "attributes": "T@\"UILabel\",R,N,V_detailsLabel"
+      },
+      {
+        "name": "button",
+        "attributes": "T@\"UIButton\",R,N,V_button"
+      },
+      {
+        "name": "hideButton",
+        "attributes": "T@\"UIButton\",R,N,V_hideButton"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "MBRoundProgressView",
+    "address": "0xfdfc0",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_annular",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_progress",
+        "encoding": "f",
+        "offset": 12,
+        "alignment_encoding": 2,
+        "size": 4
+      },
+      {
+        "name": "_progressTintColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_backgroundTintColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "progress",
+        "attributes": "Tf,N,V_progress"
+      },
+      {
+        "name": "progressTintColor",
+        "attributes": "T@\"UIColor\",&,N,V_progressTintColor"
+      },
+      {
+        "name": "backgroundTintColor",
+        "attributes": "T@\"UIColor\",&,N,V_backgroundTintColor"
+      },
+      {
+        "name": "annular",
+        "attributes": "TB,N,GisAnnular,V_annular"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "MBBarProgressView",
+    "address": "0xfdfe8",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 40,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_progress",
+        "encoding": "f",
+        "offset": 8,
+        "alignment_encoding": 2,
+        "size": 4
+      },
+      {
+        "name": "_lineColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_progressRemainingColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_progressColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "progress",
+        "attributes": "Tf,N,V_progress"
+      },
+      {
+        "name": "lineColor",
+        "attributes": "T@\"UIColor\",&,N,V_lineColor"
+      },
+      {
+        "name": "progressRemainingColor",
+        "attributes": "T@\"UIColor\",&,N,V_progressRemainingColor"
+      },
+      {
+        "name": "progressColor",
+        "attributes": "T@\"UIColor\",&,N,V_progressColor"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "MBBackgroundView",
+    "address": "0xfdf48",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 40,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_style",
+        "encoding": "q",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_blurEffectStyle",
+        "encoding": "q",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_color",
+        "encoding": "@\"UIColor\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_effectView",
+        "encoding": "@\"UIVisualEffectView\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "effectView",
+        "attributes": "T@\"UIVisualEffectView\",&,V_effectView"
+      },
+      {
+        "name": "style",
+        "attributes": "Tq,N,V_style"
+      },
+      {
+        "name": "blurEffectStyle",
+        "attributes": "Tq,N,V_blurEffectStyle"
+      },
+      {
+        "name": "color",
+        "attributes": "T@\"UIColor\",&,N,V_color"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "MBProgressHUDRoundedButton",
+    "address": "0xfdf70",
+    "superclass": "_OBJC_CLASS_$_UIButton",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "MBProgressHUDRoundedButton2",
+    "address": "0xfdf98",
+    "superclass": "_OBJC_CLASS_$_UIButton",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "ABMenuActionItem",
+    "address": "0xfe128",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "ABMenuViewController",
+    "address": "0xfe1a0",
+    "superclass": "_OBJC_CLASS_$_UIViewController",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_actionTitle",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_items",
+        "encoding": "@\"NSArray\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_delegate",
+        "encoding": "@",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "actionTitle",
+        "attributes": "T@\"NSString\",&,N,V_actionTitle"
+      },
+      {
+        "name": "items",
+        "attributes": "T@\"NSArray\",&,N,V_items"
+      },
+      {
+        "name": "delegate",
+        "attributes": "T@,W,N,V_delegate"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLSystemAlertController",
+    "address": "0xfe150",
+    "superclass": "_OBJC_CLASS_$_UIAlertController",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLAACAudioConverter",
+    "address": "0xfe218",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_threadViewController",
+        "encoding": "@\"IGDirectThreadViewController\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "threadViewController",
+        "attributes": "T@\"IGDirectThreadViewController\",&,V_threadViewController"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UIDocumentPickerDelegate",
+      "UIImagePickerControllerDelegate",
+      "UINavigationControllerDelegate"
+    ]
+  },
+  {
+    "name": "DLButton",
+    "address": "0xfe240",
+    "superclass": "_OBJC_CLASS_$_UIButton",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_handler",
+        "encoding": "@?",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLTapGestureRecognizer",
+    "address": "0xfe290",
+    "superclass": "_OBJC_CLASS_$_UITapGestureRecognizer",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_handler",
+        "encoding": "@?",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLBarButtonItem",
+    "address": "0xfe2e0",
+    "superclass": "_OBJC_CLASS_$_UIBarButtonItem",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "onPressHandler",
+        "encoding": "@?",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLAuthenticationView",
+    "address": "0xfe330",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_authenticated",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_context",
+        "encoding": "@\"LAContext\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_dlBlurView",
+        "encoding": "@\"UIVisualEffectView\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "dlBlurView",
+        "attributes": "T@\"UIVisualEffectView\",&,N,V_dlBlurView"
+      },
+      {
+        "name": "context",
+        "attributes": "T@\"LAContext\",&,N,V_context"
+      },
+      {
+        "name": "authenticated",
+        "attributes": "TB,N,GisAuthenticated,V_authenticated"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLDownloadManager",
+    "address": "0xfe3a8",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLDownloaderMinimizeView",
+    "address": "0xfe3d0",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_percentLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "percentLabel",
+        "attributes": "T@\"UILabel\",&,N,V_percentLabel"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLInstaDownloader",
+    "address": "0xfe420",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 40,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_hud",
+        "encoding": "@\"MBProgressHUD\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_task",
+        "encoding": "@\"NSURLSessionDownloadTask\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_minimizeView",
+        "encoding": "@\"DLDownloaderMinimizeView\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_mediaType",
+        "encoding": "Q",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "hud",
+        "attributes": "T@\"MBProgressHUD\",&,N,V_hud"
+      },
+      {
+        "name": "task",
+        "attributes": "T@\"NSURLSessionDownloadTask\",&,N,V_task"
+      },
+      {
+        "name": "minimizeView",
+        "attributes": "T@\"DLDownloaderMinimizeView\",&,N,V_minimizeView"
+      },
+      {
+        "name": "mediaType",
+        "attributes": "TQ,N,V_mediaType"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "NSURLSessionDelegate",
+      "NSURLSessionDownloadDelegate"
+    ]
+  },
+  {
+    "name": "DLMediaData",
+    "address": "0xfe498",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 64,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_fetching",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_select",
+        "encoding": "B",
+        "offset": 9,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_coverUrl",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_url",
+        "encoding": "@\"NSString\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_coverImage",
+        "encoding": "@\"UIImage\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_mediaType",
+        "encoding": "Q",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_duration",
+        "encoding": "d",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_takenAtDate",
+        "encoding": "d",
+        "offset": 56,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "coverUrl",
+        "attributes": "T@\"NSString\",&,N,V_coverUrl"
+      },
+      {
+        "name": "url",
+        "attributes": "T@\"NSString\",&,N,V_url"
+      },
+      {
+        "name": "coverImage",
+        "attributes": "T@\"UIImage\",&,N,V_coverImage"
+      },
+      {
+        "name": "mediaType",
+        "attributes": "TQ,N,V_mediaType"
+      },
+      {
+        "name": "duration",
+        "attributes": "Td,N,V_duration"
+      },
+      {
+        "name": "takenAtDate",
+        "attributes": "Td,N,V_takenAtDate"
+      },
+      {
+        "name": "fetching",
+        "attributes": "TB,N,GisFetching,V_fetching"
+      },
+      {
+        "name": "select",
+        "attributes": "TB,N,GisSelected,V_select"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLSaveMedia",
+    "address": "0xfe4c0",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLInfoSheetViewController",
+    "address": "0xfe510",
+    "superclass": "_OBJC_CLASS_$_UIViewController",
+    "instance_start": 8,
+    "instance_size": 48,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_titleInfo",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_info",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_titleLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_infoLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_iconImageView",
+        "encoding": "@\"UIImageView\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "titleInfo",
+        "attributes": "T@\"NSString\",&,N,V_titleInfo"
+      },
+      {
+        "name": "info",
+        "attributes": "T@\"NSString\",&,N,V_info"
+      },
+      {
+        "name": "titleLabel",
+        "attributes": "T@\"UILabel\",&,N,V_titleLabel"
+      },
+      {
+        "name": "infoLabel",
+        "attributes": "T@\"UILabel\",&,N,V_infoLabel"
+      },
+      {
+        "name": "iconImageView",
+        "attributes": "T@\"UIImageView\",&,N,V_iconImageView"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLInfoSheetPresentationController",
+    "address": "0xfe560",
+    "superclass": "_OBJC_CLASS_$_UIPresentationController",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_dimmingView",
+        "encoding": "@\"UIView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "dimmingView",
+        "attributes": "T@\"UIView\",&,N,V_dimmingView"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLInfoSheetControllerDelegate",
+    "address": "0xfe5d8",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UIViewControllerTransitioningDelegate"
+    ]
+  },
+  {
+    "name": "MyCustomPresentationController",
+    "address": "0xfe600",
+    "superclass": "_OBJC_CLASS_$_UIPresentationController",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_dimmingView",
+        "encoding": "@\"UIView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "dimmingView",
+        "attributes": "T@\"UIView\",&,V_dimmingView"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMaxAlertButton",
+    "address": "0xfe650",
+    "superclass": "_OBJC_CLASS_$_UIButton",
+    "instance_start": 8,
+    "instance_size": 24,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_separatorView",
+        "encoding": "@\"UIView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_handler",
+        "encoding": "@?",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "handler",
+        "attributes": "T@?,R,C,N,V_handler"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMaxAlertAction",
+    "address": "0xfe6a0",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 24,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_title",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_actionHandler",
+        "encoding": "@?",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "title",
+        "attributes": "T@\"NSString\",R,N,V_title"
+      },
+      {
+        "name": "actionHandler",
+        "attributes": "T@?,R,C,N,V_actionHandler"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMaxAlertTextView",
+    "address": "0xfe6f0",
+    "superclass": "_OBJC_CLASS_$_UITextView",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMaxAlertViewController",
+    "address": "0xfe740",
+    "superclass": "_OBJC_CLASS_$_UIViewController",
+    "instance_start": 8,
+    "instance_size": 80,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_cornerRadius",
+        "encoding": "d",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_containerView",
+        "encoding": "@\"UIView\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_titleLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_tweakName",
+        "encoding": "@\"NSString\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_message",
+        "encoding": "@\"NSString\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_bodyText",
+        "encoding": "@\"DLMaxAlertTextView\"",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_actions",
+        "encoding": "@\"NSArray\"",
+        "offset": 56,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_containerViewHeightConstraint",
+        "encoding": "@\"NSLayoutConstraint\"",
+        "offset": 64,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_containerViewWidthConstraint",
+        "encoding": "@\"NSLayoutConstraint\"",
+        "offset": 72,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "containerView",
+        "attributes": "T@\"UIView\",&,V_containerView"
+      },
+      {
+        "name": "titleLabel",
+        "attributes": "T@\"UILabel\",&,V_titleLabel"
+      },
+      {
+        "name": "tweakName",
+        "attributes": "T@\"NSString\",&,V_tweakName"
+      },
+      {
+        "name": "message",
+        "attributes": "T@\"NSString\",&,V_message"
+      },
+      {
+        "name": "bodyText",
+        "attributes": "T@\"DLMaxAlertTextView\",&,V_bodyText"
+      },
+      {
+        "name": "actions",
+        "attributes": "T@\"NSArray\",&,V_actions"
+      },
+      {
+        "name": "containerViewHeightConstraint",
+        "attributes": "T@\"NSLayoutConstraint\",&,V_containerViewHeightConstraint"
+      },
+      {
+        "name": "containerViewWidthConstraint",
+        "attributes": "T@\"NSLayoutConstraint\",&,V_containerViewWidthConstraint"
+      },
+      {
+        "name": "cornerRadius",
+        "attributes": "Td,V_cornerRadius"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UIViewControllerTransitioningDelegate"
+    ]
+  },
+  {
+    "name": "DLMentionViewCell",
+    "address": "0xfe790",
+    "superclass": "_OBJC_CLASS_$_UITableViewCell",
+    "instance_start": 8,
+    "instance_size": 40,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_avatarImageTapAction",
+        "encoding": "@?",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_avatarImageView",
+        "encoding": "@\"UIImageView\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_usernameLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_fullnameLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "avatarImageTapAction",
+        "attributes": "T@?,C,N,V_avatarImageTapAction"
+      },
+      {
+        "name": "avatarImageView",
+        "attributes": "T@\"UIImageView\",&,N,V_avatarImageView"
+      },
+      {
+        "name": "usernameLabel",
+        "attributes": "T@\"UILabel\",&,N,V_usernameLabel"
+      },
+      {
+        "name": "fullnameLabel",
+        "attributes": "T@\"UILabel\",&,N,V_fullnameLabel"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMentionsViewController",
+    "address": "0xfe7e0",
+    "superclass": "DLPopupViewController",
+    "instance_start": 24,
+    "instance_size": 56,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_tableView",
+        "encoding": "@\"UITableView\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_users",
+        "encoding": "@\"NSArray\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_titleLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_emptyLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "tableView",
+        "attributes": "T@\"UITableView\",&,N,V_tableView"
+      },
+      {
+        "name": "users",
+        "attributes": "T@\"NSArray\",&,N,V_users"
+      },
+      {
+        "name": "titleLabel",
+        "attributes": "T@\"UILabel\",&,N,V_titleLabel"
+      },
+      {
+        "name": "emptyLabel",
+        "attributes": "T@\"UILabel\",&,N,V_emptyLabel"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UITableViewDelegate",
+      "UITableViewDataSource"
+    ]
+  },
+  {
+    "name": "DLUser",
+    "address": "0xfe858",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 48,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_pk",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_fullname",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_username",
+        "encoding": "@\"NSString\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_avatarURL",
+        "encoding": "@\"NSString\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_avatarImage",
+        "encoding": "@\"UIImage\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "pk",
+        "attributes": "T@\"NSString\",&,N,V_pk"
+      },
+      {
+        "name": "fullname",
+        "attributes": "T@\"NSString\",&,N,V_fullname"
+      },
+      {
+        "name": "username",
+        "attributes": "T@\"NSString\",&,N,V_username"
+      },
+      {
+        "name": "avatarURL",
+        "attributes": "T@\"NSString\",&,N,V_avatarURL"
+      },
+      {
+        "name": "avatarImage",
+        "attributes": "T@\"UIImage\",&,N,V_avatarImage"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLVisualEffectView",
+    "address": "0xfeac8",
+    "superclass": "_OBJC_CLASS_$_UIVisualEffectView",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLPopupViewController",
+    "address": "0xfeb18",
+    "superclass": "_OBJC_CLASS_$_UIViewController",
+    "instance_start": 8,
+    "instance_size": 64,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "backgroundView",
+        "encoding": "@\"UIView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "blurView",
+        "encoding": "@\"DLVisualEffectView\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_popupView",
+        "encoding": "@\"UIView\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_blurWidthLayoutConstraint",
+        "encoding": "@\"NSLayoutConstraint\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_customHeight",
+        "encoding": "d",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_initialTouchPoint",
+        "encoding": "{CGPoint=\"x\"d\"y\"d}",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 16
+      }
+    ],
+    "properties": [
+      {
+        "name": "blurWidthLayoutConstraint",
+        "attributes": "T@\"NSLayoutConstraint\",&,N,V_blurWidthLayoutConstraint"
+      },
+      {
+        "name": "customHeight",
+        "attributes": "Td,N,V_customHeight"
+      },
+      {
+        "name": "popupView",
+        "attributes": "T@\"UIView\",&,N,V_popupView"
+      },
+      {
+        "name": "initialTouchPoint",
+        "attributes": "T{CGPoint=dd},N,V_initialTouchPoint"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPCell",
+    "address": "0xfeb68",
+    "superclass": "_OBJC_CLASS_$_UITableViewCell",
+    "instance_start": 8,
+    "instance_size": 56,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_height",
+        "encoding": "i",
+        "offset": 8,
+        "alignment_encoding": 2,
+        "size": 4
+      },
+      {
+        "name": "_tintUIColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_setting",
+        "encoding": "@\"FRPSettings\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_title",
+        "encoding": "@\"NSString\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_postNotification",
+        "encoding": "@\"NSString\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_valueChanged",
+        "encoding": "@?",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "tintUIColor",
+        "attributes": "T@\"UIColor\",&,N,V_tintUIColor"
+      },
+      {
+        "name": "setting",
+        "attributes": "T@\"FRPSettings\",&,N,V_setting"
+      },
+      {
+        "name": "title",
+        "attributes": "T@\"NSString\",&,N,V_title"
+      },
+      {
+        "name": "postNotification",
+        "attributes": "T@\"NSString\",&,N,V_postNotification"
+      },
+      {
+        "name": "valueChanged",
+        "attributes": "T@?,C,N,V_valueChanged"
+      },
+      {
+        "name": "height",
+        "attributes": "Ti,N,V_height"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPDeveloperCell",
+    "address": "0xfebb8",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 24,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_url",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_image",
+        "encoding": "@\"UIImage\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "url",
+        "attributes": "T@\"NSString\",&,N,V_url"
+      },
+      {
+        "name": "image",
+        "attributes": "T@\"UIImage\",&,N,V_image"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPLinkCell",
+    "address": "0xfec08",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPListCell",
+    "address": "0xfec58",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_popView",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_items",
+        "encoding": "@\"NSArray\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_values",
+        "encoding": "@\"NSArray\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "items",
+        "attributes": "T@\"NSArray\",&,N,V_items"
+      },
+      {
+        "name": "values",
+        "attributes": "T@\"NSArray\",&,N,V_values"
+      },
+      {
+        "name": "popView",
+        "attributes": "TB,N,V_popView"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPSection",
+    "address": "0xfeca8",
+    "superclass": "_OBJC_CLASS_$_UITableViewCell",
+    "instance_start": 8,
+    "instance_size": 40,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_headerTitle",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_footerTitle",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_cells",
+        "encoding": "@\"NSMutableArray\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_tintUIColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "headerTitle",
+        "attributes": "T@\"NSString\",&,N,V_headerTitle"
+      },
+      {
+        "name": "footerTitle",
+        "attributes": "T@\"NSString\",&,N,V_footerTitle"
+      },
+      {
+        "name": "cells",
+        "attributes": "T@\"NSMutableArray\",&,N,V_cells"
+      },
+      {
+        "name": "tintUIColor",
+        "attributes": "T@\"UIColor\",&,N,V_tintUIColor"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPSegmentCell",
+    "address": "0xfecf8",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_segment",
+        "encoding": "@\"UISegmentedControl\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_values",
+        "encoding": "@\"NSArray\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_displayedValues",
+        "encoding": "@\"NSArray\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "segment",
+        "attributes": "T@\"UISegmentedControl\",&,N,V_segment"
+      },
+      {
+        "name": "values",
+        "attributes": "T@\"NSArray\",&,N,V_values"
+      },
+      {
+        "name": "displayedValues",
+        "attributes": "T@\"NSArray\",&,N,V_displayedValues"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLRadioSelectView",
+    "address": "0xfed48",
+    "superclass": "_OBJC_CLASS_$_UIView",
+    "instance_start": 8,
+    "instance_size": 24,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_checked",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_checkedDotLayer",
+        "encoding": "@\"CALayer\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "checked",
+        "attributes": "TB,N,V_checked"
+      },
+      {
+        "name": "checkedDotLayer",
+        "attributes": "T@\"CALayer\",&,N,V_checkedDotLayer"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPSelectListTable",
+    "address": "0xfed98",
+    "superclass": "_OBJC_CLASS_$_UITableViewController",
+    "instance_start": 8,
+    "instance_size": 64,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "listItems",
+        "encoding": "@\"NSArray\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "listValues",
+        "encoding": "@\"NSArray\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "currentValue",
+        "encoding": "@\"NSString\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "pageTitle",
+        "encoding": "@\"NSString\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "popView",
+        "encoding": "B",
+        "offset": 40,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_itemChanged",
+        "encoding": "@?",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_tintUIColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 56,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "itemChanged",
+        "attributes": "T@?,C,N,V_itemChanged"
+      },
+      {
+        "name": "tintUIColor",
+        "attributes": "T@\"UIColor\",C,N,V_tintUIColor"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UITableViewDataSource",
+      "UITableViewDelegate"
+    ]
+  },
+  {
+    "name": "FRPSettings",
+    "address": "0xfede8",
+    "superclass": "_OBJC_CLASS_$_NSObject",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_key",
+        "encoding": "@\"NSString\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_fileSave",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_valueDidChangeBlock",
+        "encoding": "@?",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "valueDidChangeBlock",
+        "attributes": "T@?,C,N,V_valueDidChangeBlock"
+      },
+      {
+        "name": "key",
+        "attributes": "T@\"NSString\",&,N,V_key"
+      },
+      {
+        "name": "value",
+        "attributes": "T@,&,N"
+      },
+      {
+        "name": "fileSave",
+        "attributes": "T@\"NSString\",&,N,V_fileSave"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPSliderCell",
+    "address": "0xfee38",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 56,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_min",
+        "encoding": "f",
+        "offset": 8,
+        "alignment_encoding": 2,
+        "size": 4
+      },
+      {
+        "name": "_max",
+        "encoding": "f",
+        "offset": 12,
+        "alignment_encoding": 2,
+        "size": 4
+      },
+      {
+        "name": "_sliderCell",
+        "encoding": "@\"UISlider\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_lLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_rLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_cLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_vLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "sliderCell",
+        "attributes": "T@\"UISlider\",&,N,V_sliderCell"
+      },
+      {
+        "name": "lLabel",
+        "attributes": "T@\"UILabel\",&,N,V_lLabel"
+      },
+      {
+        "name": "rLabel",
+        "attributes": "T@\"UILabel\",&,N,V_rLabel"
+      },
+      {
+        "name": "cLabel",
+        "attributes": "T@\"UILabel\",&,N,V_cLabel"
+      },
+      {
+        "name": "vLabel",
+        "attributes": "T@\"UILabel\",&,N,V_vLabel"
+      },
+      {
+        "name": "min",
+        "attributes": "Tf,N,V_min"
+      },
+      {
+        "name": "max",
+        "attributes": "Tf,N,V_max"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPSwitchCell",
+    "address": "0xfee88",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_switchView",
+        "encoding": "@\"UISwitch\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "switchView",
+        "attributes": "T@\"UISwitch\",&,N,V_switchView"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPTextFieldCell",
+    "address": "0xfeed8",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_textField",
+        "encoding": "@\"UITextField\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "textField",
+        "attributes": "T@\"UITextField\",&,N,V_textField"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UITextFieldDelegate"
+    ]
+  },
+  {
+    "name": "FRPValueCell",
+    "address": "0xfef28",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPViewCell",
+    "address": "0xfef78",
+    "superclass": "FRPCell",
+    "instance_start": 8,
+    "instance_size": 24,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_hideSeperators",
+        "encoding": "B",
+        "offset": 8,
+        "alignment_encoding": 0,
+        "size": 1
+      },
+      {
+        "name": "_layoutBlock",
+        "encoding": "@?",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "layoutBlock",
+        "attributes": "T@?,C,N,V_layoutBlock"
+      },
+      {
+        "name": "hideSeperators",
+        "attributes": "TB,N,V_hideSeperators"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPViewSection",
+    "address": "0xfefc8",
+    "superclass": "FRPSection",
+    "instance_start": 8,
+    "instance_size": 16,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_cellBlock",
+        "encoding": "@?",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "cellBlock",
+        "attributes": "T@?,C,N,V_cellBlock"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "FRPreferences",
+    "address": "0xff018",
+    "superclass": "_OBJC_CLASS_$_UITableViewController",
+    "instance_start": 8,
+    "instance_size": 32,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_sections",
+        "encoding": "@\"NSArray\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_plistPath",
+        "encoding": "@\"NSString\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_tintUIColor",
+        "encoding": "@\"UIColor\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "tintUIColor",
+        "attributes": "T@\"UIColor\",&,N,V_tintUIColor"
+      },
+      {
+        "name": "sections",
+        "attributes": "T@\"NSArray\",&,N,V_sections"
+      },
+      {
+        "name": "plistPath",
+        "attributes": "T@\"NSString\",&,N,V_plistPath"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLSSProfileViewController",
+    "address": "0xff068",
+    "superclass": "_OBJC_CLASS_$_UIViewController",
+    "instance_start": 8,
+    "instance_size": 56,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "indecatorView",
+        "encoding": "@\"UIActivityIndicatorView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_HDProfilePicURL",
+        "encoding": "@\"NSURL\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_userPK",
+        "encoding": "@\"NSString\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_imageView",
+        "encoding": "@\"UIImageView\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_scrollView",
+        "encoding": "@\"UIScrollView\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_errorLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "HDProfilePicURL",
+        "attributes": "T@\"NSURL\",&,N,V_HDProfilePicURL"
+      },
+      {
+        "name": "userPK",
+        "attributes": "T@\"NSString\",&,N,V_userPK"
+      },
+      {
+        "name": "imageView",
+        "attributes": "T@\"UIImageView\",&,N,V_imageView"
+      },
+      {
+        "name": "scrollView",
+        "attributes": "T@\"UIScrollView\",&,N,V_scrollView"
+      },
+      {
+        "name": "errorLabel",
+        "attributes": "T@\"UILabel\",&,N,V_errorLabel"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UIScrollViewDelegate",
+      "UIActionSheetDelegate"
+    ]
+  },
+  {
+    "name": "DLCollectionViewFlowLayout",
+    "address": "0xff0e0",
+    "superclass": "_OBJC_CLASS_$_UICollectionViewFlowLayout",
+    "instance_start": 8,
+    "instance_size": 8,
+    "flags": 128,
+    "ivars": [],
+    "properties": [],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMultiMediaOptionCell",
+    "address": "0xff108",
+    "superclass": "_OBJC_CLASS_$_UITableViewCell",
+    "instance_start": 8,
+    "instance_size": 24,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_containerView",
+        "encoding": "@\"UIView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_titleLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "containerView",
+        "attributes": "T@\"UIView\",&,N,V_containerView"
+      },
+      {
+        "name": "titleLabel",
+        "attributes": "T@\"UILabel\",&,N,V_titleLabel"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMultiMediaViewCell",
+    "address": "0xff158",
+    "superclass": "_OBJC_CLASS_$_UICollectionViewCell",
+    "instance_start": 8,
+    "instance_size": 72,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_containerViewCell",
+        "encoding": "@\"UIView\"",
+        "offset": 8,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_indicatorView",
+        "encoding": "@\"UIActivityIndicatorView\"",
+        "offset": 16,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_mediaImageView",
+        "encoding": "@\"UIImageView\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_mediaImage",
+        "encoding": "@\"UIImage\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_durationLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_checkmarkView",
+        "encoding": "@\"UIView\"",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_checkmarkImageView",
+        "encoding": "@\"UIImageView\"",
+        "offset": 56,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_errorLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 64,
+        "alignment_encoding": 3,
+        "size": 8
+      }
+    ],
+    "properties": [
+      {
+        "name": "containerViewCell",
+        "attributes": "T@\"UIView\",&,N,V_containerViewCell"
+      },
+      {
+        "name": "indicatorView",
+        "attributes": "T@\"UIActivityIndicatorView\",&,N,V_indicatorView"
+      },
+      {
+        "name": "mediaImageView",
+        "attributes": "T@\"UIImageView\",&,N,V_mediaImageView"
+      },
+      {
+        "name": "mediaImage",
+        "attributes": "T@\"UIImage\",&,N,V_mediaImage"
+      },
+      {
+        "name": "durationLabel",
+        "attributes": "T@\"UILabel\",&,N,V_durationLabel"
+      },
+      {
+        "name": "checkmarkView",
+        "attributes": "T@\"UIView\",&,N,V_checkmarkView"
+      },
+      {
+        "name": "checkmarkImageView",
+        "attributes": "T@\"UIImageView\",&,N,V_checkmarkImageView"
+      },
+      {
+        "name": "errorLabel",
+        "attributes": "T@\"UILabel\",&,N,V_errorLabel"
+      }
+    ],
+    "class_properties": [],
+    "protocols": []
+  },
+  {
+    "name": "DLMultiMediaViewController",
+    "address": "0xff1a8",
+    "superclass": "DLPopupViewController",
+    "instance_start": 24,
+    "instance_size": 88,
+    "flags": 388,
+    "ivars": [
+      {
+        "name": "_posts",
+        "encoding": "@\"NSMutableArray\"",
+        "offset": 24,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_containerMediaCollectionView",
+        "encoding": "@\"UIView\"",
+        "offset": 32,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_mediaCollectionView",
+        "encoding": "@\"UICollectionView\"",
+        "offset": 40,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_titleLabel",
+        "encoding": "@\"UILabel\"",
+        "offset": 48,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_allSelectedMedia",
+        "encoding": "@\"NSMutableArray\"",
+        "offset": 56,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_optionTableView",
+        "encoding": "@\"UITableView\"",
+        "offset": 64,
+        "alignment_encoding": 3,
+        "size": 8
+      },
+      {
+        "name": "_collectionCellSize",
+        "encoding": "{CGSize=\"width\"d\"height\"d}",
+        "offset": 72,
+        "alignment_encoding": 3,
+        "size": 16
+      }
+    ],
+    "properties": [
+      {
+        "name": "containerMediaCollectionView",
+        "attributes": "T@\"UIView\",&,N,V_containerMediaCollectionView"
+      },
+      {
+        "name": "mediaCollectionView",
+        "attributes": "T@\"UICollectionView\",&,N,V_mediaCollectionView"
+      },
+      {
+        "name": "titleLabel",
+        "attributes": "T@\"UILabel\",&,N,V_titleLabel"
+      },
+      {
+        "name": "allSelectedMedia",
+        "attributes": "T@\"NSMutableArray\",&,N,V_allSelectedMedia"
+      },
+      {
+        "name": "collectionCellSize",
+        "attributes": "T{CGSize=dd},N,V_collectionCellSize"
+      },
+      {
+        "name": "optionTableView",
+        "attributes": "T@\"UITableView\",&,N,V_optionTableView"
+      },
+      {
+        "name": "posts",
+        "attributes": "T@\"NSMutableArray\",&,N,V_posts"
+      },
+      {
+        "name": "hash",
+        "attributes": "TQ,R"
+      },
+      {
+        "name": "superclass",
+        "attributes": "T#,R"
+      },
+      {
+        "name": "description",
+        "attributes": "T@\"NSString\",R,C"
+      },
+      {
+        "name": "debugDescription",
+        "attributes": "T@\"NSString\",R,C"
+      }
+    ],
+    "class_properties": [],
+    "protocols": [
+      "UICollectionViewDelegate",
+      "UICollectionViewDataSource",
+      "UITableViewDelegate",
+      "UITableViewDataSource"
+    ]
+  }
+]

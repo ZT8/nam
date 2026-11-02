@@ -1,0 +1,60 @@
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/ghidra-home
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/ghidra-home
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/ghidra-home
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/ghidra-home
+openjdk version "25.0.5" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode)
+INFO  Using log config file: jar:file:/workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /workspace/ghidra-home/config/ghidra/ghidra_12.2_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /workspace/ghidra-home/config/ghidra/ghidra_12.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (1232 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Loaded 154 trusted CA certificate(s) from /etc/ssl/certs/ca-certificates.crt (UnixSystemTrustKeyStoreUtil)  
+INFO  Loaded 154 trusted CA certificates from the OS trust store. (DefaultTrustManagerFactory)  
+INFO  Loaded 118 trusted CA certificates from the Java default trust store. (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (2554 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 60 extension points (19 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/Swift/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /workspace/ghidra-scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /workspace/tools/ghidra_12.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: /workspace/ghidra-projects/DLInstaSnapshotVerification (HeadlessAnalyzer)  
+INFO  Creating project: /workspace/ghidra-projects/DLInstaSnapshotVerification (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /workspace/ghidra-projects/DLInstaSnapshotVerification (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///workspace/DLInsta-full/DLInsta-analyzed.gzf (HeadlessAnalyzer)  
+INFO  Using Loader: GZF Input Format (ProgramLoader)  
+INFO  Using Language/Compiler: null (ProgramLoader)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib64] (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: VerifySnapshot.java  (HeadlessAnalyzer)  
+INFO  SCRIPT: /workspace/ghidra-scripts/VerifySnapshot.java (HeadlessAnalyzer)  
+INFO  VerifySnapshot.java> VERIFIED_SNAPSHOT functions=2474 example=class_DLHelper__boolForKey_ (GhidraScript)  
+INFO  /DLInsta-analyzed: file created (agent) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /DLInsta-analyzed (DLInstaSnapshotVerification:/DLInsta-analyzed) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

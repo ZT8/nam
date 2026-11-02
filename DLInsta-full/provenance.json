@@ -1,0 +1,11 @@
+{
+  "input_name": "DLInsta.dylib",
+  "input_sha256": "23b13778267c7b25f7cbb524ac824deb11752a0dd0d35c179366b1fe1905165d",
+  "input_bytes": 1109152,
+  "architecture": "ARM64",
+  "ghidra": "12.2 PUBLIC 20261016",
+  "ghidra_distribution_sha256": "2c2cd776db3c1f6a097ba418922378ac3649cadd5e844a6f5f088ae628a7be67",
+  "java": "Eclipse Temurin JDK 25.0.5+8",
+  "execution": "Static analysis only; uploaded library was not executed",
+  "original_source_recovered": false
+}

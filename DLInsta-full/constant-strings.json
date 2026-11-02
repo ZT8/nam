@@ -1,0 +1,3719 @@
+[
+  {
+    "address": "0xe9e08",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "%s@:"
+  },
+  {
+    "address": "0xe9e28",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "v@:%s"
+  },
+  {
+    "address": "0xe9e48",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "DL_EnableDisableLoopVideo"
+  },
+  {
+    "address": "0xe9e68",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "DL_SeeStoryWithoutOtherPartyKnowing"
+  },
+  {
+    "address": "0xe9e88",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "DL_DisableMoveToNextStory"
+  },
+  {
+    "address": "0xe9ea8",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "DL_SelectVideoFromStickers"
+  },
+  {
+    "address": "0xe9ec8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "DL_WatchLiveAnonymously"
+  },
+  {
+    "address": "0xe9ee8",
+    "flags": "0x7c8",
+    "length": 31,
+    "encoding": "utf-8",
+    "text": "DL_EnableConfirmFollow_Unfollow"
+  },
+  {
+    "address": "0xe9f08",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "POPUP_CONFIRM_FOLLOW_CELL"
+  },
+  {
+    "address": "0xe9f28",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "POPUP_CONFIRM_UNFOLLOW_CELL"
+  },
+  {
+    "address": "0xe9f48",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "DL_EnableConfirmLike"
+  },
+  {
+    "address": "0xe9f68",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "_tagsProvider"
+  },
+  {
+    "address": "0xe9f88",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "POPUP_CONFIRM_LIKE_CELL"
+  },
+  {
+    "address": "0xe9fa8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "_delegate"
+  },
+  {
+    "address": "0xe9fc8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "_media"
+  },
+  {
+    "address": "0xe9fe8",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "_tagDelegate"
+  },
+  {
+    "address": "0xea008",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "Like"
+  },
+  {
+    "address": "0xea028",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "Liked"
+  },
+  {
+    "address": "0xea048",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "POPUP_CONFIRM_UNLIKE_CELL"
+  },
+  {
+    "address": "0xea068",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "_video"
+  },
+  {
+    "address": "0xea088",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "DL_EnableCopyText"
+  },
+  {
+    "address": "0xea0a8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "ACTION_COPY_TEXT"
+  },
+  {
+    "address": "0xea0c8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "ACTION_COPY_USERNAME"
+  },
+  {
+    "address": "0xea0e8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "actionProvider"
+  },
+  {
+    "address": "0xea108",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "copy_24pt"
+  },
+  {
+    "address": "0xea128",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "UIAction"
+  },
+  {
+    "address": "0xea148",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "Copy"
+  },
+  {
+    "address": "0xea168",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "UIMenu"
+  },
+  {
+    "address": "0xea188",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "UIContextMenuConfiguration"
+  },
+  {
+    "address": "0xea1a8",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "DL_FollowStatus"
+  },
+  {
+    "address": "0xea1c8",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "profile"
+  },
+  {
+    "address": "0xea1e8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "_followersButton"
+  },
+  {
+    "address": "0xea208",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "_identityCell"
+  },
+  {
+    "address": "0xea228",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "YOU_DONT_FOLLOW_EACH_OTHER"
+  },
+  {
+    "address": "0xea248",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "YOU_FOLLOW_EACH_OTHER"
+  },
+  {
+    "address": "0xea268",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "IS_NOT_FOLLOWING_YOU"
+  },
+  {
+    "address": "0xea288",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "IS_FOLLOWING_YOU"
+  },
+  {
+    "address": "0xea2a8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "DL_ShowLikeViewCount"
+  },
+  {
+    "address": "0xea2c8",
+    "flags": "0x7d0",
+    "length": 19,
+    "encoding": "utf-16le",
+    "text": "%@ views ⋅ %@ likes"
+  },
+  {
+    "address": "0xea2e8",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "%@ likes"
+  },
+  {
+    "address": "0xea308",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "DL_AlwaysShowTimerVideos"
+  },
+  {
+    "address": "0xea328",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "DL_EnableOpenLinksInSafari"
+  },
+  {
+    "address": "0xea348",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "_browserViewController"
+  },
+  {
+    "address": "0xea368",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "DL_EnableRemoveAd\u001ds"
+  },
+  {
+    "address": "0xea388",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "_cancelButton"
+  },
+  {
+    "address": "0xea3a8",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "ACTION_CANCEL"
+  },
+  {
+    "address": "0xea3c8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "DLAlertInfoFirst"
+  },
+  {
+    "address": "0xea3e8",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "DLInsta"
+  },
+  {
+    "address": "0xea408",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "ALERT_INFO_INSTAGRAM"
+  },
+  {
+    "address": "0xea428",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "alertInfoOnce"
+  },
+  {
+    "address": "0xea448",
+    "flags": "0x7d0",
+    "length": 9,
+    "encoding": "utf-16le",
+    "text": "C: %@ [✓]"
+  },
+  {
+    "address": "0xea468",
+    "flags": "0x7d0",
+    "length": 9,
+    "encoding": "utf-16le",
+    "text": "C: %@ [✕]"
+  },
+  {
+    "address": "0xea488",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "%@M: %@"
+  },
+  {
+    "address": "0xea4a8",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "-"
+  },
+  {
+    "address": "0xea4c8",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "+"
+  },
+  {
+    "address": "0xea4e8",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "ivar"
+  },
+  {
+    "address": "0xea508",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "property"
+  },
+  {
+    "address": "0xea528",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "info"
+  },
+  {
+    "address": "0xea548",
+    "flags": "0x7d0",
+    "length": 20,
+    "encoding": "utf-16le",
+    "text": "❌ Exception: %@ - %@"
+  },
+  {
+    "address": "0xea568",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "DLInsta :("
+  },
+  {
+    "address": "0xea588",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "Exception: %@ - %@"
+  },
+  {
+    "address": "0xea5a8",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "[DL"
+  },
+  {
+    "address": "0xea5c8",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "%@]"
+  },
+  {
+    "address": "0xea5e8",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "[close]"
+  },
+  {
+    "address": "0xea608",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "myDebug"
+  },
+  {
+    "address": "0xea628",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": " [No Error] "
+  },
+  {
+    "address": "0xea648",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "X"
+  },
+  {
+    "address": "0xea668",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "M:"
+  },
+  {
+    "address": "0xea688",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "C:"
+  },
+  {
+    "address": "0xea6a8",
+    "flags": "0x7d0",
+    "length": 1,
+    "encoding": "utf-16le",
+    "text": "✓"
+  },
+  {
+    "address": "0xea6c8",
+    "flags": "0x7d0",
+    "length": 1,
+    "encoding": "utf-16le",
+    "text": "✕"
+  },
+  {
+    "address": "0xea6e8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGProfileAvatarView"
+  },
+  {
+    "address": "0xea708",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadProfile]"
+  },
+  {
+    "address": "0xea728",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "IGProfilePhotoView"
+  },
+  {
+    "address": "0xea748",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "IGUser"
+  },
+  {
+    "address": "0xea768",
+    "flags": "0x7c8",
+    "length": 36,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Show Follow Status]"
+  },
+  {
+    "address": "0xea788",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "IGFeedPhotoView"
+  },
+  {
+    "address": "0xea7a8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadImage]"
+  },
+  {
+    "address": "0xea7c8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGFeedItemPhotoCell"
+  },
+  {
+    "address": "0xea7e8",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "IGMedia"
+  },
+  {
+    "address": "0xea808",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadVideo]"
+  },
+  {
+    "address": "0xea828",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadItems]"
+  },
+  {
+    "address": "0xea848",
+    "flags": "0x7c8",
+    "length": 41,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadVideo],[DownloadImage]"
+  },
+  {
+    "address": "0xea868",
+    "flags": "0x7c8",
+    "length": 37,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[ShowLikesViewsCount]"
+  },
+  {
+    "address": "0xea888",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[ConfirmLike]"
+  },
+  {
+    "address": "0xea8a8",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[For compare story]"
+  },
+  {
+    "address": "0xea8c8",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[RemoveAds]"
+  },
+  {
+    "address": "0xea8e8",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[ShowUserMentions]"
+  },
+  {
+    "address": "0xea908",
+    "flags": "0x7c8",
+    "length": 53,
+    "encoding": "utf-8",
+    "text": "IGFeedItemUFICellViewModel.IGFeedItemUFICellViewModel"
+  },
+  {
+    "address": "0xea928",
+    "flags": "0x7c8",
+    "length": 42,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Show Likes Count & Views]"
+  },
+  {
+    "address": "0xea948",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "IGPhoto"
+  },
+  {
+    "address": "0xea968",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[For check seen Story]"
+  },
+  {
+    "address": "0xea988",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "IGImageURL"
+  },
+  {
+    "address": "0xea9a8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "IGFeedItemPagePhotoCell"
+  },
+  {
+    "address": "0xea9c8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "IGFeedItemPageCellState"
+  },
+  {
+    "address": "0xea9e8",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadMultiableMedia]"
+  },
+  {
+    "address": "0xeaa08",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "IGPageMediaView"
+  },
+  {
+    "address": "0xeaa28",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "IGPostItem"
+  },
+  {
+    "address": "0xeaa48",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "IGVideo"
+  },
+  {
+    "address": "0xeaa68",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[For check seen story]"
+  },
+  {
+    "address": "0xeaa88",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGFeedItemVideoView"
+  },
+  {
+    "address": "0xeaaa8",
+    "flags": "0x7c8",
+    "length": 43,
+    "encoding": "utf-8",
+    "text": "IGModernFeedVideoCell.IGModernFeedVideoCell"
+  },
+  {
+    "address": "0xeaac8",
+    "flags": "0x7c8",
+    "length": 49,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Confirm Like video - Double Tap]"
+  },
+  {
+    "address": "0xeaae8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "IGStoryPhotoView"
+  },
+  {
+    "address": "0xeab08",
+    "flags": "0x7c8",
+    "length": 30,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadPhotoStory]"
+  },
+  {
+    "address": "0xeab28",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "IGStoryVideoView"
+  },
+  {
+    "address": "0xeab48",
+    "flags": "0x7c8",
+    "length": 30,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadVideoStory]"
+  },
+  {
+    "address": "0xeab68",
+    "flags": "0x7c8",
+    "length": 37,
+    "encoding": "utf-8",
+    "text": "IGDirectVisualMessageStoryItemWrapper"
+  },
+  {
+    "address": "0xeab88",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadStory],[Private]"
+  },
+  {
+    "address": "0xeaba8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "IGDirectVisualMessage"
+  },
+  {
+    "address": "0xeabc8",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[For check seen story DM]"
+  },
+  {
+    "address": "0xeabe8",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "IGSundialViewerVerticalUFI"
+  },
+  {
+    "address": "0xeac08",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[DownloadReels]"
+  },
+  {
+    "address": "0xeac28",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "IGSundialFeedViewController"
+  },
+  {
+    "address": "0xeac48",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "IGSundialViewerPhotoCell"
+  },
+  {
+    "address": "0xeac68",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "IGSundialViewerCarouselCell"
+  },
+  {
+    "address": "0xeac88",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "IGSundialViewerVideoCell"
+  },
+  {
+    "address": "0xeaca8",
+    "flags": "0x7c8",
+    "length": 49,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Confirm Like Reels - Tap Button]"
+  },
+  {
+    "address": "0xeacc8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGVideoPlayerConfig"
+  },
+  {
+    "address": "0xeace8",
+    "flags": "0x7c8",
+    "length": 31,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Looping video]"
+  },
+  {
+    "address": "0xead08",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "IGVideoPlaybackConfiguration"
+  },
+  {
+    "address": "0xead28",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "IGStoryViewerViewController"
+  },
+  {
+    "address": "0xead48",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Seen Story]"
+  },
+  {
+    "address": "0xead68",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "IGStoryFullscreenSectionController"
+  },
+  {
+    "address": "0xead88",
+    "flags": "0x7c8",
+    "length": 46,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Seen Story],[Auto Next Story]"
+  },
+  {
+    "address": "0xeada8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGGalleryDataSource"
+  },
+  {
+    "address": "0xeadc8",
+    "flags": "0x7c8",
+    "length": 50,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Support Video in Sticker Gallery]"
+  },
+  {
+    "address": "0xeade8",
+    "flags": "0x7c8",
+    "length": 31,
+    "encoding": "utf-8",
+    "text": "IGLiveViewerCountIntervalPuller"
+  },
+  {
+    "address": "0xeae08",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Seen into live]"
+  },
+  {
+    "address": "0xeae28",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "IGTallNavigationBarView"
+  },
+  {
+    "address": "0xeae48",
+    "flags": "0x7c8",
+    "length": 37,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Seen Direct Message]"
+  },
+  {
+    "address": "0xeae68",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "IGStoryViewerContainerView"
+  },
+  {
+    "address": "0xeae88",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "IGStoryFullscreenCell"
+  },
+  {
+    "address": "0xeaea8",
+    "flags": "0x7c8",
+    "length": 39,
+    "encoding": "utf-8",
+    "text": "IGDirectThreadViewListAdapterDataSource"
+  },
+  {
+    "address": "0xeaec8",
+    "flags": "0x7c8",
+    "length": 37,
+    "encoding": "utf-8",
+    "text": "IGDirectVisualMessageViewerController"
+  },
+  {
+    "address": "0xeaee8",
+    "flags": "0x7c8",
+    "length": 48,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[seen live video or photo in DM]"
+  },
+  {
+    "address": "0xeaf08",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "IGDirectCache"
+  },
+  {
+    "address": "0xeaf28",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Deleting Message]"
+  },
+  {
+    "address": "0xeaf48",
+    "flags": "0x7c8",
+    "length": 33,
+    "encoding": "utf-8",
+    "text": "IGDirectMessageListViewController"
+  },
+  {
+    "address": "0xeaf68",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "IGDirectMessageMenuActionHandler"
+  },
+  {
+    "address": "0xeaf88",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "IGDirectMessageKey"
+  },
+  {
+    "address": "0xeafa8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "IGDirectUIMessageMetadata"
+  },
+  {
+    "address": "0xeafc8",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "IGDirectTextMessageViewModel"
+  },
+  {
+    "address": "0xeafe8",
+    "flags": "0x7c8",
+    "length": 38,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Deleting MessageText]"
+  },
+  {
+    "address": "0xeb008",
+    "flags": "0x7c8",
+    "length": 36,
+    "encoding": "utf-8",
+    "text": "IGDirectTextMessageSectionController"
+  },
+  {
+    "address": "0xeb028",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "IGDirectTextMessageBubbleView"
+  },
+  {
+    "address": "0xeb048",
+    "flags": "0x7c8",
+    "length": 43,
+    "encoding": "utf-8",
+    "text": "IGDirectInboxDjangoPullToRefreshCoordinator"
+  },
+  {
+    "address": "0xeb068",
+    "flags": "0x7c8",
+    "length": 42,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[disable refresh messages]"
+  },
+  {
+    "address": "0xeb088",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "IGDirectTypingStatusService"
+  },
+  {
+    "address": "0xeb0a8",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Typing Indecator]"
+  },
+  {
+    "address": "0xeb0c8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGDirectMessageMark"
+  },
+  {
+    "address": "0xeb0e8",
+    "flags": "0x7c8",
+    "length": 57,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Disable send screenshot, Replayed media]"
+  },
+  {
+    "address": "0xeb108",
+    "flags": "0x7c8",
+    "length": 64,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Disable screenshot protection, Direcrt message]"
+  },
+  {
+    "address": "0xeb128",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "IGFollowController"
+  },
+  {
+    "address": "0xeb148",
+    "flags": "0x7c8",
+    "length": 49,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Confirm Following & Unfollowing]"
+  },
+  {
+    "address": "0xeb168",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "IGUnifiedVideoFollowButton"
+  },
+  {
+    "address": "0xeb188",
+    "flags": "0x7c8",
+    "length": 44,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Confirm Following on Reels]"
+  },
+  {
+    "address": "0xeb1a8",
+    "flags": "0x7c8",
+    "length": 57,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Confirm Like photo & video - Double Tap]"
+  },
+  {
+    "address": "0xeb1c8",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "IGFeedItemUFICell"
+  },
+  {
+    "address": "0xeb1e8",
+    "flags": "0x7c8",
+    "length": 53,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Confirm Like photo & video - Button]"
+  },
+  {
+    "address": "0xeb208",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "IGUFIButtonBarView"
+  },
+  {
+    "address": "0xeb228",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "IGStyledString"
+  },
+  {
+    "address": "0xeb248",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Copy Text]"
+  },
+  {
+    "address": "0xeb268",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "IGCoreTextView"
+  },
+  {
+    "address": "0xeb288",
+    "flags": "0x7c8",
+    "length": 44,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Compare Text For ToastView]"
+  },
+  {
+    "address": "0xeb2a8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "IGProfileViewController"
+  },
+  {
+    "address": "0xeb2c8",
+    "flags": "0x7c8",
+    "length": 77,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons]: [Show Follow Status], [DLShowProfileImage]: [Download Image]"
+  },
+  {
+    "address": "0xeb2e8",
+    "flags": "0x7c8",
+    "length": 30,
+    "encoding": "utf-8",
+    "text": "IGProfileSimpleAvatarStatsCell"
+  },
+  {
+    "address": "0xeb308",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "IGLikerConfig"
+  },
+  {
+    "address": "0xeb328",
+    "flags": "0x7c8",
+    "length": 31,
+    "encoding": "utf-8",
+    "text": "IGMainFeedListAdapterDataSource"
+  },
+  {
+    "address": "0xeb348",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Remove Ads]"
+  },
+  {
+    "address": "0xeb368",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "IGChainingFeedViewController"
+  },
+  {
+    "address": "0xeb388",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "IGStoryAdsManager"
+  },
+  {
+    "address": "0xeb3a8",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "IGStoryAdsMediaManager"
+  },
+  {
+    "address": "0xeb3c8",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "IGStoryAdsResponseParser"
+  },
+  {
+    "address": "0xeb3e8",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "IGDSMenuItem"
+  },
+  {
+    "address": "0xeb408",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "[DLInstaAddons],[Save Record Audio]"
+  },
+  {
+    "address": "0xeb428",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "IGProfileNavigationItemsController"
+  },
+  {
+    "address": "0xeb448",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "[DLInstaSettings],[Settings]"
+  },
+  {
+    "address": "0xeb468",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "IGInstagramAppDelegate"
+  },
+  {
+    "address": "0xeb488",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "[DLInstaLockApp],[Lock App]"
+  },
+  {
+    "address": "0xeb4a8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "FBSDKKeychainStore"
+  },
+  {
+    "address": "0xeb4c8",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "[DLInstaLogin],[Login]"
+  },
+  {
+    "address": "0xeb4e8",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "FBKeychainItemController"
+  },
+  {
+    "address": "0xeb508",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "UICKeyChainStore"
+  },
+  {
+    "address": "0xeb528",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "NSFileManager"
+  },
+  {
+    "address": "0xeb548",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "IGTapButton"
+  },
+  {
+    "address": "0xeb568",
+    "flags": "0x7c8",
+    "length": 37,
+    "encoding": "utf-8",
+    "text": "[Public],[For ActionSheet seen Story]"
+  },
+  {
+    "address": "0xeb588",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "IGActionSheetControllerAction"
+  },
+  {
+    "address": "0xeb5a8",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "[Public],[ActionSheet]"
+  },
+  {
+    "address": "0xeb5c8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "IGActionSheetController"
+  },
+  {
+    "address": "0xeb5e8",
+    "flags": "0x7c8",
+    "length": 64,
+    "encoding": "utf-8",
+    "text": "[Public],[This is just for change action title Cancel to arabic]"
+  },
+  {
+    "address": "0xeb608",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "IGDSAlertAction"
+  },
+  {
+    "address": "0xeb628",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "[Public],[AlertView]"
+  },
+  {
+    "address": "0xeb648",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "IGDSAlertDialogStyle"
+  },
+  {
+    "address": "0xeb668",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "IGDSAlertDialogView"
+  },
+  {
+    "address": "0xeb688",
+    "flags": "0x7c8",
+    "length": 36,
+    "encoding": "utf-8",
+    "text": "[DLInsta],[For Download All Stories]"
+  },
+  {
+    "address": "0xeb6a8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "IGDate"
+  },
+  {
+    "address": "0xeb6c8",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "IGStoryViewerViewModel"
+  },
+  {
+    "address": "0xeb6e8",
+    "flags": "0x7c8",
+    "length": 36,
+    "encoding": "utf-8",
+    "text": "IGDirectMessageActionsViewController"
+  },
+  {
+    "address": "0xeb708",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "[DLDirectMessage],[Download Voice]"
+  },
+  {
+    "address": "0xeb728",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "id"
+  },
+  {
+    "address": "0xeb748",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "date"
+  },
+  {
+    "address": "0xeb768",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "_messageServerId"
+  },
+  {
+    "address": "0xeb788",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "reloadData_bubble"
+  },
+  {
+    "address": "0xeb7a8",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "DL_SeeDMWithoutOtherPartyKnowing"
+  },
+  {
+    "address": "0xeb7c8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "StatusSeenIcon.png"
+  },
+  {
+    "address": "0xeb7e8",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "d_updateMarkAsSeenIfNeededDM"
+  },
+  {
+    "address": "0xeb808",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "dlUserNeedSeenLiveDM"
+  },
+  {
+    "address": "0xeb828",
+    "flags": "0x7c8",
+    "length": 54,
+    "encoding": "utf-8",
+    "text": "_currentVisualMessageFromPlaylistWhenViewerWasLaunched"
+  },
+  {
+    "address": "0xeb848",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "_viewerContainerView"
+  },
+  {
+    "address": "0xeb868",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "DL_KeepDeletedDM"
+  },
+  {
+    "address": "0xeb888",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "_collectionView"
+  },
+  {
+    "address": "0xeb8a8",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "_messageContentContainerView"
+  },
+  {
+    "address": "0xeb8c8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "_forwardShortcutIcon"
+  },
+  {
+    "address": "0xeb8e8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "unavailable_24pt"
+  },
+  {
+    "address": "0xeb908",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "EEEE, d MMMM yyyy, h:mm a"
+  },
+  {
+    "address": "0xeb928",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "ar"
+  },
+  {
+    "address": "0xeb948",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "DIRECT_MESSAGE_DELETE_DATE"
+  },
+  {
+    "address": "0xeb968",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "DL_DisableTypingIndicatorInDM"
+  },
+  {
+    "address": "0xeb988",
+    "flags": "0x7c8",
+    "length": 36,
+    "encoding": "utf-8",
+    "text": "DL_DisableScreenshotNotificationInDM"
+  },
+  {
+    "address": "0xeb9a8",
+    "flags": "0x7c8",
+    "length": 31,
+    "encoding": "utf-8",
+    "text": "DL_DisableReplayedLiveMediaInDM"
+  },
+  {
+    "address": "0xeb9c8",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "DL_DisableScreenshotProtectionInDM"
+  },
+  {
+    "address": "0xeb9e8",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "DL_BypassVoiceMessageLimit"
+  },
+  {
+    "address": "0xeba08",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "DL_DownloadVoiceMessage"
+  },
+  {
+    "address": "0xeba28",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "IGMenuItem"
+  },
+  {
+    "address": "0xeba48",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "Save"
+  },
+  {
+    "address": "0xeba68",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "ig_download_24pt"
+  },
+  {
+    "address": "0xeba88",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "DL_UploadVoiceMessage"
+  },
+  {
+    "address": "0xebaa8",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "DM_UPLOAD_VOICE_TITLE_OPTION"
+  },
+  {
+    "address": "0xebac8",
+    "flags": "0x7c8",
+    "length": 33,
+    "encoding": "utf-8",
+    "text": "DM_UPLOAD_VOICE_FORM_FILES_OPTION"
+  },
+  {
+    "address": "0xebae8",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "DM_UPLOAD_VOICE_FORM_LIBRARY_OPTION"
+  },
+  {
+    "address": "0xebb08",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "story_seen_media_id.plist"
+  },
+  {
+    "address": "0xebb28",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "media_ids"
+  },
+  {
+    "address": "0xebb48",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "width"
+  },
+  {
+    "address": "0xebb68",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "url"
+  },
+  {
+    "address": "0xebb88",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": ".mp4?"
+  },
+  {
+    "address": "0xebba8",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "_originalImageVersions"
+  },
+  {
+    "address": "0xebbc8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "_videoVersionDictionaries"
+  },
+  {
+    "address": "0xebbe8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "height"
+  },
+  {
+    "address": "0xebc08",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "_url"
+  },
+  {
+    "address": "0xebc28",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "DL_EnableAlwaysDLHighQuality"
+  },
+  {
+    "address": "0xebc48",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "_width"
+  },
+  {
+    "address": "0xebc68",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "_height"
+  },
+  {
+    "address": "0xebc88",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "%d x %d"
+  },
+  {
+    "address": "0xebca8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "ACTION_IMAGE_TITLE"
+  },
+  {
+    "address": "0xebcc8",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "%@ x %@"
+  },
+  {
+    "address": "0xebce8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "ACTION_VIDEO_TITLE"
+  },
+  {
+    "address": "0xebd08",
+    "flags": "0x7c8",
+    "length": 30,
+    "encoding": "utf-8",
+    "text": "STORIES_MENTIONS_IN_THIS_STROY"
+  },
+  {
+    "address": "0xebd28",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "ACTION_DOWNLOAD"
+  },
+  {
+    "address": "0xebd48",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "ACTION_ITEM"
+  },
+  {
+    "address": "0xebd68",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "VIEW_ALL_ITEMS"
+  },
+  {
+    "address": "0xebd88",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "rawPhoto"
+  },
+  {
+    "address": "0xebda8",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "rawVideo"
+  },
+  {
+    "address": "0xebdc8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "ACTION_SEEN"
+  },
+  {
+    "address": "0xebde8",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "photo"
+  },
+  {
+    "address": "0xebe08",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "video"
+  },
+  {
+    "address": "0xebe28",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "STORIES_VIEW_ALL_STORIES"
+  },
+  {
+    "address": "0xebe48",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "DL_ShowMentionsInStory"
+  },
+  {
+    "address": "0xebe68",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "STORIES_SHOW_MENTIONS"
+  },
+  {
+    "address": "0xebe88",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "delegate"
+  },
+  {
+    "address": "0xebea8",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "_storyItemContext"
+  },
+  {
+    "address": "0xebec8",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "download_24pt"
+  },
+  {
+    "address": "0xebee8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "_items"
+  },
+  {
+    "address": "0xebf08",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "_currentIndex"
+  },
+  {
+    "address": "0xebf28",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "_post"
+  },
+  {
+    "address": "0xebf48",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "_pagePhotoPost"
+  },
+  {
+    "address": "0xebf68",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "Documents/FakeGroupContainers"
+  },
+  {
+    "address": "0xebf88",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "Library"
+  },
+  {
+    "address": "0xebfa8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "Library/Caches"
+  },
+  {
+    "address": "0xebfc8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "com.burbn.instagram"
+  },
+  {
+    "address": "0xebfe8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "CFBundleIdentifier"
+  },
+  {
+    "address": "0xec008",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "CFBundleDisplayName"
+  },
+  {
+    "address": "0xec028",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "CFBundleName"
+  },
+  {
+    "address": "0xec048",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "Instagram"
+  },
+  {
+    "address": "0xec068",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "DL_EnableAppLock"
+  },
+  {
+    "address": "0xec088",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "DL_faceIdSaveDate"
+  },
+  {
+    "address": "0xec0a8",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "DL_DelayAppLock"
+  },
+  {
+    "address": "0xec0c8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "DL_ProtectWithFaceId"
+  },
+  {
+    "address": "0xec0e8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "dummyItem"
+  },
+  {
+    "address": "0xec108",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "dummyService"
+  },
+  {
+    "address": "0xec128",
+    "flags": "0x7c8",
+    "length": 56,
+    "encoding": "utf-8",
+    "text": "Frameworks/FBSharedFramework.framework/FBSharedFramework"
+  },
+  {
+    "address": "0xec148",
+    "flags": "0x7c8",
+    "length": 58,
+    "encoding": "utf-8",
+    "text": "Frameworks/IGPyTorchFramework.framework/IGPyTorchFramework"
+  },
+  {
+    "address": "0xec168",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "DLDebugging"
+  },
+  {
+    "address": "0xec188",
+    "flags": "0x7c8",
+    "length": 45,
+    "encoding": "utf-8",
+    "text": "This is only for purpose of showing debugging"
+  },
+  {
+    "address": "0xec1a8",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "password"
+  },
+  {
+    "address": "0xec1c8",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "OK"
+  },
+  {
+    "address": "0xec1e8",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "DL"
+  },
+  {
+    "address": "0xec208",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "%ld"
+  },
+  {
+    "address": "0xec228",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "Cancel"
+  },
+  {
+    "address": "0xec248",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "DEVELOPER_SECTITLE"
+  },
+  {
+    "address": "0xec268",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "twitter.png"
+  },
+  {
+    "address": "0xec288",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "DEVELOPER_NAME"
+  },
+  {
+    "address": "0xec2a8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "@Peaceful_0"
+  },
+  {
+    "address": "0xec2c8",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "twitter://user?screen_name="
+  },
+  {
+    "address": "0xec2e8",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "peaceful_0"
+  },
+  {
+    "address": "0xec308",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "DEVELOPER_SUPPORT_ACCOUNT"
+  },
+  {
+    "address": "0xec328",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "@DLTweaks_"
+  },
+  {
+    "address": "0xec348",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "DLTweaks_"
+  },
+  {
+    "address": "0xec368",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "DONATE"
+  },
+  {
+    "address": "0xec388",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "ABafkir"
+  },
+  {
+    "address": "0xec3a8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "https://paypal.me/ABafkir"
+  },
+  {
+    "address": "0xec3c8",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "THANKS_SECTITLE"
+  },
+  {
+    "address": "0xec3e8",
+    "flags": "0x7c8",
+    "length": 0,
+    "encoding": "utf-8",
+    "text": ""
+  },
+  {
+    "address": "0xec408",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "THANKS_FOUADRAHEB"
+  },
+  {
+    "address": "0xec428",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "@FouadRaheb"
+  },
+  {
+    "address": "0xec448",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "FouadRaheb"
+  },
+  {
+    "address": "0xec468",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "v%@ - %@\n"
+  },
+  {
+    "address": "0xec488",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "CFBundleShortVersionString"
+  },
+  {
+    "address": "0xec4a8",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "icon.png"
+  },
+  {
+    "address": "0xec4c8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "ACTION_DISMISS"
+  },
+  {
+    "address": "0xec4e8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "ArialRoundedMTBold"
+  },
+  {
+    "address": "0xec508",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "DOWNLOAD_SECTITLE"
+  },
+  {
+    "address": "0xec528",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "DOWNLOAD_HIGHEST_QUALITY"
+  },
+  {
+    "address": "0xec548",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "MEDIA_SECTITLE"
+  },
+  {
+    "address": "0xec568",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "MEDIA_SHARE_MEDIA"
+  },
+  {
+    "address": "0xec588",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "DL_EnableShareMedia"
+  },
+  {
+    "address": "0xec5a8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "MEDIA_NO_REPEAT_VIDEO"
+  },
+  {
+    "address": "0xec5c8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "STORIES_SECTITLE"
+  },
+  {
+    "address": "0xec5e8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "STORIES_WATCH_ANONYMOUSLY"
+  },
+  {
+    "address": "0xec608",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "STORIES_DONT_MOVE_AUTO"
+  },
+  {
+    "address": "0xec628",
+    "flags": "0x7c8",
+    "length": 34,
+    "encoding": "utf-8",
+    "text": "STORIES_SELECT_VIDEO_FROM_STICKERS"
+  },
+  {
+    "address": "0xec648",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "LIVE_SECTITLE"
+  },
+  {
+    "address": "0xec668",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "LIVE_WATCH_ANONYMOUSLY"
+  },
+  {
+    "address": "0xec688",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "DM_SECTITLE"
+  },
+  {
+    "address": "0xec6a8",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "DM_WATCH_MESSAGES_ANONYMOSLY"
+  },
+  {
+    "address": "0xec6c8",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "DM_KEEP_DELETED_MESSAGES"
+  },
+  {
+    "address": "0xec6e8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "DM_DISABLE_TYPING_IND"
+  },
+  {
+    "address": "0xec708",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "DM_DISABLE_SCREENSHOT_NOTIFICATIONS"
+  },
+  {
+    "address": "0xec728",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "DM_DISABLE_SCREENSHOT_PROTECTION"
+  },
+  {
+    "address": "0xec748",
+    "flags": "0x7c8",
+    "length": 39,
+    "encoding": "utf-8",
+    "text": "DM_DISABLE_REPLAYED_MEDIA_NOTIFICATIONS"
+  },
+  {
+    "address": "0xec768",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "DM_BYPASS_VOICE_MESSAGE_LIMIT"
+  },
+  {
+    "address": "0xec788",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "DM_DOWNLOAD_VOICE_MESSAGES"
+  },
+  {
+    "address": "0xec7a8",
+    "flags": "0x7c8",
+    "length": 39,
+    "encoding": "utf-8",
+    "text": "DM_UPLOAD_VIDEO_AUDIO_AS_VOICE_MESSAGES"
+  },
+  {
+    "address": "0xec7c8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "DM_UPLOAD_VOICE_NOTE"
+  },
+  {
+    "address": "0xec7e8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "POPUP_SECTITLE"
+  },
+  {
+    "address": "0xec808",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "POPUP_CONFIRM_FOLLOW_UNFOLLOW"
+  },
+  {
+    "address": "0xec828",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "POPUP_CONFIRM_LIKE_UNLIKE"
+  },
+  {
+    "address": "0xec848",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "OTHERS_SECTITLE"
+  },
+  {
+    "address": "0xec868",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "OTHERS_COPY_TEXT"
+  },
+  {
+    "address": "0xec888",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "OTHERS_SHOW_FOLLOWING_STATUS"
+  },
+  {
+    "address": "0xec8a8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "OTHERS_VIEWS_LIKES_NUMBER"
+  },
+  {
+    "address": "0xec8c8",
+    "flags": "0x7c8",
+    "length": 24,
+    "encoding": "utf-8",
+    "text": "OTHERS_ALWAYS_SHOW_TIMER"
+  },
+  {
+    "address": "0xec8e8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "BROWSER_SECTITLE"
+  },
+  {
+    "address": "0xec908",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "BROWSER_IN_SAFARI"
+  },
+  {
+    "address": "0xec928",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "ADS_SECTITLE"
+  },
+  {
+    "address": "0xec948",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "ADS_REMOVE_PROMO_ADS"
+  },
+  {
+    "address": "0xec968",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_SECTION"
+  },
+  {
+    "address": "0xec988",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_TITLE"
+  },
+  {
+    "address": "0xec9a8",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "0"
+  },
+  {
+    "address": "0xec9c8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_IMMEDIATELY"
+  },
+  {
+    "address": "0xec9e8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_AFTER_MINUTE"
+  },
+  {
+    "address": "0xeca08",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_AFTER_15_MINUTES"
+  },
+  {
+    "address": "0xeca28",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_AFTER_HOUR"
+  },
+  {
+    "address": "0xeca48",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "60"
+  },
+  {
+    "address": "0xeca68",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "900"
+  },
+  {
+    "address": "0xeca88",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "3600"
+  },
+  {
+    "address": "0xecaa8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "Did Select Value: %@"
+  },
+  {
+    "address": "0xecac8",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "APP_LOCK_ENABLE"
+  },
+  {
+    "address": "0xecae8",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "FRPreferences_reloadTableView"
+  },
+  {
+    "address": "0xecb08",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "side_tray_profile"
+  },
+  {
+    "address": "0xecb28",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "settings.png"
+  },
+  {
+    "address": "0xecb48",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "ACTION_SETTINGS_INSTAGRAM"
+  },
+  {
+    "address": "0xecb68",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "ACTION_SETTINGS_DLINSTA"
+  },
+  {
+    "address": "0xecb88",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "ACTION_SHOW_PHOTO"
+  },
+  {
+    "address": "0xecba8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "ACTION_SHOW_COVER_STORY"
+  },
+  {
+    "address": "0xecbc8",
+    "flags": "0x7c8",
+    "length": 22,
+    "encoding": "utf-8",
+    "text": "ACTION_DEFAULT_OPTIONS"
+  },
+  {
+    "address": "0xecbe8",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "_titleView"
+  },
+  {
+    "address": "0xecc08",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "HUD_SEEN_STORY"
+  },
+  {
+    "address": "0xecc28",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "[^A-Za-z0-9+/=]"
+  },
+  {
+    "address": "0xecc48",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "\r\n"
+  },
+  {
+    "address": "0xecc68",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "CFBundleExecutable"
+  },
+  {
+    "address": "0xecc88",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "YouTube"
+  },
+  {
+    "address": "0xecca8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "DLTube"
+  },
+  {
+    "address": "0xeccc8",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "Twitter"
+  },
+  {
+    "address": "0xecce8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "DLTwitter"
+  },
+  {
+    "address": "0xecd08",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "TikTok"
+  },
+  {
+    "address": "0xecd28",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "DLTikTok"
+  },
+  {
+    "address": "0xecd48",
+    "flags": "0x7d0",
+    "length": 74,
+    "encoding": "utf-16le",
+    "text": "لقد تم إرسال سبب هذه المشكلة، سيتم اصلاح المشكلة بأسرع وقت ممكن، شكرًا لك."
+  },
+  {
+    "address": "0xecd68",
+    "flags": "0x7c8",
+    "length": 96,
+    "encoding": "utf-8",
+    "text": "The reason for this issue has been sent, the issue will be fixed as soon as possible, Thank you."
+  },
+  {
+    "address": "0xecd88",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "UINavigationBarAppearance"
+  },
+  {
+    "address": "0xecda8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "ACTION_SEND"
+  },
+  {
+    "address": "0xecdc8",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "DLCrash :("
+  },
+  {
+    "address": "0xecde8",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "CFBundleIcons"
+  },
+  {
+    "address": "0xece08",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "CFBundlePrimaryIcon"
+  },
+  {
+    "address": "0xece28",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "CFBundleIconFiles"
+  },
+  {
+    "address": "0xece48",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "v"
+  },
+  {
+    "address": "0xece68",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "Reason:"
+  },
+  {
+    "address": "0xece88",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "reason"
+  },
+  {
+    "address": "0xecea8",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "More:"
+  },
+  {
+    "address": "0xecec8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "more_info"
+  },
+  {
+    "address": "0xecee8",
+    "flags": "0x7d0",
+    "length": 28,
+    "encoding": "utf-16le",
+    "text": "⛔️ DLCrash - [ %@ - v%@ ] ⛔️"
+  },
+  {
+    "address": "0xecf08",
+    "flags": "0x7c8",
+    "length": 40,
+    "encoding": "utf-8",
+    "text": "Tweak: %@\n\niOS: %@\n\nReason:\n%@\n\nMore:\n%@"
+  },
+  {
+    "address": "0xecf28",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": " %@"
+  },
+  {
+    "address": "0xecf48",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "prooxy0@gmail.com"
+  },
+  {
+    "address": "0xecf68",
+    "flags": "0x7c8",
+    "length": 7,
+    "encoding": "utf-8",
+    "text": "DLCrash"
+  },
+  {
+    "address": "0xecf88",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "ALERT_OK_BUTTON"
+  },
+  {
+    "address": "0xecfa8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "bundle"
+  },
+  {
+    "address": "0xecfc8",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "Langauge.bundle"
+  },
+  {
+    "address": "0xecfe8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "%@/ar.lproj"
+  },
+  {
+    "address": "0xed008",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "%@/en.lproj"
+  },
+  {
+    "address": "0xed028",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "\n%@"
+  },
+  {
+    "address": "0xed048",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "SETTINGS_STATUS"
+  },
+  {
+    "address": "0xed068",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "HUD_CONNECTION"
+  },
+  {
+    "address": "0xed088",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "SETTINGS_UPDATE"
+  },
+  {
+    "address": "0xed0a8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "HUD_ERROR"
+  },
+  {
+    "address": "0xed0c8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "-[%@ %@]+%d"
+  },
+  {
+    "address": "0xed0e8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "Documents"
+  },
+  {
+    "address": "0xed108",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "DLLog"
+  },
+  {
+    "address": "0xed128",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "%@.txt"
+  },
+  {
+    "address": "0xed148",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "jg_hud_success.png"
+  },
+  {
+    "address": "0xed168",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "jg_hud_error.png"
+  },
+  {
+    "address": "0xed188",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "HUD_SUCCESS"
+  },
+  {
+    "address": "0xed1a8",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "HUD_COPIED"
+  },
+  {
+    "address": "0xed1c8",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "lineView"
+  },
+  {
+    "address": "0xed1e8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "H:|[lineView]|"
+  },
+  {
+    "address": "0xed208",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "V:|-0-[lineView(width)]"
+  },
+  {
+    "address": "0xed228",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "V:[lineView(width)]|"
+  },
+  {
+    "address": "0xed248",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "IGAlertAction"
+  },
+  {
+    "address": "0xed268",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "IGAlertDialogStyle"
+  },
+  {
+    "address": "0xed288",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "DLIGAlertDialogView"
+  },
+  {
+    "address": "0xed2a8",
+    "flags": "0x7c8",
+    "length": 25,
+    "encoding": "utf-8",
+    "text": "ACTION_MESSAGE_SAVE_SHARE"
+  },
+  {
+    "address": "0xed2c8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "ACTION_SAVE"
+  },
+  {
+    "address": "0xed2e8",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "ACTION_SHARE"
+  },
+  {
+    "address": "0xed308",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "HEAD"
+  },
+  {
+    "address": "0xed328",
+    "flags": "0x7c8",
+    "length": 45,
+    "encoding": "utf-8",
+    "text": "https://i.instagram.com/api/v1/users/%@/info/"
+  },
+  {
+    "address": "0xed348",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "IGURLRequest"
+  },
+  {
+    "address": "0xed368",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "IGScopedNetworker"
+  },
+  {
+    "address": "0xed388",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "instagram://user?username=%@"
+  },
+  {
+    "address": "0xed3a8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "<Unknown File>"
+  },
+  {
+    "address": "0xed3c8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "View must not be nil."
+  },
+  {
+    "address": "0xed3e8",
+    "flags": "0x7c8",
+    "length": 54,
+    "encoding": "utf-8",
+    "text": "MBProgressHUD needs to be accessed on the main thread."
+  },
+  {
+    "address": "0xed408",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "progress"
+  },
+  {
+    "address": "0xed428",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "center.x"
+  },
+  {
+    "address": "0xed448",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "center.y"
+  },
+  {
+    "address": "0xed468",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "margin"
+  },
+  {
+    "address": "0xed488",
+    "flags": "0x7c8",
+    "length": 33,
+    "encoding": "utf-8",
+    "text": "|-(>=margin)-[bezel]-(>=margin)-|"
+  },
+  {
+    "address": "0xed4a8",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "bezel"
+  },
+  {
+    "address": "0xed4c8",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "V:|-(>=margin)-[bezel]-(>=margin)-|"
+  },
+  {
+    "address": "0xed4e8",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "|-(>=margin)-[view]-(>=margin)-|"
+  },
+  {
+    "address": "0xed508",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "view"
+  },
+  {
+    "address": "0xed528",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "The color should not be nil."
+  },
+  {
+    "address": "0xed548",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "%@"
+  },
+  {
+    "address": "0xed568",
+    "flags": "0x7c8",
+    "length": 35,
+    "encoding": "utf-8",
+    "text": "com.apple.developer.team-identifier"
+  },
+  {
+    "address": "0xed588",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "bundleSeedID"
+  },
+  {
+    "address": "0xed5a8",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "."
+  },
+  {
+    "address": "0xed5c8",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "DLDomainError"
+  },
+  {
+    "address": "0xed5e8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "NSOSStatusErrorDomain"
+  },
+  {
+    "address": "0xed608",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "titleTextColor"
+  },
+  {
+    "address": "0xed628",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "Error reading audio file: %@"
+  },
+  {
+    "address": "0xed648",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "Error reading into buffer: %@"
+  },
+  {
+    "address": "0xed668",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "DLAudio.m4a"
+  },
+  {
+    "address": "0xed688",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "Export completed"
+  },
+  {
+    "address": "0xed6a8",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "Export failed: %@"
+  },
+  {
+    "address": "0xed6c8",
+    "flags": "0x7c8",
+    "length": 16,
+    "encoding": "utf-8",
+    "text": "Export cancelled"
+  },
+  {
+    "address": "0xed6e8",
+    "flags": "0x7c8",
+    "length": 30,
+    "encoding": "utf-8",
+    "text": "DLAACAudioConverterErrorDomain"
+  },
+  {
+    "address": "0xed708",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "Export session was cancelled."
+  },
+  {
+    "address": "0xed728",
+    "flags": "0x7c8",
+    "length": 33,
+    "encoding": "utf-8",
+    "text": "Export failed with unknown error."
+  },
+  {
+    "address": "0xed748",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "Export"
+  },
+  {
+    "address": "0xed768",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "Unknown error occurred."
+  },
+  {
+    "address": "0xed788",
+    "flags": "0x7c8",
+    "length": 42,
+    "encoding": "utf-8",
+    "text": "The video does not contain an audio track."
+  },
+  {
+    "address": "0xed7a8",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "Failed to create export session."
+  },
+  {
+    "address": "0xed7c8",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "DLAudioAAC.m4a"
+  },
+  {
+    "address": "0xed7e8",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "Failed to open source file"
+  },
+  {
+    "address": "0xed808",
+    "flags": "0x7c8",
+    "length": 27,
+    "encoding": "utf-8",
+    "text": "Failed to get source format"
+  },
+  {
+    "address": "0xed828",
+    "flags": "0x7c8",
+    "length": 32,
+    "encoding": "utf-8",
+    "text": "Failed to set destination format"
+  },
+  {
+    "address": "0xed848",
+    "flags": "0x7c8",
+    "length": 33,
+    "encoding": "utf-8",
+    "text": "Failed to create destination file"
+  },
+  {
+    "address": "0xed868",
+    "flags": "0x7c8",
+    "length": 45,
+    "encoding": "utf-8",
+    "text": "Couldn't setup intermediate conversion format"
+  },
+  {
+    "address": "0xed888",
+    "flags": "0x7c8",
+    "length": 33,
+    "encoding": "utf-8",
+    "text": "Error writing to destination file"
+  },
+  {
+    "address": "0xed8a8",
+    "flags": "0x7c8",
+    "length": 21,
+    "encoding": "utf-8",
+    "text": "IGDirectAudioWaveform"
+  },
+  {
+    "address": "0xed8c8",
+    "flags": "0x7c8",
+    "length": 28,
+    "encoding": "utf-8",
+    "text": "_threadViewControllerContext"
+  },
+  {
+    "address": "0xed8e8",
+    "flags": "0x7c8",
+    "length": 57,
+    "encoding": "utf-8",
+    "text": "This feature is not supported in this version of the app."
+  },
+  {
+    "address": "0xed908",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "public.mpeg-4"
+  },
+  {
+    "address": "0xed928",
+    "flags": "0x7c8",
+    "length": 12,
+    "encoding": "utf-8",
+    "text": "public.audio"
+  },
+  {
+    "address": "0xed948",
+    "flags": "0x7c8",
+    "length": 60,
+    "encoding": "utf-8",
+    "text": "Please select a video file that is less than 5 minutes long."
+  },
+  {
+    "address": "0xed968",
+    "flags": "0x7c8",
+    "length": 60,
+    "encoding": "utf-8",
+    "text": "Please select a audio file that is less than 5 minutes long."
+  },
+  {
+    "address": "0xed988",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "ACC File = %@"
+  },
+  {
+    "address": "0xed9a8",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": " "
+  },
+  {
+    "address": "0xed9c8",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "merging started"
+  },
+  {
+    "address": "0xed9e8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "%@/%d.mp4"
+  },
+  {
+    "address": "0xeda08",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "empty.mp3"
+  },
+  {
+    "address": "0xeda28",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "DLMerge.mp4"
+  },
+  {
+    "address": "0xeda48",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "DLMerge_1.mp4"
+  },
+  {
+    "address": "0xeda68",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "DLInstaMultiMedia"
+  },
+  {
+    "address": "0xeda88",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "HUD_DOWNLOADING"
+  },
+  {
+    "address": "0xedaa8",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "(%lu)"
+  },
+  {
+    "address": "0xedac8",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "%@/%d.jpg"
+  },
+  {
+    "address": "0xedae8",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "(%d)"
+  },
+  {
+    "address": "0xedb08",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "ALERT_UNKNOWN_ERROR"
+  },
+  {
+    "address": "0xedb28",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "%@/%@"
+  },
+  {
+    "address": "0xedb48",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "DLImage.jpg"
+  },
+  {
+    "address": "0xedb68",
+    "flags": "0x7c8",
+    "length": 2,
+    "encoding": "utf-8",
+    "text": "0%"
+  },
+  {
+    "address": "0xedb88",
+    "flags": "0x7c8",
+    "length": 10,
+    "encoding": "utf-8",
+    "text": "HUD_CANCEL"
+  },
+  {
+    "address": "0xedba8",
+    "flags": "0x7d0",
+    "length": 1,
+    "encoding": "utf-16le",
+    "text": "⊝"
+  },
+  {
+    "address": "0xedbc8",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "DLVideo.mp4"
+  },
+  {
+    "address": "0xedbe8",
+    "flags": "0x7c8",
+    "length": 6,
+    "encoding": "utf-8",
+    "text": "%2.f%%"
+  },
+  {
+    "address": "0xedc08",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "Downloading Started"
+  },
+  {
+    "address": "0xedc28",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "mp4"
+  },
+  {
+    "address": "0xedc48",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "jpg"
+  },
+  {
+    "address": "0xedc68",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "png"
+  },
+  {
+    "address": "0xedc88",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "File in Path %@"
+  },
+  {
+    "address": "0xedca8",
+    "flags": "0x7c8",
+    "length": 3,
+    "encoding": "utf-8",
+    "text": "gif"
+  },
+  {
+    "address": "0xedcc8",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "webp"
+  },
+  {
+    "address": "0xedce8",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "tiff"
+  },
+  {
+    "address": "0xedd08",
+    "flags": "0x7c8",
+    "length": 9,
+    "encoding": "utf-8",
+    "text": "%ld:%02ld"
+  },
+  {
+    "address": "0xedd28",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "%ld:%02ld:%02ld"
+  },
+  {
+    "address": "0xedd48",
+    "flags": "0x7c8",
+    "length": 13,
+    "encoding": "utf-8",
+    "text": "[\\p{Arabic}]+"
+  },
+  {
+    "address": "0xedd68",
+    "flags": "0x7d0",
+    "length": 1,
+    "encoding": "utf-16le",
+    "text": "•"
+  },
+  {
+    "address": "0xedd88",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": "\n"
+  },
+  {
+    "address": "0xedda8",
+    "flags": "0x7c8",
+    "length": 1,
+    "encoding": "utf-8",
+    "text": ":"
+  },
+  {
+    "address": "0xeddc8",
+    "flags": "0x7c8",
+    "length": 17,
+    "encoding": "utf-8",
+    "text": "DLMentionViewCell"
+  },
+  {
+    "address": "0xedde8",
+    "flags": "0x7c8",
+    "length": 19,
+    "encoding": "utf-8",
+    "text": "STORIES_NO_MENTIONS"
+  },
+  {
+    "address": "0xede08",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "LinkCellIdentifier"
+  },
+  {
+    "address": "0xede28",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "%.2f"
+  },
+  {
+    "address": "0xede48",
+    "flags": "0x7c8",
+    "length": 11,
+    "encoding": "utf-8",
+    "text": "ERROR_LABEL"
+  },
+  {
+    "address": "0xede68",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "xmark"
+  },
+  {
+    "address": "0xede88",
+    "flags": "0x7c8",
+    "length": 4,
+    "encoding": "utf-8",
+    "text": "user"
+  },
+  {
+    "address": "0xedea8",
+    "flags": "0x7c8",
+    "length": 23,
+    "encoding": "utf-8",
+    "text": "hd_profile_pic_url_info"
+  },
+  {
+    "address": "0xedec8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "DLAlertStoriesInfo"
+  },
+  {
+    "address": "0xedee8",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "STORIES_ALERT_INFO"
+  },
+  {
+    "address": "0xedf08",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "videoMediaCell"
+  },
+  {
+    "address": "0xedf28",
+    "flags": "0x7c8",
+    "length": 14,
+    "encoding": "utf-8",
+    "text": "jg_hud_success"
+  },
+  {
+    "address": "0xedf48",
+    "flags": "0x7c8",
+    "length": 15,
+    "encoding": "utf-8",
+    "text": "optionMediaCell"
+  },
+  {
+    "address": "0xedf68",
+    "flags": "0x7c8",
+    "length": 18,
+    "encoding": "utf-8",
+    "text": "STORIES_SELECT_ALL"
+  },
+  {
+    "address": "0xedf88",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "STORIES_UNSELECT_ALL"
+  },
+  {
+    "address": "0xedfa8",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "Video"
+  },
+  {
+    "address": "0xedfc8",
+    "flags": "0x7c8",
+    "length": 5,
+    "encoding": "utf-8",
+    "text": "Photo"
+  },
+  {
+    "address": "0xedfe8",
+    "flags": "0x7c8",
+    "length": 20,
+    "encoding": "utf-8",
+    "text": "STORIES_DOWNLOAD_ALL"
+  },
+  {
+    "address": "0xee008",
+    "flags": "0x7c8",
+    "length": 29,
+    "encoding": "utf-8",
+    "text": "STORIES_DOWNLOAD_ALL_SELECTED"
+  },
+  {
+    "address": "0xee028",
+    "flags": "0x7c8",
+    "length": 8,
+    "encoding": "utf-8",
+    "text": "Finished"
+  },
+  {
+    "address": "0xee048",
+    "flags": "0x7c8",
+    "length": 26,
+    "encoding": "utf-8",
+    "text": "STORIES_DOWNLOAD_AND_MERGE"
+  }
+]

@@ -175,7 +175,7 @@
       "implementation": "src/HIDEDLFeatures.m",
       "native_runtime_verified": false,
       "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations",
-      "453_status": "disabled: previous cache mutation API is missing"
+      "453_status": "experimental: Django/Iris received remove-item factory and Swift cell presentation ported; encrypted transports not verified"
     },
     {
       "dl_option": "DL_SeeDMWithoutOtherPartyKnowing",
@@ -272,7 +272,7 @@
     {
       "name": "manual_direct_read_eye",
       "implementation": "src/HIDEManualSeen.m",
-      "status": "not available in 453: former markLastMessageAsSeen entry points are missing"
+      "status": "experimental: new last-seen tracker, account/thread-scoped action and bounded HTTP/MQTT permissions; no device/server delivery test"
     }
   ],
   "analysis_reference_url": "https://github.com/ZT8/nam/tree/main/DLInsta-full"

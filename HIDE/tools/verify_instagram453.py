@@ -15,12 +15,12 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 VOICE = '_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController'
-TARGETS = {'IGProfileViewController','IGLiveViewerCountIntervalPuller','IGStoryViewerViewController',VOICE}
+TARGETS = {'IGDirectOutgoingUpdateService','IGDThreadDeltaUpdateFactory','IGDirectMessageMenuActionHandler','IGDirectThreadLastSeenMessageTracker','IGDirectThreadViewListAdapterDataSource','IGDirectThreadViewController','IGDirectMessageCellViewModel','_TtC19IGDirectMessageCell19IGDirectMessageCell','FBMQTTMarkThread','IGDirectMessageUpdate','IGDirectThreadUpdate','IGProfileViewController','IGLiveViewerCountIntervalPuller','IGStoryViewerViewController',VOICE}
 EXPECTED_UUID = '4c4c4477-5555-3144-a180-32cb70c4246c'
 
 
 def verify(path):
-    source = (ROOT / 'src/HIDEDLFeatures.m').read_text() + (ROOT / 'src/HIDESettings.m').read_text()
+    source = (ROOT / 'src/HIDEDLFeatures.m').read_text() + (ROOT / 'src/HIDESettings.m').read_text() + (ROOT / 'src/HIDEManualSeen.m').read_text()
     header = (ROOT / 'src/HIDEHostLayout.h').read_text()
     with path.open('rb') as file, mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as data:
         magic, _, _, kind, count, _, _, _ = struct.unpack_from('<8I', data)
@@ -102,9 +102,21 @@ def verify(path):
                 ro = ptr(cp+32) & ~7
                 name = cstr(ptr(ro+24))
                 if name in TARGETS:
-                    classes[name] = {'methods': methods(ptr(ro+32) & ~3), 'fields': fields(ptr(ro+48))}
+                    classes[name] = {'methods': methods(ptr(ro+32) & ~3), 'fields': fields(ptr(ro+48)), 'class_methods': methods(ptr((ptr(ptr(cp)+32)&~7)+32)&~3)}
         assert set(classes) == TARGETS, 'Missing required native classes'
         contracts = [
+            ('IGDirectOutgoingUpdateService','sendMessageUpdate:messageId:threadKey:originalMessageClientContext:sentDate:productType:foaS2SLogger:igdS2SLogger:isTAMMessage:isInstamadillo:isInstamadilloTTLC:','hide_sendMessageUpdate'),
+            ('IGDThreadDeltaUpdateFactory','removeItemUpdatesForThreadId:itemId:sequenceId:','hide_remove453'),
+            ('IGDirectMessageMenuActionHandler','unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:','hide_unsend453'),
+            ('_TtC19IGDirectMessageCell19IGDirectMessageCell','configureWithViewModel:ringViewSpecFactory:mobileConfig:','hide_deletedConfigure'),
+            ('_TtC19IGDirectMessageCell19IGDirectMessageCell','layoutSubviews','hide_deletedLayout'),
+            ('IGDirectThreadLastSeenMessageTracker','initWithThreadInfoProvider:dataSource:listAdapter:outgoingUpdateSender:scrollCoordinator:','hide_trackerInit'),
+            ('IGDirectThreadLastSeenMessageTracker','markLastMessageAsSeen','hide_trackerMark'),
+            ('IGDirectThreadViewListAdapterDataSource','shouldUpdateLastSeenMessage','hide_shouldUpdate'),
+            ('IGDirectThreadViewController','updateThreadNavigationBar','hide_threadNav'),
+            ('IGDirectThreadViewController','viewDidAppear:','hide_threadAppear'),
+            ('FBMQTTMarkThread','initWithMark:state:threadId:actionId:syncSeqId:threadFbId:otherUserFbId:actorFbId:watermarkTimestamp:titanOriginatedThreadId:shouldSendReadReceipt:adPageMessageType:attemptId:','hide_mqttInit'),
+            ('FBMQTTMarkThread','setShouldSendReadReceipt:','hide_mqttSetRead'),
             ('IGProfileViewController','navigationItemsControllerDidTapSideTray:','hide_profileSide'),
             ('IGProfileViewController','navigationItemsControllerDidTapMore:','hide_profileMore'),
             ('IGLiveViewerCountIntervalPuller','initWithUserSession:broadcastId:pullInterval:networker:loggingContext:mode:surface:infoProvider:','hide_liveInit'),
@@ -119,9 +131,24 @@ def verify(path):
             assert match, f'Missing checked hook for {replacement}'
             # Same-width signed/unsigned integer parameters share the arm64 ABI.
             actual = re.sub(r'\d+', '', encoding).replace('Q', 'q')
-            assert actual == match[1], (cls, encoding, match[1])
-            encodings[cls] = encoding
-        assert 'recordingTimeLimit' in classes[VOICE]['fields']
+            assert actual == match[1].replace("Q", "q"), (cls, encoding, match[1])
+            encodings[cls+' '+selector] = encoding
+        # Machine proof of the generated metadata slot used for rendering.
+        schema_method = classes['IGDirectMessageCellViewModel']['class_methods']['internal_classInfo'][1]
+        adrp, add, ret = struct.unpack('<III', read(schema_method, 12))
+        assert adrp & 0x9f00001f == 0x90000000 and add & 0xffc003ff == 0x91000000 and ret == 0xd65f03c0
+        imm = ((adrp >> 29) & 3) | (((adrp >> 5) & 0x7ffff) << 2)
+        if imm & (1 << 20): imm -= 1 << 21
+        descriptor = (schema_method & ~4095) + (imm << 12) + ((add >> 10) & 0xfff)
+        size, count = struct.unpack('<II', read(descriptor, 8))
+        assert size == 328 and count == 52
+        offsets, kinds, names = ptr(descriptor+8), ptr(descriptor+16), ptr(descriptor+24)
+        metadata_fields = {cstr(ptr(names+i*8)): (struct.unpack('<H',read(offsets+i*2,2))[0], read(kinds+i,1)[0]) for i in range(count)}
+        assert metadata_fields['metadata'] == (8,1), metadata_fields['metadata']
+        assert classes['IGDirectThreadUpdate']['fields']['_messageUpdate'] == '@"IGDirectMessageUpdate"'
+        assert classes['IGDirectMessageUpdate']['fields']['_removeMessages_messageKeys'] == '@"NSArray"'
+        assert classes['IGDirectMessageUpdate']['fields']['_removeMessages_reason'] == 'q'
+        assert 'recordingTimeLimit'  in classes[VOICE]['fields']
         assert '#define HIDE_HOST_CACHE_LAYOUT_VERIFIED 0' in header
         # Verify Double using Swift field reflection; ObjC's empty type is insufficient.
         found_double = False
@@ -141,7 +168,7 @@ def verify(path):
                 a += 16+stride*length_fields
         assert found_double, 'Missing recording limit Swift type metadata'
         return {'executable_uuid': executable_uuid, 'sha256': hashlib.sha256(data).hexdigest(),
-                'checked_hooks': encodings, 'swift_recording_limit': 'Double',
+                'checked_hooks': encodings, 'message_metadata_slot': {'header_bytes':16,'relative_offset':8,'source':'internal_classInfo'}, 'direct_status':'experimental-device-test-required', 'swift_recording_limit': 'Double',
                 'legacy_cache_layout_enabled': False,
                 'native_contracts_verified': True, 'device_runtime_tested': False}
 

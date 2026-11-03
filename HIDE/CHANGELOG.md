@@ -1,3 +1,11 @@
+# V1.0 — experimental Direct port for Instagram 453
+
+- Port received unsend handling to the verified IGDThreadDeltaUpdateFactory remove-item callback; retain the existing local cache entry, scoped by account/thread/message.
+- Resolve the generated cell model metadata slot and the new Swift cell's ObjC configuration/layout selectors. Text bubbles render solid red with white text and show the first locally observed deletion time on tap.
+- Allow own unsends; unknown local message models get a short per-thread bypass. Expiry/thread-deletion cache operations are untouched. No recovery of previously deleted/missing messages; encrypted transports remain unverified.
+- Capture the new native last-seen tracker through its checked initializer and attach a target-bound eye action. Keep native eligibility checks and the global privacy preference. Bind asynchronous MQTT permissions to the complete marker payload, with a 15-second expiry; HTTP permissions remain bound to account/target/body.
+- Build, host policies, native ABI/schema checks and static analysis validate packaging and implementation, not iPhone operation or server delivery. Requires two-account device validation.
+
 # V1.0 — Instagram 453 migration test build
 
 - Reset HIDE's displayed/source version to 1.0 and target Instagram 453.0.0, iOS 16.3+.

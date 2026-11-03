@@ -1,6 +1,7 @@
 // Ports of behavior observed in DLInsta. Every private call is ABI checked.
 #import "HIDECore.h"
 #import "HIDEHostLayout.h"
+#import "HIDEDirectPolicy.h"
 #import <malloc/malloc.h>
 #import <math.h>
 #import <string.h>
@@ -127,110 +128,105 @@ static void hide_screenshotBlock(id object, SEL selector, BOOL blocked, id model
     originalScreenshotBlock(object,selector,HIDEPref(kHideAllowScreenshots) ? NO : blocked,model);
 }
 
-#pragma mark - Local preservation of received removal updates
-// Only affects the local cache. No message contents are copied into preferences.
-static NSString *HIDEMessageIdentifierDepth(id value,NSUInteger depth) {
-    if(!value || depth>4)return nil;
+#pragma mark - 453 received unsend updates (Django/Iris transport)
+// Intercept only the server's remove-item factory, not expiry, thread deletion,
+// or arbitrary cache writes. The app keeps its own cached message contents.
+NSString *HIDEDirectAccount(id object) {
+    id session=HIDEGet(object,@"userSession") ?: HIDEIvar(object,"_userSession");
+    id value=HIDEGet(session,@"pk") ?: HIDEGetNumber(session,@"pk");
+    return [value isKindOfClass:NSNumber.class] ? [value stringValue] : ([value isKindOfClass:NSString.class] ? value : nil);
+}
+static NSString *HIDEMessageIdentifier(id value) {
     if([value isKindOfClass:NSString.class])return value;
     if([value isKindOfClass:NSNumber.class])return [value stringValue];
-    Class generated=NSClassFromString(@"IGDevirtualizedValueObject");
-    for(NSString *name in @[@"messageServerId",@"messageId",@"itemId",@"serverId",@"serverID",@"messageID",@"value"]) {
-        id part=HIDEGet(value,name);
-        // 407 devirtualizes message-key fields; its verified base class exposes KVC.
-        if(!part && generated && [value isKindOfClass:generated])@try{part=[value valueForKey:name];}@catch(__unused NSException *e){}
-        if(part && part!=value){NSString *identifier=HIDEMessageIdentifierDepth(part,depth+1);if(identifier)return identifier;}
-    }
-    return HIDEMessageIdentifierDepth(HIDEIvar(value,"_messageServerId"),depth+1);
+    id result=HIDEGet(value,@"serverId") ?: HIDEGet(value,@"value");
+    return [result isKindOfClass:NSString.class] ? result : nil;
 }
-static NSString *HIDEMessageIdentifier(id value){return HIDEMessageIdentifierDepth(value,0);}
-static id HIDEMessageMetadata(id model){
-    id metadata=HIDEGet(model,@"messageMetadata") ?: HIDEIvar(model,"_messageMetadata");
-    if(!metadata){id cellModel=HIDEGet(model,@"messageCellViewModel");metadata=HIDEGet(cellModel,@"messageMetadata") ?: HIDEIvar(cellModel,"_messageMetadata");}
-    return metadata;
+static id HIDEMessageMetadataDepth(id model,NSUInteger depth) {
+    if(!model || depth>3)return nil;
+    id value=HIDEGet(model,@"metadata") ?: HIDEGet(model,@"messageMetadata");
+    if(!value){id nested=HIDEGet(model,@"messageCellViewModel");if(nested && nested!=model)return HIDEMessageMetadataDepth(nested,depth+1);}
+    if(value)return value;
+    // internal_classInfo in this exact UUID: metadata is object slot 8,
+    // after the 16-byte IGDevirtualizedValueObject header. Never inspect Swift ivars.
+    Class base=NSClassFromString(@"IGDevirtualizedValueObject");
+    if(!HIDEIsVerifiedHostBuild() || object_getClass(model)!=NSClassFromString(@"IGDirectMessageCellViewModel") ||
+       !base || class_getSuperclass(object_getClass(model))!=base || class_getInstanceSize(base)!=16 ||
+       malloc_size((__bridge const void *)model)<32)return nil;
+    void *metadata=NULL;memcpy(&metadata,(const uint8_t *)(__bridge const void *)model+24,sizeof(metadata));
+    return (__bridge id)metadata;
+}
+static id HIDEMessageMetadata(id model){return HIDEMessageMetadataDepth(model,0);}
+static NSString *HIDEDeletionKey(NSString *account,NSString *thread,NSString *message) {
+    if(!account.length || !thread.length || (message && !message.length))return nil;
+    // Array encoding prevents delimiter collisions and scopes every record to its account.
+    NSData *json=[NSJSONSerialization dataWithJSONObject:message ? @[account,thread,message] : @[account,thread] options:0 error:nil];
+    return [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
 }
 static NSObject *HIDEDeletionLock(void) {
-    static NSObject *lock; static dispatch_once_t once; dispatch_once(&once,^{lock=[NSObject new];}); return lock;
+    static NSObject *lock;static dispatch_once_t once;dispatch_once(&once,^{lock=[NSObject new];});return lock;
 }
 static NSMutableDictionary *HIDEOwnDeletions(void) {
-    static NSMutableDictionary *allowed; static dispatch_once_t once;
-    dispatch_once(&once,^{allowed=[NSMutableDictionary dictionary];}); return allowed;
+    static NSMutableDictionary *values;static dispatch_once_t once;dispatch_once(&once,^{values=[NSMutableDictionary dictionary];});return values;
 }
-static void HIDEAllowOwnDeletion(id model) {
-    id metadata=HIDEMessageMetadata(model);
-    id key=HIDEGet(metadata,@"key") ?: HIDEIvar(metadata,"_key") ?: HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey") ?: model;
-    NSString *identifier = HIDEMessageIdentifier(key);
-    if (!identifier) return;
-    @synchronized (HIDEDeletionLock()) {
-        NSMutableDictionary *allowed=HIDEOwnDeletions();
-        if (allowed.count > 2000) [allowed removeAllObjects];
-        allowed[identifier]=@([NSDate timeIntervalSinceReferenceDate]+600);
-    }
+static NSHashTable *HIDEVisibleMessageCells(void) {
+    static NSHashTable *cells;static dispatch_once_t once;dispatch_once(&once,^{cells=[NSHashTable weakObjectsHashTable];});return cells;
 }
-static void HIDEFilterRemovals(id updates, id thread) {
-    if (!HIDEPref(kHideKeepDeleted) || ![updates isKindOfClass:NSArray.class]) return;
-    NSString *threadID=HIDEMessageIdentifier(thread);
-    for (id update in updates) {
-        id message=HIDEIvar(update,"_messageUpdate") ?: HIDEGet(update,@"messageUpdate");
-        NSArray *keys=HIDEIvar(message,"_removeMessages_messageKeys");
-        if (![keys isKindOfClass:NSArray.class] || !keys.count) continue;
-        NSMutableArray *remove=[NSMutableArray array];
-        NSMutableDictionary *dates;
-        @synchronized (HIDEDeletionLock()) {
-            id stored=[NSUserDefaults.standardUserDefaults objectForKey:@"hide_deleted_timestamps"];
-            dates=[stored isKindOfClass:NSDictionary.class] ? [stored mutableCopy] : [NSMutableDictionary dictionary];
-            for (id key in keys) {
-                NSString *identifier=HIDEMessageIdentifier(key);
-                NSNumber *allowed=identifier ? HIDEOwnDeletions()[identifier] : nil;
-                // Unknown message keys pass through: do not damage an unknown update schema.
-                if (!identifier || allowed.doubleValue > NSDate.timeIntervalSinceReferenceDate) { [remove addObject:key]; continue; }
-                if (threadID) dates[[NSString stringWithFormat:@"%@:%@",threadID,identifier]]=@(NSDate.timeIntervalSinceReferenceDate);
+static void HIDEUpdateDeletedBadge(UIView *cell);
+static id (*originalRemove453)(id,SEL,id,id,id);
+static id hide_remove453(id object,SEL selector,id thread,id item,id sequence) {
+    id updates=originalRemove453(object,selector,thread,item,sequence);
+    NSString *account=HIDEDirectAccount(object),*threadID=HIDEMessageIdentifier(thread),*identifier=HIDEMessageIdentifier(item);
+    NSString *record=identifier.length ? HIDEDeletionKey(account,threadID,identifier) : nil;
+    if(!HIDEPref(kHideKeepDeleted) || !record || ![updates isKindOfClass:NSArray.class])return updates;
+    @synchronized(HIDEDeletionLock()) {
+        NSNumber *own=HIDEOwnDeletions()[record];
+        NSNumber *ownThread=HIDEOwnDeletions()[HIDEDeletionKey(account,threadID,nil)];
+        if(ownThread.doubleValue>NSDate.timeIntervalSinceReferenceDate)return updates;
+        if(own.doubleValue>NSDate.timeIntervalSinceReferenceDate)return updates;
+        [HIDEOwnDeletions() removeObjectForKey:record];
+        BOOL changed=NO;
+        for(id update in updates) {
+            if(object_getClass(update)!=NSClassFromString(@"IGDirectThreadUpdate"))continue;
+            id message=HIDEIvar(update,"_messageUpdate");
+            if(object_getClass(message)!=NSClassFromString(@"IGDirectMessageUpdate"))continue;
+            NSArray *keys=HIDEIvar(message,"_removeMessages_messageKeys");
+            NSNumber *reason=HIDEIntegerIvar(message,"_removeMessages_reason");
+            if(![keys isKindOfClass:NSArray.class] || !reason ||
+               !HIDEDirectPreserveRemoval(YES,reason.longLongValue,YES,NSDate.timeIntervalSinceReferenceDate,own.doubleValue))continue;
+            NSMutableArray *remaining=[NSMutableArray array];BOOL matched=NO;
+            for(id key in keys) {
+                if([HIDEMessageIdentifier(key) isEqual:identifier])matched=YES;
+                else [remaining addObject:key];
             }
-            if (dates.count > 2000) {
+            if(matched && HIDEWriteObjectIvar(message,"_removeMessages_messageKeys",remaining))changed=YES;
+        }
+        if(changed) {
+            id stored=[NSUserDefaults.standardUserDefaults objectForKey:@"hide_deleted_timestamps_453"];
+            NSMutableDictionary *dates=[stored isKindOfClass:NSDictionary.class] ? [stored mutableCopy] : [NSMutableDictionary dictionary];
+            // A repeated server delta must not change the first observed deletion time.
+            if(!dates[record])dates[record]=@(NSDate.timeIntervalSinceReferenceDate);
+            if(dates.count>2000) {
                 NSArray *ordered=[dates keysSortedByValueUsingSelector:@selector(compare:)];
                 [dates removeObjectsForKeys:[ordered subarrayWithRange:NSMakeRange(0,dates.count-2000)]];
             }
-            // Write only after the expected object ivar was found and changed.
-            if (HIDEWriteObjectIvar(message,"_removeMessages_messageKeys",remove))
-                [NSUserDefaults.standardUserDefaults setObject:dates forKey:@"hide_deleted_timestamps"];
+            [NSUserDefaults.standardUserDefaults setObject:dates forKey:@"hide_deleted_timestamps_453"];
+            dispatch_async(dispatch_get_main_queue(),^{for(UIView *cell in HIDEVisibleMessageCells().allObjects)if(cell.window)[cell setNeedsLayout];});
         }
     }
+    return updates;
 }
-// 407 uses an NSArray of IGDirectCacheThreadUpdate value objects. Their
-// superclass manages extra instance bytes, so there are no ObjC ivars/getters.
-// Only read these two slots for the exact executable whose native consumer
-// was inspected. Never write into the wrapper or bypass thread updates.
-static BOOL HIDE407CacheLayoutSupported(void) {
-#if HIDE_HOST_CACHE_LAYOUT_VERIFIED
-    Class wrapper=NSClassFromString(@"IGDirectCacheThreadUpdate");
-    Class base=NSClassFromString(@"IGDevirtualizedValueObject");
-    return HIDEIsVerifiedHostBuild() && wrapper && base && class_getSuperclass(wrapper)==base;
-#else
-    return NO;
-#endif
-}
-
-static id HIDE407CacheField(id wrapper, size_t offset) {
-    if (!HIDE407CacheLayoutSupported() || object_getClass(wrapper)!=NSClassFromString(@"IGDirectCacheThreadUpdate"))return nil;
-    const void *bytes=(__bridge const void *)wrapper;
-    if (malloc_size(bytes)<offset+sizeof(void *))return nil;
-    void *value=NULL;memcpy(&value,(const uint8_t *)bytes+offset,sizeof(value));
-    return (__bridge id)value;
-}
-static void (*originalCache407)(id,SEL,id);
-static void hide_cache407(id object,SEL selector,id batches) {
-    if(HIDEPref(kHideKeepDeleted) && HIDE407CacheLayoutSupported() && [batches isKindOfClass:NSArray.class]) {
-        for(id batch in batches) {
-            id thread=HIDE407CacheField(batch,HIDE_HOST_CACHE_THREAD_OFFSET);
-            id updates=HIDE407CacheField(batch,HIDE_HOST_CACHE_UPDATES_OFFSET);
-            if([thread isKindOfClass:NSString.class] && [updates isKindOfClass:NSArray.class])
-                HIDEFilterRemovals(updates,thread);
-        }
+static void (*originalUnsend453)(id,SEL,id,id,id,unsigned long long,id);
+static void hide_unsend453(id object,SEL selector,id model,id thread,id fbid,unsigned long long subtype,id audience) {
+    id metadata=HIDEMessageMetadata(model);
+    NSString *identifier=HIDEMessageIdentifier(HIDEGet(metadata,@"key"));
+    NSString *record=HIDEDeletionKey(HIDEDirectAccount(object),HIDEMessageIdentifier(thread),identifier);
+    if(record)@synchronized(HIDEDeletionLock()) {
+        NSMutableDictionary *allowed=HIDEOwnDeletions();
+        for(NSString *key in allowed.allKeys)if([allowed[key] doubleValue]<=NSDate.timeIntervalSinceReferenceDate)[allowed removeObjectForKey:key];
+        if(allowed.count<2000)allowed[record]=@(NSDate.timeIntervalSinceReferenceDate+(identifier.length ? 600 : 10));
     }
-    originalCache407(object,selector,batches);
-}
-static void (*originalUnsend407)(id,SEL,id,id,id,long long,id);
-static void hide_unsend407(id object,SEL selector,id model,id thread,id fbid,long long subtype,id audience) {
-    HIDEAllowOwnDeletion(model);originalUnsend407(object,selector,model,thread,fbid,subtype,audience);
+    originalUnsend453(object,selector,model,thread,fbid,subtype,audience);
 }
 static const void *deletedBadgeKey=&deletedBadgeKey, *deletedModelKey=&deletedModelKey;
 @interface HIDEDeletedMessageButton : UIButton @end
@@ -265,10 +261,12 @@ static void HIDEUpdateDeletedBadge(UIView *cell) {
     id key=HIDEGet(metadata,@"key") ?: HIDEIvar(metadata,"_key") ?: HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey");
     NSString *identifier=HIDEMessageIdentifier(key),*thread=HIDEMessageIdentifier(HIDEGet(metadata,@"threadId") ?: HIDEGet(model,@"threadId") ?: HIDEIvar(model,"_threadId"));
     if(!thread)for(UIResponder *r=cell;r;r=r.nextResponder){thread=HIDEMessageIdentifier(HIDEGet(r,@"threadId") ?: HIDEIvar(r,"_threadId"));if(thread)break;}
-    if(!identifier || !thread)return;
-    NSNumber *timestamp=[NSUserDefaults.standardUserDefaults dictionaryForKey:@"hide_deleted_timestamps"][[NSString stringWithFormat:@"%@:%@",thread,identifier]];
+    NSString *account=nil;
+    for(UIResponder *r=cell;r && !account;r=r.nextResponder)account=HIDEDirectAccount(r);
+    NSString *record=identifier.length ? HIDEDeletionKey(account,thread,identifier) : nil;if(!record)return;
+    NSNumber *timestamp=[NSUserDefaults.standardUserDefaults dictionaryForKey:@"hide_deleted_timestamps_453"][record];
     if(![timestamp isKindOfClass:NSNumber.class])return;
-    UIView *content=HIDEIvar(cell,"_messageContentContainerView");
+    UIView *content=HIDEGet(cell,@"messageContentContainerView");
     if(![content isKindOfClass:UIView.class] || CGRectIsEmpty(content.bounds))return;
     NSString *text=HIDEContainsMessageMedia(content,0) ? nil : HIDEVisibleMessageText(content,0);
     badge=[[HIDEDeletedMessageButton alloc] initWithFrame:CGRectZero];badge.backgroundColor=[UIColor colorWithRed:213/255.0 green:45/255.0 blue:64/255.0 alpha:1];
@@ -283,7 +281,7 @@ static void HIDEUpdateDeletedBadge(UIView *cell) {
     [badge addAction:[UIAction actionWithHandler:^(UIAction *action){
         UIView *anchor=weakCell;if(!anchor.window)return;
         NSString *date=[NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timestamp.doubleValue] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterMediumStyle];
-        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"DELETION_DATE") message:date preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"DELETION_OBSERVED") message:date preferredStyle:UIAlertControllerStyleActionSheet];
         [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"OK") style:UIAlertActionStyleCancel handler:nil]];
         alert.popoverPresentationController.sourceView=anchor;alert.popoverPresentationController.sourceRect=anchorRect;
         [HIDETopViewController() presentViewController:alert animated:YES completion:nil];
@@ -295,6 +293,7 @@ static void hide_deletedLayout(UIView *cell,SEL selector) { originalCellLayout(c
 static void (*originalCellConfigure)(id,SEL,id,id,id);
 static void hide_deletedConfigure(id cell,SEL selector,id model,id factory,id launcher) {
     originalCellConfigure(cell,selector,model,factory,launcher);
+    [HIDEVisibleMessageCells() addObject:cell];
     objc_setAssociatedObject(cell,deletedModelKey,model,OBJC_ASSOCIATION_RETAIN_NONATOMIC); HIDEUpdateDeletedBadge(cell);
 }
 
@@ -355,7 +354,7 @@ BOOL HIDEFeatureAvailable(NSString *key) {
     if([key isEqualToString:kHideKeepDeleted]) {
         Ivar field=class_getInstanceVariable(NSClassFromString(@"IGDirectMessageUpdate"),"_removeMessages_messageKeys");
         if(!field || ivar_getTypeEncoding(field)[0]!='@')return NO;
-        return originalCache407 && originalUnsend407 && HIDE407CacheLayoutSupported();
+        return HIDEIsVerifiedHostBuild() && originalRemove453 && originalUnsend453 && originalCellLayout && originalCellConfigure;
     }
     if([key isEqualToString:kHideLongVoice]) {
         return originalRecord407Start && HIDE407RecordingLimitField();
@@ -403,10 +402,12 @@ void HIDEInstallDLFeatures(void) {
     originalScreenshotMark=(void *)HIDEClassHookChecked(@"IGDirectMessageMarkType",NSSelectorFromString(@"visualItemScreenshotted"),(IMP)hide_screenshotMark,"@@:");
     originalMarkInit=(HIDEMarkInit)HIDEHookChecked(@"IGDirectMessageMark",NSSelectorFromString(@"initWithClientId:threadId:messageId:type:isE2ELoggingSampled:originalMessageClientContext:productType:"),(IMP)hide_markInit,"@@:@@@@B@q");
     originalScreenshotBlock=(void *)HIDEHookChecked(@"IGStoryViewerContainerView",NSSelectorFromString(@"setShouldBlockScreenshot:viewModel:"),(IMP)hide_screenshotBlock,"v@:B@");
-    originalCache407=(void *)HIDEHookChecked(@"IGDirectCache",NSSelectorFromString(@"_applyThreadUpdates:"),(IMP)hide_cache407,"v@:@");
-    originalUnsend407=(void *)HIDEHookChecked(@"IGDirectMessageMenuActionHandler",NSSelectorFromString(@"unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:"),(IMP)hide_unsend407,"v@:@@@q@");
-    originalCellLayout=(void *)HIDEHookChecked(@"IGDirectMessageCell",@selector(layoutSubviews),(IMP)hide_deletedLayout,"v@:");
-    originalCellConfigure=(void *)HIDEHookChecked(@"IGDirectMessageCell",NSSelectorFromString(@"configureWithViewModel:ringViewSpecFactory:launcherSet:"),(IMP)hide_deletedConfigure,"v@:@@@");
+    if(HIDEIsVerifiedHostBuild()) {
+        originalRemove453=(void *)HIDEHookChecked(@"IGDThreadDeltaUpdateFactory",NSSelectorFromString(@"removeItemUpdatesForThreadId:itemId:sequenceId:"),(IMP)hide_remove453,"@@:@@@");
+        originalUnsend453=(void *)HIDEHookChecked(@"IGDirectMessageMenuActionHandler",NSSelectorFromString(@"unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:"),(IMP)hide_unsend453,"v@:@@@Q@");
+        originalCellLayout=(void *)HIDEHookChecked(@"_TtC19IGDirectMessageCell19IGDirectMessageCell",@selector(layoutSubviews),(IMP)hide_deletedLayout,"v@:");
+        originalCellConfigure=(void *)HIDEHookChecked(@"_TtC19IGDirectMessageCell19IGDirectMessageCell",NSSelectorFromString(@"configureWithViewModel:ringViewSpecFactory:mobileConfig:"),(IMP)hide_deletedConfigure,"v@:@@@");
+    }
     SEL recordStart=NSSelectorFromString(@"startRecordingWithButtonTapFromEntryPoint:");
     originalRecordEffects=(void *)HIDEHookChecked(HIDE_HOST_VOICE_CLASS,NSSelectorFromString(@"startRecordingWithButtonTapFromEntryPoint:preSelectedVoiceEffectId:voiceEffectName:"),(IMP)hide_recordEffects,"v@:q@@");
     originalRecord407Start=(void *)HIDEHookChecked(HIDE_HOST_VOICE_CLASS,recordStart,(IMP)hide_record407Start,"v@:q");

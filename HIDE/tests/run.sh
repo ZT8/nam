@@ -9,5 +9,7 @@ trap 'rm -rf "$TEST_DIR"' EXIT
 "$TEST_DIR/media"
 "${HOST_CC:-cc}" -std=c11 -Wall -Wextra -Werror tests/receipt_policy_test.c -lm -o "$TEST_DIR/receipts"
 "$TEST_DIR/receipts"
+"${HOST_CC:-cc}" -std=c11 -Wall -Wextra -Werror tests/direct_policy_test.c -lm -o "$TEST_DIR/direct"
+"$TEST_DIR/direct"
 python3 tests/feature_inventory.py
 bash -n build.sh

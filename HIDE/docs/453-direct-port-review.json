@@ -1,0 +1,47 @@
+{
+  "target": "Instagram 453.0.0",
+  "uuid": "4c4c4477-5555-3144-a180-32cb70c4246c",
+  "status": "experimental; native iPhone and server behavior not tested",
+  "retention": {
+    "hook": "IGDThreadDeltaUpdateFactory removeItemUpdatesForThreadId:itemId:sequenceId:",
+    "native_address": "0x1060c7f7c",
+    "remove_reason": 0,
+    "reason_evidence": "0x1060c8034 sets x2=0 before 0x1060c80a0 constructs the removal variant",
+    "transport": "Django/Iris only",
+    "scope": [
+      "account",
+      "thread",
+      "message"
+    ],
+    "own_unsend": "explicit menu hook grants 600s for an identified message, or a 10s thread bypass for an unknown model",
+    "timestamps": "first local receipt of the deletion event; not an authoritative server deletion timestamp",
+    "preferences_store": "IDs and timestamps only; message bodies stay in Instagram cache"
+  },
+  "cell_metadata": {
+    "native_schema": "0x112177490",
+    "base_class": "IGDevirtualizedValueObject",
+    "base_instance_size": 16,
+    "base_ro_in_FBSharedFramework": "0x28cd5c8",
+    "field": "metadata",
+    "field_relative_offset": 8,
+    "absolute_slot": 24,
+    "swift_cell": "_TtC19IGDirectMessageCell19IGDirectMessageCell",
+    "swift_ivars_read": false
+  },
+  "manual_read": {
+    "tracker": "IGDirectThreadLastSeenMessageTracker",
+    "native_mark_method": "0x10acfb7a8",
+    "registration": "checked native initializer and weak registry, keyed by account/thread",
+    "eye": "SF Symbols eye, after confirmation; native eligibility checks retained",
+    "global_privacy_setting_temporarily_disabled": false,
+    "mqtt": "specific marker object, matching seen/thread and immutable payload, 15s monotonic-clock permission",
+    "http": "existing account/target/request-body scoped permission",
+    "known_limitations": [
+      "encrypted/Instamadillo transport delivery not verified",
+      "server privacy settings may prevent read-receipt delivery",
+      "tracker/eligibility checks may leave the action unavailable for some threads"
+    ],
+    "asynchronous_native_service": "Bound to captured service instance, account/thread, newest published message ID and 15s expiry; resumes scope only for the matching Django read action. Other queued transports remain unverified."
+  },
+  "source_DLinjected_binary_used_for_execution": false
+}

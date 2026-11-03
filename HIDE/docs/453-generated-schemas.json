@@ -1,0 +1,294 @@
+{
+  "IGDirectCacheThreadUpdate": {
+    "descriptor": "0x11217ec90",
+    "size": 32,
+    "fields": [
+      {
+        "name": "threadId",
+        "relative_offset": 0,
+        "kind": 1
+      },
+      {
+        "name": "threadUpdates",
+        "relative_offset": 8,
+        "kind": 1
+      },
+      {
+        "name": "mutationId",
+        "relative_offset": 16,
+        "kind": 33
+      },
+      {
+        "name": "sequenceId",
+        "relative_offset": 24,
+        "kind": 33
+      }
+    ]
+  },
+  "IGDirectMessageCellViewModel": {
+    "descriptor": "0x112177490",
+    "size": 328,
+    "fields": [
+      {
+        "name": "context",
+        "relative_offset": 0,
+        "kind": 1
+      },
+      {
+        "name": "metadata",
+        "relative_offset": 8,
+        "kind": 1
+      },
+      {
+        "name": "content",
+        "relative_offset": 16,
+        "kind": 33
+      },
+      {
+        "name": "theme",
+        "relative_offset": 24,
+        "kind": 1
+      },
+      {
+        "name": "layoutSpec",
+        "relative_offset": 32,
+        "kind": 1
+      },
+      {
+        "name": "sidebarStatusViewModel",
+        "relative_offset": 40,
+        "kind": 1
+      },
+      {
+        "name": "senderViewModel",
+        "relative_offset": 48,
+        "kind": 1
+      },
+      {
+        "name": "supportedMessageActions",
+        "relative_offset": 56,
+        "kind": 1
+      },
+      {
+        "name": "reactionsViewModel",
+        "relative_offset": 64,
+        "kind": 33
+      },
+      {
+        "name": "commentsBubbleViewModel",
+        "relative_offset": 72,
+        "kind": 33
+      },
+      {
+        "name": "repliesBubbleViewModel",
+        "relative_offset": 80,
+        "kind": 33
+      },
+      {
+        "name": "supplementaryViewModels",
+        "relative_offset": 88,
+        "kind": 33
+      },
+      {
+        "name": "shouldDisableLinks",
+        "relative_offset": 96,
+        "kind": 3
+      },
+      {
+        "name": "shouldAddShadowOnLongPress",
+        "relative_offset": 97,
+        "kind": 3
+      },
+      {
+        "name": "shouldAllowTapActionOnLongPress",
+        "relative_offset": 98,
+        "kind": 3
+      },
+      {
+        "name": "module",
+        "relative_offset": 104,
+        "kind": 1
+      },
+      {
+        "name": "isScrollResponsivenessFixEnabled",
+        "relative_offset": 112,
+        "kind": 3
+      },
+      {
+        "name": "collectionSaveIconState",
+        "relative_offset": 120,
+        "kind": 4
+      },
+      {
+        "name": "auxiliaryContent",
+        "relative_offset": 128,
+        "kind": 33
+      },
+      {
+        "name": "shouldShowTranslatedText",
+        "relative_offset": 136,
+        "kind": 3
+      },
+      {
+        "name": "translatedString",
+        "relative_offset": 144,
+        "kind": 33
+      },
+      {
+        "name": "isMessageTranslationAvailable",
+        "relative_offset": 152,
+        "kind": 3
+      },
+      {
+        "name": "messageDialect",
+        "relative_offset": 160,
+        "kind": 33
+      },
+      {
+        "name": "dynamicallyTranslatedString",
+        "relative_offset": 168,
+        "kind": 33
+      },
+      {
+        "name": "intervention",
+        "relative_offset": 176,
+        "kind": 33
+      },
+      {
+        "name": "mediaInterventions",
+        "relative_offset": 184,
+        "kind": 33
+      },
+      {
+        "name": "enableImageFallbackURL",
+        "relative_offset": 192,
+        "kind": 3
+      },
+      {
+        "name": "enableVideoFallbackURL",
+        "relative_offset": 193,
+        "kind": 3
+      },
+      {
+        "name": "messageRepliesInfoMetadata",
+        "relative_offset": 200,
+        "kind": 33
+      },
+      {
+        "name": "isMultiReactEnabled",
+        "relative_offset": 208,
+        "kind": 3
+      },
+      {
+        "name": "shouldBoldStyleMentions",
+        "relative_offset": 209,
+        "kind": 3
+      },
+      {
+        "name": "swipeActionType",
+        "relative_offset": 216,
+        "kind": 4
+      },
+      {
+        "name": "agentMessageMetadata",
+        "relative_offset": 224,
+        "kind": 33
+      },
+      {
+        "name": "genAIMessageMetadata",
+        "relative_offset": 232,
+        "kind": 33
+      },
+      {
+        "name": "aiConsumptionMetadata",
+        "relative_offset": 240,
+        "kind": 33
+      },
+      {
+        "name": "messageContactInfo",
+        "relative_offset": 248,
+        "kind": 33
+      },
+      {
+        "name": "shouldUnderlineMessageContactInfo",
+        "relative_offset": 256,
+        "kind": 3
+      },
+      {
+        "name": "canTranslate",
+        "relative_offset": 257,
+        "kind": 3
+      },
+      {
+        "name": "mustacheContent",
+        "relative_offset": 264,
+        "kind": 33
+      },
+      {
+        "name": "canSelectInMultiSelectMode",
+        "relative_offset": 272,
+        "kind": 3
+      },
+      {
+        "name": "isSelectedInMultiSelectMode",
+        "relative_offset": 273,
+        "kind": 3
+      },
+      {
+        "name": "shouldShowSwipeToReplyNudge",
+        "relative_offset": 274,
+        "kind": 3
+      },
+      {
+        "name": "isUsingCustomTheme",
+        "relative_offset": 275,
+        "kind": 3
+      },
+      {
+        "name": "threadInBottomSheet",
+        "relative_offset": 276,
+        "kind": 3
+      },
+      {
+        "name": "replyMessageBubbleTreatmentEnabled",
+        "relative_offset": 277,
+        "kind": 3
+      },
+      {
+        "name": "messageNuxOneClickUpsellMetadata",
+        "relative_offset": 280,
+        "kind": 33
+      },
+      {
+        "name": "imageGlyphLocations",
+        "relative_offset": 288,
+        "kind": 33
+      },
+      {
+        "name": "pendingMessageSendStatus",
+        "relative_offset": 296,
+        "kind": 33
+      },
+      {
+        "name": "xmaMessage",
+        "relative_offset": 304,
+        "kind": 33
+      },
+      {
+        "name": "lightboxSubtitle",
+        "relative_offset": 312,
+        "kind": 33
+      },
+      {
+        "name": "shouldHideDoodles",
+        "relative_offset": 320,
+        "kind": 3
+      },
+      {
+        "name": "canAccessVoiceEffects",
+        "relative_offset": 321,
+        "kind": 3
+      }
+    ]
+  }
+}

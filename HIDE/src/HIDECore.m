@@ -137,6 +137,7 @@ NSString *HIDEL(NSString *key) {
             @"LOCK_AFTER": @"Lock",
             @"LOCK_NOW": @"Immediately",
             @"LOCK_1M": @"After 1 minute",
+            @"LOCK_5M": @"After 5 minutes",
             @"LOCK_15M": @"After 15 minutes",
             @"LOCK_1H": @"After 1 hour",
             @"UNLOCK": @"Unlock",
@@ -246,6 +247,7 @@ NSString *HIDEL(NSString *key) {
             @"LOCK_AFTER": @"وقت القفل",
             @"LOCK_NOW": @"فوراً",
             @"LOCK_1M": @"بعد دقيقة",
+            @"LOCK_5M": @"بعد ٥ دقائق",
             @"LOCK_15M": @"بعد ١٥ دقيقة",
             @"LOCK_1H": @"بعد ساعة",
             @"UNLOCK": @"فتح القفل",
@@ -271,7 +273,9 @@ NSString *HIDEL(NSString *key) {
             @"FOLLOW_NONE": @"ما تتابعون بعض",
         };
     });
-    NSString *s = (arabic ? ar : en)[key];
+    NSString *selected=[NSUserDefaults.standardUserDefaults stringForKey:@"hide_ui_language"];
+    BOOL useArabic=selected ? [selected isEqualToString:@"ar"] : arabic;
+    NSString *s = (useArabic ? ar : en)[key];
     return s ?: en[key] ?: key;
 }
 

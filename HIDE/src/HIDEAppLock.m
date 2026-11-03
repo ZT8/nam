@@ -14,6 +14,7 @@ NSInteger HIDELockDelay(void) {
 NSString *HIDELockDelayTitle(NSInteger s) {
     if (s >= 3600) return HIDEL(@"LOCK_1H");
     if (s >= 900) return HIDEL(@"LOCK_15M");
+    if (s >= 300) return HIDEL(@"LOCK_5M");
     if (s >= 60) return HIDEL(@"LOCK_1M");
     return HIDEL(@"LOCK_NOW");
 }

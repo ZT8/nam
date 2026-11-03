@@ -2,6 +2,7 @@
 #import "HIDECore.h"
 #import "HIDE407.h"
 #import <stdlib.h>
+void HIDEReportFromController(UIViewController *controller);
 
 #define HIDE_BLUE   [UIColor colorWithRed:0.20 green:0.42 blue:1.00 alpha:1]
 #define HIDE_PURPLE [UIColor colorWithRed:0.55 green:0.30 blue:1.00 alpha:1]
@@ -385,14 +386,12 @@
     [self presentViewController:a animated:YES completion:nil];
 }
 
-- (void)showCompatibilityReport {
+- (NSString *)compatibilityReportText {
     NSArray *records = HIDEHookDiagnostics();
-    NSUInteger installed = 0;
     NSString *actual = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"unknown";
     NSMutableString *report = [NSMutableString stringWithFormat:@"HIDE %@\nTarget Instagram: %@\nInstalled app: %@\n\n", HIDE_VERSION, HIDE_TARGET_INSTAGRAM, actual];
     [report appendFormat:@"Supplied 407 executable UUID matches: %@\n\n",HIDEIsVerified407Build() ? @"yes" : @"no"];
     for (NSDictionary *record in records) {
-        if ([record[@"status"] isEqualToString:@"installed"]) installed++;
         [report appendFormat:@"[%@] %@ %@\nexpected: %@\nactual: %@\n\n", record[@"status"], record[@"class"], record[@"selector"], record[@"expected"], record[@"actual"]];
     }
     // Metadata only: never read request bodies, headers, message values or credentials.
@@ -414,14 +413,11 @@
     [report appendString:@"\nStructural feature availability (not runtime behavior verification):\n"];
     for(NSDictionary *section in _sections)for(NSArray *row in section[@"rows"])
         if([row[1] length])[report appendFormat:@"%@: %@\n",row[1],HIDEFeatureAvailable(row[1]) ? @"available" : @"unavailable"];
-    NSString *summary = [NSString stringWithFormat:HIDEL(@"HOOK_SUMMARY"), (unsigned long)installed, (unsigned long)(records.count - installed)];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:HIDEL(@"COMPATIBILITY") message:summary preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"COPY_REPORT") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        UIPasteboard.generalPasteboard.string = report;
-        HIDEToast(HIDEL(@"COPIED"));
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"OK") style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
+    return report;
+}
+
+- (void)showCompatibilityReport {
+    HIDEReportFromController(self);
 }
 
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)ip {
@@ -437,11 +433,35 @@
 }
 @end
 
-void HIDEPresentSettings(void) {
+void HIDEPresentAdvancedSettingsFromController(UIViewController *controller) {
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[HIDESettingsViewController new]];
     nav.modalPresentationStyle = UIModalPresentationFormSheet;
     nav.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;
-    [HIDETopViewController() presentViewController:nav animated:YES completion:nil];
+    [controller presentViewController:nav animated:YES completion:nil];
+}
+
+
+UIViewController *HIDECreateWebSettings(void);
+void HIDEReportFromController(UIViewController *controller) {
+    HIDESettingsViewController *source=[HIDESettingsViewController new];
+    [source loadViewIfNeeded];
+    NSString *report=[source compatibilityReportText];
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"COMPATIBILITY") message:@"Instagram 407.0.0" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"COPY_REPORT") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIPasteboard.generalPasteboard.string=report;HIDEToast(HIDEL(@"COPIED"));
+    }]];
+    BOOL arabic=[[NSUserDefaults.standardUserDefaults stringForKey:@"hide_ui_language"] isEqualToString:@"ar"];
+    [alert addAction:[UIAlertAction actionWithTitle:arabic ? @"الإعدادات الإضافية" : @"Additional settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        HIDEPresentAdvancedSettingsFromController(controller);
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"OK") style:UIAlertActionStyleCancel handler:nil]];
+    [controller presentViewController:alert animated:YES completion:nil];
+}
+void HIDEPresentSettings(void) {
+    UIViewController *controller=HIDECreateWebSettings();
+    controller.modalPresentationStyle=UIModalPresentationPageSheet;
+    controller.overrideUserInterfaceStyle=UIUserInterfaceStyleDark;
+    [HIDETopViewController() presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - Entry points

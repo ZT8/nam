@@ -1,3 +1,13 @@
+# 1.9.2 (approved design integration test build)
+
+- Embed the exact uploaded HIDE_design.html, including its logo, CSS, original script and phone frame. Render with WKWebView; keep native preference binding in a separate injected script.
+- Wire the existing feature controls, persist accent/language/glass style, use the supplied WhatsApp URL, authenticate before enabling app lock and support the design's five-minute lock delay.
+- Keep unsupported separate chat lock off. The combined screenshot/replay control writes both existing settings. Keep omitted native settings reachable through Compatibility > Additional settings.
+- Block navigation away from the bundled document inside the bridge-enabled view. Whitelist commands and preference keys; use a weak message handler.
+- Compare all five tabs with the original rendering, exact layout/CSS and a tight tolerance for backdrop-blur rounding; check native-confirmed toggles, unsupported controls and link/settings commands.
+
+Device WKWebView, iOS CSS/font rendering and native feature behavior remain untested on hardware. Approved HTML bytes are unchanged; the report tile's placeholder description is replaced with an action label. Dismiss the settings sheet with the standard iOS downward swipe.
+
 # 1.9.1 (407 compatibility test build)
 
 - Verify private method signatures against the supplied Instagram executable; add a reproducible, read-only native-contract checker.

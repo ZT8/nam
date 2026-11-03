@@ -1,26 +1,17 @@
 {
-  "release": "HIDE 1.9.4 - manual receipts and download gallery test build",
-  "target_instagram": "407.0.0",
+  "release": "HIDE V1.0 - Instagram 453 migration test build",
+  "target_instagram": "453.0.0",
+  "minimum_ios": "16.3",
   "native_instagram_runtime_tested": false,
   "ios_device_tested": false,
-  "comparison": {
-    "dl_options_mapped": 26,
-    "new_settings_since_1_8": 11,
-    "total_settings_switches": 27,
-    "all_new_defaults_off": true,
-    "pending_workflow": null,
-    "design_controls": 28,
-    "unsupported_design_controls": [
-      "cl"
-    ],
-    "pending_device_validation": [
-      "manual read/story delivery including encrypted chats",
-      "deleted-text presentation and timestamps",
-      "cover/video-frame generation and Photos saving"
-    ]
-  },
+  "binary_sha256": "1890e91d8b1d0c43a3711b3f87ab9d95457d33553b4e2f26c439160014450f7a",
   "build": {
     "result": "passed",
+    "architecture": "arm64",
+    "minimum_ios": "16.3",
+    "warnings": 0,
+    "errors": 0,
+    "signed_for_installation": false,
     "compiled_modules": [
       "src/HIDEAppLock.m",
       "src/HIDEBatch.m",
@@ -38,102 +29,66 @@
       "src/HIDEVoice.m",
       "src/HIDEVoiceImport.m",
       "src/HIDEWebSettings.m"
-    ],
-    "architecture": "arm64",
-    "minimum_ios": [
-      15,
-      0,
-      0
-    ],
-    "sdk_metadata_version": [
-      16,
-      4,
-      0
-    ],
-    "sdk_directory": "iPhoneOS16.5.sdk",
-    "sdk_repository_commit": "theos/sdks@0222fd5413cf4b9af096f37b4621afa2688572f7",
-    "compiler": "Debian Clang 19.1.7",
-    "linker": "LLD 19.1.7",
-    "signed": false,
-    "warnings": 0,
-    "errors": 0,
-    "additional_frameworks": [
-      "WebKit",
-      "ImageIO"
     ]
   },
   "tests": {
-    "host_lock_policy_and_http_status": "passed",
-    "host_media_policy": "passed: 754 aspect-fit combinations, portrait/landscape/rotation and duration boundaries",
-    "feature_inventory": "passed: 26 DL options mapped; 27 distinct preference keys in unified UI; no legacy controller or additional-settings route",
-    "preview": "passed: generated from current assets and adapter; browser regression suite",
+    "host_policies": "passed",
+    "feature_inventory": "passed: all 27 preference keys retained; availability guards remain",
+    "native_453_contracts": "passed: profile entry delegates, live/story methods, voice entry points and Double reflection; checked again after load command replacement",
+    "settings_browser": "passed: full-screen layout, 5 tabs, stored theme/language and correct target/version labels",
+    "gallery_browser": "passed: gray previews selectable, native-only progress and media selection",
     "static_analysis": {
       "result": "passed; no diagnostics",
       "modules": [
-        "HIDEManualSeen",
-        "HIDEPrivacy",
-        "HIDEDownloader",
         "HIDEDLFeatures",
-        "HIDEBatch",
-        "HIDEExtras"
-      ],
-      "scope": "changed Objective-C modules"
+        "HIDESettings",
+        "HIDEWebSettings"
+      ]
     },
-    "native_iOS_UI_AVFoundation_and_Photos": "not run",
-    "native_voice_send_and_delivery": "not run",
-    "Instagram_privacy_effectiveness": "not run",
-    "Instagram_407_private_API_semantics": "not run on device",
-    "Instagram_407_private_API_contracts": "passed: checked hooks, Swift Double field type and native cache consumer slots against supplied executable; does not verify runtime semantics",
-    "approved_design": "passed: full viewport without mockup at 320x568, 390x844, 430x932; 5 tabs; inline app-lock SVG; matching close button; old native settings class absent from compiled binary",
-    "design_bridge": "passed: unified preview interactions; all 27 preferences represented; unsupported chat lock off; language/style/color and preference persistence; report, close and WhatsApp commands",
-    "WKWebView_on_iOS_device": "not run",
-    "host_receipt_policy": "passed: target isolation, body fingerprint, expiry, malformed lengths, invalid clocks, missing grants",
-    "gallery_ui": "passed: 3 sizes, no mockup, selection independent from failed preview, video marker, native-confirmed selection and native-only progress",
-    "native_receipt_delivery": "not run: no iOS device; invoking the SDK does not establish delivery",
-    "native_deleted_message_rendering": "not run: native model/container contracts verified statically",
-    "native_gallery_AVFoundation_Photos": "not run"
+    "native_iOS_launch": "not run",
+    "native_privacy_and_receipt_delivery": "not run"
   },
-  "binary_sha256": "e923627f3310e73ca78ab2026286dcc3679cfcd27618f3ad90f28eda97d43322",
-  "original_uploaded_binary_sha256": "098b8c9701aaf64a586ed5d755cf84d2d5be3fa07de2fa921f802ca852e56165",
-  "uploaded_source_zip_sha256": "9e6266b8470c5f8e1d9566891c0bc733a09412b3a9a8c8d81b8eed14c3cf064a",
+  "known_unavailable": [
+    "deleted Direct message retention/presentation",
+    "manual Direct read-eye action"
+  ],
   "source_checksums": {
-    "CHANGELOG.md": "862fc007f16e1fd1f674e3ed3017d03211b591f47d2e9073a5d4806cade2103e",
-    "HIDE_settings_preview.html": "8c54f1df993df53348d69732840e1ab97380aa86631ff49b089096d1859598db",
-    "README-ar.md": "acc2ff4efd601707a9d76f423eca56be1010c58d176e4774d6262ba22fc13265",
+    "CHANGELOG.md": "8d1cb37a0325eb4c9f1b8401de5c96a18a03532db25bfb87060bf8057ede4ad6",
+    "HIDE_settings_preview.html": "eeae6d93b53ed0309f524f7031776b4970c26da3aacf903f1cae64f932649730",
+    "README-ar.md": "09a261c9e11b95ed52b718993092c3520da146cf376e77eb56112a3d126b1a8a",
     "assets/HIDE_design.html": "dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4",
     "assets/HIDE_download_all.original.html": "a7fd3cea0b64b66dcf522df54c4354a1aa436c980c86f1a399096d3a3f8c238c",
     "assets/HIDE_gallery.html": "0abedb14d519983477dbb3364585478f46295a4818a8716f991f24f5eaf839c1",
-    "assets/native-bridge.js": "1116c1258972fd9f0c6d2889a10b9fe3b4dd871dc2157097359de2660593eae4",
-    "build.sh": "34c179833dccacfb34aea540ee8ab833403270befe4dd712d84f26e83c6bb1ad",
-    "docs/407-native-contracts.json": "7c1ef7dc06e6e03f78aef53033ea1c5df453222e8373709249926912147e6512",
-    "docs/DL-COMPARISON-ar.md": "c60a6d4344208f0daed6ed6f32c009519e7ed46beb97a41e315efee57a5be8e9",
-    "docs/design-integration.json": "bc7419aeb4f981a0943218e4e583d155f50934984d442890da0b3edd334a7aee",
-    "docs/design-render-comparison.json": "52d9f1b32c87a3218bb226dc323990b1c5666ea2094b152ad6d2128c0718c048",
-    "docs/dl-feature-map.json": "17bc20ad0692646c0c94b7d31546577152138cf35932d8c9c67ee762ad1f26f2",
-    "docs/manual-receipt-contracts.json": "cdeb42c657c026d2f54959249d29913d60be213c68c4c4042d647c02382ad1d6",
-    "src/HIDE407.h": "cc4e6734e84a6516169a5edfa5f64e865c9169ebe0af75514d4da17d6454829e",
+    "assets/native-bridge.js": "362e2cd182a9400c84ff44da2eb33d11f330c775fa538a127c75178b4768bb46",
+    "build.sh": "8a757fb449dd700301d5ffa765c0ec1397115b8e7abc89d6f58333f03c34462e",
+    "docs/453-hook-review.json": "f85b94a164eaefbcb9a96af919db25028a8d717ea1e3c256544c78ef862b3425",
+    "docs/453-native-contracts.json": "cfbab93e970a916f1d15b94ad6973d7bce5f14b443607d4583bc086f049c1724",
+    "docs/453-packaged-native-contracts.json": "495392135732b3ece91da7a3da8bb7ca9866f6861f36a5cd7153b65d93e61a2e",
+    "docs/453-voice-layout.json": "ce609f7576cab3dbcb8f67d565b882664890631858f64f8da5a920a968e7705a",
+    "docs/dl-feature-map.json": "549e1f37683895e96922ffb3b52ebe8d6874fc79721c4e7e356fbfdc8d5afee5",
     "src/HIDEAppLock.m": "5ba6702df8c0f41c15f37d04bfd9409bb7ed7bc18d580bdffe12724e9d6d1c0a",
     "src/HIDEBatch.m": "5aab6d6a40030bcfa76ec75cd21887f31c7448906fb86f548d20ed4ef35c49ae",
     "src/HIDEConfirm.m": "567437c497d0775f7ec0631560d1f9865beba922e623a1bc2ad41f1df72c213b",
-    "src/HIDECore.h": "33e89f4e85d21fac2e1d330cab48cb8a765f9a6f56c8930772d9cf21ce7293ca",
+    "src/HIDECore.h": "5da818a515057d8ac43d74f6e6a2577124a351ec823e4fa4aa8fe1e051d9cd6f",
     "src/HIDECore.m": "49a93883a9c8425f1899a24dab6a8bf2e0750220cba1e9ca51bd4ecb86c9bc62",
-    "src/HIDEDLFeatures.m": "4a30cac37cb520c6018ac925bfc62ebd90180438c7b7871cacc6c03e1d83710c",
-    "src/HIDEDesignData.h": "2b0343636b42bb3960ce3c4dc14df4344a2c472c073b1d13f180bf0cc6a54898",
+    "src/HIDEDLFeatures.m": "641de96d5a203f273d62330740015a8eaafdf21fac2ef8c67aeff621d5b825cd",
+    "src/HIDEDesignData.h": "430b7249bd86ee10d33dc4cad011cf8c78e7cbe3ce152544b0ffec3020451948",
     "src/HIDEDownloader.m": "ac55fadb3c45a201646811775ecde68973554a49c6505e4ebc97d19a7909c029",
     "src/HIDEExtras.m": "2aedc5e525c1b5ca5c7af7e3533feac0e5aa25093453b097c8ee3db7363d20a2",
+    "src/HIDEHostLayout.h": "95f2044d3830772e662fc3824cb46a49d7a132101b9e90ff2941ad7001637679",
     "src/HIDEManualSeen.m": "5d193ccb1516e652bd0c731615db865c218a72481051e247cb22503806492961",
     "src/HIDEMedia.m": "30bd25ffc237b0b0e606d23853cba2593c237af5bfcbb73cd7c2f6fdbb186480",
     "src/HIDEMediaPolicy.h": "df799bb3da03f90d7c4360622eaa81088098a3486f0d73475b654a96350cd06d",
     "src/HIDEPolicy.h": "e4ad56058ad71c2bc5e4aadf482523f0c79a0b03be93314f7f3b60cfc781fb0b",
     "src/HIDEPrivacy.m": "df109b6a06b97f330edfeaf0a4e161dce139348372813304a66830c5b514f449",
     "src/HIDEReceiptPolicy.h": "b64abc48c3614c98b43637770b7a52e63c68a986b8266bb7e7c31ad219f7e6a5",
-    "src/HIDESettings.m": "9d14e5911b7b3403667396af81a1d344d3ecd8f8bc1b390202364127b7e5a2b6",
+    "src/HIDESettings.m": "10aa924e26c6ad5e4f2bf3bf0450efc973e148dcae48c6d53fdc120cd89e6a76",
     "src/HIDESideloadFix.m": "02c723b8d6e82b7eb018a996e89e50647b471368a76f86ff62821585597d2fc1",
     "src/HIDETransfer.m": "84aee5bd479b9d5b81208d77ebecec31923e45f3dc1c37961aafe647517a3961",
     "src/HIDEVoice.m": "714b276424d5c65fa53833ba289b77b682e696d26c2e68fa85dce3de720d73f6",
     "src/HIDEVoiceImport.m": "dfa4cbfb424500b47e139a3a656017994882e8904d3026e8d9b13c6ed7ca6c2e",
-    "src/HIDEWebSettings.m": "49e7708019b7bad22889d2e92e2e21b74d0930e54dbec98ffd6366ea760d11da",
-    "tests/design_bridge_smoke.py": "20384e63a362da72e6a5982d78c20914733db4153516de31b9239432cbd6d26c",
+    "src/HIDEWebSettings.m": "0f9845c6d5bda482221baca30a095b34a726ec2ec08f8e30a44b4cf5b8c3936b",
+    "tests/design_bridge_smoke.py": "cc809b85386b851b87e95c1e0a89e8686350a534b808bb8f2d93dbae6f404eb0",
     "tests/feature_inventory.py": "1330c307727d3d1e3420983d6c594f1579f290cd61e4bcac6a8f2ca9a183e2cd",
     "tests/gallery_smoke.py": "da59f713d833a7f31c232cd159b1edb2646e1543359b9add023f9a65b497930f",
     "tests/lock_policy_test.c": "62526296108d83ebde6460209b8db1650e602d75020f3b9cfe7862b1c17eb628",
@@ -142,10 +97,7 @@
     "tests/receipt_policy_test.c": "a34048ebdb856a3234c3348edadd7046f2312a954f3a0c391f67c92a135bcf91",
     "tests/run.sh": "d4f2c8d15a664107bbea97e4fcb23e8313b721f8e3ca53fdd11ec6d1e5780fa6",
     "tools/embed_design.py": "67efbf48672f9c72340a7cd0ddf62859d6807496d1089d8f831f9f44d49c4846",
-    "tools/update_preview.py": "8c6b09a6fbf70552e977dfd6ebbd1bd0befffb50e6aca7af3b33a23db1f64634",
-    "tools/verify_instagram407.py": "e6c266a5919479195f97ced68abb469ec764583c7d6657bde09c1d00f3aefdc3"
-  },
-  "native_contract_report": "docs/407-native-contracts.json",
-  "approved_design_report": "docs/design-integration.json",
-  "manual_receipt_contracts": "docs/manual-receipt-contracts.json"
+    "tools/update_preview.py": "04a425211229cc3d04d98cd4c35406dbb715c3ea9d1ce2dfb6ae30a82250006d",
+    "tools/verify_instagram453.py": "afbee47a8858c20cefc49da0e06ca32a5798c913e5267593629156f51b9e80b3"
+  }
 }

@@ -1,6 +1,6 @@
 // Settings entry points and compatibility report; all controls use the web design.
 #import "HIDECore.h"
-#import "HIDE407.h"
+#import "HIDEHostLayout.h"
 #import <stdlib.h>
 UIViewController *HIDECreateWebSettings(void);
 NSArray<NSString *> *HIDEAllWebPreferenceKeys(void);
@@ -9,14 +9,14 @@ static NSString *HIDECompatibilityReportText(void) {
     NSArray *records = HIDEHookDiagnostics();
     NSString *actual = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"unknown";
     NSMutableString *report = [NSMutableString stringWithFormat:@"HIDE %@\nTarget Instagram: %@\nInstalled app: %@\n\n", HIDE_VERSION, HIDE_TARGET_INSTAGRAM, actual];
-    [report appendFormat:@"Supplied 407 executable UUID matches: %@\n\n",HIDEIsVerified407Build() ? @"yes" : @"no"];
+    [report appendFormat:@"Supplied 453 executable UUID matches: %@\n\n",HIDEIsVerifiedHostBuild() ? @"yes" : @"no"];
     for (NSDictionary *record in records) {
         [report appendFormat:@"[%@] %@ %@\nexpected: %@\nactual: %@\n\n", record[@"status"], record[@"class"], record[@"selector"], record[@"expected"], record[@"actual"]];
     }
     // Metadata only: never read request bodies, headers, message values or credentials.
-    [report appendString:@"Selected 407 API metadata (no instance values):\n"];
+    [report appendString:@"Selected 453 API metadata (no instance values):\n"];
     NSArray *terms=@[@"seen",@"body",@"param",@"story",@"reel",@"item",@"media",@"voice",@"audio",@"record",@"request",@"update",@"initWithUserSession"];
-    for(NSString *name in @[@"IGStoryViewerViewController",@"IGStoryFullscreenSectionController",@"IGStoryViewerViewModel",@"IGURLRequest",@"IGScopedNetworker",@"IGDirectThreadViewController",@"IGDirectAudioWaveform",@"IGLiveViewerCountIntervalPuller",@"IGDirectCache",@"IGDirectCacheThreadUpdate",@"IGDirectMessageUpdate",HIDE407_VOICE_CLASS]) {
+    for(NSString *name in @[@"IGStoryViewerViewController",@"IGStoryFullscreenSectionController",@"IGStoryViewerViewModel",@"IGURLRequest",@"IGScopedNetworker",@"IGDirectThreadViewController",@"IGDirectAudioWaveform",@"IGLiveViewerCountIntervalPuller",@"IGDirectCache",@"IGDirectCacheThreadUpdate",@"IGDirectMessageUpdate",HIDE_HOST_VOICE_CLASS]) {
         Class cls=NSClassFromString(name);[report appendFormat:@"\n[%@] %@\n",name,cls ? @"present" : @"missing"];
         if(!cls)continue;
         unsigned count=0;Method *methods=class_copyMethodList(cls,&count);
@@ -84,6 +84,16 @@ static void hide_moreButton(id self, SEL _cmd, id sender) {
     HIDEShowMenu(^{ orig_moreButton(self, _cmd, sender); });
 }
 
+// Instagram 453 profile navigation delegate entry points.
+static void (*orig_profileSide)(id,SEL,id),(*orig_profileMore)(id,SEL,id);
+static void hide_profileSide(id owner,SEL selector,id sender){
+    if(sPassThrough){orig_profileSide(owner,selector,sender);return;}
+    HIDEShowMenu(^{orig_profileSide(owner,selector,sender);});
+}
+static void hide_profileMore(id owner,SEL selector,id sender){
+    if(sPassThrough){orig_profileMore(owner,selector,sender);return;}
+    HIDEShowMenu(^{orig_profileMore(owner,selector,sender);});
+}
 // Last-resort fallback if Instagram renames both handlers: shake to open HIDE settings.
 static void (*orig_motionEnded)(id, SEL, UIEventSubtype, UIEvent *);
 static void hide_motionEnded(id self, SEL _cmd, UIEventSubtype motion, UIEvent *event) {
@@ -94,6 +104,8 @@ static void hide_motionEnded(id self, SEL _cmd, UIEventSubtype motion, UIEvent *
 void HIDEInstallSettingsEntry(void) {
     orig_sideTray = (void *)HIDEHookChecked(@"IGProfileNavigationItemsController", NSSelectorFromString(@"_onSideTrayButton:"), (IMP)hide_sideTray, "v@:@");
     orig_moreButton = (void *)HIDEHookChecked(@"IGProfileNavigationItemsController", NSSelectorFromString(@"_onMoreButton:"), (IMP)hide_moreButton, "v@:@");
-    if (!orig_sideTray && !orig_moreButton)
+    orig_profileSide=(void *)HIDEHookChecked(@"IGProfileViewController",NSSelectorFromString(@"navigationItemsControllerDidTapSideTray:"),(IMP)hide_profileSide,"v@:@");
+    orig_profileMore=(void *)HIDEHookChecked(@"IGProfileViewController",NSSelectorFromString(@"navigationItemsControllerDidTapMore:"),(IMP)hide_profileMore,"v@:@");
+    if (!orig_sideTray && !orig_moreButton && !orig_profileSide && !orig_profileMore)
         orig_motionEnded = (void *)HIDEHookChecked(@"UIWindow", @selector(motionEnded:withEvent:), (IMP)hide_motionEnded, "v@:q@");
 }

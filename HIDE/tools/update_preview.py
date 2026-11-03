@@ -13,7 +13,8 @@ def model():
     entries=re.findall(r'@"([a-z0-9]+)":@\[([^\]]+)\]',web[:web.index('@interface HIDEWebSettingsController')])
     features={name:all(defaults[k] for k in re.findall(r'kHide\w+',keys)) for name,keys in entries}
     features['cl']=False
-    return {'version':re.search(r'HIDE_VERSION @"([^"]+)"',header)[1],'features':features,'available':{k:k!='cl' for k in features},'language':'ar','color':0,'glass':True,'delay':0,'delaySeconds':0}
+    target=re.search(r'HIDE_TARGET_INSTAGRAM @"([^"]+)"',header)[1]
+    return {'instagram':target,'version':re.search(r'HIDE_VERSION @"([^"]+)"',header)[1],'features':features,'available':{k:k!='cl' for k in features},'language':'ar','color':0,'glass':True,'delay':0,'delaySeconds':0}
 if __name__=='__main__':
     html=(ROOT/'assets/HIDE_design.html').read_text()
     bridge=(ROOT/'assets/native-bridge.js').read_text()

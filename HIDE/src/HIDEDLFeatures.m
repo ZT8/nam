@@ -1,6 +1,6 @@
 // Ports of behavior observed in DLInsta. Every private call is ABI checked.
 #import "HIDECore.h"
-#import "HIDE407.h"
+#import "HIDEHostLayout.h"
 #import <malloc/malloc.h>
 #import <math.h>
 #import <string.h>
@@ -200,10 +200,15 @@ static void HIDEFilterRemovals(id updates, id thread) {
 // Only read these two slots for the exact executable whose native consumer
 // was inspected. Never write into the wrapper or bypass thread updates.
 static BOOL HIDE407CacheLayoutSupported(void) {
+#if HIDE_HOST_CACHE_LAYOUT_VERIFIED
     Class wrapper=NSClassFromString(@"IGDirectCacheThreadUpdate");
     Class base=NSClassFromString(@"IGDevirtualizedValueObject");
-    return HIDEIsVerified407Build() && wrapper && base && class_getSuperclass(wrapper)==base;
+    return HIDEIsVerifiedHostBuild() && wrapper && base && class_getSuperclass(wrapper)==base;
+#else
+    return NO;
+#endif
 }
+
 static id HIDE407CacheField(id wrapper, size_t offset) {
     if (!HIDE407CacheLayoutSupported() || object_getClass(wrapper)!=NSClassFromString(@"IGDirectCacheThreadUpdate"))return nil;
     const void *bytes=(__bridge const void *)wrapper;
@@ -215,8 +220,8 @@ static void (*originalCache407)(id,SEL,id);
 static void hide_cache407(id object,SEL selector,id batches) {
     if(HIDEPref(kHideKeepDeleted) && HIDE407CacheLayoutSupported() && [batches isKindOfClass:NSArray.class]) {
         for(id batch in batches) {
-            id thread=HIDE407CacheField(batch,HIDE407_CACHE_THREAD_OFFSET);
-            id updates=HIDE407CacheField(batch,HIDE407_CACHE_UPDATES_OFFSET);
+            id thread=HIDE407CacheField(batch,HIDE_HOST_CACHE_THREAD_OFFSET);
+            id updates=HIDE407CacheField(batch,HIDE_HOST_CACHE_UPDATES_OFFSET);
             if([thread isKindOfClass:NSString.class] && [updates isKindOfClass:NSArray.class])
                 HIDEFilterRemovals(updates,thread);
         }
@@ -298,8 +303,8 @@ static void hide_deletedConfigure(id cell,SEL selector,id model,id factory,id la
 // as Sd (Double). Resolve its runtime offset: Swift's Date? startTime is NOT
 // an NSDate pointer and must not be passed to object_getIvar/object_setIvar.
 static Ivar HIDE407RecordingLimitField(void) {
-    if(!HIDEIsVerified407Build())return NULL;
-    Class cls=NSClassFromString(HIDE407_VOICE_CLASS);
+    if(!HIDEIsVerifiedHostBuild())return NULL;
+    Class cls=NSClassFromString(HIDE_HOST_VOICE_CLASS);
     Ivar field=class_getInstanceVariable(cls,"recordingTimeLimit");
     Ivar next=class_getInstanceVariable(cls,"voiceRecordSource");
     if(!field || !next)return NULL;
@@ -312,24 +317,26 @@ static Ivar HIDE407RecordingLimitField(void) {
 }
 static const void *recordingLimit407Key=&recordingLimit407Key;
 static void (*originalRecord407Start)(id,SEL,long long);
-static void hide_record407Start(id controller,SEL selector,long long entry) {
+static void HIDEPrepareRecordingLimit(id controller) {
     Ivar field=HIDE407RecordingLimitField();
-    if(field && object_getClass(controller)==NSClassFromString(HIDE407_VOICE_CLASS)) {
+    if(field && object_getClass(controller)==NSClassFromString(HIDE_HOST_VOICE_CLASS)) {
         uint8_t *slot=(uint8_t *)(__bridge void *)controller+ivar_getOffset(field);
         double current;memcpy(&current,slot,sizeof(current));
         NSNumber *saved=objc_getAssociatedObject(controller,recordingLimit407Key);
         if(!HIDEPref(kHideLongVoice)) {
-            if(saved && current==HIDE407_VOICE_SECONDS) {
+            if(saved && current==HIDE_HOST_VOICE_SECONDS) {
                 double original=saved.doubleValue;memcpy(slot,&original,sizeof(original));
             }
             objc_setAssociatedObject(controller,recordingLimit407Key,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        } else if(isfinite(current) && current>0 && current<HIDE407_VOICE_SECONDS) {
+        } else if(isfinite(current) && current>0 && current<HIDE_HOST_VOICE_SECONDS) {
             objc_setAssociatedObject(controller,recordingLimit407Key,@(current),OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            double extended=HIDE407_VOICE_SECONDS;memcpy(slot,&extended,sizeof(extended));
+            double extended=HIDE_HOST_VOICE_SECONDS;memcpy(slot,&extended,sizeof(extended));
         }
     }
-    originalRecord407Start(controller,selector,entry);
 }
+static void hide_record407Start(id controller,SEL selector,long long entry){HIDEPrepareRecordingLimit(controller);originalRecord407Start(controller,selector,entry);}
+static void (*originalRecordEffects)(id,SEL,long long,id,id);
+static void hide_recordEffects(id controller,SEL selector,long long entry,id effect,id name){HIDEPrepareRecordingLimit(controller);originalRecordEffects(controller,selector,entry,effect,name);}
 static void HIDEInstallAdFilter(NSString *name,BOOL parser) {
     SEL selector=NSSelectorFromString(parser ? @"parsedObjectFromResponse:" : @"objectsForListAdapter:");
     Method method=class_getInstanceMethod(NSClassFromString(name),selector);
@@ -401,5 +408,6 @@ void HIDEInstallDLFeatures(void) {
     originalCellLayout=(void *)HIDEHookChecked(@"IGDirectMessageCell",@selector(layoutSubviews),(IMP)hide_deletedLayout,"v@:");
     originalCellConfigure=(void *)HIDEHookChecked(@"IGDirectMessageCell",NSSelectorFromString(@"configureWithViewModel:ringViewSpecFactory:launcherSet:"),(IMP)hide_deletedConfigure,"v@:@@@");
     SEL recordStart=NSSelectorFromString(@"startRecordingWithButtonTapFromEntryPoint:");
-    originalRecord407Start=(void *)HIDEHookChecked(HIDE407_VOICE_CLASS,recordStart,(IMP)hide_record407Start,"v@:q");
+    originalRecordEffects=(void *)HIDEHookChecked(HIDE_HOST_VOICE_CLASS,NSSelectorFromString(@"startRecordingWithButtonTapFromEntryPoint:preSelectedVoiceEffectId:voiceEffectName:"),(IMP)hide_recordEffects,"v@:q@@");
+    originalRecord407Start=(void *)HIDEHookChecked(HIDE_HOST_VOICE_CLASS,recordStart,(IMP)hide_record407Start,"v@:q");
 }

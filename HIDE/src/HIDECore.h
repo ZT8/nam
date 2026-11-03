@@ -3,8 +3,8 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-#define HIDE_VERSION @"1.9.4"
-#define HIDE_TARGET_INSTAGRAM @"407.0.0"
+#define HIDE_VERSION @"1.0"
+#define HIDE_TARGET_INSTAGRAM @"453.0.0"
 
 // ---- Preferences keys
 #define kHideDownload        @"hide_download"

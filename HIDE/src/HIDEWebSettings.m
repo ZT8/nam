@@ -53,7 +53,7 @@ NSArray<NSString *> *HIDEAllWebPreferenceKeys(void) {
     BOOL glass=[defaults objectForKey:@"hide_ui_glass"] ? [defaults boolForKey:@"hide_ui_glass"] : YES;
     NSArray *delays=@[@0,@60,@300,@900];NSUInteger delay=[delays indexOfObject:@(HIDELockDelay())];
     if(delay==NSNotFound)delay=3; // Preserve existing longer native delays until changed.
-    return @{@"version":HIDE_VERSION,@"features":features,@"available":available,@"language":language,@"color":@(color),@"glass":@(glass),@"delay":@(delay),@"delaySeconds":@(HIDELockDelay())};
+    return @{@"version":HIDE_VERSION,@"instagram":HIDE_TARGET_INSTAGRAM,@"features":features,@"available":available,@"language":language,@"color":@(color),@"glass":@(glass),@"delay":@(delay),@"delaySeconds":@(HIDELockDelay())};
 }
 - (NSString *)snapshotJSON {
     NSData *data=[NSJSONSerialization dataWithJSONObject:[self snapshot] options:0 error:nil];

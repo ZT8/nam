@@ -56,6 +56,7 @@
         about[about.length - 2].dataset.nativeAction = 'instagram';
         const report = about[about.length - 1];
         report.dataset.nativeAction = 'report';
+        report.querySelector('.pill').textContent = nativeState.instagram || '453.0.0';
         report.querySelector('.ds').textContent = T('اضغط لعرض تقرير التوافق', 'Tap to view compatibility report');
       }
     }

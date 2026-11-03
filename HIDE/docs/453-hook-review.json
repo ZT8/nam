@@ -1,0 +1,466 @@
+{
+  "target": "453.0.0",
+  "runtime_tested": false,
+  "hooks": [
+    {
+      "class": "IGURLRequest",
+      "selector": "copyWithZone:",
+      "expected": "@@:^v",
+      "actual": "@24@0:8^{_NSZone}16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGScopedNetworker",
+      "selector": "startAPIRequest:policy:successHandler:failureHandler:",
+      "expected": "@@:@@@@",
+      "actual": "@48@0:8@16@24@?32@?40",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGScopedNetworker",
+      "selector": "startAPIRequest:policy:completionQueue:cacheHandler:parsingHandler:successHandler:failureHandler:",
+      "expected": "@@:@@@@@@@",
+      "actual": "@72@0:8@16@24@32@?40@?48@?56@?64",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGScopedNetworker",
+      "selector": "startAPIRequest:policy:completionQueue:cacheHandler:bytesSentHandler:firstByteFlushedHandler:lastByteAckedHandler:parsingHandler:successHandler:failureHandler:",
+      "expected": "@@:@@@@@@@@@@",
+      "actual": "@96@0:8@16@24@32@?40@?48@?56@?64@?72@?80@?88",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectThreadViewController",
+      "selector": "markLastMessageAsSeen",
+      "expected": "v@:",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGDirectMessageListViewController",
+      "selector": "markLastMessageAsSeen",
+      "expected": "v@:",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGDirectThreadViewListAdapterDataSource",
+      "selector": "shouldUpdateLastSeenMessage",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectThreadViewController",
+      "selector": "viewDidAppear:",
+      "expected": "v@:B",
+      "actual": "v20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectThreadViewController",
+      "selector": "updateThreadNavigationBar",
+      "expected": "v@:",
+      "actual": "v16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectComposer",
+      "selector": "layoutSubviews",
+      "expected": "v@:",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "NSFileManager",
+      "selector": "containerURLForSecurityApplicationGroupIdentifier:",
+      "expected": "@@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGProfileNavigationItemsController",
+      "selector": "_onSideTrayButton:",
+      "expected": "v@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGProfileNavigationItemsController",
+      "selector": "_onMoreButton:",
+      "expected": "v@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGProfileViewController",
+      "selector": "navigationItemsControllerDidTapSideTray:",
+      "expected": "v@:@",
+      "actual": "v24@0:8@16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGProfileViewController",
+      "selector": "navigationItemsControllerDidTapMore:",
+      "expected": "v@:@",
+      "actual": "v24@0:8@16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "UIWindow",
+      "selector": "motionEnded:withEvent:",
+      "expected": "v@:q@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFNFVideoPlayer",
+      "selector": "initVideoPlayerWithUserSession:request:playerIndexProvider:shouldHandleLooping:resourcesTracker:",
+      "expected": "@@:@@@B@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFNFVideoPlayer",
+      "selector": "initWithUserSession:playerIndexProvider:playerMode:video:audioUrl:dashManifestData:deferAudioShouldStart:shouldHandleLooping:config:resourcesTracker:",
+      "expected": "@@:@@q@@@BB@@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFNFVideoPlayer",
+      "selector": "_seekToTime:preciseTime:trigger:isSeekByLoopingController:isRetry:pauseIfNeeded:completionHandler:",
+      "expected": "v@:dBqBBB@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFNFVideoPlayer",
+      "selector": "isLoopingAsset",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGFNFVideoPlayer",
+      "selector": "setIsLoopingAsset:",
+      "expected": "v@:B",
+      "actual": "v20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGStatefulVideoPlayerState",
+      "selector": "isLooping",
+      "expected": "B@:",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGSimpleVideoPlayerView",
+      "selector": "setLooping:",
+      "expected": "v@:B",
+      "actual": "v20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGAssetPlayerView",
+      "selector": "setLooping:",
+      "expected": "v@:B",
+      "actual": "v20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGFBVideoPlaybackView",
+      "selector": "setLooping:",
+      "expected": "v@:B",
+      "actual": "v20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGFBVideoPlaybackAndCoverView",
+      "selector": "setLooping:",
+      "expected": "v@:B",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGVideoPlayerConfig",
+      "selector": "looping",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGVideoPlayerConfig",
+      "selector": "initWithLooping:mediaType:productTypeString:loggingConfig:videoLoggingDataProvider:enableLogging:mediaId:forceNoRequestReadAhead:viewSize:lazyLoadAudioTrack:externalAudioPausingEnabled:language:isAutoTranslationEnabled:",
+      "expected": "@@:Bq@@@B@B{CGSize=dd}BB@B",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGVideoPlaybackConfigurationBuilder",
+      "selector": "withLooping:",
+      "expected": "@@:B",
+      "actual": "@20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGURLRequest",
+      "selector": "initWithURL:module:",
+      "expected": "@@:@@",
+      "actual": "@32@0:8@16@24",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGURLRequest",
+      "selector": "initWithURL:HTTPMethod:module:",
+      "expected": "@@:@Q@",
+      "actual": "@40@0:8@16Q24@32",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGURLRequest",
+      "selector": "initWithURL:HTTPMethod:module:forceIGAPIHeaders:",
+      "expected": "@@:@Q@B",
+      "actual": "@44@0:8@16Q24@32B40",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGURLRequest",
+      "selector": "URL",
+      "expected": "@@:",
+      "actual": "@16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGBrowserController",
+      "selector": "presentBrowserWithBrowserSession:viewController:presentingPanGesture:forceFreshLoad:",
+      "expected": "v@:@@@B",
+      "actual": "v44@0:8@16@24@32B40",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectAudioPlayer",
+      "selector": "playWithAudio:progress:assetId:offlineAssetId:messageProductType:threadKey:",
+      "expected": "v@:@d@@q@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "AVURLAsset",
+      "selector": "initWithURL:options:",
+      "expected": "@@:@@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGStoryViewerViewController",
+      "selector": "fullscreenSectionController:didMarkItemAsSeen:",
+      "expected": "v@:@@",
+      "actual": "v32@0:8@16@24",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectVisualMessageViewerEventHandler",
+      "selector": "visualMessageViewerController:didBeginPlaybackForVisualMessage:atIndex:",
+      "expected": "v@:@@q",
+      "actual": "v40@0:8@16@24q32",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectTypingStatusService",
+      "selector": "updateOutgoingStatusIsActive:threadKey:typingStatusType:",
+      "expected": "v@:B@q",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGDirectTypingStatusService",
+      "selector": "updateOutgoingStatusIsActive:threadKey:threadMetadata:typingStatusType:",
+      "expected": "v@:B@@q",
+      "actual": "v44@0:8B16@20@28q36",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectTypingStatusService",
+      "selector": "updateOutgoingStatusIsActive:threadKey:threadMetaData:typingStatusType:",
+      "expected": "v@:B@@q",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGLiveViewerCountIntervalPuller",
+      "selector": "initWithUserSession:broadcastId:pullInterval:networker:loggingContext:mode:surface:infoProvider:",
+      "expected": "@@:@@d@@qq@",
+      "actual": "@80@0:8@16@24d32@40@48q56q64@72",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGVideoPlayerTimeIndicatorOverlay",
+      "selector": "_setIndicatorShowing:animated:completion:",
+      "expected": "v@:BB@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGDirectMessageMark",
+      "selector": "initWithClientId:threadId:messageId:type:isE2ELoggingSampled:originalMessageClientContext:productType:",
+      "expected": "@@:@@@@B@q",
+      "actual": "@68@0:8@16@24@32@40B48@52q60",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGStoryViewerContainerView",
+      "selector": "setShouldBlockScreenshot:viewModel:",
+      "expected": "v@:B@",
+      "actual": "v28@0:8B16@20",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectCache",
+      "selector": "_applyThreadUpdates:",
+      "expected": "v@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGDirectMessageMenuActionHandler",
+      "selector": "unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:",
+      "expected": "v@:@@@q@",
+      "actual": "v56@0:8@16@24@32Q40@48",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGDirectMessageCell",
+      "selector": "layoutSubviews",
+      "expected": "v@:",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGDirectMessageCell",
+      "selector": "configureWithViewModel:ringViewSpecFactory:launcherSet:",
+      "expected": "v@:@@@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGUFIButtonBarView",
+      "selector": "_onLikeButtonPressed:",
+      "expected": "v@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFeedPhotoView",
+      "selector": "_onDoubleTap:",
+      "expected": "v@:@",
+      "actual": "v24@0:8@16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGFeedItemVideoView",
+      "selector": "overlayViewDidDoubleTap:",
+      "expected": "v@:@",
+      "actual": "v24@0:8@16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGSundialViewerVerticalUFI",
+      "selector": "_didTapLikeButton:",
+      "expected": "v@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGSundialViewerVideoSectionController",
+      "selector": "sundialViewerVideoCellDidDoubleTap:gestureRecognizer:locationInfo:",
+      "expected": "v@:@@@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFollowController",
+      "selector": "_didPressFollowButton",
+      "expected": "v@:",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGFollowController",
+      "selector": "_didPressFollowButtonWithGestureRecognizer:",
+      "expected": "v@:@",
+      "actual": null,
+      "static_abi_compatible": false
+    },
+    {
+      "class": "IGStoryFullscreenSectionController",
+      "selector": "storyPlayerMediaViewDidPlayToEnd:",
+      "expected": "v@:@",
+      "actual": "v24@0:8@16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "MPESettingsData",
+      "selector": "isTypingIndicatorsDisabled",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "MPESettings",
+      "selector": "initWithGraphQLService:userID:",
+      "expected": "@@:@@",
+      "actual": "@32@0:8@16@24",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "MPESettingsData",
+      "selector": "isReadReceiptsDisabled",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "MPESettings",
+      "selector": "_isReadReceiptsDisabledFromPersistentStorage",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "FBMQTTMarkThread",
+      "selector": "shouldSendReadReceipt",
+      "expected": "B@:",
+      "actual": "B16@0:8",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGProfileViewController",
+      "selector": "viewDidAppear:",
+      "expected": "v@:B",
+      "actual": "v20@0:8B16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "IGMainFeedListAdapterDataSource",
+      "selector": "objectsForListAdapter:",
+      "expected": "@@:@",
+      "actual": "@24@0:8@16",
+      "static_abi_compatible": true
+    },
+    {
+      "class": "UIView",
+      "selector": "didMoveToWindow",
+      "expected": "v@:",
+      "actual": null,
+      "static_abi_compatible": false
+    }
+  ],
+  "disabled_features": [
+    "keep deleted Direct messages",
+    "manual read-eye action; old Direct entry points removed"
+  ],
+  "cache_layout_enabled": false
+}

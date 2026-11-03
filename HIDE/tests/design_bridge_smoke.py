@@ -67,6 +67,7 @@ with sync_playwright() as p:
     assert page.locator('#scr').get_attribute('dir')=='ltr'
     assert page.evaluate('color===5 && glass===false')
     page.evaluate("page='more';render()")
+    assert page.locator('[data-native-action="report"] .pill').inner_text()=='453.0.0'
     page.locator('[data-native-action="report"]').click()
     assert page.evaluate('HIDEPreviewRPC.at(-1).action')=='report'
     page.locator('.close-settings').click();assert page.evaluate('HIDEPreviewRPC.at(-1).action')=='close'

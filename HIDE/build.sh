@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# arm64, iOS 15+. macOS: Xcode. Linux: Clang, ld64.lld and an iPhoneOS SDK.
+# arm64, iOS 16.3+. macOS: Xcode. Linux: Clang, ld64.lld and an iPhoneOS SDK.
 # SDK=/path/to/iPhoneOS.sdk CC=/path/to/clang LD64=/path/to/ld64.lld ./build.sh
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -22,7 +22,7 @@ OUT="${OUT_DIR:-build}"
 mkdir -p "$OUT"
 OBJECTS="$(mktemp -d "$OUT/.objects.XXXXXX")"
 trap 'rm -rf "$OBJECTS"' EXIT
-FLAGS=(-target arm64-apple-ios15.0 -isysroot "$SDK" -fobjc-arc -O2 -Wall -Werror=implicit-function-declaration -Wno-unused-function)
+FLAGS=(-target arm64-apple-ios16.3 -isysroot "$SDK" -fobjc-arc -O2 -Wall -Werror=implicit-function-declaration -Wno-unused-function)
 LINKER=()
 if [[ "$(uname -s)" == Linux ]]; then
   LD64="${LD64:-$(command -v ld64.lld || true)}"
@@ -40,4 +40,4 @@ done
   -framework PhotosUI -framework UniformTypeIdentifiers -framework CoreMedia -framework AudioToolbox -framework CoreVideo \
   -install_name @rpath/HIDE.dylib -Wl,-dead_strip
 mv "$OBJECTS/HIDE.dylib" "$OUT/HIDE.dylib"
-echo "Built $OUT/HIDE.dylib (arm64, iOS 15+)"
+echo "Built $OUT/HIDE.dylib (arm64, iOS 16.3+)"

@@ -1,7 +1,7 @@
 {
   "comparison": "DLInsta binary analysis versus HIDE 1.8",
   "dl_binary_sha256": "23b13778267c7b25f7cbb524ac824deb11752a0dd0d35c179366b1fe1905165d",
-  "target_instagram": "407.0.0",
+  "target_instagram": "453.0.0",
   "native_runtime_verified": false,
   "options": [
     {
@@ -174,7 +174,8 @@
       "change_since_1_8": "new",
       "implementation": "src/HIDEDLFeatures.m",
       "native_runtime_verified": false,
-      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations",
+      "453_status": "disabled: previous cache mutation API is missing"
     },
     {
       "dl_option": "DL_SeeDMWithoutOtherPartyKnowing",
@@ -271,7 +272,7 @@
     {
       "name": "manual_direct_read_eye",
       "implementation": "src/HIDEManualSeen.m",
-      "status": "implemented with target-bound native call; device delivery not verified"
+      "status": "not available in 453: former markLastMessageAsSeen entry points are missing"
     }
   ],
   "analysis_reference_url": "https://github.com/ZT8/nam/tree/main/DLInsta-full"

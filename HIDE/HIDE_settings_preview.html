@@ -173,7 +173,7 @@ function render(){
 render();
 </script>
 <script>
-window.__HIDEInitialSnapshot={"version": "1.9.4", "features": {"dl": true, "hq": true, "sh": false, "rep": false, "anon": false, "adv": false, "men": true, "rr": false, "ty": false, "vm": true, "dlm": false, "ss": false, "rp": false, "sp": false, "v2m": false, "rec": false, "lk": false, "fl": false, "cp": true, "fy": true, "lc": false, "sf": false, "ad": true, "lock": false, "live": false, "sv": false, "timer": false, "cl": false}, "available": {"dl": true, "hq": true, "sh": true, "rep": true, "anon": true, "adv": true, "men": true, "rr": true, "ty": true, "vm": true, "dlm": true, "ss": true, "rp": true, "sp": true, "v2m": true, "rec": true, "lk": true, "fl": true, "cp": true, "fy": true, "lc": true, "sf": true, "ad": true, "lock": true, "live": true, "sv": true, "timer": true, "cl": false}, "language": "ar", "color": 0, "glass": true, "delay": 0, "delaySeconds": 0};
+window.__HIDEInitialSnapshot={"instagram": "453.0.0", "version": "1.0", "features": {"dl": true, "hq": true, "sh": false, "rep": false, "anon": false, "adv": false, "men": true, "rr": false, "ty": false, "vm": true, "dlm": false, "ss": false, "rp": false, "sp": false, "v2m": false, "rec": false, "lk": false, "fl": false, "cp": true, "fy": true, "lc": false, "sf": false, "ad": true, "lock": false, "live": false, "sv": false, "timer": false, "cl": false}, "available": {"dl": true, "hq": true, "sh": true, "rep": true, "anon": true, "adv": true, "men": true, "rr": true, "ty": true, "vm": true, "dlm": true, "ss": true, "rp": true, "sp": true, "v2m": true, "rec": true, "lk": true, "fl": true, "cp": true, "fy": true, "lc": true, "sf": true, "ad": true, "lock": true, "live": true, "sv": true, "timer": true, "cl": false}, "language": "ar", "color": 0, "glass": true, "delay": 0, "delaySeconds": 0};
 window.HIDEPreviewRPC=[];
     try { const saved=JSON.parse(localStorage.getItem('hide-app-preview')||'null');if(saved)Object.assign(__HIDEInitialSnapshot,saved); }catch(e){}
     window.webkit={messageHandlers:{hideSettings:{postMessage(message){
@@ -243,6 +243,7 @@ window.HIDEPreviewRPC=[];
         about[about.length - 2].dataset.nativeAction = 'instagram';
         const report = about[about.length - 1];
         report.dataset.nativeAction = 'report';
+        report.querySelector('.pill').textContent = nativeState.instagram || '453.0.0';
         report.querySelector('.ds').textContent = T('اضغط لعرض تقرير التوافق', 'Tap to view compatibility report');
       }
     }

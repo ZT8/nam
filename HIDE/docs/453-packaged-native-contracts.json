@@ -1,0 +1,14 @@
+{
+  "executable_uuid": "4c4c4477-5555-3144-a180-32cb70c4246c",
+  "sha256": "d0d38906a1375a4a92a56c63f24a64d34f16d76932ff6892a2597dcd785b1f2a",
+  "checked_hooks": {
+    "IGProfileViewController": "v24@0:8@16",
+    "IGLiveViewerCountIntervalPuller": "@80@0:8@16@24d32@40@48q56q64@72",
+    "IGStoryViewerViewController": "v32@0:8@16@24",
+    "_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController": "v40@0:8q16@24@32"
+  },
+  "swift_recording_limit": "Double",
+  "legacy_cache_layout_enabled": false,
+  "native_contracts_verified": true,
+  "device_runtime_tested": false
+}

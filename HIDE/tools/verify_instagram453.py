@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Read-only checks against the user's decrypted 407 executable. Stdlib only.
-Usage: python3 tools/verify_instagram407.py /path/to/Payload/Instagram.app/Instagram
+"""Read-only checks against the user's decrypted 453 executable. Stdlib only.
+Usage: python3 tools/verify_instagram453.py /path/to/Payload/Instagram.app/Instagram
 No executable bytes or private message values are emitted.
 """
 import bisect
@@ -15,14 +15,13 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 VOICE = '_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController'
-TARGETS = {'IGLiveViewerCountIntervalPuller', 'IGDirectCache', 'IGDirectMessageUpdate',
-           'IGDirectThreadUpdate', 'IGDirectCacheThreadUpdate', 'IGDirectMessageMenuActionHandler','IGDirectThreadViewController','IGDirectMessageListViewController','IGDirectThreadViewListAdapterDataSource','IGStoryViewerViewController','IGDirectMessageCell', VOICE}
-EXPECTED_UUID = '4c4c444e-5555-3144-a107-36f95b1dcf25'
+TARGETS = {'IGProfileViewController','IGLiveViewerCountIntervalPuller','IGStoryViewerViewController',VOICE}
+EXPECTED_UUID = '4c4c4477-5555-3144-a180-32cb70c4246c'
 
 
 def verify(path):
-    source = (ROOT / 'src/HIDEDLFeatures.m').read_text() + (ROOT / 'src/HIDEManualSeen.m').read_text()
-    header = (ROOT / 'src/HIDE407.h').read_text()
+    source = (ROOT / 'src/HIDEDLFeatures.m').read_text() + (ROOT / 'src/HIDESettings.m').read_text()
+    header = (ROOT / 'src/HIDEHostLayout.h').read_text()
     with path.open('rb') as file, mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as data:
         magic, _, _, kind, count, _, _, _ = struct.unpack_from('<8I', data)
         assert magic == 0xfeedfacf and kind == 2, 'Expected a thin arm64 Mach-O executable'
@@ -106,18 +105,13 @@ def verify(path):
                     classes[name] = {'methods': methods(ptr(ro+32) & ~3), 'fields': fields(ptr(ro+48))}
         assert set(classes) == TARGETS, 'Missing required native classes'
         contracts = [
-            ('IGLiveViewerCountIntervalPuller', 'initWithUserSession:broadcastId:pullInterval:networker:loggingContext:mode:surface:infoProvider:', 'hide_liveInit'),
-            ('IGDirectCache', '_applyThreadUpdates:', 'hide_cache407'),
-            (VOICE, 'startRecordingWithButtonTapFromEntryPoint:', 'hide_record407Start'),
-            ('IGDirectMessageMenuActionHandler', 'unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:', 'hide_unsend407'),
-        ]
-        contracts += [
-            ('IGDirectThreadViewController','markLastMessageAsSeen','hide_threadMark'),
-            ('IGDirectMessageListViewController','markLastMessageAsSeen','hide_listMark'),
-            ('IGDirectThreadViewListAdapterDataSource','shouldUpdateLastSeenMessage','hide_shouldUpdate'),
+            ('IGProfileViewController','navigationItemsControllerDidTapSideTray:','hide_profileSide'),
+            ('IGProfileViewController','navigationItemsControllerDidTapMore:','hide_profileMore'),
+            ('IGLiveViewerCountIntervalPuller','initWithUserSession:broadcastId:pullInterval:networker:loggingContext:mode:surface:infoProvider:','hide_liveInit'),
             ('IGStoryViewerViewController','fullscreenSectionController:didMarkItemAsSeen:','hide_storySeen'),
+            (VOICE,'startRecordingWithButtonTapFromEntryPoint:','hide_record407Start'),
+            (VOICE,'startRecordingWithButtonTapFromEntryPoint:preSelectedVoiceEffectId:voiceEffectName:','hide_recordEffects'),
         ]
-        assert classes['IGDirectMessageCell']['fields']['_messageContentContainerView']=='@"IGDirectMessageBubbleContainerView"'
         encodings = {}
         for cls, selector, replacement in contracts:
             encoding, _ = classes[cls]['methods'][selector]
@@ -127,9 +121,8 @@ def verify(path):
             actual = re.sub(r'\d+', '', encoding).replace('Q', 'q')
             assert actual == match[1], (cls, encoding, match[1])
             encodings[cls] = encoding
-        assert classes['IGDirectMessageUpdate']['fields']['_removeMessages_messageKeys'] == '@"NSArray"'
-        assert classes['IGDirectThreadUpdate']['fields']['_messageUpdate'] == '@"IGDirectMessageUpdate"'
         assert 'recordingTimeLimit' in classes[VOICE]['fields']
+        assert '#define HIDE_HOST_CACHE_LAYOUT_VERIFIED 0' in header
         # Verify Double using Swift field reflection; ObjC's empty type is insufficient.
         found_double = False
         for va, length, _, name in sections:
@@ -147,19 +140,11 @@ def verify(path):
                         found_double = True
                 a += 16+stride*length_fields
         assert found_double, 'Missing recording limit Swift type metadata'
-        # Native cache consumer loads thread at +16 and the updates array at +24.
-        method = classes['IGDirectCache']['methods']['_applyThreadUpdates:'][1]
-        slots = [u32(method+0xc4), u32(method+0x330)]
-        for instruction, offset, register, base in [(slots[0], 16, 19, 20), (slots[1], 24, 22, 24)]:
-            assert instruction & 0xffc00000 == 0xf9400000, 'Changed cache consumer'
-            assert (instruction >> 10 & 0xfff)*8 == offset
-            assert instruction & 31 == register and instruction >> 5 & 31 == base
-        for constant, value in [('HIDE407_CACHE_THREAD_OFFSET', 16), ('HIDE407_CACHE_UPDATES_OFFSET', 24)]:
-            assert re.search(r'#define '+constant+r' '+str(value)+r'\b', header)
         return {'executable_uuid': executable_uuid, 'sha256': hashlib.sha256(data).hexdigest(),
                 'checked_hooks': encodings, 'swift_recording_limit': 'Double',
-                'cache_wrapper_slots': {'thread': 16, 'updates': 24},
+                'legacy_cache_layout_enabled': False,
                 'native_contracts_verified': True, 'device_runtime_tested': False}
+
 
 
 if __name__ == '__main__':

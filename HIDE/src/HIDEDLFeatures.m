@@ -1,5 +1,8 @@
 // Ports of behavior observed in DLInsta. Every private call is ABI checked.
 #import "HIDECore.h"
+#import "HIDE407.h"
+#import <malloc/malloc.h>
+#import <math.h>
 #import <string.h>
 
 static NSNumber *HIDEIntegerIvar(id object, const char *name) {
@@ -69,10 +72,10 @@ static void hide_mediaMask32(id object,SEL selector,int types) {
     originalMediaMask32(object,selector,HIDEPref(kHideVideoStickers) ? 0 : types);
 }
 
-typedef id (*HIDELiveInit)(id __attribute__((ns_consumed)),SEL,id,id,double,id,id,long long,id,id) __attribute__((ns_returns_retained));
+typedef id (*HIDELiveInit)(id __attribute__((ns_consumed)),SEL,id,id,double,id,id,long long,long long,id) __attribute__((ns_returns_retained));
 static HIDELiveInit originalLiveInit;
 static id __attribute__((ns_returns_retained)) hide_liveInit(id __attribute__((ns_consumed)) object, SEL selector,
-    id session, id broadcast, double interval, id networker, id context, long long mode, id surface, id provider) {
+    id session, id broadcast, double interval, id networker, id context, long long mode, long long surface, id provider) {
     if (HIDEPref(kHideAnonLive)) return nil;
     return originalLiveInit(object,selector,session,broadcast,interval,networker,context,mode,surface,provider);
 }
@@ -181,25 +184,37 @@ static void HIDEFilterRemovals(id updates, id thread) {
         }
     }
 }
-static void (*originalCache2)(id,SEL,id,id);
-static void hide_cache2(id object,SEL selector,id updates,id thread) {
-    HIDEFilterRemovals(updates,thread); originalCache2(object,selector,updates,thread);
+// 407 uses an NSArray of IGDirectCacheThreadUpdate value objects. Their
+// superclass manages extra instance bytes, so there are no ObjC ivars/getters.
+// Only read these two slots for the exact executable whose native consumer
+// was inspected. Never write into the wrapper or bypass thread updates.
+static BOOL HIDE407CacheLayoutSupported(void) {
+    Class wrapper=NSClassFromString(@"IGDirectCacheThreadUpdate");
+    Class base=NSClassFromString(@"IGDevirtualizedValueObject");
+    return HIDEIsVerified407Build() && wrapper && base && class_getSuperclass(wrapper)==base;
 }
-static void (*originalCache3)(id,SEL,id,id,id);
-static void hide_cache3(id object,SEL selector,id updates,id thread,id mutation) {
-    HIDEFilterRemovals(updates,thread); originalCache3(object,selector,updates,thread,mutation);
+static id HIDE407CacheField(id wrapper, size_t offset) {
+    if (!HIDE407CacheLayoutSupported() || object_getClass(wrapper)!=NSClassFromString(@"IGDirectCacheThreadUpdate"))return nil;
+    const void *bytes=(__bridge const void *)wrapper;
+    if (malloc_size(bytes)<offset+sizeof(void *))return nil;
+    void *value=NULL;memcpy(&value,(const uint8_t *)bytes+offset,sizeof(value));
+    return (__bridge id)value;
 }
-static void (*originalCache4)(id,SEL,id,id,id,id);
-static void hide_cache4(id object,SEL selector,id updates,id thread,id mutation,id sequence) {
-    HIDEFilterRemovals(updates,thread); originalCache4(object,selector,updates,thread,mutation,sequence);
+static void (*originalCache407)(id,SEL,id);
+static void hide_cache407(id object,SEL selector,id batches) {
+    if(HIDEPref(kHideKeepDeleted) && HIDE407CacheLayoutSupported() && [batches isKindOfClass:NSArray.class]) {
+        for(id batch in batches) {
+            id thread=HIDE407CacheField(batch,HIDE407_CACHE_THREAD_OFFSET);
+            id updates=HIDE407CacheField(batch,HIDE407_CACHE_UPDATES_OFFSET);
+            if([thread isKindOfClass:NSString.class] && [updates isKindOfClass:NSArray.class])
+                HIDEFilterRemovals(updates,thread);
+        }
+    }
+    originalCache407(object,selector,batches);
 }
-static void (*originalUnsend)(id,SEL,id,id,id,long long,long long);
-static void hide_unsend(id object,SEL selector,id model,id thread,id fbid,long long subtype,long long audience) {
-    HIDEAllowOwnDeletion(model); originalUnsend(object,selector,model,thread,fbid,subtype,audience);
-}
-static void (*originalUnsendNumeric)(id,SEL,id,id,long long,long long,long long);
-static void hide_unsendNumeric(id object,SEL selector,id model,id thread,long long fbid,long long subtype,long long audience) {
-    HIDEAllowOwnDeletion(model); originalUnsendNumeric(object,selector,model,thread,fbid,subtype,audience);
+static void (*originalUnsend407)(id,SEL,id,id,id,long long,id);
+static void hide_unsend407(id object,SEL selector,id model,id thread,id fbid,long long subtype,id audience) {
+    HIDEAllowOwnDeletion(model);originalUnsend407(object,selector,model,thread,fbid,subtype,audience);
 }
 static const void *deletedBadgeKey=&deletedBadgeKey, *deletedModelKey=&deletedModelKey;
 static void HIDEUpdateDeletedBadge(UIView *cell) {
@@ -234,48 +249,42 @@ static void hide_deletedConfigure(id cell,SEL selector,id model,id factory,id la
 }
 
 #pragma mark - Extended voice recording, with truthful duration display
-static const void *recordingStartKey=&recordingStartKey;
-static void HIDERestoreRecordingTime(id controller) {
-    NSDate *original=objc_getAssociatedObject(controller,recordingStartKey);
-    if(original)HIDEWriteObjectIvar(controller,"_startTime",original);
-    objc_setAssociatedObject(controller,recordingStartKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+// Swift reflection in the supplied executable identifies recordingTimeLimit
+// as Sd (Double). Resolve its runtime offset: Swift's Date? startTime is NOT
+// an NSDate pointer and must not be passed to object_getIvar/object_setIvar.
+static Ivar HIDE407RecordingLimitField(void) {
+    if(!HIDEIsVerified407Build())return NULL;
+    Class cls=NSClassFromString(HIDE407_VOICE_CLASS);
+    Ivar field=class_getInstanceVariable(cls,"recordingTimeLimit");
+    Ivar next=class_getInstanceVariable(cls,"voiceRecordSource");
+    if(!field || !next)return NULL;
+    const char *type=ivar_getTypeEncoding(field);
+    if(type && *type && strcmp(type,"d"))return NULL;
+    ptrdiff_t offset=ivar_getOffset(field), following=ivar_getOffset(next);
+    if(offset<=0 || offset%_Alignof(double) || following-offset!=(ptrdiff_t)sizeof(double) ||
+       (size_t)offset+sizeof(double)>class_getInstanceSize(cls))return NULL;
+    return field;
 }
-static void HIDEExtendRecording(id controller) {
-    if (!HIDEPref(kHideLongVoice)) { HIDERestoreRecordingTime(controller);return; }
-    NSDate *original=objc_getAssociatedObject(controller,recordingStartKey);
-    id start=HIDEIvar(controller,"_startTime");
-    if(!original && [start isKindOfClass:NSDate.class]) {
-        original=start;objc_setAssociatedObject(controller,recordingStartKey,original,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+static const void *recordingLimit407Key=&recordingLimit407Key;
+static void (*originalRecord407Start)(id,SEL,long long);
+static void hide_record407Start(id controller,SEL selector,long long entry) {
+    Ivar field=HIDE407RecordingLimitField();
+    if(field && object_getClass(controller)==NSClassFromString(HIDE407_VOICE_CLASS)) {
+        uint8_t *slot=(uint8_t *)(__bridge void *)controller+ivar_getOffset(field);
+        double current;memcpy(&current,slot,sizeof(current));
+        NSNumber *saved=objc_getAssociatedObject(controller,recordingLimit407Key);
+        if(!HIDEPref(kHideLongVoice)) {
+            if(saved && current==HIDE407_VOICE_SECONDS) {
+                double original=saved.doubleValue;memcpy(slot,&original,sizeof(original));
+            }
+            objc_setAssociatedObject(controller,recordingLimit407Key,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        } else if(isfinite(current) && current>0 && current<HIDE407_VOICE_SECONDS) {
+            objc_setAssociatedObject(controller,recordingLimit407Key,@(current),OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            double extended=HIDE407_VOICE_SECONDS;memcpy(slot,&extended,sizeof(extended));
+        }
     }
-    if(original && [start isKindOfClass:NSDate.class] && [start timeIntervalSinceNow]<=0)
-        HIDEWriteObjectIvar(controller,"_startTime",[NSDate.date dateByAddingTimeInterval:240]);
+    originalRecord407Start(controller,selector,entry);
 }
-static void (*originalRecordStart)(id,SEL,id);
-static void hide_recordStart(id controller,SEL selector,id entry) { HIDERestoreRecordingTime(controller); originalRecordStart(controller,selector,entry); HIDEExtendRecording(controller); }
-static void (*originalRecordStart64)(id,SEL,long long);
-static void hide_recordStart64(id controller,SEL selector,long long entry) {
-    HIDERestoreRecordingTime(controller);originalRecordStart64(controller,selector,entry);HIDEExtendRecording(controller);
-}
-static void (*originalRecordStart32)(id,SEL,int);
-static void hide_recordStart32(id controller,SEL selector,int entry) {
-    HIDERestoreRecordingTime(controller);originalRecordStart32(controller,selector,entry);HIDEExtendRecording(controller);
-}
-static void (*originalRecordState)(id,SEL,id,long long);
-static void hide_recordState(id object,SEL selector,id controller,long long state) {
-    if ([HIDEGetNumber(controller,@"isRecording") boolValue]) HIDEExtendRecording(controller);else HIDERestoreRecordingTime(controller);
-    originalRecordState(object,selector,controller,state);
-}
-static void (*originalDuration)(id,SEL,double);
-static void hide_voiceDuration(id view,SEL selector,double duration) {
-    if (HIDEPref(kHideLongVoice)) {
-        id delegate=HIDEGet(view,@"delegate");
-        id recorder=HIDEIvar(delegate,"_audioRecorder") ?: HIDEIvar(delegate,"audioRecorder");
-        NSNumber *actual=HIDEGetNumber(HIDEIvar(recorder,"_audioRecorder") ?: recorder,@"currentTime");
-        if (actual) duration=actual.doubleValue;
-    }
-    originalDuration(view,selector,duration);
-}
-
 static void HIDEInstallAdFilter(NSString *name,BOOL parser) {
     SEL selector=NSSelectorFromString(parser ? @"parsedObjectFromResponse:" : @"objectsForListAdapter:");
     Method method=class_getInstanceMethod(NSClassFromString(name),selector);
@@ -294,10 +303,10 @@ BOOL HIDEFeatureAvailable(NSString *key) {
     if([key isEqualToString:kHideKeepDeleted]) {
         Ivar field=class_getInstanceVariable(NSClassFromString(@"IGDirectMessageUpdate"),"_removeMessages_messageKeys");
         if(!field || ivar_getTypeEncoding(field)[0]!='@')return NO;
+        return originalCache407 && originalUnsend407 && HIDE407CacheLayoutSupported();
     }
     if([key isEqualToString:kHideLongVoice]) {
-        Ivar field=class_getInstanceVariable(NSClassFromString(@"IGDirectVoiceRecordViewController"),"_startTime");
-        if(!field || ivar_getTypeEncoding(field)[0]!='@')return NO;
+        return originalRecord407Start && HIDE407RecordingLimitField();
     }
     if([key isEqualToString:kHideNoReplayNotice]) {
         Class cls=NSClassFromString(@"IGDirectMessageMarkType");
@@ -305,9 +314,9 @@ BOOL HIDEFeatureAvailable(NSString *key) {
     }
     NSDictionary *classes=@{
         kHideVideoStickers:@[@"IGGalleryDataSource"], kHideAnonLive:@[@"IGLiveViewerCountIntervalPuller"],
-        kHideKeepDeleted:@[@"IGDirectCache"], kHideNoScreenshotNotice:@[@"IGDirectMessageMarkType",@"IGDirectMessageMark"],
+        kHideNoScreenshotNotice:@[@"IGDirectMessageMarkType",@"IGDirectMessageMark"],
         kHideNoReplayNotice:@[@"IGDirectMessageMark"], kHideAllowScreenshots:@[@"IGStoryViewerContainerView"],
-        kHideLongVoice:@[@"IGDirectVoiceRecordViewController",@"IGDirectThreadViewController"], kHideVoiceImport:@[@"IGDirectComposer"],
+        kHideVoiceImport:@[@"IGDirectComposer"],
         kHideLikeCounts:@[@"IGLikerConfig",@"IGMedia",@"IGFeedItemUFICellViewModel.IGFeedItemUFICellViewModel"],
         kHideVideoTimer:@[@"IGVideoPlayerTimeIndicatorOverlay"]};
     NSArray *required=classes[key];if(!required)return YES;
@@ -331,7 +340,7 @@ void HIDEInstallDLFeatures(void) {
     if(mediaType[0]=='@')originalMediaTypes=(void *)HIDEHookChecked(@"IGGalleryDataSource",mediaTypes,(IMP)hide_mediaTypes,"v@:@");
     else if(mediaType[0]=='i' || mediaType[0]=='I')originalMediaMask32=(void *)HIDEHookChecked(@"IGGalleryDataSource",mediaTypes,(IMP)hide_mediaMask32,"v@:i");
     else originalMediaMask64=(void *)HIDEHookChecked(@"IGGalleryDataSource",mediaTypes,(IMP)hide_mediaMask64,"v@:q");
-    originalLiveInit=(HIDELiveInit)HIDEHookChecked(@"IGLiveViewerCountIntervalPuller",NSSelectorFromString(@"initWithUserSession:broadcastId:pullInterval:networker:loggingContext:mode:surface:infoProvider:"),(IMP)hide_liveInit,"@@:@@d@@q@@");
+    originalLiveInit=(HIDELiveInit)HIDEHookChecked(@"IGLiveViewerCountIntervalPuller",NSSelectorFromString(@"initWithUserSession:broadcastId:pullInterval:networker:loggingContext:mode:surface:infoProvider:"),(IMP)hide_liveInit,"@@:@@d@@qq@");
     originalTimer=(void *)HIDEHookChecked(@"IGVideoPlayerTimeIndicatorOverlay",NSSelectorFromString(@"_setIndicatorShowing:animated:completion:"),(IMP)hide_timer,"v@:BB@");
     for (NSString *name in @[@"isInDaisy",@"likeAndViewCountsDisabled",@"shareCountDisabled"])
         HIDEOverrideFlag(@"IGFeedItemUFICellViewModel.IGFeedItemUFICellViewModel",name,kHideLikeCounts,NO);
@@ -342,26 +351,10 @@ void HIDEInstallDLFeatures(void) {
     originalScreenshotMark=(void *)HIDEClassHookChecked(@"IGDirectMessageMarkType",NSSelectorFromString(@"visualItemScreenshotted"),(IMP)hide_screenshotMark,"@@:");
     originalMarkInit=(HIDEMarkInit)HIDEHookChecked(@"IGDirectMessageMark",NSSelectorFromString(@"initWithClientId:threadId:messageId:type:isE2ELoggingSampled:originalMessageClientContext:productType:"),(IMP)hide_markInit,"@@:@@@@B@q");
     originalScreenshotBlock=(void *)HIDEHookChecked(@"IGStoryViewerContainerView",NSSelectorFromString(@"setShouldBlockScreenshot:viewModel:"),(IMP)hide_screenshotBlock,"v@:B@");
-    originalCache2=(void *)HIDEHookChecked(@"IGDirectCache",NSSelectorFromString(@"_applyThreadUpdates:toThreadWithId:"),(IMP)hide_cache2,"v@:@@");
-    originalCache3=(void *)HIDEHookChecked(@"IGDirectCache",NSSelectorFromString(@"_applyThreadUpdates:toThreadWithId:mutationId:"),(IMP)hide_cache3,"v@:@@@");
-    originalCache4=(void *)HIDEHookChecked(@"IGDirectCache",NSSelectorFromString(@"_applyThreadUpdates:toThreadWithId:mutationId:sequenceId:"),(IMP)hide_cache4,"v@:@@@@");
-    SEL unsend=NSSelectorFromString(@"unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:");
-    id handler=NSClassFromString(@"IGDirectMessageMenuActionHandler");
-    // Check the instance ABI without constructing an app-owned controller.
-    Method method=class_getInstanceMethod(handler,unsend);
-    NSMethodSignature *signature=method ? [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(method)] : nil;
-    if (signature.numberOfArguments==7 && [signature getArgumentTypeAtIndex:4][0]=='@')
-        originalUnsend=(void *)HIDEHookChecked(@"IGDirectMessageMenuActionHandler",unsend,(IMP)hide_unsend,"v@:@@@qq");
-    else originalUnsendNumeric=(void *)HIDEHookChecked(@"IGDirectMessageMenuActionHandler",unsend,(IMP)hide_unsendNumeric,"v@:@@qqq");
+    originalCache407=(void *)HIDEHookChecked(@"IGDirectCache",NSSelectorFromString(@"_applyThreadUpdates:"),(IMP)hide_cache407,"v@:@");
+    originalUnsend407=(void *)HIDEHookChecked(@"IGDirectMessageMenuActionHandler",NSSelectorFromString(@"unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:"),(IMP)hide_unsend407,"v@:@@@q@");
     originalCellLayout=(void *)HIDEHookChecked(@"IGDirectMessageCell",@selector(layoutSubviews),(IMP)hide_deletedLayout,"v@:");
     originalCellConfigure=(void *)HIDEHookChecked(@"IGDirectMessageCell",NSSelectorFromString(@"configureWithViewModel:ringViewSpecFactory:launcherSet:"),(IMP)hide_deletedConfigure,"v@:@@@");
     SEL recordStart=NSSelectorFromString(@"startRecordingWithButtonTapFromEntryPoint:");
-    Method recordMethod=class_getInstanceMethod(NSClassFromString(@"IGDirectVoiceRecordViewController"),recordStart);
-    NSMethodSignature *recordSignature=recordMethod ? [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(recordMethod)] : nil;
-    const char *entryType=recordSignature.numberOfArguments==3 ? [recordSignature getArgumentTypeAtIndex:2] : "";
-    if(entryType[0]=='@')originalRecordStart=(void *)HIDEHookChecked(@"IGDirectVoiceRecordViewController",recordStart,(IMP)hide_recordStart,"v@:@");
-    else if(entryType[0]=='i' || entryType[0]=='I')originalRecordStart32=(void *)HIDEHookChecked(@"IGDirectVoiceRecordViewController",recordStart,(IMP)hide_recordStart32,"v@:i");
-    else originalRecordStart64=(void *)HIDEHookChecked(@"IGDirectVoiceRecordViewController",recordStart,(IMP)hide_recordStart64,"v@:q");
-    originalRecordState=(void *)HIDEHookChecked(@"IGDirectThreadViewController",NSSelectorFromString(@"voiceRecordViewController:didUpdateState:"),(IMP)hide_recordState,"v@:@q");
-    originalDuration=(void *)HIDEHookChecked(@"IGDirectVoiceRecordInputView",NSSelectorFromString(@"setDuration:"),(IMP)hide_voiceDuration,"v@:d");
+    originalRecord407Start=(void *)HIDEHookChecked(HIDE407_VOICE_CLASS,recordStart,(IMP)hide_record407Start,"v@:q");
 }

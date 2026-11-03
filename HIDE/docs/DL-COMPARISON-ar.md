@@ -1,11 +1,11 @@
-# مقارنة DL مع HIDE 1.9
+# مقارنة DL مع HIDE 1.9.1
 
 المقارنة مبنية على خيارات فعلية في تحليل المكتبة، وليس استعادة المصدر الأصلي. الحالات التالية تصف التنفيذ الموجود في المصدر، لا نجاحًا مثبتًا داخل إنستغرام 407.
 
 | خيار DL | مقابله في HIDE | التغيير | التنفيذ |
 |---|---|---|---|
 | `DL_AlwaysShowTimerVideos` | Keep video timer visible | مضاف | [HIDEDLFeatures.m](../src/HIDEDLFeatures.m) |
-| `DL_BypassVoiceMessageLimit` | Extend voice recording limit | مضاف | [HIDEDLFeatures.m](../src/HIDEDLFeatures.m) |
+| `DL_BypassVoiceMessageLimit` | Record voice messages up to 5 minutes | مضاف | [HIDEDLFeatures.m](../src/HIDEDLFeatures.m) |
 | `DL_DisableMoveToNextStory` | Don't move to next story automatically | كان موجودًا | [HIDEExtras.m](../src/HIDEExtras.m) |
 | `DL_DisableReplayedLiveMediaInDM` | Hide replay notifications | مضاف | [HIDEDLFeatures.m](../src/HIDEDLFeatures.m) |
 | `DL_DisableScreenshotNotificationInDM` | Hide screenshot notifications | مضاف | [HIDEDLFeatures.m](../src/HIDEDLFeatures.m) |

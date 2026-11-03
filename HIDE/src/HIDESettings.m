@@ -1,5 +1,6 @@
 // HIDE settings screen (glass design) + entry from the profile ☰ menu.
 #import "HIDECore.h"
+#import "HIDE407.h"
 #import <stdlib.h>
 
 #define HIDE_BLUE   [UIColor colorWithRed:0.20 green:0.42 blue:1.00 alpha:1]
@@ -389,14 +390,15 @@
     NSUInteger installed = 0;
     NSString *actual = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"unknown";
     NSMutableString *report = [NSMutableString stringWithFormat:@"HIDE %@\nTarget Instagram: %@\nInstalled app: %@\n\n", HIDE_VERSION, HIDE_TARGET_INSTAGRAM, actual];
+    [report appendFormat:@"Supplied 407 executable UUID matches: %@\n\n",HIDEIsVerified407Build() ? @"yes" : @"no"];
     for (NSDictionary *record in records) {
         if ([record[@"status"] isEqualToString:@"installed"]) installed++;
         [report appendFormat:@"[%@] %@ %@\nexpected: %@\nactual: %@\n\n", record[@"status"], record[@"class"], record[@"selector"], record[@"expected"], record[@"actual"]];
     }
     // Metadata only: never read request bodies, headers, message values or credentials.
     [report appendString:@"Selected 407 API metadata (no instance values):\n"];
-    NSArray *terms=@[@"seen",@"body",@"param",@"story",@"reel",@"item",@"media",@"voice",@"audio",@"record",@"request"];
-    for(NSString *name in @[@"IGStoryViewerViewController",@"IGStoryFullscreenSectionController",@"IGStoryViewerViewModel",@"IGURLRequest",@"IGScopedNetworker",@"IGDirectThreadViewController",@"IGDirectAudioWaveform"]) {
+    NSArray *terms=@[@"seen",@"body",@"param",@"story",@"reel",@"item",@"media",@"voice",@"audio",@"record",@"request",@"update",@"initWithUserSession"];
+    for(NSString *name in @[@"IGStoryViewerViewController",@"IGStoryFullscreenSectionController",@"IGStoryViewerViewModel",@"IGURLRequest",@"IGScopedNetworker",@"IGDirectThreadViewController",@"IGDirectAudioWaveform",@"IGLiveViewerCountIntervalPuller",@"IGDirectCache",@"IGDirectCacheThreadUpdate",@"IGDirectMessageUpdate",HIDE407_VOICE_CLASS]) {
         Class cls=NSClassFromString(name);[report appendFormat:@"\n[%@] %@\n",name,cls ? @"present" : @"missing"];
         if(!cls)continue;
         unsigned count=0;Method *methods=class_copyMethodList(cls,&count);
@@ -406,7 +408,7 @@
             if(include)[report appendFormat:@"- %@ | %s\n",selector,method_getTypeEncoding(methods[i])];
         }
         free(methods);Ivar *fields=class_copyIvarList(cls,&count);
-        for(unsigned i=0;i<count;i++)[report appendFormat:@"ivar %s | %s\n",ivar_getName(fields[i]),ivar_getTypeEncoding(fields[i]) ?: "?"];
+        for(unsigned i=0;i<count;i++)[report appendFormat:@"ivar %s | %s | offset %td\n",ivar_getName(fields[i]),ivar_getTypeEncoding(fields[i]) ?: "?",ivar_getOffset(fields[i])];
         free(fields);
     }
     [report appendString:@"\nStructural feature availability (not runtime behavior verification):\n"];

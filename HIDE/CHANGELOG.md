@@ -1,3 +1,14 @@
+# 1.9.1 (407 compatibility test build)
+
+- Verify private method signatures against the supplied Instagram executable; add a reproducible, read-only native-contract checker.
+- Correct the live initializer surface argument to int64 in both the hook signature and C function pointer.
+- Handle the single-argument Direct cache update method and its per-thread value-object wrappers. Pin the private wrapper layout to the inspected executable UUID; unknown builds pass through unchanged.
+- Correct the own-unsend handler audience argument to an object so local unsends can bypass retention.
+- Use the Swift voice controller and its verified Double recordingTimeLimit field, resolved by runtime offset. Extend to 300 seconds without changing the recording start time or duration display.
+- Expand the compatibility report with executable match and relevant metadata/offsets. Keep feature availability guards.
+
+Native contracts, compilation and host checks do not establish on-device privacy, cache persistence, audio recording or delivery behavior. Device testing remains required.
+
 # 1.9 (development build)
 
 Target: Instagram 407.0.0, arm64, iOS 15+; native runtime validation remains pending.

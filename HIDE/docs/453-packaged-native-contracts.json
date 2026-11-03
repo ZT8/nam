@@ -21,6 +21,15 @@
     "_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController startRecordingWithButtonTapFromEntryPoint:": "v24@0:8q16",
     "_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController startRecordingWithButtonTapFromEntryPoint:preSelectedVoiceEffectId:voiceEffectName:": "v40@0:8q16@24@32"
   },
+  "media_layout_hooks": {
+    "IGFeedItemVideoView": "v16@0:8",
+    "_TtC32IGSundialViewerMediaDisplayViews24IGSundialViewerPhotoView": "v16@0:8",
+    "IGSundialViewerVideoCell": "v16@0:8",
+    "IGFeedPhotoView": "v16@0:8",
+    "IGStoryPhotoView": "v16@0:8",
+    "IGSundialViewerPhotoCell": "v16@0:8",
+    "IGStoryVideoView": "v16@0:8"
+  },
   "message_metadata_slot": {
     "header_bytes": 16,
     "relative_offset": 8,

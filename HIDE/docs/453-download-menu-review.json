@@ -1,0 +1,62 @@
+{
+  "target": "453.0.0",
+  "uuid": "4c4c4477-5555-3144-a180-32cb70c4246c",
+  "reported_symptom": "long press does not show the download menu",
+  "working_hypothesis": "global UIView didMoveToWindow hook alone may not receive media view lifecycle callbacks; no device trace yet",
+  "change": "per-media-class layout callback attachment and native photo/video resolver adapters",
+  "native_layout_methods": {
+    "IGStoryPhotoView": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x106082498"
+    },
+    "IGStoryVideoView": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x1060916f8"
+    },
+    "IGFeedItemVideoView": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x1061cd470"
+    },
+    "IGFeedPhotoView": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x105bac130"
+    },
+    "IGSundialViewerPhotoCell": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x1060c8490"
+    },
+    "IGSundialViewerVideoCell": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x10c8d79f4"
+    },
+    "_TtC32IGSundialViewerMediaDisplayViews24IGSundialViewerPhotoView": {
+      "selector": "layoutSubviews",
+      "encoding": "v16@0:8",
+      "implementation": "0x10cabc46c"
+    }
+  },
+  "photo_reels": "Swift photo view exposes currentPhoto as an ObjC object getter",
+  "photo_feed": "IGFeedPhotoView _imageSpecifier is a typed ObjC object ivar",
+  "video": "native videoURLProvider and IGVideo videoURLForCurrentNetworkConditions getter",
+  "diagnostics": [
+    "attached_views",
+    "long_presses",
+    "resolved_presses",
+    "download_enabled",
+    "last_source_class"
+  ],
+  "diagnostics_include_media_urls_or_contents": false,
+  "device_tested": false,
+  "remaining_validation": [
+    "menu opens on feed image/reel/story",
+    "no duplicate menu or native long-press interference",
+    "Photos permission and saved output",
+    "batch media collection on GraphQL-backed posts"
+  ]
+}

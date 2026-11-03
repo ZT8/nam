@@ -91,3 +91,5 @@ NSInteger HIDELockDelay(void);
 NSString *HIDELockDelayTitle(NSInteger seconds);
 
 void HIDEInstallManualSeen(void);
+
+NSDictionary *HIDEDownloadDiagnostics(void);

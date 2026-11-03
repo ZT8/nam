@@ -15,7 +15,8 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 VOICE = '_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController'
-TARGETS = {'IGDirectOutgoingUpdateService','IGDThreadDeltaUpdateFactory','IGDirectMessageMenuActionHandler','IGDirectThreadLastSeenMessageTracker','IGDirectThreadViewListAdapterDataSource','IGDirectThreadViewController','IGDirectMessageCellViewModel','_TtC19IGDirectMessageCell19IGDirectMessageCell','FBMQTTMarkThread','IGDirectMessageUpdate','IGDirectThreadUpdate','IGProfileViewController','IGLiveViewerCountIntervalPuller','IGStoryViewerViewController',VOICE}
+MEDIA_CLASSES = {'IGFeedItemVideoView', 'IGSundialViewerPhotoCell', 'IGSundialViewerVideoCell', 'IGStoryVideoView', 'IGStoryPhotoView', '_TtC32IGSundialViewerMediaDisplayViews24IGSundialViewerPhotoView', 'IGFeedPhotoView'}
+TARGETS = MEDIA_CLASSES | {'IGDirectOutgoingUpdateService','IGDThreadDeltaUpdateFactory','IGDirectMessageMenuActionHandler','IGDirectThreadLastSeenMessageTracker','IGDirectThreadViewListAdapterDataSource','IGDirectThreadViewController','IGDirectMessageCellViewModel','_TtC19IGDirectMessageCell19IGDirectMessageCell','FBMQTTMarkThread','IGDirectMessageUpdate','IGDirectThreadUpdate','IGProfileViewController','IGLiveViewerCountIntervalPuller','IGStoryViewerViewController',VOICE}
 EXPECTED_UUID = '4c4c4477-5555-3144-a180-32cb70c4246c'
 
 
@@ -148,7 +149,14 @@ def verify(path):
         assert classes['IGDirectThreadUpdate']['fields']['_messageUpdate'] == '@"IGDirectMessageUpdate"'
         assert classes['IGDirectMessageUpdate']['fields']['_removeMessages_messageKeys'] == '@"NSArray"'
         assert classes['IGDirectMessageUpdate']['fields']['_removeMessages_reason'] == 'q'
-        assert 'recordingTimeLimit'  in classes[VOICE]['fields']
+        media_contracts = {}
+        for name in MEDIA_CLASSES:
+            encoding, _ = classes[name]['methods']['layoutSubviews']
+            assert re.sub(r'\d+', '', encoding) == 'v@:', (name, encoding)
+            media_contracts[name] = encoding
+        assert classes['IGFeedPhotoView']['fields']['_imageSpecifier'] == '@"IGImageSpecifier"'
+        assert re.sub(r'\d+', '', classes['_TtC32IGSundialViewerMediaDisplayViews24IGSundialViewerPhotoView']['methods']['currentPhoto'][0]) == '@@:'
+        assert 'recordingTimeLimit'   in classes[VOICE]['fields']
         assert '#define HIDE_HOST_CACHE_LAYOUT_VERIFIED 0' in header
         # Verify Double using Swift field reflection; ObjC's empty type is insufficient.
         found_double = False
@@ -168,7 +176,7 @@ def verify(path):
                 a += 16+stride*length_fields
         assert found_double, 'Missing recording limit Swift type metadata'
         return {'executable_uuid': executable_uuid, 'sha256': hashlib.sha256(data).hexdigest(),
-                'checked_hooks': encodings, 'message_metadata_slot': {'header_bytes':16,'relative_offset':8,'source':'internal_classInfo'}, 'direct_status':'experimental-device-test-required', 'swift_recording_limit': 'Double',
+                'checked_hooks': encodings, 'media_layout_hooks': media_contracts, 'message_metadata_slot': {'header_bytes':16,'relative_offset':8,'source':'internal_classInfo'}, 'direct_status':'experimental-device-test-required', 'swift_recording_limit': 'Double',
                 'legacy_cache_layout_enabled': False,
                 'native_contracts_verified': True, 'device_runtime_tested': False}
 

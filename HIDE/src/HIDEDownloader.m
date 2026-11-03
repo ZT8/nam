@@ -6,6 +6,15 @@
 #import <string.h>
 
 static const void *kHideGestureKey = &kHideGestureKey;
+// UIKit callbacks and settings reports run on the main thread. No media URLs,
+// account IDs or user contents are recorded here.
+static NSUInteger hideAttachedViews,hideLongPresses,hideResolvedPresses;
+static NSString *hideLastSourceClass;
+NSDictionary *HIDEDownloadDiagnostics(void) {
+    return @{@"attached_views":@(hideAttachedViews),@"long_presses":@(hideLongPresses),
+             @"resolved_presses":@(hideResolvedPresses),@"download_enabled":@(HIDEPref(kHideDownload)),
+             @"last_source_class":hideLastSourceClass ?: @"none"};
+}
 
 @interface HIDEGestureHandler : NSObject <UIGestureRecognizerDelegate>
 + (instancetype)shared;
@@ -139,7 +148,9 @@ static BOOL HIDEResolveObjectDepth(id obj, NSURL **outURL, BOOL *outVideo, id *o
         NSURL *u = HIDEToURL(obj);
         if (u) { *outURL = u; *outVideo = NO; return YES; }
     }
-    for (NSString *getter in @[@"media",@"post",@"rawVideo",@"rawPhoto",@"video",@"photo",@"storyItem"]) {
+    NSURL *currentVideoURL=HIDEToURL(HIDEGet(obj,@"videoURLForCurrentNetworkConditions"));
+    if(currentVideoURL){*outURL=currentVideoURL;*outVideo=YES;return YES;}
+    for (NSString *getter in @[@"videoURLProvider",@"media",@"post",@"rawVideo",@"video",@"videoView",@"mediaView",@"rawPhoto",@"currentPhoto",@"photo",@"storyItem",@"imageSpecifier",@"mediaViewLastLoadedImageSpecifier",@"photoImageView"]) {
         id child=HIDEGet(obj,getter);
         if (child && child!=obj && HIDEResolveObjectDepth(child,outURL,outVideo,outMedia,depth+1)) return YES;
     }
@@ -151,9 +162,9 @@ static BOOL HIDEResolveObject(id obj, NSURL **outURL, BOOL *outVideo, id *outMed
 }
 
 static BOOL HIDEResolveFromView(UIView *view, NSURL **outURL, BOOL *outVideo, id *outMedia) {
-    NSArray *getters = @[@"video", @"media", @"item", @"storyItem", @"currentStoryItem", @"photo",
+    NSArray *getters = @[@"videoURLProvider", @"videoView", @"mediaView", @"video", @"media", @"item", @"storyItem", @"currentStoryItem", @"currentPhoto", @"photo",
                          @"imageSpecifier", @"mediaViewLastLoadedImageSpecifier"];
-    NSArray *ivars = @[@"_video", @"_media", @"_item", @"_photo", @"_storyItem"];
+    NSArray *ivars = @[@"_video", @"_media", @"_item", @"_photo", @"_storyItem", @"_imageSpecifier"];
     UIView *v = view;
     for (int depth = 0; v && depth < 10; depth++, v = v.superview) {
         for (NSString *g in getters) {
@@ -379,6 +390,7 @@ static void HIDEPresentResolvedActions(UIView *source,NSURL *url,BOOL isVideo,id
 static void HIDEPresentActions(UIView *source) {
     NSURL *url=nil;BOOL video=NO;id media=nil;
     BOOL resolved=HIDEResolveFromView(source,&url,&video,&media);
+    if(resolved)hideResolvedPresses++;
     if(HIDEPref(kHideHighQuality) && HIDEProfileContext(source,NULL,NULL)) {
         HIDEProfileURL(source,url,^(NSURL *profile){
             if(profile)HIDEPresentResolvedActions(source,profile,NO,media);else HIDEToast(HIDEL(@"NO_MEDIA"));
@@ -393,13 +405,24 @@ static void HIDEPresentActions(UIView *source) {
 + (instancetype)shared { static HIDEGestureHandler *h; static dispatch_once_t o; dispatch_once(&o, ^{ h = [self new]; }); return h; }
 - (void)onLongPress:(UILongPressGestureRecognizer *)g {
     if (g.state != UIGestureRecognizerStateBegan) return;
+    hideLongPresses++;hideLastSourceClass=NSStringFromClass(g.view.class);
     if (!HIDEPref(kHideDownload)) return;
     UIImpactFeedbackGenerator *fb = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
     [fb impactOccurred];
     HIDEPresentActions(g.view);
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)a shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)b { return YES; }
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)g { return HIDEPref(kHideDownload); }
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gesture {
+    if(!HIDEPref(kHideDownload))return NO;
+    // Nested media cells can both be targets. Let the deepest attached view
+    // handle the touch so one press cannot present two menus.
+    UIView *hit=[gesture.view hitTest:[gesture locationInView:gesture.view] withEvent:nil];
+    for(UIView *view=hit;view && view!=gesture.view;view=view.superview) {
+        UIGestureRecognizer *child=objc_getAssociatedObject(view,kHideGestureKey);
+        if(child && child.enabled)return NO;
+    }
+    return YES;
+}
 @end
 
 static NSArray<Class> *HIDETargetClasses(void) {
@@ -409,6 +432,7 @@ static NSArray<Class> *HIDETargetClasses(void) {
         NSMutableArray *a = [NSMutableArray array];
         for (NSString *n in @[@"IGFeedPhotoView", @"IGFeedItemVideoView",
                               @"IGSundialViewerVideoCell", @"IGSundialViewerPhotoCell",
+                              @"_TtC32IGSundialViewerMediaDisplayViews24IGSundialViewerPhotoView",
                               @"IGSundialViewerCarouselVideoCell", @"IGSundialViewerCarouselPhotoCell",
                               @"IGStoryPhotoView", @"IGStoryVideoView", @"IGStoryModernVideoView",
                               @"IGProfileAvatarView", @"IGProfilePhotoView"]) {
@@ -420,24 +444,37 @@ static NSArray<Class> *HIDETargetClasses(void) {
     return classes;
 }
 
-static void (*orig_didMoveToWindow)(UIView *, SEL);
-static void hide_didMoveToWindow(UIView *self, SEL _cmd) {
-    orig_didMoveToWindow(self, _cmd);
-    if (self.window) HIDEAttachCopyGestureIfNeeded(self);
-    if (!self.window || objc_getAssociatedObject(self, kHideGestureKey)) return;
-    for (Class c in HIDETargetClasses()) {
-        if ([self isKindOfClass:c]) {
-            UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:[HIDEGestureHandler shared] action:@selector(onLongPress:)];
-            lp.minimumPressDuration = 0.45;
-            lp.delegate = [HIDEGestureHandler shared];
-            [self addGestureRecognizer:lp];
-            self.userInteractionEnabled = YES;
-            objc_setAssociatedObject(self, kHideGestureKey, lp, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            break;
-        }
+// Attach at the actual media class, rather than depending only on UIView's
+// didMoveToWindow implementation being called through every intermediate class.
+static void HIDEAttachDownloadGesture(UIView *view) {
+    if(!view.window)return;
+    if(objc_getAssociatedObject(view,kHideGestureKey)){view.userInteractionEnabled=YES;return;}
+    for(Class cls in HIDETargetClasses())if([view isKindOfClass:cls]) {
+        UILongPressGestureRecognizer *gesture=[[UILongPressGestureRecognizer alloc] initWithTarget:[HIDEGestureHandler shared] action:@selector(onLongPress:)];
+        gesture.minimumPressDuration=0.45;gesture.delegate=[HIDEGestureHandler shared];
+        gesture.cancelsTouchesInView=NO;gesture.delaysTouchesBegan=NO;gesture.delaysTouchesEnded=NO;
+        [view addGestureRecognizer:gesture];view.userInteractionEnabled=YES;
+        objc_setAssociatedObject(view,kHideGestureKey,gesture,OBJC_ASSOCIATION_RETAIN_NONATOMIC);hideAttachedViews++;
+        break;
     }
 }
-
+static void (*orig_didMoveToWindow)(UIView *, SEL);
+static void hide_didMoveToWindow(UIView *view,SEL selector) {
+    orig_didMoveToWindow(view,selector);
+    if(view.window)HIDEAttachCopyGestureIfNeeded(view);
+    HIDEAttachDownloadGesture(view);
+}
+static void HIDEInstallMediaLayoutGesture(Class cls) {
+    SEL selector=@selector(layoutSubviews);
+    __block IMP original=NULL;
+    IMP replacement=imp_implementationWithBlock(^(UIView *view) {
+        ((void (*)(id,SEL))original)(view,selector);
+        HIDEAttachDownloadGesture(view);
+    });
+    IMP installed=HIDEHookChecked(NSStringFromClass(cls),selector,replacement,"v@:");
+    if(installed)original=installed;else imp_removeBlock(replacement);
+}
 void HIDEInstallDownloader(void) {
-    orig_didMoveToWindow = (void *)HIDEHookChecked(@"UIView", @selector(didMoveToWindow), (IMP)hide_didMoveToWindow, "v@:");
+    orig_didMoveToWindow=(void *)HIDEHookChecked(@"UIView",@selector(didMoveToWindow),(IMP)hide_didMoveToWindow,"v@:");
+    for(Class cls in HIDETargetClasses())HIDEInstallMediaLayoutGesture(cls);
 }

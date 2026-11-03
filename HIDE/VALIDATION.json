@@ -1,10 +1,10 @@
 {
-  "release": "HIDE V1.0 - experimental Direct port for Instagram 453",
+  "release": "HIDE V1.0 - download-menu device test for Instagram 453",
   "target_instagram": "453.0.0",
   "minimum_ios": "16.3",
   "native_instagram_runtime_tested": false,
   "ios_device_tested": false,
-  "binary_sha256": "733eb6d1ae78c24ed60f76811071eb18206106df74aeae654960789244abbad2",
+  "binary_sha256": "2d455a480e8878af350fec7b739f21ef032259691eed50d05c54b69377b4720e",
   "build": {
     "result": "passed",
     "architecture": "arm64",
@@ -38,24 +38,25 @@
     "settings_browser": "prior full-screen browser verification retained; approved HTML, CSS and bridge unchanged in this Direct-only port",
     "gallery_browser": "prior browser verification retained; gallery source unchanged in this Direct-only port",
     "static_analysis": {
-      "result": "passed; no diagnostics for both changed Direct modules",
+      "result": "passed; no diagnostics for changed downloader/settings modules",
       "modules": [
-        "HIDEDLFeatures",
-        "HIDEManualSeen"
+        "HIDEDownloader",
+        "HIDESettings"
       ]
     },
     "native_iOS_launch": "not run",
     "native_privacy_and_receipt_delivery": "not run; requires two-account iPhone test",
-    "direct_policy": "passed: account/thread identity, bounded monotonic permits, own-unsend exemption, unknown reason/identity fail-through"
+    "direct_policy": "passed: account/thread identity, bounded monotonic permits, own-unsend exemption, unknown reason/identity fail-through",
+    "native_453_media_contracts": "passed: seven media layout signatures, feed imageSpecifier field type and Swift reel photo currentPhoto getter; previous native contracts retained"
   },
   "known_unavailable": [
     "deleted-message retention on unported encrypted/Instamadillo transports",
     "recovery of messages deleted before being received/cached"
   ],
   "source_checksums": {
-    "CHANGELOG.md": "41dfa7be492a36cb6cfab77945db191abfe7f80ca32bac59f7c00c987378a883",
+    "CHANGELOG.md": "1ba8c4719735bb3df28a58b6e15fa0aecd0d919f23b63d620df21c6e73040823",
     "HIDE_settings_preview.html": "eeae6d93b53ed0309f524f7031776b4970c26da3aacf903f1cae64f932649730",
-    "README-ar.md": "ffc9b4aa68929d35d9fe342051dce1113bedfb8464e10174c15c685cdf21036b",
+    "README-ar.md": "ae0ee82b98dbd924d491921c7d6e236d6b3b2212256c90670de614e44850eb85",
     "assets/HIDE_design.html": "dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4",
     "assets/HIDE_download_all.original.html": "a7fd3cea0b64b66dcf522df54c4354a1aa436c980c86f1a399096d3a3f8c238c",
     "assets/HIDE_gallery.html": "0abedb14d519983477dbb3364585478f46295a4818a8716f991f24f5eaf839c1",
@@ -63,21 +64,22 @@
     "build.sh": "8a757fb449dd700301d5ffa765c0ec1397115b8e7abc89d6f58333f03c34462e",
     "docs/453-direct-device-test-ar.md": "9f9ef62878541777246d7c69fade7546361b174bbf4402fd2a5f0cf9a234aec4",
     "docs/453-direct-port-review.json": "70b05550d0acd9ba8e66b70fbd6544f11ee9516ded3a9666c9c702d1405b003c",
+    "docs/453-download-menu-review.json": "fa787057327f3735744c906d8831ff50c63dfa5f592bff7db01f28d1175f4856",
     "docs/453-generated-schemas.json": "fb824c2dd3d6862dcf196b308755b881b92521f1cf02f689d101d28313b9b545",
     "docs/453-hook-review.json": "f85b94a164eaefbcb9a96af919db25028a8d717ea1e3c256544c78ef862b3425",
-    "docs/453-native-contracts.json": "8912ba535e1273f265f3eee2b8f10f3d6d4d51d3b7f9ee307f720a35a65a859d",
-    "docs/453-packaged-native-contracts.json": "55f9a2301b8a3ba68e6135d818451bc42f37b02a1a1fba1279f5c053323a8d21",
+    "docs/453-native-contracts.json": "85863e0ba3e61291dde81b8a07888ac1674771b74d375f09b797a392b5695b7e",
+    "docs/453-packaged-native-contracts.json": "87b5f7f4f4e5b762169872658508122732257111c213d697d8f22df480cb1679",
     "docs/453-voice-layout.json": "ce609f7576cab3dbcb8f67d565b882664890631858f64f8da5a920a968e7705a",
     "docs/dl-feature-map.json": "3a5c1ebe8e8d9699b655b2473f54be9e3cc8e21ed5ea4a6dc51ca61708e8b581",
     "src/HIDEAppLock.m": "5ba6702df8c0f41c15f37d04bfd9409bb7ed7bc18d580bdffe12724e9d6d1c0a",
     "src/HIDEBatch.m": "5aab6d6a40030bcfa76ec75cd21887f31c7448906fb86f548d20ed4ef35c49ae",
     "src/HIDEConfirm.m": "567437c497d0775f7ec0631560d1f9865beba922e623a1bc2ad41f1df72c213b",
-    "src/HIDECore.h": "5da818a515057d8ac43d74f6e6a2577124a351ec823e4fa4aa8fe1e051d9cd6f",
+    "src/HIDECore.h": "84cacff6835e6af80343a9352bdd6b4038b2e62349a26b64405bc1953dfe9d43",
     "src/HIDECore.m": "1e67736e886cee8fa571dff030ab79de5e93be3ab85c4748d00af87f24dae0f0",
     "src/HIDEDLFeatures.m": "10a6e61637eb0917e43e6d864a8c96a8dc5d463db17c3a962c078e4308bca18c",
     "src/HIDEDesignData.h": "430b7249bd86ee10d33dc4cad011cf8c78e7cbe3ce152544b0ffec3020451948",
     "src/HIDEDirectPolicy.h": "c8b69e93390a3dd41d8e819783ca634a0e7804b79f75a35b3baf8123b669360f",
-    "src/HIDEDownloader.m": "ac55fadb3c45a201646811775ecde68973554a49c6505e4ebc97d19a7909c029",
+    "src/HIDEDownloader.m": "8d2c17b76ad8e9979813b6421ce4881e2ae38c48d9178ef4cceb2fbb2921c870",
     "src/HIDEExtras.m": "2aedc5e525c1b5ca5c7af7e3533feac0e5aa25093453b097c8ee3db7363d20a2",
     "src/HIDEHostLayout.h": "95f2044d3830772e662fc3824cb46a49d7a132101b9e90ff2941ad7001637679",
     "src/HIDEManualSeen.m": "ef5f41a0673e9a2811112bf7fccebb082b2057d598e4f9122e9cd1fbcaf8c1b3",
@@ -86,7 +88,7 @@
     "src/HIDEPolicy.h": "e4ad56058ad71c2bc5e4aadf482523f0c79a0b03be93314f7f3b60cfc781fb0b",
     "src/HIDEPrivacy.m": "df109b6a06b97f330edfeaf0a4e161dce139348372813304a66830c5b514f449",
     "src/HIDEReceiptPolicy.h": "b64abc48c3614c98b43637770b7a52e63c68a986b8266bb7e7c31ad219f7e6a5",
-    "src/HIDESettings.m": "10aa924e26c6ad5e4f2bf3bf0450efc973e148dcae48c6d53fdc120cd89e6a76",
+    "src/HIDESettings.m": "e37fe3a058c30a1046f3b51fec1f4bc3e14436c27876baa63cf1e34e8adb5076",
     "src/HIDESideloadFix.m": "02c723b8d6e82b7eb018a996e89e50647b471368a76f86ff62821585597d2fc1",
     "src/HIDETransfer.m": "84aee5bd479b9d5b81208d77ebecec31923e45f3dc1c37961aafe647517a3961",
     "src/HIDEVoice.m": "714b276424d5c65fa53833ba289b77b682e696d26c2e68fa85dce3de720d73f6",
@@ -103,10 +105,11 @@
     "tests/run.sh": "c9ce1c07796bd96cd09ca75a97f265de28e43a5d3997388b8159d2625972d1e6",
     "tools/embed_design.py": "67efbf48672f9c72340a7cd0ddf62859d6807496d1089d8f831f9f44d49c4846",
     "tools/update_preview.py": "04a425211229cc3d04d98cd4c35406dbb715c3ea9d1ce2dfb6ae30a82250006d",
-    "tools/verify_instagram453.py": "ddf9e7f2619026d2b017763435f26306b23b19db8070236657eea41591a7329a"
+    "tools/verify_instagram453.py": "5d4ef2411a1d731d633717b473fbc2da667ea0522f61f751e6fe2ca70c627a70"
   },
   "experimental_features": [
     "Django/Iris deleted-message cache retention and red text bubble display",
-    "manual read eye through new native tracker; server delivery not established"
+    "manual read eye through new native tracker; server delivery not established",
+    "per-media-view long-press attachment and current photo/video adapters; menu appearance and Photos saving need iPhone validation"
   ]
 }

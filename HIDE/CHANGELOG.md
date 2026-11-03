@@ -1,3 +1,10 @@
+# V1.0 — download-menu device test for Instagram 453
+
+- Attach long press during each actual media class's layout, retaining the UIView window callback as a fallback. Avoid duplicate recognizers and let the deepest media view handle nested touches.
+- Read the native currentPhoto/imageSpecifier/videoURLProvider surfaces for 453 through checked getters and typed ObjC ivars. Never read untyped Swift instance slots.
+- Include content-free attachment/press/resolution counters in the existing compatibility report, so an iPhone test can distinguish gesture delivery from URL resolution.
+- Native metadata/ABI checks, build and static analysis pass; appearance of the menu and saving to Photos require device validation. No settings/gallery design changes.
+
 # V1.0 — experimental Direct port for Instagram 453
 
 - Port received unsend handling to the verified IGDThreadDeltaUpdateFactory remove-item callback; retain the existing local cache entry, scoped by account/thread/message.

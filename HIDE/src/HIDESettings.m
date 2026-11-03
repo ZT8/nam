@@ -13,6 +13,7 @@ static NSString *HIDECompatibilityReportText(void) {
     for (NSDictionary *record in records) {
         [report appendFormat:@"[%@] %@ %@\nexpected: %@\nactual: %@\n\n", record[@"status"], record[@"class"], record[@"selector"], record[@"expected"], record[@"actual"]];
     }
+    [report appendFormat:@"Download gesture diagnostics (no media contents or URLs): %@\n\n",HIDEDownloadDiagnostics()];
     // Metadata only: never read request bodies, headers, message values or credentials.
     [report appendString:@"Selected 453 API metadata (no instance values):\n"];
     NSArray *terms=@[@"seen",@"body",@"param",@"story",@"reel",@"item",@"media",@"voice",@"audio",@"record",@"request",@"update",@"initWithUserSession"];

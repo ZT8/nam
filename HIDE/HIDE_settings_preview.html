@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIDE Settings Preview</title>
+<style>
+  :root { --blue:#336bff; --purple:#8c4dff; --text:#fff; --sub:rgba(255,255,255,.55); --glass:rgba(255,255,255,.07); --edge:rgba(255,255,255,.13); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#05060f; font-family:-apple-system,"SF Pro Text","Segoe UI",Tahoma,sans-serif; color:var(--text); display:flex; flex-direction:column; align-items:center; padding:24px 16px; gap:16px; }
+  .langs { display:flex; gap:8px; }
+  .langs button { background:rgba(255,255,255,.08); color:#fff; border:1px solid var(--edge); border-radius:16px; padding:8px 18px; font-size:15px; cursor:pointer; backdrop-filter:blur(10px); }
+  .langs button.on { background:var(--blue); border-color:transparent; }
+  .phone { width:100%; max-width:390px; background:#000; border-radius:46px; padding:11px; box-shadow:0 0 0 2px #1c1c22, 0 30px 80px rgba(0,0,0,.7); }
+  .screen { position:relative; border-radius:36px; height:800px; overflow:hidden; background:linear-gradient(135deg,#080a1c,#101640 55%,#06081a); }
+  .orb { position:absolute; width:280px; height:280px; border-radius:50%; filter:blur(70px); opacity:.55; }
+  .o1 { background:var(--blue); top:-60px; left:-80px; }
+  .o2 { background:var(--purple); top:300px; right:-120px; }
+  .o3 { background:#00beff; bottom:-80px; left:-40px; opacity:.4; }
+  .scroll { position:absolute; inset:0; overflow-y:auto; scrollbar-width:none; }
+  .scroll::-webkit-scrollbar { display:none; }
+  .nav { position:sticky; top:0; z-index:3; height:56px; display:flex; align-items:center; justify-content:center; background:rgba(10,12,30,.35); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); border-bottom:1px solid rgba(255,255,255,.06); }
+  .nav h1 { font-size:17px; font-weight:600; }
+  .nav .done { position:absolute; inset-inline-end:20px; font-size:17px; font-weight:600; }
+  .glass { background:var(--glass); border:1px solid var(--edge); backdrop-filter:blur(26px) saturate(170%); -webkit-backdrop-filter:blur(26px) saturate(170%); }
+  .hero { margin:16px 20px 6px; border-radius:28px; padding:20px 0 18px; text-align:center; }
+  .mark { width:64px; height:64px; margin:0 auto; border-radius:18px; background:linear-gradient(135deg,var(--blue),var(--purple)); display:grid; place-items:center; font-size:36px; font-weight:900; box-shadow:0 8px 24px rgba(51,107,255,.45); }
+  .brand { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:10px; }
+  .logo { font-size:30px; font-weight:800; letter-spacing:.5px; }
+  .ver { font-size:13px; font-weight:600; padding:2px 9px; border-radius:10px; background:rgba(51,107,255,.45); border:1px solid rgba(255,255,255,.25); font-variant-numeric:tabular-nums; }
+  .site { color:rgba(255,255,255,.6); font-size:14px; font-weight:500; margin-top:4px; }
+  .sec-title { color:var(--sub); font-size:13px; font-weight:600; letter-spacing:.4px; text-transform:uppercase; padding:20px 36px 7px; }
+  .group { border-radius:22px; margin:0 16px; overflow:hidden; }
+  .row { display:flex; align-items:center; gap:14px; min-height:54px; padding:10px 16px; position:relative; }
+  .row + .row::before { content:""; position:absolute; top:0; inset-inline-start:60px; inset-inline-end:0; height:1px; background:rgba(255,255,255,.10); }
+  .ic { width:30px; height:30px; border-radius:8px; display:grid; place-items:center; flex:none; font-size:15px; }
+  .t { flex:1; font-size:16px; font-weight:500; line-height:1.3; }
+  .v { color:var(--sub); font-size:15px; white-space:nowrap; }
+  .chev { color:var(--sub); margin-inline-start:6px; }
+  .sw { border:0; padding:0; display:block; width:51px; height:31px; border-radius:16px; background:rgba(255,255,255,.16); position:relative; flex:none; cursor:pointer; transition:background .2s; }
+  .sw::after { content:""; position:absolute; top:2px; inset-inline-start:2px; width:27px; height:27px; border-radius:50%; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .2s; }
+  .sw:focus-visible { outline:2px solid white; outline-offset:3px; }
+  .sw.on { background:var(--blue); }
+  .sw.on::after { transform:translateX(20px); }
+  [dir=rtl] .sw.on::after { transform:translateX(-20px); }
+  .foot { text-align:center; color:rgba(255,255,255,.35); font-size:12px; font-weight:500; padding:24px 0 36px; }
+  .note { color:rgba(255,255,255,.5); font-size:13px; text-align:center; max-width:390px; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="langs"><button id="en" class="on">English</button><button id="ar">العربية</button></div>
+<div class="phone"><div class="screen">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="scroll" id="screen"></div>
+</div></div>
+<p class="note" id="note"></p>
+<script>
+const V="1.9";
+let previewState = {};
+try { previewState = JSON.parse(localStorage.getItem("hide-preview-state-1.9") || "{}"); } catch (_) {}
+if (!previewState || typeof previewState !== "object" || Array.isArray(previewState)) previewState = {};
+// [label, value(1/0 switch | string), emoji icon, color]
+const S = {
+  "en": {
+    "title": "HIDE Settings",
+    "done": "OK",
+    "note": "HIDE 1.9 settings preview; switches do not test native Instagram features.",
+    "secs": [
+      [
+        "Download",
+        [
+          [
+            "Download with long press",
+            1,
+            "⬇︎",
+            "#3478f6",
+            null,
+            "hide_download"
+          ],
+          [
+            "Always download in highest quality",
+            1,
+            "✦",
+            "#5856d6",
+            null,
+            "hide_high_quality"
+          ]
+        ]
+      ],
+      [
+        "Media",
+        [
+          [
+            "Share after saving media",
+            0,
+            "↗",
+            "#3478f6",
+            null,
+            "hide_share_after_save"
+          ],
+          [
+            "No repeat for videos",
+            0,
+            "↻",
+            "#ff9500",
+            null,
+            "hide_no_video_repeat"
+          ]
+        ]
+      ],
+      [
+        "Stories",
+        [
+          [
+            "Watch stories anonymously",
+            0,
+            "◌",
+            "#af52de",
+            null,
+            "hide_anon_stories"
+          ],
+          [
+            "Don't move to next story automatically",
+            0,
+            "•",
+            "#ff2d55",
+            null,
+            "hide_no_auto_advance"
+          ],
+          [
+            "Show mentions in stories",
+            1,
+            "@",
+            "#5ac8fa",
+            null,
+            "hide_show_mentions"
+          ],
+          [
+            "Videos in story sticker gallery",
+            0,
+            "•",
+            "#af52de",
+            null,
+            "hide_video_stickers"
+          ]
+        ]
+      ],
+      [
+        "Live",
+        [
+          [
+            "Watch live anonymously",
+            0,
+            "•",
+            "#ff2d55",
+            null,
+            "hide_anon_live"
+          ]
+        ]
+      ],
+      [
+        "Direct Messages",
+        [
+          [
+            "Hide that you read messages",
+            0,
+            "•",
+            "#34c759",
+            null,
+            "hide_no_read_receipts"
+          ],
+          [
+            "Keep deleted messages locally",
+            0,
+            "▣",
+            "#ff9500",
+            null,
+            "hide_keep_deleted"
+          ],
+          [
+            "Hide typing indicator",
+            0,
+            "•",
+            "#30b0c7",
+            null,
+            "hide_no_typing"
+          ],
+          [
+            "Hide screenshot notifications",
+            0,
+            "•",
+            "#af52de",
+            null,
+            "hide_no_screenshot_notice"
+          ],
+          [
+            "Hide replay notifications",
+            0,
+            "•",
+            "#ff9500",
+            null,
+            "hide_no_replay_notice"
+          ],
+          [
+            "Allow screenshots in Direct media",
+            0,
+            "•",
+            "#5ac8fa",
+            null,
+            "hide_allow_screenshots"
+          ],
+          [
+            "Extend voice recording limit",
+            0,
+            "●",
+            "#ff3b30",
+            null,
+            "hide_long_voice"
+          ],
+          [
+            "Download voice messages",
+            1,
+            "〰",
+            "#ff3b30",
+            null,
+            "hide_voice_download"
+          ],
+          [
+            "Send audio/video as voice note",
+            0,
+            "•",
+            "#3478f6",
+            null,
+            "hide_voice_import"
+          ]
+        ]
+      ],
+      [
+        "Popup Alert",
+        [
+          [
+            "Confirm Like/Unlike",
+            0,
+            "♥",
+            "#ff375f",
+            null,
+            "hide_confirm_like"
+          ],
+          [
+            "Confirm Follow/Unfollow",
+            0,
+            "•",
+            "#007aff",
+            null,
+            "hide_confirm_follow"
+          ]
+        ]
+      ],
+      [
+        "Others",
+        [
+          [
+            "Copy comments & captions (long press)",
+            1,
+            "•",
+            "#8e8e93",
+            null,
+            "hide_copy_text"
+          ],
+          [
+            "Show if account follows you",
+            1,
+            "•",
+            "#5e5ce6",
+            null,
+            "hide_follow_status"
+          ],
+          [
+            "Show like and view counts",
+            0,
+            "•",
+            "#ff375f",
+            null,
+            "hide_like_counts"
+          ],
+          [
+            "Keep video timer visible",
+            0,
+            "◷",
+            "#ff9f0a",
+            null,
+            "hide_video_timer"
+          ]
+        ]
+      ],
+      [
+        "Browser",
+        [
+          [
+            "Open links in Safari",
+            0,
+            "•",
+            "#0a84ff",
+            null,
+            "hide_safari_links"
+          ]
+        ]
+      ],
+      [
+        "Ads",
+        [
+          [
+            "Remove sponsored posts",
+            1,
+            "•",
+            "#ff453a",
+            null,
+            "hide_no_ads"
+          ]
+        ]
+      ],
+      [
+        "App Lock",
+        [
+          [
+            "Lock with Face ID / Passcode",
+            0,
+            "☺",
+            "#34c759",
+            null,
+            "hide_app_lock"
+          ],
+          [
+            "Lock",
+            "Immediately",
+            "◷",
+            "#ff9f0a"
+          ]
+        ]
+      ],
+      [
+        "About",
+        [
+          [
+            "Version",
+            "1.9",
+            "i",
+            "#336bff",
+            1
+          ],
+          [
+            "Instagram",
+            "@hidestores",
+            "◉",
+            "#e1306c"
+          ],
+          [
+            "Compatibility report",
+            "407.0.0",
+            "✓",
+            "#336bff"
+          ]
+        ]
+      ]
+    ]
+  },
+  "ar": {
+    "title": "إعدادات HIDE",
+    "done": "تم",
+    "note": "معاينة إعدادات HIDE 1.9؛ المفاتيح هنا لا تختبر عمل الميزات داخل إنستغرام.",
+    "secs": [
+      [
+        "التحميل",
+        [
+          [
+            "التحميل بالضغط المطوّل",
+            1,
+            "⬇︎",
+            "#3478f6",
+            null,
+            "hide_download"
+          ],
+          [
+            "التحميل دائماً بأعلى جودة",
+            1,
+            "✦",
+            "#5856d6",
+            null,
+            "hide_high_quality"
+          ]
+        ]
+      ],
+      [
+        "الميديا",
+        [
+          [
+            "المشاركة بعد حفظ الوسائط",
+            0,
+            "↗",
+            "#3478f6",
+            null,
+            "hide_share_after_save"
+          ],
+          [
+            "إيقاف تكرار الفيديو تلقائياً",
+            0,
+            "↻",
+            "#ff9500",
+            null,
+            "hide_no_video_repeat"
+          ]
+        ]
+      ],
+      [
+        "الستوري",
+        [
+          [
+            "مشاهدة الستوري بدون ما يظهر اسمك",
+            0,
+            "◌",
+            "#af52de",
+            null,
+            "hide_anon_stories"
+          ],
+          [
+            "عدم الانتقال للستوري التالية تلقائياً",
+            0,
+            "•",
+            "#ff2d55",
+            null,
+            "hide_no_auto_advance"
+          ],
+          [
+            "إظهار المنشن في الستوري",
+            1,
+            "@",
+            "#5ac8fa",
+            null,
+            "hide_show_mentions"
+          ],
+          [
+            "الفيديو في معرض ملصقات الستوري",
+            0,
+            "•",
+            "#af52de",
+            null,
+            "hide_video_stickers"
+          ]
+        ]
+      ],
+      [
+        "البث المباشر",
+        [
+          [
+            "مشاهدة البث بدون ظهور الاسم",
+            0,
+            "•",
+            "#ff2d55",
+            null,
+            "hide_anon_live"
+          ]
+        ]
+      ],
+      [
+        "الرسائل الخاصة",
+        [
+          [
+            "إخفاء إنك قريت الرسالة",
+            0,
+            "•",
+            "#34c759",
+            null,
+            "hide_no_read_receipts"
+          ],
+          [
+            "الاحتفاظ بالرسائل المحذوفة محليًا",
+            0,
+            "▣",
+            "#ff9500",
+            null,
+            "hide_keep_deleted"
+          ],
+          [
+            "إخفاء «يكتب الآن»",
+            0,
+            "•",
+            "#30b0c7",
+            null,
+            "hide_no_typing"
+          ],
+          [
+            "إخفاء إشعار تصوير الشاشة",
+            0,
+            "•",
+            "#af52de",
+            null,
+            "hide_no_screenshot_notice"
+          ],
+          [
+            "إخفاء إشعار إعادة عرض الوسائط",
+            0,
+            "•",
+            "#ff9500",
+            null,
+            "hide_no_replay_notice"
+          ],
+          [
+            "السماح بتصوير وسائط الرسائل",
+            0,
+            "•",
+            "#5ac8fa",
+            null,
+            "hide_allow_screenshots"
+          ],
+          [
+            "رفع قيد مدة التسجيل الصوتي",
+            0,
+            "●",
+            "#ff3b30",
+            null,
+            "hide_long_voice"
+          ],
+          [
+            "تحميل الرسائل الصوتية",
+            1,
+            "〰",
+            "#ff3b30",
+            null,
+            "hide_voice_download"
+          ],
+          [
+            "إرسال صوت أو فيديو كرسالة صوتية",
+            0,
+            "•",
+            "#3478f6",
+            null,
+            "hide_voice_import"
+          ]
+        ]
+      ],
+      [
+        "رسائل التأكيد",
+        [
+          [
+            "تأكيد الإعجاب/إلغاء الإعجاب",
+            0,
+            "♥",
+            "#ff375f",
+            null,
+            "hide_confirm_like"
+          ],
+          [
+            "تأكيد المتابعة/إلغاء المتابعة",
+            0,
+            "•",
+            "#007aff",
+            null,
+            "hide_confirm_follow"
+          ]
+        ]
+      ],
+      [
+        "أخرى",
+        [
+          [
+            "نسخ التعليقات والوصف (ضغط مطوّل)",
+            1,
+            "•",
+            "#8e8e93",
+            null,
+            "hide_copy_text"
+          ],
+          [
+            "إظهار إذا الحساب يتابعك",
+            1,
+            "•",
+            "#5e5ce6",
+            null,
+            "hide_follow_status"
+          ],
+          [
+            "إظهار عدد الإعجابات والمشاهدات",
+            0,
+            "•",
+            "#ff375f",
+            null,
+            "hide_like_counts"
+          ],
+          [
+            "إبقاء مؤقت الفيديو ظاهرًا",
+            0,
+            "◷",
+            "#ff9f0a",
+            null,
+            "hide_video_timer"
+          ]
+        ]
+      ],
+      [
+        "المتصفح",
+        [
+          [
+            "فتح الروابط في سفاري",
+            0,
+            "•",
+            "#0a84ff",
+            null,
+            "hide_safari_links"
+          ]
+        ]
+      ],
+      [
+        "الإعلانات",
+        [
+          [
+            "إزالة المنشورات الممولة",
+            1,
+            "•",
+            "#ff453a",
+            null,
+            "hide_no_ads"
+          ]
+        ]
+      ],
+      [
+        "قفل التطبيق",
+        [
+          [
+            "القفل ببصمة الوجه / رمز الدخول",
+            0,
+            "☺",
+            "#34c759",
+            null,
+            "hide_app_lock"
+          ],
+          [
+            "وقت القفل",
+            "فوراً",
+            "◷",
+            "#ff9f0a"
+          ]
+        ]
+      ],
+      [
+        "حول",
+        [
+          [
+            "الإصدار",
+            "1.9",
+            "i",
+            "#336bff",
+            1
+          ],
+          [
+            "Instagram",
+            "@hidestores",
+            "◉",
+            "#e1306c"
+          ],
+          [
+            "تقرير التوافق",
+            "407.0.0",
+            "✓",
+            "#336bff"
+          ]
+        ]
+      ]
+    ]
+  }
+};
+function render(lang){
+  const d=S[lang], scr=document.getElementById('screen');
+  scr.dir = lang==='ar'?'rtl':'ltr';
+  document.documentElement.lang = lang;
+  let h=`<div class="nav"><h1>${d.title}</h1><span class="done">${d.done}</span></div>
+    <div class="hero glass"><div class="mark">H</div>
+      <div class="brand"><span class="logo">HIDE</span><span class="ver">v${V}</span></div>
+      <div class="site">hide-plus.com</div></div>`;
+  for(const [sectionIndex,[t,rows]] of d.secs.entries()){
+    h+=`<div class="sec-title">${t}</div><div class="group glass">`;
+    for(const [rowIndex,r] of rows.entries()){
+      const stateKey = r[5] || `${sectionIndex}:${rowIndex}`;
+      const on = typeof previewState[stateKey] === "boolean" ? previewState[stateKey] : Boolean(r[1]);
+      const icon=`<span class="ic" style="background:${r[3]}">${r[2]}</span>`;
+      if(typeof r[1]==='number') h+=`<div class="row">${icon}<span class="t">${r[0]}</span><button type="button" class="sw${on?' on':''}" role="switch" aria-label="${r[0]}" aria-checked="${on}" data-state-key="${stateKey}"></button></div>`;
+      else h+=`<div class="row">${icon}<span class="t">${r[0]}</span><span class="v">${r[1]}${r[4]?'':'<span class="chev">'+(lang==='ar'?'‹':'›')+'</span>'}</span></div>`;
+    }
+    h+=`</div>`;
+  }
+  h+=`<div class="foot">HIDE v${V} · hide-plus.com</div>`;
+  scr.innerHTML=h;
+  scr.querySelectorAll('.sw').forEach(s=>s.onclick=()=>{
+    const on = s.getAttribute('aria-checked') !== 'true';
+    s.classList.toggle('on',on); s.setAttribute('aria-checked',String(on));
+    previewState[s.dataset.stateKey] = on;
+    try { localStorage.setItem('hide-preview-state-1.9',JSON.stringify(previewState)); } catch (_) {}
+  });
+  document.getElementById('note').textContent=d.note;
+  document.getElementById('en').classList.toggle('on',lang==='en');
+  document.getElementById('ar').classList.toggle('on',lang==='ar');
+}
+document.getElementById('en').onclick=()=>render('en');
+document.getElementById('ar').onclick=()=>render('ar');
+render('ar');
+</script>
+</body>
+</html>

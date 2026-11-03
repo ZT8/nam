@@ -1,0 +1,273 @@
+{
+  "comparison": "DLInsta binary analysis versus HIDE 1.8",
+  "dl_binary_sha256": "23b13778267c7b25f7cbb524ac824deb11752a0dd0d35c179366b1fe1905165d",
+  "target_instagram": "407.0.0",
+  "native_runtime_verified": false,
+  "options": [
+    {
+      "dl_option": "DL_AlwaysShowTimerVideos",
+      "hide_symbol": "kHideVideoTimer",
+      "hide_preference": "hide_video_timer",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_BypassVoiceMessageLimit",
+      "hide_symbol": "kHideLongVoice",
+      "hide_preference": "hide_long_voice",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_DisableMoveToNextStory",
+      "hide_symbol": "kHideNoAutoAdvance",
+      "hide_preference": "hide_no_auto_advance",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEExtras.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_DisableReplayedLiveMediaInDM",
+      "hide_symbol": "kHideNoReplayNotice",
+      "hide_preference": "hide_no_replay_notice",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_DisableScreenshotNotificationInDM",
+      "hide_symbol": "kHideNoScreenshotNotice",
+      "hide_preference": "hide_no_screenshot_notice",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_DisableScreenshotProtectionInDM",
+      "hide_symbol": "kHideAllowScreenshots",
+      "hide_preference": "hide_allow_screenshots",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_DisableTypingIndicatorInDM",
+      "hide_symbol": "kHideNoTyping",
+      "hide_preference": "hide_no_typing",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEExtras.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations",
+      "additional_implementation": "src/HIDEDLFeatures.m"
+    },
+    {
+      "dl_option": "DL_DownloadVoiceMessage",
+      "hide_symbol": "kHideVoiceDownload",
+      "hide_preference": "hide_voice_download",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEVoice.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableAlwaysDLHighQuality",
+      "hide_symbol": "kHideHighQuality",
+      "hide_preference": "hide_high_quality",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEDownloader.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableAppLock",
+      "hide_symbol": "kHideAppLock",
+      "hide_preference": "hide_app_lock",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEAppLock.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableConfirmFollow_Unfollow",
+      "hide_symbol": "kHideConfirmFollow",
+      "hide_preference": "hide_confirm_follow",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEConfirm.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableConfirmLike",
+      "hide_symbol": "kHideConfirmLike",
+      "hide_preference": "hide_confirm_like",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEConfirm.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableCopyText",
+      "hide_symbol": "kHideCopyText",
+      "hide_preference": "hide_copy_text",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEExtras.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableDisableLoopVideo",
+      "hide_symbol": "kHideNoVideoRepeat",
+      "hide_preference": "hide_no_video_repeat",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEMedia.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableOpenLinksInSafari",
+      "hide_symbol": "kHideSafariLinks",
+      "hide_preference": "hide_safari_links",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEPrivacy.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableRemoveAds",
+      "hide_symbol": "kHideNoAds",
+      "hide_preference": "hide_no_ads",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_EnableShareMedia",
+      "hide_symbol": "kHideShareAfterSave",
+      "hide_preference": "hide_share_after_save",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEBatch.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_FollowStatus",
+      "hide_symbol": "kHideFollowStatus",
+      "hide_preference": "hide_follow_status",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEExtras.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_KeepDeletedDM",
+      "hide_symbol": "kHideKeepDeleted",
+      "hide_preference": "hide_keep_deleted",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_SeeDMWithoutOtherPartyKnowing",
+      "hide_symbol": "kHideNoReadReceipts",
+      "hide_preference": "hide_no_read_receipts",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEPrivacy.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations",
+      "additional_implementation": "src/HIDEDLFeatures.m"
+    },
+    {
+      "dl_option": "DL_SeeStoryWithoutOtherPartyKnowing",
+      "hide_symbol": "kHideAnonStories",
+      "hide_preference": "hide_anon_stories",
+      "change_since_1_8": "expanded",
+      "implementation": "src/HIDEPrivacy.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations",
+      "additional_implementation": "src/HIDEDLFeatures.m"
+    },
+    {
+      "dl_option": "DL_SelectVideoFromStickers",
+      "hide_symbol": "kHideVideoStickers",
+      "hide_preference": "hide_video_stickers",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_ShowLikeViewCount",
+      "hide_symbol": "kHideLikeCounts",
+      "hide_preference": "hide_like_counts",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_ShowMentionsInStory",
+      "hide_symbol": "kHideShowMentions",
+      "hide_preference": "hide_show_mentions",
+      "change_since_1_8": "existing",
+      "implementation": "src/HIDEDownloader.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_UploadVoiceMessage",
+      "hide_symbol": "kHideVoiceImport",
+      "hide_preference": "hide_voice_import",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEVoiceImport.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    },
+    {
+      "dl_option": "DL_WatchLiveAnonymously",
+      "hide_symbol": "kHideAnonLive",
+      "hide_preference": "hide_anon_live",
+      "change_since_1_8": "new",
+      "implementation": "src/HIDEDLFeatures.m",
+      "native_runtime_verified": false,
+      "evidence": "DLInsta-full/all-functions.c and recovered constructor hook registrations"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "selection_and_all_available_story_items",
+      "implementation": "src/HIDEBatch.m + src/HIDEDownloader.m",
+      "status": "implemented; unavailable items shown and not selectable"
+    },
+    {
+      "name": "merge_photos_and_videos",
+      "implementation": "src/HIDEBatch.m",
+      "status": "implemented; 3-second photos, 1080x1920 letterbox, source order and audio"
+    },
+    {
+      "name": "download_progress_and_cancel",
+      "implementation": "src/HIDEBatch.m",
+      "status": "implemented; sequential downloads, real task/export progress, cancellation between Photos saves"
+    },
+    {
+      "name": "profile_photo_hd_lookup",
+      "implementation": "src/HIDEDownloader.m",
+      "status": "implemented; ABI-checked native authenticated lookup with existing-image fallback"
+    },
+    {
+      "name": "manual_mark_one_story_seen_while_anonymous",
+      "implementation": null,
+      "status": "not ported; requires the 407 story model and seen-request body contract to avoid marking unrelated stories"
+    }
+  ],
+  "analysis_reference_url": "https://github.com/ZT8/nam/tree/main/DLInsta-full"
+}

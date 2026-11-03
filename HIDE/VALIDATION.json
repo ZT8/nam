@@ -1,0 +1,106 @@
+{
+  "release": "HIDE 1.9 development build",
+  "target_instagram": "407.0.0",
+  "native_instagram_runtime_tested": false,
+  "ios_device_tested": false,
+  "comparison": {
+    "dl_options_mapped": 26,
+    "new_settings_since_1_8": 11,
+    "total_settings_switches": 27,
+    "all_new_defaults_off": true,
+    "pending_workflow": "Manual per-story seen while anonymous requires the Instagram 407 story/seen request contract"
+  },
+  "build": {
+    "result": "passed",
+    "compiled_modules": [
+      "src/HIDEAppLock.m",
+      "src/HIDEBatch.m",
+      "src/HIDEConfirm.m",
+      "src/HIDECore.m",
+      "src/HIDEDLFeatures.m",
+      "src/HIDEDownloader.m",
+      "src/HIDEExtras.m",
+      "src/HIDEMedia.m",
+      "src/HIDEPrivacy.m",
+      "src/HIDESettings.m",
+      "src/HIDESideloadFix.m",
+      "src/HIDETransfer.m",
+      "src/HIDEVoice.m",
+      "src/HIDEVoiceImport.m"
+    ],
+    "architecture": "arm64",
+    "minimum_ios": [
+      15,
+      0,
+      0
+    ],
+    "sdk_metadata_version": [
+      16,
+      4,
+      0
+    ],
+    "sdk_directory": "iPhoneOS16.5.sdk",
+    "sdk_repository_commit": "theos/sdks@0222fd5413cf4b9af096f37b4621afa2688572f7",
+    "compiler": "Debian Clang 19.1.7",
+    "linker": "LLD 19.1.7",
+    "signed": false,
+    "warnings": 0,
+    "errors": 0
+  },
+  "tests": {
+    "host_lock_policy_and_http_status": "passed",
+    "host_media_policy": "passed: 754 aspect-fit combinations, portrait/landscape/rotation and duration boundaries",
+    "feature_inventory": "passed: 26 mapped options, 27 UI settings, new defaults off, all labels bilingual and availability guards registered",
+    "preview": "passed: 27 switches match native defaults, RTL/LTR, language state, keyboard and reload persistence, no JavaScript errors",
+    "static_analysis": {
+      "result": "passed; no diagnostics",
+      "modules": [
+        "HIDEBatch",
+        "HIDECore",
+        "HIDEDLFeatures",
+        "HIDEDownloader",
+        "HIDEExtras",
+        "HIDESettings",
+        "HIDEVoiceImport"
+      ]
+    },
+    "native_iOS_UI_AVFoundation_and_Photos": "not run",
+    "native_voice_send_and_delivery": "not run",
+    "Instagram_privacy_effectiveness": "not run",
+    "Instagram_407_private_API_semantics": "not run"
+  },
+  "binary_sha256": "c4e4fb5861216ba8877e85f140920ad3247077461a60263b0765bd4103454eb4",
+  "original_uploaded_binary_sha256": "098b8c9701aaf64a586ed5d755cf84d2d5be3fa07de2fa921f802ca852e56165",
+  "uploaded_source_zip_sha256": "9e6266b8470c5f8e1d9566891c0bc733a09412b3a9a8c8d81b8eed14c3cf064a",
+  "source_checksums": {
+    "CHANGELOG.md": "666509a685e6e034a177cc3215a29c59d77257ec56809ced891f93e20bb3cbce",
+    "HIDE_settings_preview.html": "c3180db65e472b0eb230c0fbd7540966200b0de87fb1ee03beb4aaa00bd1371a",
+    "README-ar.md": "1eba9ab81444a6bfc723f71576e49a41266f2decb7762056ef631a934ad4d809",
+    "build.sh": "0b1dae370274fb5b05c1e10c9e39ea84a6ada1279d9f837d625438de34cdb008",
+    "docs/DL-COMPARISON-ar.md": "3c4bd601afeab4de67ca10803338d147d278b17f5bd8e76db17336d8bf46fe75",
+    "docs/dl-feature-map.json": "74b41d9943841fd8ab22967e34bacb63a67124b191176b19040bc0e9e920cfaf",
+    "src/HIDEAppLock.m": "fb7388bf508aba2d55c255594fe283310b61591b98049d313501b2c0c2138003",
+    "src/HIDEBatch.m": "068a7c03427c9a55f9d1af977d9d3a9576a79823760b9f101389115bbc972b6b",
+    "src/HIDEConfirm.m": "567437c497d0775f7ec0631560d1f9865beba922e623a1bc2ad41f1df72c213b",
+    "src/HIDECore.h": "2730c840a43a9d22cd05b65d611d9091027d8505840ceb5ce9212f989227ff73",
+    "src/HIDECore.m": "d4b87c065ffb7ae58c9a668622f5f1949f7a93dbc3a685fd6d04f1e00b61abfa",
+    "src/HIDEDLFeatures.m": "bccb1aa9b4eb3a94bc43dfdcd242e3bb2e370215a899d9bac48951ba75425bd1",
+    "src/HIDEDownloader.m": "9f35d8ca720fca970f84bf6046f4ae4afc37d55edfb7bc717b931a45f6adfb8b",
+    "src/HIDEExtras.m": "502f72448a305100073d9b5efa238b01f339247084d402452e0215ece15fd738",
+    "src/HIDEMedia.m": "30bd25ffc237b0b0e606d23853cba2593c237af5bfcbb73cd7c2f6fdbb186480",
+    "src/HIDEMediaPolicy.h": "df799bb3da03f90d7c4360622eaa81088098a3486f0d73475b654a96350cd06d",
+    "src/HIDEPolicy.h": "e4ad56058ad71c2bc5e4aadf482523f0c79a0b03be93314f7f3b60cfc781fb0b",
+    "src/HIDEPrivacy.m": "dfed69493f971ea6898f14619b7dd2bb0121f585bedb4c74ad5685fffae231d1",
+    "src/HIDESettings.m": "30a4e4e6ea12324496227ba790bcfecebeda3887eee7ee411b93d379c8390c5b",
+    "src/HIDESideloadFix.m": "02c723b8d6e82b7eb018a996e89e50647b471368a76f86ff62821585597d2fc1",
+    "src/HIDETransfer.m": "84aee5bd479b9d5b81208d77ebecec31923e45f3dc1c37961aafe647517a3961",
+    "src/HIDEVoice.m": "714b276424d5c65fa53833ba289b77b682e696d26c2e68fa85dce3de720d73f6",
+    "src/HIDEVoiceImport.m": "dfa4cbfb424500b47e139a3a656017994882e8904d3026e8d9b13c6ed7ca6c2e",
+    "tests/feature_inventory.py": "641a17ec4b5dfd5e7f201b56880805d1ee96d9e492bcf89e5750952e1308edb6",
+    "tests/lock_policy_test.c": "62526296108d83ebde6460209b8db1650e602d75020f3b9cfe7862b1c17eb628",
+    "tests/media_policy_test.c": "36cafa122300461197e2f24f5aa5d2be06a83f31bcd4efed54fa6ebfdd1cf14d",
+    "tests/preview_smoke.py": "fea9b25952f444917a39bb8b007e5a56acfc200ec3891d58102c515cf02a36ae",
+    "tests/run.sh": "bf4d65b872f46423fe205615be397073f48784853ccc6d61f8a6a64bc0a6815d",
+    "tools/update_preview.py": "ac67a92fd1c2b56dca8e803b7881b56fc4dc410e35c45da37a5d2212c8dbb099"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "framework_sha256": "53eb05515e509487e3fdfdca81b84ad87da69782c1824208a8ce48ae8c83b053",
+  "methods": {
+    "IGUserSession": {
+      "networker": "@16@0:8"
+    },
+    "IGDevirtualizedValueObject": {
+      "valueForKey:": "@24@0:8@16"
+    },
+    "IGURLRequest": {
+      "parameters": "@16@0:8",
+      "copyWithZone:": "@24@0:8^{_NSZone}16",
+      "URL": "@16@0:8",
+      "body": "@16@0:8"
+    },
+    "IGScopedNetworker": {
+      "startAPIRequest:policy:successHandler:failureHandler:": "@48@0:8@16@24@?32@?40",
+      "startAPIRequest:policy:completionQueue:cacheHandler:parsingHandler:successHandler:failureHandler:": "@72@0:8@16@24@32@?40@?48@?56@?64",
+      "startAPIRequest:policy:completionQueue:cacheHandler:bytesSentHandler:firstByteFlushedHandler:lastByteAckedHandler:parsingHandler:successHandler:failureHandler:": "@96@0:8@16@24@32@?40@?48@?56@?64@?72@?80@?88"
+    }
+  },
+  "runtime_delivery_confirmed": false,
+  "permission_scope": [
+    "account",
+    "target",
+    "request body SHA256",
+    "monotonic expiry"
+  ],
+  "unknown_requests": "not authorized",
+  "global_privacy_settings_temporarily_disabled": false
+}

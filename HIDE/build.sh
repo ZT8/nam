@@ -35,7 +35,7 @@ for source in src/*.m; do
   "$CC" "${FLAGS[@]}" -c "$source" -o "$OBJECTS/$(basename "${source%.m}").o"
 done
 "$CC" "${FLAGS[@]}" "${LINKER[@]}" -dynamiclib "$OBJECTS"/*.o -o "$OBJECTS/HIDE.dylib" \
-  -framework WebKit -framework UIKit -framework Foundation -framework Photos -framework CoreGraphics \
+  -framework ImageIO -framework WebKit -framework UIKit -framework Foundation -framework Photos -framework CoreGraphics \
   -framework Security -framework AVFoundation -framework LocalAuthentication -framework QuartzCore \
   -framework PhotosUI -framework UniformTypeIdentifiers -framework CoreMedia -framework AudioToolbox -framework CoreVideo \
   -install_name @rpath/HIDE.dylib -Wl,-dead_strip

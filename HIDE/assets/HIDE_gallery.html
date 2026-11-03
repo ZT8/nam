@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIDE Download All</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#0b0b10;font-family:-apple-system,"SF Pro Text","Segoe UI",Tahoma,sans-serif;color:#fff;display:flex;flex-direction:column;align-items:center;padding:20px 12px;gap:14px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.bar button{background:#1c1c24;color:#fff;border:1px solid #2c2c38;border-radius:16px;padding:8px 16px;font-size:14px;cursor:pointer;font-family:inherit}
+.bar button.on{background:#c6ff3d;color:#000;border-color:transparent;font-weight:700}
+.phone{width:100%;max-width:390px;background:#000;border-radius:46px;padding:11px;box-shadow:0 0 0 2px #1c1c22,0 30px 80px rgba(0,0,0,.7)}
+.screen{position:relative;border-radius:36px;height:780px;overflow:hidden;background:linear-gradient(160deg,#0d1236,#07071a 60%);--ac:#c6ff3d}
+.view{position:absolute;inset:0;display:none}.view.show{display:block}
+.sw{width:46px;height:28px;border-radius:14px;background:rgba(255,255,255,.18);position:relative;flex:none;cursor:pointer;transition:.2s}
+.sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
+.sw.on{background:#336bff}.sw.on::after{transform:translateX(18px)}[dir=rtl] .sw.on::after{transform:translateX(-18px)}
+.note{color:#888;font-size:13px;text-align:center;max-width:390px;line-height:1.6}
+
+/* gallery */
+.gh{padding:26px 20px 8px;display:flex;justify-content:space-between;align-items:flex-start}
+.gh h2{font-size:24px;font-weight:800}.gh small{display:block;color:rgba(255,255,255,.5);font-size:13px;margin-top:2px}
+.gx{font-size:26px;color:rgba(255,255,255,.4);cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 16px 0;height:560px;overflow-y:auto;scrollbar-width:none;align-content:start}
+.grid::-webkit-scrollbar{display:none}
+.th{aspect-ratio:1/1.35;border-radius:14px;position:relative;overflow:hidden;cursor:pointer;border:2.5px solid transparent;transition:.15s}
+.th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);transition:.15s}
+.th.on{border-color:#c6ff3d}.th.on::after{background:rgba(0,0,0,0)}
+.th i{position:absolute;top:6px;inset-inline-start:6px;z-index:2;width:24px;height:24px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-size:13px;font-style:normal;color:#000}
+.th.on i{background:#c6ff3d;border-color:#c6ff3d}
+.th b{position:absolute;bottom:6px;inset-inline-end:8px;z-index:2;font-size:12px}
+.gbar{position:absolute;bottom:14px;inset-inline:16px;height:78px;border-radius:28px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);display:flex;gap:10px;align-items:center;padding:0 14px}
+.gbar button{flex:1;height:46px;border-radius:23px;border:0;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.b1{background:rgba(255,255,255,.12);color:#fff}.b2{background:#c6ff3d;color:#000}
+.prog{position:absolute;bottom:8px;inset-inline:30px;height:4px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden;display:none}
+.prog div{height:100%;width:0;background:#c6ff3d;transition:width .25s}
+
+/* lock */
+.lock{display:grid;place-items:center;text-align:center;background:rgba(5,5,16,.97)}
+.lock .ic{font-size:54px}.lock h3{font-size:20px;margin:14px 0 18px}
+.lock button{width:200px;height:44px;border-radius:22px;border:0;background:#c6ff3d;font-weight:700;font-size:16px;font-family:inherit;cursor:pointer}
+.dm{padding:50px 16px}
+.dm .r{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.07);border-radius:18px;padding:12px;margin-bottom:10px}
+.dm .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#ff5ca8,#ff9f43)}
+.dm .l{height:10px;border-radius:5px;background:rgba(255,255,255,.2);margin:5px 0}
+
+/* settings */
+.sp{padding:22px 16px;overflow-y:auto;height:100%;scrollbar-width:none}.sp::-webkit-scrollbar{display:none}
+.sp h1{text-align:center;font-size:17px;margin-bottom:14px}
+.sec{color:rgba(255,255,255,.5);font-size:12px;font-weight:700;padding:16px 14px 7px}
+.grp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:20px;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:52px;position:relative}
+.row+.row::before{content:"";position:absolute;top:0;inset-inline-start:54px;inset-inline-end:0;height:1px;background:rgba(255,255,255,.1)}
+.ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;flex:none}
+.row .t{flex:1;font-size:15.5px;font-weight:500}.row .v{color:rgba(255,255,255,.5);font-size:14px;direction:ltr}
+</style>
+<style>
+html,body{width:100%;height:100%;overflow:hidden}body{padding:0;display:block;gap:0}.phone{width:100%;height:100%;max-width:none;padding:0;border-radius:0;box-shadow:none;background:none}.screen{height:100%;border-radius:0}.note{display:none}.view.show{display:flex;flex-direction:column}.gh{flex:none}.grid{flex:1;height:auto;min-height:0;padding-bottom:130px}.th{background:#35353e;padding:0;font-family:inherit;appearance:none;color:white;flex:none}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.th i{z-index:3}.th b{z-index:3}.th::after{z-index:2}.th:disabled{opacity:.45;cursor:default}.gbar button:disabled{opacity:.5}.gx{border:0;background:none;padding:0 6px;font-family:inherit}.gallery-status{font-size:12px;line-height:1.6;padding:0 20px 8px;color:rgba(255,255,255,.65);min-height:25px}.gbar{bottom:14px}.grid:focus-visible,.th:focus-visible{outline:2px solid white;outline-offset:2px}
+</style></head>
+<body>
+<div class="phone"><div class="screen" dir="rtl">
+
+  <!-- Gallery -->
+  <div class="view show" id="v-gal">
+    <div class="gh"><div><h2>تحميل الكل</h2><small id="cnt">تحميل الوسائط…</small></div><button class="gx" aria-label="إغلاق">✕</button></div>
+    <div class="gallery-status" id="status" role="status"></div><div class="grid" id="grid"></div>
+    <div class="gbar"><button class="b1" id="all">إلغاء التحديد</button><button class="b2" id="dl">تحميل</button><div class="prog" id="prog"><div></div></div></div>
+  </div>
+
+  </div></div>
+
+</div></div>
+<p class="note">معاينة نافذة «تحميل الكل». اضغط على الصور للتحديد، وجرّب زر التحميل.</p>
+<script>
+let items=[],selected=new Set(),busy=false,lastShape='';
+const send=body=>window.webkit.messageHandlers.hideGallery.postMessage(body);
+function draw(){
+ const grid=document.getElementById('grid'),scroll=grid.scrollTop;
+ grid.innerHTML=items.map((item,i)=>`<button type="button" class="th${selected.has(i)?' on':''}" data-i="${i}" aria-label="${item.video?'فيديو':'صورة'} ${i+1}" aria-pressed="${selected.has(i)}" ${item.available?'':'disabled'}><i>${selected.has(i)?'✓':''}</i>${item.image?`<img src="${item.image}" alt="">`:''}${item.video?'<b>▶︎</b>':''}</button>`).join('');
+ grid.scrollTop=scroll;
+ grid.querySelectorAll('[data-i]').forEach(el=>el.onclick=()=>{if(busy)return;send({action:'select',index:Number(el.dataset.i)})});
+ document.getElementById('cnt').textContent=`${items.length} عنصر · تم تحديد ${selected.size}`;
+ document.getElementById('dl').textContent=busy?'جاري الحفظ…':`تحميل (${selected.size})`;
+ document.getElementById('dl').disabled=busy||!selected.size;
+ document.getElementById('all').disabled=busy;
+ document.getElementById('all').textContent=selected.size===items.filter(i=>i.available).length?'إلغاء التحديد':'تحديد الكل';
+}
+window.HIDEGalleryState=s=>{const shape=JSON.stringify([s.items,s.selected,s.busy]);const previous=items;items=s.items.map((item,i)=>({...item,image:previous[i]?.image}));selected=new Set(s.selected);busy=s.busy;document.getElementById('prog').style.display=busy?'block':'none';document.querySelector('#prog div').style.width=`${s.progress*100}%`;document.getElementById('status').textContent=s.status||'';if(shape!==lastShape){lastShape=shape;draw()}};
+window.HIDEGalleryThumbnail=(index,image)=>{if(!items[index] || !/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(image))return;items[index].image=image;const tile=document.querySelector(`[data-i="${index}"]`);if(tile){let img=tile.querySelector('img');if(!img){img=document.createElement('img');img.alt='';tile.appendChild(img)}img.src=image}};
+document.getElementById('all').onclick=()=>send({action:'all'});
+document.getElementById('dl').onclick=()=>{if(!busy&&selected.size)send({action:'download'})};
+document.querySelector('.gx').onclick=()=>send({action:'close'});
+</script>
+</body>
+</html>

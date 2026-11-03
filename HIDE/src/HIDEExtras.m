@@ -63,7 +63,9 @@ static BOOL hide_rrStored(id self, SEL _cmd) {
     return HIDEPref(kHideNoReadReceipts) ? YES : orig_rrStored(self, _cmd);
 }
 static BOOL (*orig_mqttSendRR)(id, SEL);
+BOOL HIDEAllowManualReadObject(id object);
 static BOOL hide_mqttSendRR(id self, SEL _cmd) {
+    if(HIDEAllowManualReadObject(self))return YES;
     return HIDEPref(kHideNoReadReceipts) ? NO : orig_mqttSendRR(self, _cmd);
 }
 

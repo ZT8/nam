@@ -3,7 +3,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-#define HIDE_VERSION @"1.9.3"
+#define HIDE_VERSION @"1.9.4"
 #define HIDE_TARGET_INSTAGRAM @"407.0.0"
 
 // ---- Preferences keys
@@ -89,3 +89,5 @@ void HIDEAuthenticate(void (^done)(BOOL ok));
 void HIDEAppLockPreferenceChanged(BOOL enabled);
 NSInteger HIDELockDelay(void);
 NSString *HIDELockDelayTitle(NSInteger seconds);
+
+void HIDEInstallManualSeen(void);

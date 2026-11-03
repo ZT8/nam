@@ -2,6 +2,7 @@
 #import "HIDECore.h"
 #import <Photos/Photos.h>
 #import <math.h>
+#import <float.h>
 #import <string.h>
 
 static const void *kHideGestureKey = &kHideGestureKey;
@@ -72,12 +73,12 @@ static NSURL *HIDEVideoURL(id video) {
     return HIDEToURL(video);
 }
 
-static NSURL *HIDEPhotoURL(id photo) {
+static NSURL *HIDEPhotoURLWidth(id photo,double requestedWidth) {
     if (!photo) return nil;
     SEL selector = NSSelectorFromString(@"imageURLForWidth:");
     NSMethodSignature *signature = [photo methodSignatureForSelector:selector];
     if (signature.numberOfArguments == 3 && signature.methodReturnType[0] == '@') {
-        double width = HIDEPref(kHideHighQuality) ? 5000 : 1080;
+        double width = requestedWidth;
         const char *type = [signature getArgumentTypeAtIndex:2];
         while (*type && strchr("rnNoORV", *type)) type++;
         id value = nil;
@@ -94,10 +95,22 @@ static NSURL *HIDEPhotoURL(id photo) {
         NSURL *url = HIDEToURL(value);
         if (url) return url;
     }
-    NSURL *version = HIDEBestVersion(HIDEGet(photo, @"imageVersions") ?: HIDEIvar(photo, "_originalImageVersions"));
+    id versions=HIDEGet(photo,@"imageVersions") ?: HIDEIvar(photo,"_originalImageVersions");
+    NSURL *version=nil;
+    if(requestedWidth<=240 && [versions isKindOfClass:NSArray.class]) {
+        double best=DBL_MAX;for(id item in versions){double width=HIDEDimension(item,@"width");NSURL *candidate=HIDEToURL(item);if(candidate && width>0 && width<best){best=width;version=candidate;}}
+    } else version=HIDEBestVersion(versions);
     return version ?: HIDEToURL(HIDEGet(photo, @"storyImageSpecifier")) ?: HIDEToURL(photo);
 }
 
+static NSURL *HIDEPhotoURL(id photo){return HIDEPhotoURLWidth(photo,HIDEPref(kHideHighQuality) ? 5000 : 1080);}
+static NSDictionary *HIDEDownloadItem(NSURL *url,BOOL video,id media) {
+    NSMutableDictionary *item=[@{@"url":url,@"video":@(video)} mutableCopy];
+    id photo=HIDEGet(media,@"photo") ?: HIDEGet(media,@"coverPhoto") ?: HIDEGet(HIDEGet(media,@"video"),@"coverPhoto") ?: HIDEGet(media,@"imageSpecifier");
+    NSURL *preview=HIDEPhotoURLWidth(photo ?: (video ? nil : media),240);
+    if(preview)item[@"thumbnailURL"]=preview;
+    return item;
+}
 // Turns any of IGMedia / IGVideo / IGPhoto / IGImageSpecifier / story item into a URL.
 static BOOL HIDEResolveObjectDepth(id obj, NSURL **outURL, BOOL *outVideo, id *outMedia, NSUInteger depth) {
     if (!obj || depth>6) return NO;
@@ -268,7 +281,7 @@ static void HIDEDownloadAll(NSArray *items) {
     for (id item in items) {
         NSURL *url=nil;BOOL video=NO;id media=nil;
         if (HIDEResolveObject(item,&url,&video,&media))
-            [resolved addObject:@{@"url":url,@"video":@(video)}];
+            [resolved addObject:HIDEDownloadItem(url,video,media ?: item)];
         else [resolved addObject:@{@"unavailable":@YES}];
     }
     if (!resolved.count) { HIDEToast(HIDEL(@"NO_MEDIA"));return; }
@@ -288,18 +301,16 @@ static NSArray<NSString *> *HIDEMentions(id media) {
 }
 
 static NSArray *HIDEStoryItems(UIView *source) {
-    BOOL story=NO;
-    for (UIView *view=source;view;view=view.superview) if ([NSStringFromClass(view.class) containsString:@"Story"]) { story=YES;break; }
-    if (!story) return nil;
-    for (UIResponder *responder=source;responder;responder=responder.nextResponder) {
-        NSMutableArray *models=[NSMutableArray arrayWithObject:responder];
-        for (NSString *getter in @[@"viewModel",@"storyViewerViewModel",@"reel",@"story"]) { id model=HIDEGet(responder,getter);if(model)[models addObject:model]; }
-        for (const char **name=(const char *[]) {"_viewModel","_storyViewerViewModel",NULL};*name;name++) { id model=HIDEIvar(responder,*name);if(model)[models addObject:model]; }
-        for (id model in models) for (NSString *getter in @[@"items",@"storyItems",@"reelItems"]) {
-            id items=HIDEGet(model,getter);if ([items isKindOfClass:NSArray.class] && [items count]>1) return items;
-        }
-    }
-    return nil;
+    BOOL story=NO;for(UIView *v=source;v;v=v.superview)if([NSStringFromClass(v.class) containsString:@"Story"]){story=YES;break;}
+    if(!story)return nil;
+    NSMutableArray *queue=[NSMutableArray array];NSHashTable *visited=[NSHashTable hashTableWithOptions:NSPointerFunctionsObjectPointerPersonality|NSPointerFunctionsStrongMemory];
+    for(UIResponder *r=source;r;r=r.nextResponder){[queue addObject:r];id delegate=HIDEGet(r,@"delegate");if(delegate)[queue addObject:delegate];}
+    for(NSUInteger index=0;index<queue.count && index<128;index++) {
+        id model=queue[index];if([visited containsObject:model])continue;[visited addObject:model];
+        for(NSString *getter in @[@"items",@"mediaItems",@"sortedItems",@"storyItems",@"reelItems"]){id items=HIDEGet(model,getter);if([items isKindOfClass:NSArray.class] && [items count]>1)return items;}
+        for(NSString *getter in @[@"viewModel",@"storyViewerViewModel",@"story",@"reel"]){id value=HIDEGet(model,getter);if(value && value!=model)[queue addObject:value];}
+        for(NSString *name in @[@"_viewModel",@"_focusedModelItem",@"_storyViewerViewModel",@"_reel"]){id value=HIDEIvar(model,name.UTF8String);if(value && value!=model)[queue addObject:value];}
+    }return nil;
 }
 
 static BOOL HIDEProfileContext(UIView *source,id *user,id *networker) {
@@ -352,58 +363,16 @@ static void HIDEProfileURL(UIView *source,NSURL *fallback,void (^done)(NSURL *))
     });
 }
 
+BOOL HIDECanManuallySeeStory(UIView *source,id media);
+void HIDEManuallySeeStory(UIView *source,id media);
 static void HIDEPresentResolvedActions(UIView *source,NSURL *url,BOOL isVideo,id media) {
-    // Centered alert so the menu never sticks to the bottom edge of tall reels.
-    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"HIDE" message:HIDEL(@"WHAT_TO_DO") preferredStyle:UIAlertControllerStyleAlert];
-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_DOWNLOAD") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-        HIDEPresentBatch(@[@{@"url":url,@"video":@(isVideo)}]);
-    }]];
-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_SHARE") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-        HIDEFetch(url, isVideo, ^(NSURL *file) {
-            HIDEShareTemporaryFile(file);
-        });
-    }]];
-    NSString *caption = media ? HIDECaption(media) : nil;
-    if (caption.length) {
-        [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_COPY_CAPTION") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-            [UIPasteboard generalPasteboard].string = caption;
-            HIDEToast(HIDEL(@"COPIED"));
-        }]];
-    }
-    id user=HIDEGet(media,@"user") ?: HIDEGet(media,@"owner") ?: media;
-    NSString *username=HIDEGet(user,@"username");
-    if(HIDEPref(kHideCopyText) && [username isKindOfClass:NSString.class] && username.length) {
-        [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"COPY_USERNAME") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            UIPasteboard.generalPasteboard.string=username;HIDEToast(HIDEL(@"COPIED"));
-        }]];
-    }
-    NSArray *carousel = HIDECarouselItems(source, media) ?: HIDEStoryItems(source);
-    if (carousel.count > 1) {
-        NSString *t = [NSString stringWithFormat:@"%@ (%lu)", HIDEL(@"ACTION_DOWNLOAD_ALL"), (unsigned long)carousel.count];
-        [sheet addAction:[UIAlertAction actionWithTitle:t style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-            HIDEDownloadAll(carousel);
-        }]];
-    }
-    NSArray *mentions = HIDEPref(kHideShowMentions) ? HIDEMentions(media) : nil;
-    if (mentions.count) {
-        [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"MENTIONS") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-            UIAlertController *list = [UIAlertController alertControllerWithTitle:HIDEL(@"MENTIONS") message:nil preferredStyle:UIAlertControllerStyleAlert];
-            for (NSString *n in mentions) {
-                [list addAction:[UIAlertAction actionWithTitle:[@"@" stringByAppendingString:n] style:UIAlertActionStyleDefault handler:^(UIAlertAction *x) {
-                    NSURL *u = [NSURL URLWithString:[@"instagram://user?username=" stringByAppendingString:n]];
-                    [[UIApplication sharedApplication] openURL:u options:@{} completionHandler:nil];
-                }]];
-            }
-            [list addAction:[UIAlertAction actionWithTitle:HIDEL(@"CANCEL") style:UIAlertActionStyleCancel handler:nil]];
-            [HIDETopViewController() presentViewController:list animated:YES completion:nil];
-        }]];
-    }
-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_COPY_LINK") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-        [UIPasteboard generalPasteboard].string = url.absoluteString;
-        HIDEToast(HIDEL(@"COPIED"));
-    }]];
+    UIAlertController *sheet=[UIAlertController alertControllerWithTitle:@"HIDE" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_DOWNLOAD") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){HIDEPresentBatch(@[HIDEDownloadItem(url,isVideo,media)]);}]];
+    NSArray *items=HIDECarouselItems(source,media) ?: HIDEStoryItems(source);
+    if(items.count>1)[sheet addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@ (%lu)",HIDEL(@"ACTION_DOWNLOAD_ALL"),(unsigned long)items.count] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){HIDEDownloadAll(items);}]];
+    if(HIDECanManuallySeeStory(source,media))[sheet addAction:[UIAlertAction actionWithTitle:@"Seen" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){HIDEManuallySeeStory(source,media);}]];
     [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"CANCEL") style:UIAlertActionStyleCancel handler:nil]];
-
+    sheet.popoverPresentationController.sourceView=source;sheet.popoverPresentationController.sourceRect=source.bounds;
     [HIDETopViewController() presentViewController:sheet animated:YES completion:nil];
 }
 

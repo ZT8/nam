@@ -86,7 +86,9 @@ static void hide_timer(id object, SEL selector, BOOL showing, BOOL animated, id 
 
 #pragma mark - Legacy story/Direct receipt and typing backstops
 static void (*originalStorySeen)(id,SEL,id,id);
+void HIDERecordStoryReceipt(id viewer,id section,id item,IMP original);
 static void hide_storySeen(id object,SEL selector,id section,id item) {
+    HIDERecordStoryReceipt(object,section,item,(IMP)originalStorySeen);
     if(!HIDEPref(kHideAnonStories))originalStorySeen(object,selector,section,item);
 }
 static void (*originalVisualSeen)(id,SEL,id,id,long long);
@@ -127,16 +129,24 @@ static void hide_screenshotBlock(id object, SEL selector, BOOL blocked, id model
 
 #pragma mark - Local preservation of received removal updates
 // Only affects the local cache. No message contents are copied into preferences.
-static NSString *HIDEMessageIdentifier(id value) {
-    if ([value isKindOfClass:NSString.class]) return value;
-    if ([value isKindOfClass:NSNumber.class]) return [value stringValue];
-    for (NSString *getter in @[@"messageServerId", @"messageId", @"itemId"]) {
-        id identifier = HIDEGet(value,getter);
-        if ([identifier isKindOfClass:NSString.class]) return identifier;
-        if ([identifier isKindOfClass:NSNumber.class]) return [identifier stringValue];
+static NSString *HIDEMessageIdentifierDepth(id value,NSUInteger depth) {
+    if(!value || depth>4)return nil;
+    if([value isKindOfClass:NSString.class])return value;
+    if([value isKindOfClass:NSNumber.class])return [value stringValue];
+    Class generated=NSClassFromString(@"IGDevirtualizedValueObject");
+    for(NSString *name in @[@"messageServerId",@"messageId",@"itemId",@"serverId",@"serverID",@"messageID",@"value"]) {
+        id part=HIDEGet(value,name);
+        // 407 devirtualizes message-key fields; its verified base class exposes KVC.
+        if(!part && generated && [value isKindOfClass:generated])@try{part=[value valueForKey:name];}@catch(__unused NSException *e){}
+        if(part && part!=value){NSString *identifier=HIDEMessageIdentifierDepth(part,depth+1);if(identifier)return identifier;}
     }
-    id identifier = HIDEIvar(value,"_messageServerId");
-    return [identifier isKindOfClass:NSString.class] ? identifier : nil;
+    return HIDEMessageIdentifierDepth(HIDEIvar(value,"_messageServerId"),depth+1);
+}
+static NSString *HIDEMessageIdentifier(id value){return HIDEMessageIdentifierDepth(value,0);}
+static id HIDEMessageMetadata(id model){
+    id metadata=HIDEGet(model,@"messageMetadata") ?: HIDEIvar(model,"_messageMetadata");
+    if(!metadata){id cellModel=HIDEGet(model,@"messageCellViewModel");metadata=HIDEGet(cellModel,@"messageMetadata") ?: HIDEIvar(cellModel,"_messageMetadata");}
+    return metadata;
 }
 static NSObject *HIDEDeletionLock(void) {
     static NSObject *lock; static dispatch_once_t once; dispatch_once(&once,^{lock=[NSObject new];}); return lock;
@@ -146,7 +156,8 @@ static NSMutableDictionary *HIDEOwnDeletions(void) {
     dispatch_once(&once,^{allowed=[NSMutableDictionary dictionary];}); return allowed;
 }
 static void HIDEAllowOwnDeletion(id model) {
-    id key = HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey") ?: model;
+    id metadata=HIDEMessageMetadata(model);
+    id key=HIDEGet(metadata,@"key") ?: HIDEIvar(metadata,"_key") ?: HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey") ?: model;
     NSString *identifier = HIDEMessageIdentifier(key);
     if (!identifier) return;
     @synchronized (HIDEDeletionLock()) {
@@ -217,28 +228,62 @@ static void hide_unsend407(id object,SEL selector,id model,id thread,id fbid,lon
     HIDEAllowOwnDeletion(model);originalUnsend407(object,selector,model,thread,fbid,subtype,audience);
 }
 static const void *deletedBadgeKey=&deletedBadgeKey, *deletedModelKey=&deletedModelKey;
+@interface HIDEDeletedMessageButton : UIButton @end
+@implementation HIDEDeletedMessageButton
+- (CGRect)contentRectForBounds:(CGRect)bounds{return UIEdgeInsetsInsetRect(bounds,UIEdgeInsetsMake(8,12,8,12));}
+@end
+static NSString *HIDEVisibleMessageText(UIView *view,NSUInteger depth) {
+    if(depth>10 || view.hidden)return nil;
+    NSString *best=nil;
+    if([view isKindOfClass:UILabel.class])best=((UILabel *)view).attributedText.string ?: ((UILabel *)view).text;
+    else if([view isKindOfClass:UITextView.class])best=((UITextView *)view).attributedText.string ?: ((UITextView *)view).text;
+    else {id text=HIDEGet(view,@"attributedText") ?: HIDEGet(view,@"attributedString") ?: HIDEGet(view,@"text");
+        if([text isKindOfClass:NSAttributedString.class])best=[text string];
+        else if([text isKindOfClass:NSString.class])best=text;
+    }
+    for(UIView *child in view.subviews){NSString *text=HIDEVisibleMessageText(child,depth+1);if(text.length>best.length)best=text;}
+    return best;
+}
+static BOOL HIDEContainsMessageMedia(UIView *view,NSUInteger depth){
+    if(depth>10 || view.hidden)return NO;
+    NSString *name=NSStringFromClass(view.class);
+    for(NSString *kind in @[@"Voice",@"Audio",@"Video",@"Photo",@"Sticker",@"ImageMessage",@"VisualMedia",@"MediaPreview"])if([name containsString:kind])return YES;
+    for(UIView *child in view.subviews)if(HIDEContainsMessageMedia(child,depth+1))return YES;
+    return NO;
+}
 static void HIDEUpdateDeletedBadge(UIView *cell) {
     UIButton *badge=objc_getAssociatedObject(cell,deletedBadgeKey);
-    [badge removeFromSuperview]; objc_setAssociatedObject(cell,deletedBadgeKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    if (!HIDEPref(kHideKeepDeleted)) return;
-    id model=objc_getAssociatedObject(cell,deletedModelKey) ?: HIDEGet(cell,@"viewModel") ?: HIDEIvar(cell,"_viewModel");
-    id key=HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey");
-    NSString *identifier=HIDEMessageIdentifier(key), *thread=HIDEMessageIdentifier(HIDEGet(model,@"threadId") ?: HIDEIvar(model,"_threadId"));
-    if (!identifier || !thread) return;
-    NSDictionary *dates=[NSUserDefaults.standardUserDefaults dictionaryForKey:@"hide_deleted_timestamps"];
-    NSNumber *timestamp=dates[[NSString stringWithFormat:@"%@:%@",thread,identifier]];
-    if (![timestamp isKindOfClass:NSNumber.class]) return;
-    badge=[UIButton buttonWithType:UIButtonTypeSystem]; [badge setTitle:HIDEL(@"DELETED_MESSAGE") forState:UIControlStateNormal];
-    badge.titleLabel.font=[UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
-    badge.tintColor=UIColor.systemRedColor; badge.backgroundColor=[UIColor.secondarySystemBackgroundColor colorWithAlphaComponent:0.9]; badge.layer.cornerRadius=6;
-    [badge addAction:[UIAction actionWithHandler:^(UIAction *action) {
-        NSString *date=[NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timestamp.doubleValue] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"DELETED_MESSAGE") message:date preferredStyle:UIAlertControllerStyleAlert];
+    [badge removeFromSuperview];objc_setAssociatedObject(cell,deletedBadgeKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if(!HIDEPref(kHideKeepDeleted))return;
+    id model=objc_getAssociatedObject(cell,deletedModelKey) ?: HIDEGet(cell,@"messageCellViewModel") ?: HIDEIvar(cell,"_viewModel");
+    id metadata=HIDEMessageMetadata(model);
+    id key=HIDEGet(metadata,@"key") ?: HIDEIvar(metadata,"_key") ?: HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey");
+    NSString *identifier=HIDEMessageIdentifier(key),*thread=HIDEMessageIdentifier(HIDEGet(metadata,@"threadId") ?: HIDEGet(model,@"threadId") ?: HIDEIvar(model,"_threadId"));
+    if(!thread)for(UIResponder *r=cell;r;r=r.nextResponder){thread=HIDEMessageIdentifier(HIDEGet(r,@"threadId") ?: HIDEIvar(r,"_threadId"));if(thread)break;}
+    if(!identifier || !thread)return;
+    NSNumber *timestamp=[NSUserDefaults.standardUserDefaults dictionaryForKey:@"hide_deleted_timestamps"][[NSString stringWithFormat:@"%@:%@",thread,identifier]];
+    if(![timestamp isKindOfClass:NSNumber.class])return;
+    UIView *content=HIDEIvar(cell,"_messageContentContainerView");
+    if(![content isKindOfClass:UIView.class] || CGRectIsEmpty(content.bounds))return;
+    NSString *text=HIDEContainsMessageMedia(content,0) ? nil : HIDEVisibleMessageText(content,0);
+    badge=[[HIDEDeletedMessageButton alloc] initWithFrame:CGRectZero];badge.backgroundColor=[UIColor colorWithRed:213/255.0 green:45/255.0 blue:64/255.0 alpha:1];
+    [badge setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];badge.titleLabel.numberOfLines=0;
+    badge.titleLabel.font=[UIFont systemFontOfSize:16];badge.titleLabel.textAlignment=NSTextAlignmentNatural;
+    badge.layer.cornerRadius=MIN(22,content.bounds.size.height/2);badge.clipsToBounds=YES;
+    // Overlay text messages only; never replace a photo/video/voice note by a text placeholder.
+    if(text.length){[badge setTitle:text forState:UIControlStateNormal];badge.frame=content.bounds;}
+    else {[badge setImage:[UIImage systemImageNamed:@"clock"] forState:UIControlStateNormal];badge.tintColor=UIColor.whiteColor;badge.frame=CGRectMake(MAX(0,content.bounds.size.width-28),MAX(0,content.bounds.size.height-28),28,28);}
+    badge.accessibilityLabel=[NSString stringWithFormat:@"%@ · %@",text ?: @"",HIDEL(@"DELETED_MESSAGE")];
+    __weak UIView *weakCell=cell;CGRect anchorRect=[content convertRect:content.bounds toView:cell];
+    [badge addAction:[UIAction actionWithHandler:^(UIAction *action){
+        UIView *anchor=weakCell;if(!anchor.window)return;
+        NSString *date=[NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timestamp.doubleValue] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterMediumStyle];
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"DELETION_DATE") message:date preferredStyle:UIAlertControllerStyleActionSheet];
         [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"OK") style:UIAlertActionStyleCancel handler:nil]];
+        alert.popoverPresentationController.sourceView=anchor;alert.popoverPresentationController.sourceRect=anchorRect;
         [HIDETopViewController() presentViewController:alert animated:YES completion:nil];
     }] forControlEvents:UIControlEventTouchUpInside];
-    badge.frame=CGRectMake(MAX(0,cell.bounds.size.width-125),MAX(0,cell.bounds.size.height-20),120,18);
-    [cell addSubview:badge]; objc_setAssociatedObject(cell,deletedBadgeKey,badge,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [content addSubview:badge];objc_setAssociatedObject(cell,deletedBadgeKey,badge,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 static void (*originalCellLayout)(id,SEL);
 static void hide_deletedLayout(UIView *cell,SEL selector) { originalCellLayout(cell,selector); HIDEUpdateDeletedBadge(cell); }

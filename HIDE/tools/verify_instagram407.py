@@ -16,12 +16,12 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 VOICE = '_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController'
 TARGETS = {'IGLiveViewerCountIntervalPuller', 'IGDirectCache', 'IGDirectMessageUpdate',
-           'IGDirectThreadUpdate', 'IGDirectCacheThreadUpdate', 'IGDirectMessageMenuActionHandler', VOICE}
+           'IGDirectThreadUpdate', 'IGDirectCacheThreadUpdate', 'IGDirectMessageMenuActionHandler','IGDirectThreadViewController','IGDirectMessageListViewController','IGDirectThreadViewListAdapterDataSource','IGStoryViewerViewController','IGDirectMessageCell', VOICE}
 EXPECTED_UUID = '4c4c444e-5555-3144-a107-36f95b1dcf25'
 
 
 def verify(path):
-    source = (ROOT / 'src/HIDEDLFeatures.m').read_text()
+    source = (ROOT / 'src/HIDEDLFeatures.m').read_text() + (ROOT / 'src/HIDEManualSeen.m').read_text()
     header = (ROOT / 'src/HIDE407.h').read_text()
     with path.open('rb') as file, mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as data:
         magic, _, _, kind, count, _, _, _ = struct.unpack_from('<8I', data)
@@ -111,6 +111,13 @@ def verify(path):
             (VOICE, 'startRecordingWithButtonTapFromEntryPoint:', 'hide_record407Start'),
             ('IGDirectMessageMenuActionHandler', 'unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:', 'hide_unsend407'),
         ]
+        contracts += [
+            ('IGDirectThreadViewController','markLastMessageAsSeen','hide_threadMark'),
+            ('IGDirectMessageListViewController','markLastMessageAsSeen','hide_listMark'),
+            ('IGDirectThreadViewListAdapterDataSource','shouldUpdateLastSeenMessage','hide_shouldUpdate'),
+            ('IGStoryViewerViewController','fullscreenSectionController:didMarkItemAsSeen:','hide_storySeen'),
+        ]
+        assert classes['IGDirectMessageCell']['fields']['_messageContentContainerView']=='@"IGDirectMessageBubbleContainerView"'
         encodings = {}
         for cls, selector, replacement in contracts:
             encoding, _ = classes[cls]['methods'][selector]

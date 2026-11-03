@@ -2,6 +2,8 @@
 // We rewrite that URL at the moment the IGURLRequest is created (and when it's read back),
 // This covers only the hooked IGURLRequest paths; other transports require device validation.
 #import "HIDECore.h"
+void HIDERegisterReceiptURL(id request,NSURL *url);
+NSURL *HIDEAuthorizedReceiptURL(id request);
 
 #pragma mark - Anonymous stories
 
@@ -23,19 +25,19 @@ static NSURL *HIDEFilterURL(NSURL *url) {
 
 static id (*orig_reqInit2)(id __attribute__((ns_consumed)), SEL, NSURL *, id) __attribute__((ns_returns_retained));
 static id __attribute__((ns_returns_retained)) hide_reqInit2(id __attribute__((ns_consumed)) self, SEL _cmd, NSURL *url, id module) {
-    return orig_reqInit2(self, _cmd, HIDEFilterURL(url), module);
+    id result=orig_reqInit2(self,_cmd,HIDEFilterURL(url),module);HIDERegisterReceiptURL(result,url);return result;
 }
 static id (*orig_reqInit3)(id __attribute__((ns_consumed)), SEL, NSURL *, unsigned long long, id) __attribute__((ns_returns_retained));
 static id __attribute__((ns_returns_retained)) hide_reqInit3(id __attribute__((ns_consumed)) self, SEL _cmd, NSURL *url, unsigned long long method, id module) {
-    return orig_reqInit3(self, _cmd, HIDEFilterURL(url), method, module);
+    id result=orig_reqInit3(self,_cmd,HIDEFilterURL(url),method,module);HIDERegisterReceiptURL(result,url);return result;
 }
 static id (*orig_reqInit4)(id __attribute__((ns_consumed)), SEL, NSURL *, unsigned long long, id, BOOL) __attribute__((ns_returns_retained));
 static id __attribute__((ns_returns_retained)) hide_reqInit4(id __attribute__((ns_consumed)) self, SEL _cmd, NSURL *url, unsigned long long method, id module, BOOL force) {
-    return orig_reqInit4(self, _cmd, HIDEFilterURL(url), method, module, force);
+    id result=orig_reqInit4(self,_cmd,HIDEFilterURL(url),method,module,force);HIDERegisterReceiptURL(result,url);return result;
 }
 static NSURL *(*orig_reqURL)(id, SEL);
 static NSURL *hide_reqURL(id self, SEL _cmd) {
-    return HIDEFilterURL(orig_reqURL(self, _cmd));
+    return HIDEAuthorizedReceiptURL(self) ?: HIDEFilterURL(orig_reqURL(self,_cmd));
 }
 
 #pragma mark - Safari links

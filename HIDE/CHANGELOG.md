@@ -1,3 +1,11 @@
+# 1.9.4 (manual receipts and download gallery test build)
+
+- Render retained deleted text in a red bubble with white text and a deletion-date action; resolve 407 messageMetadata/key and generated-key KVC. Preserve nontext media and remove presentation overlays on cell reuse/layout.
+- Add an eye action for the current Direct thread and Seen for the exact current story. Call verified native entry points without toggling privacy preferences. Bind HTTP exceptions to account, target, immutable body fingerprint and expiry; reject mixed story batches. Do not claim confirmed delivery.
+- Simplify media long-press actions to download/current, download all, eligible story Seen and cancel.
+- Replace the old batch/merge picker with the supplied gallery design without its mockup. Keep selection independent of preview success, use small photos/cover images or a one-second video frame, and drive progress/saved counts from native callbacks.
+- Add receipt-policy host tests, gallery UI tests and additional native 407 contracts. Device delivery, native thumbnail generation and Photos saving remain untested here.
+
 # 1.9.3 (full-screen unified settings test build)
 
 - Remove the preview phone frame, fixed 820px canvas and external demo note at runtime. Fill the native safe area in a full-screen presentation with a matching close button.

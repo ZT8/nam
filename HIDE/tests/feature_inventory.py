@@ -22,4 +22,5 @@ assert 'HIDESettingsViewController' not in settings
 assert 'HIDEPresentAdvancedSettingsFromController' not in settings+web
 assert 'UIModalPresentationFullScreen' in settings
 assert 'HIDEFeatureAvailable(key)' in web
+assert 'HIDEInstallManualSeen();' in core
 print('PASS: 26 DL options mapped; all 27 preferences in one unified UI; 11 new defaults off; bilingual native labels; no old settings controller')

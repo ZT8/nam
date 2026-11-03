@@ -119,6 +119,13 @@ NSString *HIDEL(NSString *key) {
             @"WHAT_TO_DO": @"What do you want to do?",
             @"DOWNLOADING": @"Downloading…",
             @"SAVED": @"Saved to Photos",
+            @"SAVE_FAILED": @"Could not save the media.",
+            @"DELETION_DATE": @"Deletion date and time",
+            @"MANUAL_SEEN_TITLE": @"Send seen status?",
+            @"MANUAL_DM_CONFIRM": @"Ask Instagram to mark this conversation as read? Hidden read receipts stay enabled.",
+            @"MANUAL_STORY_CONFIRM": @"Ask Instagram to mark only this story as seen? Anonymous viewing stays enabled.",
+            @"MANUAL_SEEN_SEND": @"Send read receipt",
+            @"MANUAL_SEEN_REQUESTED": @"Seen request invoked. Delivery is not confirmed.",
             @"COPIED": @"Copied",
             @"ERROR": @"An error occurred, please try again.",
             @"NO_MEDIA": @"Couldn't find media here",
@@ -229,6 +236,13 @@ NSString *HIDEL(NSString *key) {
             @"WHAT_TO_DO": @"وش تبي تسوي؟",
             @"DOWNLOADING": @"جاري التحميل…",
             @"SAVED": @"تم الحفظ في الصور",
+            @"SAVE_FAILED": @"تعذّر حفظ الوسائط.",
+            @"DELETION_DATE": @"تاريخ ووقت الحذف",
+            @"MANUAL_SEEN_TITLE": @"إرسال حالة المشاهدة؟",
+            @"MANUAL_DM_CONFIRM": @"طلب تعليم هذه المحادثة كمقروءة؟ يبقى إخفاء القراءة مفعّلًا.",
+            @"MANUAL_STORY_CONFIRM": @"طلب تعليم هذه الستوري فقط كمشاهَدة؟ يبقى إخفاء المشاهدة مفعّلًا.",
+            @"MANUAL_SEEN_SEND": @"إرسال القراءة",
+            @"MANUAL_SEEN_REQUESTED": @"تم استدعاء طلب المشاهدة؛ لم يتأكد وصوله.",
             @"COPIED": @"تم النسخ",
             @"ERROR": @"صار خطأ، حاول مرة ثانية.",
             @"NO_MEDIA": @"ما لقيت ميديا هنا",
@@ -518,6 +532,7 @@ __attribute__((constructor)) static void HIDEInit(void) {
         HIDEInstallAppLock();
         HIDEInstallExtras();
         HIDEInstallDLFeatures();
+        HIDEInstallManualSeen();
         HIDEInstallVoiceImport();
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification *n) {
             HIDEShowWelcomeIfNeeded();

@@ -1,6 +1,14 @@
 --- /dev/null
 +++ b/CHANGELOG.md
-@@ -0,0 +1,58 @@
+@@ -0,0 +1,66 @@
++# 1.9.4 (manual receipts and download gallery test build)
++
++- Render retained deleted text in a red bubble with white text and a deletion-date action; resolve 407 messageMetadata/key and generated-key KVC. Preserve nontext media and remove presentation overlays on cell reuse/layout.
++- Add an eye action for the current Direct thread and Seen for the exact current story. Call verified native entry points without toggling privacy preferences. Bind HTTP exceptions to account, target, immutable body fingerprint and expiry; reject mixed story batches. Do not claim confirmed delivery.
++- Simplify media long-press actions to download/current, download all, eligible story Seen and cancel.
++- Replace the old batch/merge picker with the supplied gallery design without its mockup. Keep selection independent of preview success, use small photos/cover images or a one-second video frame, and drive progress/saved counts from native callbacks.
++- Add receipt-policy host tests, gallery UI tests and additional native 407 contracts. Device delivery, native thumbnail generation and Photos saving remain untested here.
++
 +# 1.9.3 (full-screen unified settings test build)
 +
 +- Remove the preview phone frame, fixed 820px canvas and external demo note at runtime. Fill the native safe area in a full-screen presentation with a matching close button.
@@ -237,7 +245,7 @@
 +render();
 +</script>
 +<script>
-+window.__HIDEInitialSnapshot={"version": "1.9.3", "features": {"dl": true, "hq": true, "sh": false, "rep": false, "anon": false, "adv": false, "men": true, "rr": false, "ty": false, "vm": true, "dlm": false, "ss": false, "rp": false, "sp": false, "v2m": false, "rec": false, "lk": false, "fl": false, "cp": true, "fy": true, "lc": false, "sf": false, "ad": true, "lock": false, "live": false, "sv": false, "timer": false, "cl": false}, "available": {"dl": true, "hq": true, "sh": true, "rep": true, "anon": true, "adv": true, "men": true, "rr": true, "ty": true, "vm": true, "dlm": true, "ss": true, "rp": true, "sp": true, "v2m": true, "rec": true, "lk": true, "fl": true, "cp": true, "fy": true, "lc": true, "sf": true, "ad": true, "lock": true, "live": true, "sv": true, "timer": true, "cl": false}, "language": "ar", "color": 0, "glass": true, "delay": 0, "delaySeconds": 0};
++window.__HIDEInitialSnapshot={"version": "1.9.4", "features": {"dl": true, "hq": true, "sh": false, "rep": false, "anon": false, "adv": false, "men": true, "rr": false, "ty": false, "vm": true, "dlm": false, "ss": false, "rp": false, "sp": false, "v2m": false, "rec": false, "lk": false, "fl": false, "cp": true, "fy": true, "lc": false, "sf": false, "ad": true, "lock": false, "live": false, "sv": false, "timer": false, "cl": false}, "available": {"dl": true, "hq": true, "sh": true, "rep": true, "anon": true, "adv": true, "men": true, "rr": true, "ty": true, "vm": true, "dlm": true, "ss": true, "rp": true, "sp": true, "v2m": true, "rec": true, "lk": true, "fl": true, "cp": true, "fy": true, "lc": true, "sf": true, "ad": true, "lock": true, "live": true, "sv": true, "timer": true, "cl": false}, "language": "ar", "color": 0, "glass": true, "delay": 0, "delaySeconds": 0};
 +window.HIDEPreviewRPC=[];
 +    try { const saved=JSON.parse(localStorage.getItem('hide-app-preview')||'null');if(saved)Object.assign(__HIDEInitialSnapshot,saved); }catch(e){}
 +    window.webkit={messageHandlers:{hideSettings:{postMessage(message){
@@ -354,108 +362,64 @@
 +</html>
 --- /dev/null
 +++ b/README-ar.md
-@@ -0,0 +1,96 @@
-+# HIDE 1.9.3 — واجهة كاملة بدون موكاب
+@@ -0,0 +1,52 @@
++# HIDE 1.9.4 — الرسائل المحذوفة والقراءة اليدوية ونافذة التحميل
 +
-+الإصدار المستهدف **Instagram 407.0.0**، والمعمارية ARM64، والحد الأدنى iOS 15.0. هذه نسخة تطوير مبنية من المصدر؛ لم تُشغّل داخل Instagram أو على جهاز iOS هنا. البناء واختبارات المضيف والمعاينة لا تثبت عمل بروتوكولات إنستغرام الخاصة.
++نسخة تطوير تستهدف Instagram **407.0.0** وarm64 وiOS 15+. نجحت فحوص البناء والمضيف والمتصفح وتواقيع الدوال في الملف المرفق، ولم يتوفر جهاز iOS لاختبار التشغيل أو وصول القراءة للطرف الآخر. المكتبة والـIPA يحتاجان إعادة توقيع.
 +
-+قورنت خيارات DL الـ26 بالمصدر السابق لـ HIDE. أضيفت **11 قيمة إعداد جديدة**، وأصبحت الإعدادات تحتوي **27 مفتاحًا**: مقابلات خيارات DL الـ26، إضافة إلى تفعيل التنزيل بالضغط المطوّل الخاص بـ HIDE. توجد خريطة كاملة في [docs/dl-feature-map.json](docs/dl-feature-map.json)، ومقارنة عربية في [docs/DL-COMPARISON-ar.md](docs/DL-COMPARISON-ar.md).
++## التعديلات
 +
-+## الواجهة الحالية
++- الرسائل النصية التي رُصد حذفها محليًا تُعرض بفقاعة حمراء كاملة ونص أبيض. الضغط عليها يعرض تاريخ ووقت رصد الحذف على الجهاز. لا تُستبدل الصورة أو الفيديو أو الرسالة الصوتية بنص؛ تبقى الوسائط الأصلية مع زر وقت الحذف الأحمر.
++- ربط رسائل 407 عبر `messageMetadata.key` و`threadId`. مفاتيح الرسائل المولدة تدعم KVC في `IGDevirtualizedValueObject`. لا يُكتب في تخطيط حقول مجهول، ولا تُستعاد رسائل حُذفت قبل تفعيل الاحتفاظ.
++- زر عين أعلى المحادثة عند تفعيل إخفاء القراءة، مع تأكيد قبل استدعاء مسار `markLastMessageAsSeen` الأصلي للمحادثة المحددة.
++- خيار Seen في قائمة الستوري عند تفعيل الإخفاء والتعرف على عنصر الستوري الحالي. يستدعي callback الأصلي لذلك العنصر فقط.
++- قائمة الضغط المطوّل للوسائط تحتوي تحميل، وتحميل الكل عند تعدد العناصر، وSeen للستوري المؤهلة، وإلغاء. أزيلت المشاركة ونسخ النص/اسم المستخدم/رابط الميديا والمنشن من قائمة الوسائط. النسخ في سياق النصوص يبقى مستقلًا.
++- نافذة تحميل الكل تستخدم تصميم `HIDE_v18_preview_2.html` فقط، دون موكاب أو نافذة إعدادات أخرى. فيها تحديد فردي، تحديد الكل، حفظ المحدد، تقدم من المهمة الفعلية وإلغاء.
++- الصور المصغرة تأتي من نسخة الصورة الصغيرة عند توفرها. للفيديو يُحاول الغلاف أولًا، ثم لقطة من الثانية الأولى. علامة الفيديو مثلث نصّي. فشل المعاينة يترك الخانة رمادية ولا يعطّل التحميل ما دام رابط الوسيط متوفرًا. إذا لم يُحل رابط الوسيط نفسه، يظهر العنصر غير قابل للتحديد.
 +
-+تملأ الإعدادات الشاشة الطبيعية دون إطار هاتف أو ارتفاع معاينة ثابت. تبقى البطاقات والشعار والتبويبات والألوان والنمط الزجاجي بنفس الهوية، مع زر إغلاق متناسق في الأعلى ورمز قفل SVG بدل إيموجي قفل التطبيق.
++تصميم إعدادات HIDE المعتمد بملء الشاشة يبقى كما هو، مع جميع مفاتيحه الـ27، واللون واللغة والنمط المحفوظة. «قفل المحادثات» المنفصل لا يزال غير مدعوم ولا يُفعّل وهميًا.
 +
-+شاشة الإعدادات القديمة أُزيلت من البناء. جميع قيم الإعدادات الـ27 موجودة داخل الواجهة الجديدة: مؤقت الفيديو في «التحميل»، فيديو الملصقات واللايف في «الستوري»، وإشعار إعادة العرض في «الخاص» بشكل مستقل عن السكرين شوت. لا يفتح تقرير التوافق أي نافذة إعدادات قديمة. يوجد 28 مربعًا لأن «قفل المحادثات» في التصميم ما زال غير مدعوم ويبقى OFF.
++## حدود القراءة اليدوية
 +
-+مفاتيح NSUserDefaults بقيت نفسها، فتُقرأ اختيارات المستخدم الحالية بما فيها اللون واللغة والنمط والقفل. زر واتساب يستخدم الرابط الذي زوّد به المستخدم دون إرسال تلقائي. المصدر الأصلي [assets/HIDE_design.html](assets/HIDE_design.html) محفوظ كمرجع؛ التكييف المصرّح به وإزالة إطار المعاينة وإضافة الخيارات في [assets/native-bridge.js](assets/native-bridge.js).
++لا يطفئ الكود إعدادات الخصوصية مؤقتًا أو يفتح القراءة لجميع المحادثات. السماح لطلب HTTP مرتبط بالحساب والهدف وبصمة جسم الطلب، مؤقت وقابل للاستهلاك مرة واحدة. تُرفض طلبات الستوري المختلطة التي تحتوي أكثر من عنصر أو مشاهدات إضافية. لا تُخزن أجسام الطلبات أو بيانات اعتمادها في التقارير؛ بصمة الطلب في الذاكرة فقط. يُسمح لمسار MQTT أثناء الاستدعاء المتزامن فقط إذا طابق معرّف المحادثة المختارة.
 +
-+ملف HIDE_settings_preview.html يُولّد من نفس المرجع والتكييف، مع محاكاة إعدادات داخل المتصفح فقط. `python3 tools/update_preview.py` يجدد المعاينة، و`python3 tests/design_bridge_smoke.py` يفحصها. `build.sh` يولّد بيانات التضمين تلقائيًا باستخدام Python 3.
++**الرسالة المعروضة تؤكد استدعاء الطلب فقط، ولا تدّعي تأكيد وصول Seen.** تواقيع 407 معروفة، لكن لا توجد تجربة جهاز تثبت المراسلة المشفرة أو كل وسائل النقل أو أن إعدادات الحساب على الخادم تسمح بإظهار القراءة. إذا تعذر تحديد الحساب أو العنصر أو بنية الطلب، لا يفتح الكود الخصوصية بصورة عامة. يلزم التحقق بحساب ثانٍ.
 +
-+نجحت فحوص المتصفح للأحجام 320×568 و390×844 و430×932، والتبويبات الخمسة، وحفظ القيم واللغة والنمط ورمز القفل ومسار الإغلاق. لم يُشغّل هذا البناء على جهاز iOS هنا؛ اختبار المتصفح لا يثبت سلوك WKWebView أو ميزات إنستغرام على الجهاز.
++الاحتفاظ يعمل على تحديثات الإزالة المعروفة في الكاش، وليس نسخة احتياطية مستقلة للمحادثة. قد تغيّر إعادة مزامنة الخادم أو مسارات أخرى النتيجة. التاريخ المعروض وقت الرصد المحلي، وليس وقتًا أصليًا موثّقًا من خادم الطرف الآخر.
 +
-+## تصحيح 1.9.1
++## الملفات
 +
-+- تصحيح نوع `surface` في دالة اللايف إلى عدد 64 بت.
-+- ربط `_applyThreadUpdates:` وتحليل غلاف التحديث لكل محادثة، مع تصحيح توقيع إلغاء الإرسال الذي تقوم به بنفسك.
-+- استخدام كلاس التسجيل Swift وحقل `recordingTimeLimit` من نوع `Double` لرفع الحد إلى ٣٠٠ ثانية. لا يُكتب في `startTime` الخاص بـSwift ولا يُزوّر عداد التسجيل.
-+- قراءة الغلاف الخاص وتعديل حقل Swift مقيدان ببصمة UUID للملف التنفيذي المفحوص: `4c4c444e-5555-3144-a107-36f95b1dcf25`. ملفات 407 المختلفة لا تحصل على تعديل تخطيطي غير موثوق، وتبقى الميزات المعنية غير متاحة.
-+- أدلة الفحص في [407-native-contracts.json](docs/407-native-contracts.json). يمكن إعادة الفحص دون تعديل الملف: `python3 tools/verify_instagram407.py /path/to/Instagram`.
++- `src/`: المصدر، بما فيه `HIDEManualSeen.m` و`HIDEReceiptPolicy.h`.
++- `assets/HIDE_design.html` و`native-bridge.js`: مرجع الإعدادات وتكييفه للتطبيق.
++- `assets/HIDE_download_all.original.html`: ملف نافذة التحميل الأصلي للمرجع فقط.
++- `assets/HIDE_gallery.html`: نافذة التحميل المكيّفة دون موكاب أو مؤقت نجاح وهمي؛ تظهر في نافذة التحميل فقط.
++- `HIDE_settings_preview.html`: معاينة إعدادات المتصفح، لا تختبر إنستغرام.
++- `docs/407-native-contracts.json` و`docs/manual-receipt-contracts.json`: أدلة metadata فقط.
++- `VALIDATION.json`: الفحوص الفعلية وحدودها وبصمات المصادر والمكتبة.
++- `changes.patch`: فرق نصّي عن المصدر المرفوع أصلًا، باستثناء الثنائيات.
 +
-+نجاح ربط اللايف يعني تركيب مسار DL الخاص بتعطيل مكوّن polling؛ لا يثبت أن جميع طلبات تسجيل المشاهدة محجوبة. الاحتفاظ يستهدف تحديثات إزالة الرسائل المعروفة ولا يعيد رسائل حُذفت قبل التفعيل أو يضمن بقاءها بعد إعادة مزامنة الخادم. التسجيل والتسليم يحتاجان اختبارًا على الجهاز.
++نافذة التحميل الجديدة مخصصة للحفظ، ولا تعرض زر دمج الوسائط الذي كان في نافذة الاختيار السابقة. إعداد المشاركة بعد الحفظ يبقى مستقلًا إذا فعّله المستخدم؛ أُزيل زر المشاركة من قائمة الضغط المطوّل فقط.
 +
-+## الإضافات
++## البناء والفحص
 +
-+- فيديو في معرض ملصقات الستوري، وخيار البث المجهول عبر تعطيل مكوّن polling الذي استُخدم في DL.
-+- الاحتفاظ محليًا بالرسائل عند ورود تحديث إزالة، مع وقت الحذف إذا أمكن التعرف على الرسالة والمحادثة. لا يستعيد هذا رسائل حُذفت قبل تفعيل الميزة، ولا يمنع الحذف على الخادم، ولا ينشئ أرشيفًا مستقلًا لمحتوى الرسائل.
-+- خيارات إشعار تصوير الشاشة وإعادة العرض، والسماح بالتصوير، عبر مسارات العلامات والحماية الموجودة في DL.
-+- رفع حد التسجيل إلى خمس دقائق عبر `recordingTimeLimit` مع الحفاظ على الوقت والعدّاد الأصليين. قبول التسجيل الطويل يعتمد على العميل والخادم.
-+- استيراد صوت أو فيديو وتحويله إلى AAC: اختيار من Files أو Photos، التحقق من وجود الصوت والمدة (حتى ٥ دقائق)، واستخراج waveform من PCM. يتطلب الإرسال تأكيدًا منفصلًا، ويستخدم مرسل المحادثة الأصلي فقط إذا تطابق توقيعه. لا يظهر إشعار نجاح إرسال كاذب؛ واجهة إنستغرام الأصلية هي التي تؤكد التسليم.
-+- إظهار العدادات التي يملكها العميل أصلًا، وإبقاء مؤقت الفيديو ظاهرًا؛ لا تُخترع أرقام لم يوفرها الخادم.
-+- المشاركة بعد الحفظ للتنزيل الفردي أو ناتج الدمج.
-+
-+تُعطّل الخيارات الجديدة افتراضيًا. إذا غاب hook المطلوب أو اختلف توقيعه، يظهر المفتاح غير متاح. يُفحص أيضًا وجود حقول الكاش/التسجيل المطلوبة لبعض الميزات. هذا فحص بنيوي؛ تطابق التوقيع وحده لا يثبت صحة سلوك الميزة، خصوصًا الخصوصية والمراسلة المشفرة. اختبرها بحساب ثانٍ قبل الاعتماد عليها.
-+
-+## الوسائط والعمليات الموسّعة
-+
-+- اختيار بعض عناصر الكاروسيل أو الستوري المتوفرة أو تحديد الكل. العناصر التي تعذّر حل رابطها تبقى ظاهرة كغير متاحة ولا تُحدد؛ لا يُدّعى تنزيلها.
-+- تنزيل فردي أو متتابع مع تقدم من المهمة الفعلية وإلغاء التنزيل/التصدير. الإلغاء يوقف العمل التالي؛ طلب حفظ Photos الجاري قد يكتمل، ولا تُحذف أصول حُفظت بالفعل.
-+- دمج الصور والفيديوهات بالترتيب الأصلي في MP4 مقاس 1080×1920، مع letterbox والحفاظ على صوت الفيديو. تتحول كل صورة إلى مقطع H.264 مدته ٣ ثوانٍ.
-+- الضغط المطوّل على صورة الحساب يحاول جلب HD عبر `IGScopedNetworker` وجلسة التطبيق الأصلية، إذا كانت الواجهة متوافقة، ثم يعود للرابط المتوفر محليًا إذا تعذر الطلب. لا تُضاف بيانات اعتماد أو اتصال بديل خارج جلسة التطبيق.
-+- توسيع تأكيد الإعجاب والمتابعة، ونسخ النص واسم المستخدم، وفلترة الإعلانات في مصادر الفيد والريلز والاستكشاف ومحللات إعلانات الستوري القديمة المتوافقة.
-+
-+## الاستخدام
-+
-+1. فعّل الخيارات التي تريدها من إعدادات HIDE.
-+2. للوسائط: اضغط مطوّلًا ثم اختر التنزيل/الاختيار والدمج. لصور الحسابات استخدم الضغط المطوّل على الصورة.
-+3. لاستيراد الصوت: فعّل خيار الإرسال كرسالة صوتية، ثم اضغط مطوّلًا زر المعرض داخل المحادثة. اختر الملف وراجع المحادثة والمدة ثم أكّد الإرسال. إذا تغيرت واجهة الإرسال في 407، يتوقف المسار برسالة عدم التوافق.
-+4. أعد فتح البث أو ابدأ تسجيلًا جديدًا بعد تغيير خياراتهما.
-+5. «حول → تقرير التوافق → نسخ التقرير» يعرض إصدار التطبيق وتواقيع الخطافات والتوفر البنيوي للميزات، ويضم أسماء الدوال والحقول وتواقيعها في أصناف محددة من 407، دون قراءة أجسام الطلبات أو محتوى الرسائل أو قيم Keychain. أرسل هذا التقرير لتحديد المسارات التي تحتاج تكييفًا مع 407.
-+
-+## الجزء المتبقي
-+
-+**تعليم ستوري واحد كمشاهَد مع إبقاء الإخفاء مفعّلًا لم يُنقل.** يحتاج بيانات نموذج الستوري وعقد جسم طلب seen في 407؛ فتح الطلبات عمومًا قد يعلّم ستوريات أخرى كمشاهدة. لإكماله انسخ تقرير التوافق من هذه النسخة على 407؛ يتضمن جزءًا محددًا من metadata للدوال والحقول. قد يلزم بعدها class dump/headers أوسع أو تحقق من عقد الطلب على الجهاز. لا يوجد مفتاح شكلي لهذه العملية في الواجهة.
-+
-+كل مقابلات خيارات DL الـ26 لها تنفيذ في المصدر، لكن لا توجد دعوى بأن كل مسارات إنستغرام 407 متوافقة أو أن جميع سلوكيات DL غير المرتبطة بتلك الخيارات نُقلت حرفيًا.
-+
-+## الملفات والبناء
-+
-+- `src/`: المصدر، ويتضمن الوحدات الجديدة `HIDEDLFeatures.m` و`HIDEVoiceImport.m` و`HIDEBatch.m`.
-+- `build/HIDE.dylib`: بناء ARM64 جديد **غير موقّع** من هذه المصادر. يلزم دمجه وإعادة توقيع التطبيق وفق طريقة مشروعك؛ ليس IPA جاهزًا للتثبيت.
-+- `HIDE_settings_preview.html`: معاينة الإعدادات؛ لا تتحكم بتطبيق إنستغرام. يُولّد ترتيبها وترجماتها وقيمها من المصدر باستخدام `tools/update_preview.py`.
-+- `VALIDATION.json`: حدود الفحوص وإصدارات الأدوات وبصمات الملفات.
-+- `changes.patch`: فرق الملفات النصية عن حزمة المصدر الأصلية؛ لا يتضمن فرق المكتبات الثنائية.
-+
-+على macOS مع Xcode:
++يتطلب البناء Python 3 وXcode على macOS، أو Clang وld64.lld وiPhoneOS SDK على Linux. تُضمّن أصول HTML تلقائيًا ولا تحتاج ملفات خارجية بجانب dylib.
 +
 +```sh
 +bash build.sh
-+```
-+
-+على Linux مع Clang وld64.lld وiPhoneOS SDK:
-+
-+```sh
++# Linux:
 +SDK=/path/to/iPhoneOS.sdk CC=/path/to/clang LD64=/path/to/ld64.lld bash build.sh
-+```
-+
-+يمكن ضبط `OUT_DIR`. تُستخدم كائنات جديدة لكل بناء وتُحدّث المكتبة النهائية فقط عند نجاح الربط. إذا فشل البناء، لا تعتبر مكتبة سابقة نتيجة للتعديلات الجديدة.
-+
-+يتطلب المضيف وصف استخدام الصور المناسب (`NSPhotoLibraryAddUsageDescription` أو الوصف المدعوم فيه) و`NSFaceIDUsageDescription` لاستخدام Face ID، مع إعداد مصادقة الجهاز. اختيار الفيديو عبر PHPicker لا يحتاج طلب إذن عام لمكتبة الصور. الملفات المستوردة تُنسخ إلى الكاش الخاص؛ يُحذف الأصل المؤقت بعد الإنهاء، ويُحتفظ بالصوت المُمرر للإرسال حتى دورة تنظيف لاحقة بعد يوم، لأن الإرسال الأصلي غير متزامن. لا يُحذف ملف المستخدم الأصلي.
-+
-+## الفحوص وحدودها
-+
-+```sh
 +bash tests/run.sh
-+python3 tests/preview_smoke.py
++python3 tests/design_bridge_smoke.py
++python3 tests/gallery_smoke.py
++python3 tools/verify_instagram407.py /path/to/Instagram
 +```
 +
-+الفحص الثاني يحتاج Playwright وChromium ويستخدم خادمًا محليًا مؤقتًا. الاختبارات تغطي سياسة القفل، حدود المدة، حسابات 754 مقاسًا لتنسيق الفيديو، جرد الخيارات، ترجمتها، وقيم المفاتيح الـ27 وحفظ حالة المعاينة ولوحة المفاتيح. ليست اختبارات تنفيذ UIKit أو AVFoundation أو الإرسال أو الخصوصية داخل إنستغرام.
-+
-+يلزم على جهاز iOS التحقق من: إرسال ملف في محادثة اختبار، حفظ صورة/فيديو/صوت، دمج صور وفيديوهات باتجاهات وأصوات مختلفة، إلغاء عمليات جارية، وتفعيل كل خيار خصوصية على حدة مع حساب اختبار ثانٍ. لم يُختبر arm64e أو تعدد النوافذ.
++فحوص المتصفح تحتاج Playwright وChromium. فحص المضيف يغطي عزل هدف القراءة وبصمة الطلب وانتهاء السماح، إضافة إلى فحوص القفل والوسائط والجرد. الاختبارات لا تحل محل اختبار UIKit وPhotos وAVFoundation والـSDK الخاص على الجهاز.
 --- /dev/null
 +++ b/VALIDATION.json
-@@ -0,0 +1,125 @@
+@@ -0,0 +1,151 @@
 +{
-+  "release": "HIDE 1.9.3 - full-screen unified design test build",
++  "release": "HIDE 1.9.4 - manual receipts and download gallery test build",
 +  "target_instagram": "407.0.0",
 +  "native_instagram_runtime_tested": false,
 +  "ios_device_tested": false,
@@ -464,10 +428,15 @@
 +    "new_settings_since_1_8": 11,
 +    "total_settings_switches": 27,
 +    "all_new_defaults_off": true,
-+    "pending_workflow": "Manual per-story seen while anonymous requires the Instagram 407 story/seen request contract",
++    "pending_workflow": null,
 +    "design_controls": 28,
 +    "unsupported_design_controls": [
 +      "cl"
++    ],
++    "pending_device_validation": [
++      "manual read/story delivery including encrypted chats",
++      "deleted-text presentation and timestamps",
++      "cover/video-frame generation and Photos saving"
 +    ]
 +  },
 +  "build": {
@@ -480,6 +449,7 @@
 +      "src/HIDEDLFeatures.m",
 +      "src/HIDEDownloader.m",
 +      "src/HIDEExtras.m",
++      "src/HIDEManualSeen.m",
 +      "src/HIDEMedia.m",
 +      "src/HIDEPrivacy.m",
 +      "src/HIDESettings.m",
@@ -507,7 +477,10 @@
 +    "signed": false,
 +    "warnings": 0,
 +    "errors": 0,
-+    "additional_framework": "WebKit"
++    "additional_frameworks": [
++      "WebKit",
++      "ImageIO"
++    ]
 +  },
 +  "tests": {
 +    "host_lock_policy_and_http_status": "passed",
@@ -517,8 +490,12 @@
 +    "static_analysis": {
 +      "result": "passed; no diagnostics",
 +      "modules": [
-+        "HIDEWebSettings",
-+        "HIDESettings"
++        "HIDEManualSeen",
++        "HIDEPrivacy",
++        "HIDEDownloader",
++        "HIDEDLFeatures",
++        "HIDEBatch",
++        "HIDEExtras"
 +      ],
 +      "scope": "changed Objective-C modules"
 +    },
@@ -529,37 +506,47 @@
 +    "Instagram_407_private_API_contracts": "passed: checked hooks, Swift Double field type and native cache consumer slots against supplied executable; does not verify runtime semantics",
 +    "approved_design": "passed: full viewport without mockup at 320x568, 390x844, 430x932; 5 tabs; inline app-lock SVG; matching close button; old native settings class absent from compiled binary",
 +    "design_bridge": "passed: unified preview interactions; all 27 preferences represented; unsupported chat lock off; language/style/color and preference persistence; report, close and WhatsApp commands",
-+    "WKWebView_on_iOS_device": "not run"
++    "WKWebView_on_iOS_device": "not run",
++    "host_receipt_policy": "passed: target isolation, body fingerprint, expiry, malformed lengths, invalid clocks, missing grants",
++    "gallery_ui": "passed: 3 sizes, no mockup, selection independent from failed preview, video marker, native-confirmed selection and native-only progress",
++    "native_receipt_delivery": "not run: no iOS device; invoking the SDK does not establish delivery",
++    "native_deleted_message_rendering": "not run: native model/container contracts verified statically",
++    "native_gallery_AVFoundation_Photos": "not run"
 +  },
-+  "binary_sha256": "de54ce462fe18cdd40e99cb63f3a81b59db77550288e14ccdc0f3d137dc9c7e4",
++  "binary_sha256": "e923627f3310e73ca78ab2026286dcc3679cfcd27618f3ad90f28eda97d43322",
 +  "original_uploaded_binary_sha256": "098b8c9701aaf64a586ed5d755cf84d2d5be3fa07de2fa921f802ca852e56165",
 +  "uploaded_source_zip_sha256": "9e6266b8470c5f8e1d9566891c0bc733a09412b3a9a8c8d81b8eed14c3cf064a",
 +  "source_checksums": {
-+    "CHANGELOG.md": "a5b3e5cd8e95713f3200b5ddb4d58d66e05edf1215a67fc488ee27c14babe924",
-+    "HIDE_settings_preview.html": "d2175d007074829d7fd10bd6d5740bc8f537ff36eb5670a46cab19793d5afebd",
-+    "README-ar.md": "71bf9bf24cf0941353d335d1f351ef6a9e422b7757006c94a08db275a3b422aa",
++    "CHANGELOG.md": "862fc007f16e1fd1f674e3ed3017d03211b591f47d2e9073a5d4806cade2103e",
++    "HIDE_settings_preview.html": "8c54f1df993df53348d69732840e1ab97380aa86631ff49b089096d1859598db",
++    "README-ar.md": "acc2ff4efd601707a9d76f423eca56be1010c58d176e4774d6262ba22fc13265",
 +    "assets/HIDE_design.html": "dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4",
++    "assets/HIDE_download_all.original.html": "a7fd3cea0b64b66dcf522df54c4354a1aa436c980c86f1a399096d3a3f8c238c",
++    "assets/HIDE_gallery.html": "0abedb14d519983477dbb3364585478f46295a4818a8716f991f24f5eaf839c1",
 +    "assets/native-bridge.js": "1116c1258972fd9f0c6d2889a10b9fe3b4dd871dc2157097359de2660593eae4",
-+    "build.sh": "7325a481a580107c6bc95e18220a832232b7926223b2f9b4927a6cbe05a1341f",
-+    "docs/407-native-contracts.json": "90556ec724f844481ad55e30be2a04b3b761f8594daeeebeb0782e948734d676",
-+    "docs/DL-COMPARISON-ar.md": "bdc39140d00acb599ea35486d26887dc42bccf8f1ce85654b2bd228f3c02bfcc",
++    "build.sh": "34c179833dccacfb34aea540ee8ab833403270befe4dd712d84f26e83c6bb1ad",
++    "docs/407-native-contracts.json": "7c1ef7dc06e6e03f78aef53033ea1c5df453222e8373709249926912147e6512",
++    "docs/DL-COMPARISON-ar.md": "c60a6d4344208f0daed6ed6f32c009519e7ed46beb97a41e315efee57a5be8e9",
 +    "docs/design-integration.json": "bc7419aeb4f981a0943218e4e583d155f50934984d442890da0b3edd334a7aee",
 +    "docs/design-render-comparison.json": "52d9f1b32c87a3218bb226dc323990b1c5666ea2094b152ad6d2128c0718c048",
-+    "docs/dl-feature-map.json": "74b41d9943841fd8ab22967e34bacb63a67124b191176b19040bc0e9e920cfaf",
++    "docs/dl-feature-map.json": "17bc20ad0692646c0c94b7d31546577152138cf35932d8c9c67ee762ad1f26f2",
++    "docs/manual-receipt-contracts.json": "cdeb42c657c026d2f54959249d29913d60be213c68c4c4042d647c02382ad1d6",
 +    "src/HIDE407.h": "cc4e6734e84a6516169a5edfa5f64e865c9169ebe0af75514d4da17d6454829e",
 +    "src/HIDEAppLock.m": "5ba6702df8c0f41c15f37d04bfd9409bb7ed7bc18d580bdffe12724e9d6d1c0a",
-+    "src/HIDEBatch.m": "068a7c03427c9a55f9d1af977d9d3a9576a79823760b9f101389115bbc972b6b",
++    "src/HIDEBatch.m": "5aab6d6a40030bcfa76ec75cd21887f31c7448906fb86f548d20ed4ef35c49ae",
 +    "src/HIDEConfirm.m": "567437c497d0775f7ec0631560d1f9865beba922e623a1bc2ad41f1df72c213b",
-+    "src/HIDECore.h": "f06588e6608af798eca7b2da47fd112520fe71cd80ff2f48eeeef669c646a01f",
-+    "src/HIDECore.m": "dbbacccb5dcdbce8ec6563d2a266f796085dc955576f396fd4fdf82cd4a62a9b",
-+    "src/HIDEDLFeatures.m": "ad206345d9fafbe1cfa63e3b971fc8a13bbb9db598fe828e778e91ac24f2222b",
-+    "src/HIDEDesignData.h": "278fe7babc31c1356d9959b83d9d82a0b2ae0d032ecb09f0ed1c448f5644d485",
-+    "src/HIDEDownloader.m": "9f35d8ca720fca970f84bf6046f4ae4afc37d55edfb7bc717b931a45f6adfb8b",
-+    "src/HIDEExtras.m": "502f72448a305100073d9b5efa238b01f339247084d402452e0215ece15fd738",
++    "src/HIDECore.h": "33e89f4e85d21fac2e1d330cab48cb8a765f9a6f56c8930772d9cf21ce7293ca",
++    "src/HIDECore.m": "49a93883a9c8425f1899a24dab6a8bf2e0750220cba1e9ca51bd4ecb86c9bc62",
++    "src/HIDEDLFeatures.m": "4a30cac37cb520c6018ac925bfc62ebd90180438c7b7871cacc6c03e1d83710c",
++    "src/HIDEDesignData.h": "2b0343636b42bb3960ce3c4dc14df4344a2c472c073b1d13f180bf0cc6a54898",
++    "src/HIDEDownloader.m": "ac55fadb3c45a201646811775ecde68973554a49c6505e4ebc97d19a7909c029",
++    "src/HIDEExtras.m": "2aedc5e525c1b5ca5c7af7e3533feac0e5aa25093453b097c8ee3db7363d20a2",
++    "src/HIDEManualSeen.m": "5d193ccb1516e652bd0c731615db865c218a72481051e247cb22503806492961",
 +    "src/HIDEMedia.m": "30bd25ffc237b0b0e606d23853cba2593c237af5bfcbb73cd7c2f6fdbb186480",
 +    "src/HIDEMediaPolicy.h": "df799bb3da03f90d7c4360622eaa81088098a3486f0d73475b654a96350cd06d",
 +    "src/HIDEPolicy.h": "e4ad56058ad71c2bc5e4aadf482523f0c79a0b03be93314f7f3b60cfc781fb0b",
-+    "src/HIDEPrivacy.m": "dfed69493f971ea6898f14619b7dd2bb0121f585bedb4c74ad5685fffae231d1",
++    "src/HIDEPrivacy.m": "df109b6a06b97f330edfeaf0a4e161dce139348372813304a66830c5b514f449",
++    "src/HIDEReceiptPolicy.h": "b64abc48c3614c98b43637770b7a52e63c68a986b8266bb7e7c31ad219f7e6a5",
 +    "src/HIDESettings.m": "9d14e5911b7b3403667396af81a1d344d3ecd8f8bc1b390202364127b7e5a2b6",
 +    "src/HIDESideloadFix.m": "02c723b8d6e82b7eb018a996e89e50647b471368a76f86ff62821585597d2fc1",
 +    "src/HIDETransfer.m": "84aee5bd479b9d5b81208d77ebecec31923e45f3dc1c37961aafe647517a3961",
@@ -567,17 +554,20 @@
 +    "src/HIDEVoiceImport.m": "dfa4cbfb424500b47e139a3a656017994882e8904d3026e8d9b13c6ed7ca6c2e",
 +    "src/HIDEWebSettings.m": "49e7708019b7bad22889d2e92e2e21b74d0930e54dbec98ffd6366ea760d11da",
 +    "tests/design_bridge_smoke.py": "20384e63a362da72e6a5982d78c20914733db4153516de31b9239432cbd6d26c",
-+    "tests/feature_inventory.py": "33c3275c805e9109bfef34798ccdeb9be3607d6ecc31b945c9ee53677e7ce883",
++    "tests/feature_inventory.py": "1330c307727d3d1e3420983d6c594f1579f290cd61e4bcac6a8f2ca9a183e2cd",
++    "tests/gallery_smoke.py": "da59f713d833a7f31c232cd159b1edb2646e1543359b9add023f9a65b497930f",
 +    "tests/lock_policy_test.c": "62526296108d83ebde6460209b8db1650e602d75020f3b9cfe7862b1c17eb628",
 +    "tests/media_policy_test.c": "36cafa122300461197e2f24f5aa5d2be06a83f31bcd4efed54fa6ebfdd1cf14d",
 +    "tests/preview_smoke.py": "016fa13fb8a90a4895425e7020f86b5e0616d4446e9f3d29f0749f33f6d630d8",
-+    "tests/run.sh": "bf4d65b872f46423fe205615be397073f48784853ccc6d61f8a6a64bc0a6815d",
-+    "tools/embed_design.py": "b477cd70922405e8e29cf6c7391085a9d1d69042ef5df807464c2ced8c022e12",
++    "tests/receipt_policy_test.c": "a34048ebdb856a3234c3348edadd7046f2312a954f3a0c391f67c92a135bcf91",
++    "tests/run.sh": "d4f2c8d15a664107bbea97e4fcb23e8313b721f8e3ca53fdd11ec6d1e5780fa6",
++    "tools/embed_design.py": "67efbf48672f9c72340a7cd0ddf62859d6807496d1089d8f831f9f44d49c4846",
 +    "tools/update_preview.py": "8c6b09a6fbf70552e977dfd6ebbd1bd0befffb50e6aca7af3b33a23db1f64634",
-+    "tools/verify_instagram407.py": "4af811734100cca5eda4860473af6117db8733f75acc6fa2899543aa62bdf621"
++    "tools/verify_instagram407.py": "e6c266a5919479195f97ced68abb469ec764583c7d6657bde09c1d00f3aefdc3"
 +  },
 +  "native_contract_report": "docs/407-native-contracts.json",
-+  "approved_design_report": "docs/design-integration.json"
++  "approved_design_report": "docs/design-integration.json",
++  "manual_receipt_contracts": "docs/manual-receipt-contracts.json"
 +}
 --- /dev/null
 +++ b/assets/HIDE_design.html
@@ -759,6 +749,200 @@
 +</body>
 +</html>
 --- /dev/null
++++ b/assets/HIDE_download_all.original.html
+@@ -0,0 +1,92 @@
++<!doctype html>
++<html lang="ar">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>HIDE Download All</title>
++<style>
++*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
++body{background:#0b0b10;font-family:-apple-system,"SF Pro Text","Segoe UI",Tahoma,sans-serif;color:#fff;display:flex;flex-direction:column;align-items:center;padding:20px 12px;gap:14px}
++.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
++.bar button{background:#1c1c24;color:#fff;border:1px solid #2c2c38;border-radius:16px;padding:8px 16px;font-size:14px;cursor:pointer;font-family:inherit}
++.bar button.on{background:#c6ff3d;color:#000;border-color:transparent;font-weight:700}
++.phone{width:100%;max-width:390px;background:#000;border-radius:46px;padding:11px;box-shadow:0 0 0 2px #1c1c22,0 30px 80px rgba(0,0,0,.7)}
++.screen{position:relative;border-radius:36px;height:780px;overflow:hidden;background:linear-gradient(160deg,#0d1236,#07071a 60%);--ac:#c6ff3d}
++.view{position:absolute;inset:0;display:none}.view.show{display:block}
++.sw{width:46px;height:28px;border-radius:14px;background:rgba(255,255,255,.18);position:relative;flex:none;cursor:pointer;transition:.2s}
++.sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
++.sw.on{background:#336bff}.sw.on::after{transform:translateX(18px)}[dir=rtl] .sw.on::after{transform:translateX(-18px)}
++.note{color:#888;font-size:13px;text-align:center;max-width:390px;line-height:1.6}
++
++/* gallery */
++.gh{padding:26px 20px 8px;display:flex;justify-content:space-between;align-items:flex-start}
++.gh h2{font-size:24px;font-weight:800}.gh small{display:block;color:rgba(255,255,255,.5);font-size:13px;margin-top:2px}
++.gx{font-size:26px;color:rgba(255,255,255,.4);cursor:pointer}
++.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 16px 0;height:560px;overflow-y:auto;scrollbar-width:none;align-content:start}
++.grid::-webkit-scrollbar{display:none}
++.th{aspect-ratio:1/1.35;border-radius:14px;position:relative;overflow:hidden;cursor:pointer;border:2.5px solid transparent;transition:.15s}
++.th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);transition:.15s}
++.th.on{border-color:#c6ff3d}.th.on::after{background:rgba(0,0,0,0)}
++.th i{position:absolute;top:6px;inset-inline-start:6px;z-index:2;width:24px;height:24px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-size:13px;font-style:normal;color:#000}
++.th.on i{background:#c6ff3d;border-color:#c6ff3d}
++.th b{position:absolute;bottom:6px;inset-inline-end:8px;z-index:2;font-size:12px}
++.gbar{position:absolute;bottom:14px;inset-inline:16px;height:78px;border-radius:28px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);display:flex;gap:10px;align-items:center;padding:0 14px}
++.gbar button{flex:1;height:46px;border-radius:23px;border:0;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
++.b1{background:rgba(255,255,255,.12);color:#fff}.b2{background:#c6ff3d;color:#000}
++.prog{position:absolute;bottom:8px;inset-inline:30px;height:4px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden;display:none}
++.prog div{height:100%;width:0;background:#c6ff3d;transition:width .25s}
++
++/* lock */
++.lock{display:grid;place-items:center;text-align:center;background:rgba(5,5,16,.97)}
++.lock .ic{font-size:54px}.lock h3{font-size:20px;margin:14px 0 18px}
++.lock button{width:200px;height:44px;border-radius:22px;border:0;background:#c6ff3d;font-weight:700;font-size:16px;font-family:inherit;cursor:pointer}
++.dm{padding:50px 16px}
++.dm .r{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.07);border-radius:18px;padding:12px;margin-bottom:10px}
++.dm .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#ff5ca8,#ff9f43)}
++.dm .l{height:10px;border-radius:5px;background:rgba(255,255,255,.2);margin:5px 0}
++
++/* settings */
++.sp{padding:22px 16px;overflow-y:auto;height:100%;scrollbar-width:none}.sp::-webkit-scrollbar{display:none}
++.sp h1{text-align:center;font-size:17px;margin-bottom:14px}
++.sec{color:rgba(255,255,255,.5);font-size:12px;font-weight:700;padding:16px 14px 7px}
++.grp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:20px;overflow:hidden}
++.row{display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:52px;position:relative}
++.row+.row::before{content:"";position:absolute;top:0;inset-inline-start:54px;inset-inline-end:0;height:1px;background:rgba(255,255,255,.1)}
++.ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;flex:none}
++.row .t{flex:1;font-size:15.5px;font-weight:500}.row .v{color:rgba(255,255,255,.5);font-size:14px;direction:ltr}
++</style>
++</head>
++<body>
++<div class="phone"><div class="screen" dir="rtl">
++
++  <!-- Gallery -->
++  <div class="view show" id="v-gal">
++    <div class="gh"><div><h2>تحميل الكل</h2><small id="cnt">9 عنصر</small></div><span class="gx">✕</span></div>
++    <div class="grid" id="grid"></div>
++    <div class="gbar"><button class="b1" id="all">إلغاء التحديد</button><button class="b2" id="dl">تحميل (9)</button><div class="prog" id="prog"><div></div></div></div>
++  </div>
++
++  </div></div>
++
++</div></div>
++<p class="note">معاينة نافذة «تحميل الكل». اضغط على الصور للتحديد، وجرّب زر التحميل.</p>
++<script>
++const cols=[["#ff5ca8","#ff9f43"],["#4da3ff","#b48cff"],["#2ee6a6","#00b7ff"],["#ff9f43","#ffdf5c"],["#b48cff","#ff5ca8"],["#00b7ff","#4da3ff"],["#ff5ca8","#7a5cff"],["#2ee6a6","#c6ff3d"],["#ff9f43","#ff5ca8"]];
++const vids=[1,4,7];let sel=new Set(cols.map((_,i)=>i)),busy=false;
++const g=document.getElementById('grid');
++function draw(){
++  g.innerHTML=cols.map((c,i)=>`<div class="th${sel.has(i)?' on':''}" data-i="${i}" style="background:linear-gradient(160deg,${c[0]},${c[1]})"><i>${sel.has(i)?'✓':''}</i>${vids.includes(i)?'<b>▶</b>':''}</div>`).join('');
++  g.querySelectorAll('.th').forEach(e=>e.onclick=()=>{if(busy)return;const i=+e.dataset.i;sel.has(i)?sel.delete(i):sel.add(i);draw()});
++  document.getElementById('dl').textContent=busy?'جاري التحميل…':`تحميل (${sel.size})`;
++  document.getElementById('all').textContent=sel.size===cols.length?'إلغاء التحديد':'تحديد الكل';
++}
++document.getElementById('all').onclick=()=>{if(busy)return;sel.size===cols.length?sel.clear():cols.forEach((_,i)=>sel.add(i));draw()};
++document.getElementById('dl').onclick=()=>{
++  if(busy||!sel.size)return;busy=true;draw();
++  const p=document.getElementById('prog'),b=p.firstElementChild;p.style.display='block';b.style.width='0';
++  let n=0,t=sel.size;const iv=setInterval(()=>{n++;b.style.width=(n/t*100)+'%';if(n>=t){clearInterval(iv);setTimeout(()=>{busy=false;p.style.display='none';draw();document.getElementById('dl').textContent=`تم حفظ ${t} ✓`;},300)}},350);
++};
++draw();
++</script>
++</body>
++</html>
+--- /dev/null
++++ b/assets/HIDE_gallery.html
+@@ -0,0 +1,96 @@
++<!doctype html>
++<html lang="ar">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>HIDE Download All</title>
++<style>
++*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
++body{background:#0b0b10;font-family:-apple-system,"SF Pro Text","Segoe UI",Tahoma,sans-serif;color:#fff;display:flex;flex-direction:column;align-items:center;padding:20px 12px;gap:14px}
++.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
++.bar button{background:#1c1c24;color:#fff;border:1px solid #2c2c38;border-radius:16px;padding:8px 16px;font-size:14px;cursor:pointer;font-family:inherit}
++.bar button.on{background:#c6ff3d;color:#000;border-color:transparent;font-weight:700}
++.phone{width:100%;max-width:390px;background:#000;border-radius:46px;padding:11px;box-shadow:0 0 0 2px #1c1c22,0 30px 80px rgba(0,0,0,.7)}
++.screen{position:relative;border-radius:36px;height:780px;overflow:hidden;background:linear-gradient(160deg,#0d1236,#07071a 60%);--ac:#c6ff3d}
++.view{position:absolute;inset:0;display:none}.view.show{display:block}
++.sw{width:46px;height:28px;border-radius:14px;background:rgba(255,255,255,.18);position:relative;flex:none;cursor:pointer;transition:.2s}
++.sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
++.sw.on{background:#336bff}.sw.on::after{transform:translateX(18px)}[dir=rtl] .sw.on::after{transform:translateX(-18px)}
++.note{color:#888;font-size:13px;text-align:center;max-width:390px;line-height:1.6}
++
++/* gallery */
++.gh{padding:26px 20px 8px;display:flex;justify-content:space-between;align-items:flex-start}
++.gh h2{font-size:24px;font-weight:800}.gh small{display:block;color:rgba(255,255,255,.5);font-size:13px;margin-top:2px}
++.gx{font-size:26px;color:rgba(255,255,255,.4);cursor:pointer}
++.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 16px 0;height:560px;overflow-y:auto;scrollbar-width:none;align-content:start}
++.grid::-webkit-scrollbar{display:none}
++.th{aspect-ratio:1/1.35;border-radius:14px;position:relative;overflow:hidden;cursor:pointer;border:2.5px solid transparent;transition:.15s}
++.th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);transition:.15s}
++.th.on{border-color:#c6ff3d}.th.on::after{background:rgba(0,0,0,0)}
++.th i{position:absolute;top:6px;inset-inline-start:6px;z-index:2;width:24px;height:24px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-size:13px;font-style:normal;color:#000}
++.th.on i{background:#c6ff3d;border-color:#c6ff3d}
++.th b{position:absolute;bottom:6px;inset-inline-end:8px;z-index:2;font-size:12px}
++.gbar{position:absolute;bottom:14px;inset-inline:16px;height:78px;border-radius:28px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);display:flex;gap:10px;align-items:center;padding:0 14px}
++.gbar button{flex:1;height:46px;border-radius:23px;border:0;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
++.b1{background:rgba(255,255,255,.12);color:#fff}.b2{background:#c6ff3d;color:#000}
++.prog{position:absolute;bottom:8px;inset-inline:30px;height:4px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden;display:none}
++.prog div{height:100%;width:0;background:#c6ff3d;transition:width .25s}
++
++/* lock */
++.lock{display:grid;place-items:center;text-align:center;background:rgba(5,5,16,.97)}
++.lock .ic{font-size:54px}.lock h3{font-size:20px;margin:14px 0 18px}
++.lock button{width:200px;height:44px;border-radius:22px;border:0;background:#c6ff3d;font-weight:700;font-size:16px;font-family:inherit;cursor:pointer}
++.dm{padding:50px 16px}
++.dm .r{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.07);border-radius:18px;padding:12px;margin-bottom:10px}
++.dm .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#ff5ca8,#ff9f43)}
++.dm .l{height:10px;border-radius:5px;background:rgba(255,255,255,.2);margin:5px 0}
++
++/* settings */
++.sp{padding:22px 16px;overflow-y:auto;height:100%;scrollbar-width:none}.sp::-webkit-scrollbar{display:none}
++.sp h1{text-align:center;font-size:17px;margin-bottom:14px}
++.sec{color:rgba(255,255,255,.5);font-size:12px;font-weight:700;padding:16px 14px 7px}
++.grp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:20px;overflow:hidden}
++.row{display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:52px;position:relative}
++.row+.row::before{content:"";position:absolute;top:0;inset-inline-start:54px;inset-inline-end:0;height:1px;background:rgba(255,255,255,.1)}
++.ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;flex:none}
++.row .t{flex:1;font-size:15.5px;font-weight:500}.row .v{color:rgba(255,255,255,.5);font-size:14px;direction:ltr}
++</style>
++<style>
++html,body{width:100%;height:100%;overflow:hidden}body{padding:0;display:block;gap:0}.phone{width:100%;height:100%;max-width:none;padding:0;border-radius:0;box-shadow:none;background:none}.screen{height:100%;border-radius:0}.note{display:none}.view.show{display:flex;flex-direction:column}.gh{flex:none}.grid{flex:1;height:auto;min-height:0;padding-bottom:130px}.th{background:#35353e;padding:0;font-family:inherit;appearance:none;color:white;flex:none}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.th i{z-index:3}.th b{z-index:3}.th::after{z-index:2}.th:disabled{opacity:.45;cursor:default}.gbar button:disabled{opacity:.5}.gx{border:0;background:none;padding:0 6px;font-family:inherit}.gallery-status{font-size:12px;line-height:1.6;padding:0 20px 8px;color:rgba(255,255,255,.65);min-height:25px}.gbar{bottom:14px}.grid:focus-visible,.th:focus-visible{outline:2px solid white;outline-offset:2px}
++</style></head>
++<body>
++<div class="phone"><div class="screen" dir="rtl">
++
++  <!-- Gallery -->
++  <div class="view show" id="v-gal">
++    <div class="gh"><div><h2>تحميل الكل</h2><small id="cnt">تحميل الوسائط…</small></div><button class="gx" aria-label="إغلاق">✕</button></div>
++    <div class="gallery-status" id="status" role="status"></div><div class="grid" id="grid"></div>
++    <div class="gbar"><button class="b1" id="all">إلغاء التحديد</button><button class="b2" id="dl">تحميل</button><div class="prog" id="prog"><div></div></div></div>
++  </div>
++
++  </div></div>
++
++</div></div>
++<p class="note">معاينة نافذة «تحميل الكل». اضغط على الصور للتحديد، وجرّب زر التحميل.</p>
++<script>
++let items=[],selected=new Set(),busy=false,lastShape='';
++const send=body=>window.webkit.messageHandlers.hideGallery.postMessage(body);
++function draw(){
++ const grid=document.getElementById('grid'),scroll=grid.scrollTop;
++ grid.innerHTML=items.map((item,i)=>`<button type="button" class="th${selected.has(i)?' on':''}" data-i="${i}" aria-label="${item.video?'فيديو':'صورة'} ${i+1}" aria-pressed="${selected.has(i)}" ${item.available?'':'disabled'}><i>${selected.has(i)?'✓':''}</i>${item.image?`<img src="${item.image}" alt="">`:''}${item.video?'<b>▶︎</b>':''}</button>`).join('');
++ grid.scrollTop=scroll;
++ grid.querySelectorAll('[data-i]').forEach(el=>el.onclick=()=>{if(busy)return;send({action:'select',index:Number(el.dataset.i)})});
++ document.getElementById('cnt').textContent=`${items.length} عنصر · تم تحديد ${selected.size}`;
++ document.getElementById('dl').textContent=busy?'جاري الحفظ…':`تحميل (${selected.size})`;
++ document.getElementById('dl').disabled=busy||!selected.size;
++ document.getElementById('all').disabled=busy;
++ document.getElementById('all').textContent=selected.size===items.filter(i=>i.available).length?'إلغاء التحديد':'تحديد الكل';
++}
++window.HIDEGalleryState=s=>{const shape=JSON.stringify([s.items,s.selected,s.busy]);const previous=items;items=s.items.map((item,i)=>({...item,image:previous[i]?.image}));selected=new Set(s.selected);busy=s.busy;document.getElementById('prog').style.display=busy?'block':'none';document.querySelector('#prog div').style.width=`${s.progress*100}%`;document.getElementById('status').textContent=s.status||'';if(shape!==lastShape){lastShape=shape;draw()}};
++window.HIDEGalleryThumbnail=(index,image)=>{if(!items[index] || !/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(image))return;items[index].image=image;const tile=document.querySelector(`[data-i="${index}"]`);if(tile){let img=tile.querySelector('img');if(!img){img=document.createElement('img');img.alt='';tile.appendChild(img)}img.src=image}};
++document.getElementById('all').onclick=()=>send({action:'all'});
++document.getElementById('dl').onclick=()=>{if(!busy&&selected.size)send({action:'download'})};
++document.querySelector('.gx').onclick=()=>send({action:'close'});
++</script>
++</body>
++</html>
+--- /dev/null
 +++ b/assets/native-bridge.js
 @@ -0,0 +1,99 @@
 +// App adaptation of the approved design: full-screen layout and unified controls.
@@ -911,7 +1095,7 @@
 -clang "${FLAGS[@]}" $LD_FLAG -dynamiclib "$OUT"/*.o -o "$OUT/HIDE.dylib" \
 -  -framework UIKit -framework Foundation -framework Photos -framework CoreGraphics -framework Security -framework AVFoundation -framework LocalAuthentication -framework QuartzCore \
 +"$CC" "${FLAGS[@]}" "${LINKER[@]}" -dynamiclib "$OBJECTS"/*.o -o "$OBJECTS/HIDE.dylib" \
-+  -framework WebKit -framework UIKit -framework Foundation -framework Photos -framework CoreGraphics \
++  -framework ImageIO -framework WebKit -framework UIKit -framework Foundation -framework Photos -framework CoreGraphics \
 +  -framework Security -framework AVFoundation -framework LocalAuthentication -framework QuartzCore \
 +  -framework PhotosUI -framework UniformTypeIdentifiers -framework CoreMedia -framework AudioToolbox -framework CoreVideo \
    -install_name @rpath/HIDE.dylib -Wl,-dead_strip
@@ -920,7 +1104,7 @@
 +echo "Built $OUT/HIDE.dylib (arm64, iOS 15+)"
 --- /dev/null
 +++ b/docs/407-native-contracts.json
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,21 @@
 +{
 +  "executable_uuid": "4c4c444e-5555-3144-a107-36f95b1dcf25",
 +  "sha256": "63125b49af1554d9453d1613f232783523342f4430ac566c0672b14ab2d75481",
@@ -928,7 +1112,11 @@
 +    "IGLiveViewerCountIntervalPuller": "@80@0:8@16@24d32@40@48q56q64@72",
 +    "IGDirectCache": "v24@0:8@16",
 +    "_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController": "v24@0:8q16",
-+    "IGDirectMessageMenuActionHandler": "v56@0:8@16@24@32Q40@48"
++    "IGDirectMessageMenuActionHandler": "v56@0:8@16@24@32Q40@48",
++    "IGDirectThreadViewController": "v16@0:8",
++    "IGDirectMessageListViewController": "v16@0:8",
++    "IGDirectThreadViewListAdapterDataSource": "B16@0:8",
++    "IGStoryViewerViewController": "v32@0:8@16@24"
 +  },
 +  "swift_recording_limit": "Double",
 +  "cache_wrapper_slots": {
@@ -941,7 +1129,7 @@
 --- /dev/null
 +++ b/docs/DL-COMPARISON-ar.md
 @@ -0,0 +1,40 @@
-+# مقارنة DL مع HIDE 1.9.3
++# مقارنة DL مع HIDE 1.9.4
 +
 +المقارنة مبنية على خيارات فعلية في تحليل المكتبة، وليس استعادة المصدر الأصلي. الحالات التالية تصف التنفيذ الموجود في المصدر، لا نجاحًا مثبتًا داخل إنستغرام 407.
 +
@@ -976,9 +1164,9 @@
 +
 +**النتيجة:** 11 إعدادًا جديدًا، مع مقابلات لجميع خيارات DL الـ26. يوجد أيضًا مفتاح تنزيل HIDE، فيصبح إجمالي مفاتيح الواجهة 27.
 +
-+العمليات الجديدة: اختيار العناصر، تنزيل المتوفر من الستوري، دمج الصور والفيديوهات، التقدم والإلغاء، ومحاولة صورة الحساب HD عبر الشبكة الأصلية مع fallback.
++العمليات الحالية: نافذة التحميل الجديدة لاختيار العناصر وحفظها مع المعاينات والتقدم والإلغاء. نافذة الدمج السابقة أزيلت من هذا المسار. يبقى حل صورة الحساب HD مع fallback وفق واجهة التطبيق المتوفرة.
 +
-+**المتبقي:** تعليم ستوري محدد كمشاهَد أثناء الإخفاء. يتطلب عقد نموذج/طلب seen لنسخة 407 لتجنب إرسال مشاهدة غير مقصودة.
++**القراءة اليدوية:** أضيف استدعاء مسار المحادثة والستوري المحددة مع أذونات مرتبطة بالحساب والهدف وبصمة الطلب. وصول المشاهدة للطرف الآخر غير مثبت على جهاز.
 +
 +**حدود مهمة:** حفظ الرسائل يعمل على حقول الكاش المعروفة ولا يعيد المحذوفات السابقة. سلوك إخفاء المشاهدة/البث/التصوير وإعادة العرض يعتمد على مسارات الإصدار، ولا يضمن الفحص البنيوي تغطية المراسلة المشفرة أو كل وسائل النقل. العدادات لا تُظهر بيانات لم يرسلها الخادم.
 --- /dev/null
@@ -1028,7 +1216,7 @@
 +  "native_ios_device_tested": false
 +}--- /dev/null
 +++ b/docs/dl-feature-map.json
-@@ -0,0 +1,273 @@
+@@ -0,0 +1,278 @@
 +{
 +  "comparison": "DLInsta binary analysis versus HIDE 1.8",
 +  "dl_binary_sha256": "23b13778267c7b25f7cbb524ac824deb11752a0dd0d35c179366b1fe1905165d",
@@ -1281,13 +1469,13 @@
 +    },
 +    {
 +      "name": "merge_photos_and_videos",
-+      "implementation": "src/HIDEBatch.m",
-+      "status": "implemented; 3-second photos, 1080x1920 letterbox, source order and audio"
++      "implementation": null,
++      "status": "removed from the download-only picker in 1.9.4 to match the approved two-button gallery"
 +    },
 +    {
 +      "name": "download_progress_and_cancel",
 +      "implementation": "src/HIDEBatch.m",
-+      "status": "implemented; sequential downloads, real task/export progress, cancellation between Photos saves"
++      "status": "implemented: sequential downloads and real task/Photos callbacks; cancellation stops subsequent items"
 +    },
 +    {
 +      "name": "profile_photo_hd_lookup",
@@ -1296,11 +1484,50 @@
 +    },
 +    {
 +      "name": "manual_mark_one_story_seen_while_anonymous",
-+      "implementation": null,
-+      "status": "not ported; requires the 407 story model and seen-request body contract to avoid marking unrelated stories"
++      "implementation": "src/HIDEManualSeen.m + src/HIDEPrivacy.m",
++      "status": "implemented with verified 407 callback and scoped request permissions; device delivery not verified"
++    },
++    {
++      "name": "manual_direct_read_eye",
++      "implementation": "src/HIDEManualSeen.m",
++      "status": "implemented with target-bound native call; device delivery not verified"
 +    }
 +  ],
 +  "analysis_reference_url": "https://github.com/ZT8/nam/tree/main/DLInsta-full"
++}
+--- /dev/null
++++ b/docs/manual-receipt-contracts.json
+@@ -0,0 +1,31 @@
++{
++  "framework_sha256": "53eb05515e509487e3fdfdca81b84ad87da69782c1824208a8ce48ae8c83b053",
++  "methods": {
++    "IGUserSession": {
++      "networker": "@16@0:8"
++    },
++    "IGDevirtualizedValueObject": {
++      "valueForKey:": "@24@0:8@16"
++    },
++    "IGURLRequest": {
++      "parameters": "@16@0:8",
++      "copyWithZone:": "@24@0:8^{_NSZone}16",
++      "URL": "@16@0:8",
++      "body": "@16@0:8"
++    },
++    "IGScopedNetworker": {
++      "startAPIRequest:policy:successHandler:failureHandler:": "@48@0:8@16@24@?32@?40",
++      "startAPIRequest:policy:completionQueue:cacheHandler:parsingHandler:successHandler:failureHandler:": "@72@0:8@16@24@32@?40@?48@?56@?64",
++      "startAPIRequest:policy:completionQueue:cacheHandler:bytesSentHandler:firstByteFlushedHandler:lastByteAckedHandler:parsingHandler:successHandler:failureHandler:": "@96@0:8@16@24@32@?40@?48@?56@?64@?72@?80@?88"
++    }
++  },
++  "runtime_delivery_confirmed": false,
++  "permission_scope": [
++    "account",
++    "target",
++    "request body SHA256",
++    "monotonic expiry"
++  ],
++  "unknown_requests": "not authorized",
++  "global_privacy_settings_temporarily_disabled": false
 +}
 --- /dev/null
 +++ b/src/HIDE407.h
@@ -1459,260 +1686,172 @@
  }
 --- /dev/null
 +++ b/src/HIDEBatch.m
-@@ -0,0 +1,254 @@
-+// Selection, sequential saving, real progress/cancellation, photo/video merging.
+@@ -0,0 +1,166 @@
++// Approved gallery design, native selection/saving and independent thumbnails.
 +#import "HIDECore.h"
-+#import "HIDEMediaPolicy.h"
++#import "HIDEDesignData.h"
++#import <WebKit/WebKit.h>
 +#import <AVFoundation/AVFoundation.h>
++#import <ImageIO/ImageIO.h>
 +
-+static NSURL *HIDEBatchURL(NSString *kind) {
-+    return [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:
-+        [NSString stringWithFormat:@"HIDE_%@_%@.mp4",kind,NSUUID.UUID.UUIDString]];
-+}
-+
-+// A still becomes an actual three-second H.264 clip, including image orientation.
-+static void HIDEStillClip(NSURL *file,BOOL (^cancelled)(void),void (^done)(NSURL *,NSError *)) {
-+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY,0), ^{
-+        UIImage *image=[UIImage imageWithContentsOfFile:file.path];
-+        HIDEFit fit;
-+        if (!image || !HIDEAspectFit(image.size.width,image.size.height,1080,1920,&fit)) { done(nil,[NSError errorWithDomain:@"HIDEMerge" code:1 userInfo:nil]);return; }
-+        NSURL *output=HIDEBatchURL(@"still");NSError *error=nil;
-+        AVAssetWriter *writer=[[AVAssetWriter alloc] initWithURL:output fileType:AVFileTypeMPEG4 error:&error];
-+        AVAssetWriterInput *input=[AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:@{AVVideoCodecKey:AVVideoCodecTypeH264,AVVideoWidthKey:@1080,AVVideoHeightKey:@1920}];
-+        input.expectsMediaDataInRealTime=NO;
-+        AVAssetWriterInputPixelBufferAdaptor *adaptor=[AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:input sourcePixelBufferAttributes:@{(id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_32ARGB),(id)kCVPixelBufferWidthKey:@1080,(id)kCVPixelBufferHeightKey:@1920,(id)kCVPixelBufferCGBitmapContextCompatibilityKey:@YES}];
-+        if (!writer || ![writer canAddInput:input]) { done(nil,error ?: [NSError errorWithDomain:@"HIDEMerge" code:2 userInfo:nil]);return; }
-+        [writer addInput:input];
-+        if (![writer startWriting]) { done(nil,writer.error);return; }
-+        [writer startSessionAtSourceTime:kCMTimeZero];
-+        CVPixelBufferRef pixel=NULL;
-+        CVReturn created=CVPixelBufferCreate(kCFAllocatorDefault,1080,1920,kCVPixelFormatType_32ARGB,(__bridge CFDictionaryRef)@{(id)kCVPixelBufferCGImageCompatibilityKey:@YES,(id)kCVPixelBufferCGBitmapContextCompatibilityKey:@YES},&pixel);
-+        if (created!=kCVReturnSuccess) { [writer cancelWriting];done(nil,[NSError errorWithDomain:@"HIDEMerge" code:3 userInfo:nil]);return; }
-+        CVPixelBufferLockBaseAddress(pixel,0);
-+        CGColorSpaceRef space=CGColorSpaceCreateDeviceRGB();
-+        CGContextRef context=CGBitmapContextCreate(CVPixelBufferGetBaseAddress(pixel),1080,1920,8,CVPixelBufferGetBytesPerRow(pixel),space,kCGImageAlphaNoneSkipFirst);
-+        CGColorSpaceRelease(space);
-+        if (!context) { CVPixelBufferUnlockBaseAddress(pixel,0);CVPixelBufferRelease(pixel);[writer cancelWriting];done(nil,[NSError errorWithDomain:@"HIDEMerge" code:4 userInfo:nil]);return; }
-+        CGContextSetRGBFillColor(context,0,0,0,1);CGContextFillRect(context,CGRectMake(0,0,1080,1920));
-+        CGContextTranslateCTM(context,0,1920);CGContextScaleCTM(context,1,-1);
-+        UIGraphicsPushContext(context);[image drawInRect:CGRectMake(fit.x,fit.y,fit.width,fit.height)];UIGraphicsPopContext();
-+        CGContextRelease(context);CVPixelBufferUnlockBaseAddress(pixel,0);
-+        dispatch_queue_t queue=dispatch_queue_create("HIDE.still-writer",DISPATCH_QUEUE_SERIAL);
-+        __block NSInteger frame=0;__block BOOL finished=NO;
-+        [input requestMediaDataWhenReadyOnQueue:queue usingBlock:^{
-+            if (finished) return;
-+            BOOL failed=NO;
-+            while (input.readyForMoreMediaData && frame<90) {
-+                if (cancelled()) break;
-+                if (![adaptor appendPixelBuffer:pixel withPresentationTime:CMTimeMake(frame,30)]) { failed=YES;break; }
-+                frame++;
-+            }
-+            if (cancelled() || failed || writer.status==AVAssetWriterStatusFailed || frame==90) {
-+                finished=YES;
-+                if(frame==90)[writer endSessionAtSourceTime:CMTimeMake(90,30)];
-+                [input markAsFinished];CVPixelBufferRelease(pixel);
-+                if (cancelled() || frame!=90) {
-+                    [writer cancelWriting];[NSFileManager.defaultManager removeItemAtURL:output error:nil];
-+                    done(nil,[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil]);
-+                } else [writer finishWritingWithCompletionHandler:^{
-+                    if (writer.status==AVAssetWriterStatusCompleted) done(output,nil);
-+                    else { [NSFileManager.defaultManager removeItemAtURL:output error:nil];done(nil,writer.error); }
-+                }];
-+            }
-+        }];
-+    });
-+}
-+
-+@interface HIDEBatchController : UITableViewController
++@interface HIDEGalleryController : UIViewController <WKScriptMessageHandler,WKNavigationDelegate>
 +@property(nonatomic,strong) NSArray<NSDictionary *> *items;
 +@property(nonatomic,strong) NSMutableIndexSet *selected;
-+@property(nonatomic,strong) NSMutableIndexSet *available;
-+@property(nonatomic,copy) NSString *stage;
-+@property(nonatomic,strong) NSArray<NSNumber *> *work;
-+@property(nonatomic,strong) NSMutableArray<NSURL *> *files;
-+@property(nonatomic,strong) NSMutableArray<NSURL *> *clips;
++@property(nonatomic,strong) WKWebView *web;
++@property(nonatomic,strong) NSURLSession *session;
++@property(nonatomic,strong) NSOperationQueue *previewQueue;
++@property(nonatomic,strong) NSMutableArray<AVAssetImageGenerator *> *generators;
 +@property(nonatomic,strong) NSURLSessionDownloadTask *task;
-+@property(nonatomic,strong) AVAssetExportSession *exporter;
 +@property(nonatomic,strong) NSTimer *timer;
-+@property(nonatomic) NSUInteger next,saved;
-+@property(nonatomic) BOOL busy,merging,startedSingle;
-+@property(atomic) BOOL cancelled;
++@property(nonatomic,strong) NSArray<NSNumber *> *work;
++@property(nonatomic,copy) NSString *status;
++@property(nonatomic) NSUInteger saved,next;
++@property(nonatomic) BOOL busy,ready;
++@property(atomic) BOOL closed;
 +@end
-+@implementation HIDEBatchController
-+- (instancetype)initWithItems:(NSArray *)items {
-+    if ((self=[super initWithStyle:UITableViewStyleInsetGrouped])) {
-+        self.items=items;self.available=[NSMutableIndexSet indexSet];
-+        [items enumerateObjectsUsingBlock:^(NSDictionary *item,NSUInteger index,BOOL *stop){if([item[@"url"] isKindOfClass:NSURL.class])[self.available addIndex:index];}];
-+        self.selected=[self.available mutableCopy];
-+        self.files=[NSMutableArray array];self.clips=[NSMutableArray array];
-+    } return self;
-+}
++@interface HIDEGalleryWeakHandler : NSObject <WKScriptMessageHandler>
++@property(nonatomic,weak) HIDEGalleryController *owner;
++@end
++@implementation HIDEGalleryWeakHandler
++- (void)userContentController:(WKUserContentController *)c didReceiveScriptMessage:(WKScriptMessage *)m {[self.owner userContentController:c didReceiveScriptMessage:m];}
++@end
++@implementation HIDEGalleryController
 +- (void)viewDidLoad {
-+    [super viewDidLoad];self.title=HIDEL(@"SELECT_MEDIA");self.overrideUserInterfaceStyle=UIUserInterfaceStyleDark;
-+    self.tableView.backgroundColor=UIColor.systemBackgroundColor;
-+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:HIDEL(@"SELECT_NONE") style:UIBarButtonItemStylePlain target:self action:@selector(toggleAll)];
-+    self.toolbarItems=@[
-+        [[UIBarButtonItem alloc] initWithTitle:HIDEL(@"DOWNLOAD_SELECTED") style:UIBarButtonItemStylePlain target:self action:@selector(download)],
-+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-+        [[UIBarButtonItem alloc] initWithTitle:HIDEL(@"MERGE_SELECTED") style:UIBarButtonItemStylePlain target:self action:@selector(merge)]];
-+    self.navigationController.toolbarHidden=NO;[self updateSelection];
++    [super viewDidLoad];self.view.backgroundColor=[UIColor colorWithRed:.04 green:.04 blue:.1 alpha:1];
++    self.selected=[NSMutableIndexSet indexSet];
++    [self.items enumerateObjectsUsingBlock:^(NSDictionary *item,NSUInteger index,BOOL *stop){if([item[@"url"] isKindOfClass:NSURL.class])[self.selected addIndex:index];}];
++    self.generators=[NSMutableArray array];self.previewQueue=[NSOperationQueue new];self.previewQueue.maxConcurrentOperationCount=2;
++    NSURLSessionConfiguration *network=NSURLSessionConfiguration.ephemeralSessionConfiguration;network.timeoutIntervalForRequest=15;network.HTTPMaximumConnectionsPerHost=4;
++    self.session=[NSURLSession sessionWithConfiguration:network];
++    WKWebViewConfiguration *config=[WKWebViewConfiguration new];config.websiteDataStore=WKWebsiteDataStore.nonPersistentDataStore;
++    HIDEGalleryWeakHandler *handler=[HIDEGalleryWeakHandler new];handler.owner=self;[config.userContentController addScriptMessageHandler:handler name:@"hideGallery"];
++    self.web=[[WKWebView alloc] initWithFrame:CGRectZero configuration:config];self.web.navigationDelegate=self;self.web.opaque=NO;self.web.alpha=0;self.web.translatesAutoresizingMaskIntoConstraints=NO;
++    self.web.scrollView.contentInsetAdjustmentBehavior=UIScrollViewContentInsetAdjustmentNever;[self.view addSubview:self.web];
++    UILayoutGuide *safe=self.view.safeAreaLayoutGuide;
++    [NSLayoutConstraint activateConstraints:@[[self.web.topAnchor constraintEqualToAnchor:safe.topAnchor],[self.web.bottomAnchor constraintEqualToAnchor:safe.bottomAnchor],[self.web.leadingAnchor constraintEqualToAnchor:safe.leadingAnchor],[self.web.trailingAnchor constraintEqualToAnchor:safe.trailingAnchor]]];
++    NSString *html=[[NSString alloc] initWithBytes:HIDEGalleryHTML length:sizeof(HIDEGalleryHTML) encoding:NSUTF8StringEncoding];
++    [self.web loadHTMLString:html baseURL:nil];
 +}
-+- (void)viewDidAppear:(BOOL)animated {
-+    [super viewDidAppear:animated];
-+    if(self.items.count==1 && !self.startedSingle){self.startedSingle=YES;[self start:NO];}
++- (UIStatusBarStyle)preferredStatusBarStyle{return UIStatusBarStyleLightContent;}
++- (BOOL)accessibilityPerformEscape{[self close];return YES;}
++- (void)sync {
++    if(!self.ready || self.closed)return;
++    NSMutableArray *items=[NSMutableArray array],*selected=[NSMutableArray array];
++    for(NSDictionary *item in self.items)[items addObject:@{@"video":@([item[@"video"] boolValue]),@"available":@([item[@"url"] isKindOfClass:NSURL.class])}];
++    [self.selected enumerateIndexesUsingBlock:^(NSUInteger index,BOOL *stop){[selected addObject:@(index)];}];
++    double fraction=self.task.progress.totalUnitCount>0 ? self.task.progress.fractionCompleted : 0;
++    double progress=self.work.count ? MIN(.99,(self.next+fraction)/self.work.count) : 0;
++    NSDictionary *state=@{@"items":items,@"selected":selected,@"busy":@(self.busy),@"progress":@(progress),@"status":self.status ?: @""};
++    NSString *json=[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:state options:0 error:nil] encoding:NSUTF8StringEncoding];
++    [self.web evaluateJavaScript:[NSString stringWithFormat:@"HIDEGalleryState(%@)",json] completionHandler:nil];
 +}
-+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { return self.items.count; }
-+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)path {
-+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"item"] ?: [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"item"];
-+    BOOL video=[self.items[path.row][@"video"] boolValue];
-+    cell.textLabel.text=[NSString stringWithFormat:@"%@ %ld",HIDEL(video ? @"VIDEO_ITEM" : @"PHOTO_ITEM"),(long)path.row+1];
-+    cell.imageView.image=[UIImage systemImageNamed:video ? @"video" : @"photo"];
-+    BOOL available=[self.available containsIndex:path.row];
-+    if(!available)cell.textLabel.text=[NSString stringWithFormat:@"%@ %ld",HIDEL(@"UNAVAILABLE_ITEM"),(long)path.row+1];
-+    cell.textLabel.textColor=available ? UIColor.labelColor : UIColor.secondaryLabelColor;
-+    cell.selectionStyle=available ? UITableViewCellSelectionStyleDefault : UITableViewCellSelectionStyleNone;
-+    cell.accessoryType=[self.selected containsIndex:path.row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;return cell;
++- (void)webView:(WKWebView *)web didFinishNavigation:(WKNavigation *)navigation {
++    self.ready=YES;[self sync];self.web.alpha=1;
++    for(NSUInteger i=0;i<self.items.count;i++)[self loadThumbnail:i];
 +}
-+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)path {
-+    [tableView deselectRowAtIndexPath:path animated:YES];if(self.busy || ![self.available containsIndex:path.row])return;
-+    if ([self.selected containsIndex:path.row]) [self.selected removeIndex:path.row];else [self.selected addIndex:path.row];
-+    [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];[self updateSelection];
++- (void)webView:(WKWebView *)web decidePolicyForNavigationAction:(WKNavigationAction *)action decisionHandler:(void (^)(WKNavigationActionPolicy))decision {
++    decision([action.request.URL.absoluteString isEqualToString:@"about:blank"] ? WKNavigationActionPolicyAllow : WKNavigationActionPolicyCancel);
 +}
-+- (void)updateSelection {
-+    self.navigationItem.rightBarButtonItem.title=HIDEL(self.selected.count==self.available.count ? @"SELECT_NONE" : @"SELECT_ALL");
-+    self.navigationItem.rightBarButtonItem.enabled=!self.busy;
-+    for (UIBarButtonItem *item in self.toolbarItems) item.enabled=!self.busy && self.selected.count>0;
-+    if (!self.busy) self.navigationItem.prompt=[NSString stringWithFormat:HIDEL(@"SELECTED_COUNT"),(unsigned long)self.selected.count];
++- (void)userContentController:(WKUserContentController *)c didReceiveScriptMessage:(WKScriptMessage *)m {
++    if(m.webView!=self.web || !m.frameInfo.isMainFrame || ![m.body isKindOfClass:NSDictionary.class])return;
++    NSString *action=m.body[@"action"];if(![action isKindOfClass:NSString.class])return;
++    if([action isEqualToString:@"close"]){[self close];return;}
++    if(self.busy)return;
++    if([action isEqualToString:@"select"]) {
++        NSNumber *index=m.body[@"index"];if(![index isKindOfClass:NSNumber.class] || index.integerValue<0 || index.unsignedIntegerValue>=self.items.count)return;
++        NSUInteger i=index.unsignedIntegerValue;if(![self.items[i][@"url"] isKindOfClass:NSURL.class])return;
++        if([self.selected containsIndex:i])[self.selected removeIndex:i];else[self.selected addIndex:i];
++    } else if([action isEqualToString:@"all"]) {
++        NSMutableIndexSet *available=[NSMutableIndexSet indexSet];[self.items enumerateObjectsUsingBlock:^(NSDictionary *item,NSUInteger i,BOOL *stop){if([item[@"url"] isKindOfClass:NSURL.class])[available addIndex:i];}];
++        if([self.selected isEqualToIndexSet:available])[self.selected removeAllIndexes];else self.selected=available;
++    } else if([action isEqualToString:@"download"]){[self start];return;}else return;
++    [self sync];
 +}
-+- (void)toggleAll {
-+    if (self.selected.count==self.available.count) [self.selected removeAllIndexes];else [self.selected addIndexes:self.available];
-+    [self.tableView reloadData];[self updateSelection];
-+}
-+- (void)download { [self begin:NO]; }
-+- (void)merge { [self begin:YES]; }
-+- (void)begin:(BOOL)merge {
-+    if (self.busy || !self.selected.count) return;
-+    if (merge) {
-+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"MERGE_SELECTED") message:HIDEL(@"MERGE_HINT") preferredStyle:UIAlertControllerStyleAlert];
-+        [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"CONFIRM") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) { [self start:YES]; }]];
-+        [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"CANCEL") style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:alert animated:YES completion:nil];
-+    } else [self start:NO];
-+}
-+- (void)start:(BOOL)merge {
-+    NSMutableArray *work=[NSMutableArray array];[self.selected enumerateIndexesUsingBlock:^(NSUInteger index,BOOL *stop){[work addObject:@(index)];}];
-+    self.work=work;self.next=0;self.saved=0;self.cancelled=NO;self.busy=YES;self.merging=merge;[self updateSelection];
-+    __weak typeof(self) weakSelf=self;
-+    self.timer=[NSTimer scheduledTimerWithTimeInterval:0.25 repeats:YES block:^(NSTimer *timer){
-+        typeof(self) self=weakSelf;if(!self)return;
-+        if (self.exporter) self.navigationItem.prompt=[NSString stringWithFormat:@"%@ %.0f%%",HIDEL(@"MERGING"),100*self.exporter.progress];
-+        else if(self.task && self.task.progress.totalUnitCount>0) self.navigationItem.prompt=[NSString stringWithFormat:@"%lu/%lu · %.0f%%",(unsigned long)self.next,(unsigned long)self.work.count,100*self.task.progress.fractionCompleted];
-+        else self.navigationItem.prompt=self.stage ?: HIDEL(@"DOWNLOADING");
-+    }];
++- (void)start {
++    if(!self.selected.count)return;
++    NSMutableArray *work=[NSMutableArray array];[self.selected enumerateIndexesUsingBlock:^(NSUInteger i,BOOL *stop){[work addObject:@(i)];}];
++    self.work=work;self.next=0;self.saved=0;self.busy=YES;self.status=HIDEL(@"DOWNLOADING");
++    __weak typeof(self) weak=self;self.timer=[NSTimer scheduledTimerWithTimeInterval:.25 repeats:YES block:^(NSTimer *timer){[weak sync];}];
 +    [self fetchNext];
 +}
 +- (void)fetchNext {
-+    if (self.cancelled) { [self finish:NO];return; }
-+    if (self.next==self.work.count) { if(self.merging)[self prepareClip:0];else[self finish:YES];return; }
++    if(self.closed)return;
++    if(self.next==self.work.count){[self finish:YES];return;}
 +    NSDictionary *item=self.items[self.work[self.next].unsignedIntegerValue];
-+    self.stage=HIDEL(@"DOWNLOADING");
++    __weak typeof(self) weak=self;
 +    self.task=HIDEFetchFile(item[@"url"],[item[@"video"] boolValue] ? @"video" : @"image",^(NSURL *file,NSError *error){
-+        self.task=nil;
-+        if (self.cancelled) { if(file)[NSFileManager.defaultManager removeItemAtURL:file error:nil];[self finish:NO];return; }
-+        if (!file || error) { [self finish:NO];return; }
-+        self.next++;
-+        if (self.merging) { [self.files addObject:file];[self fetchNext]; }
-+        else { self.stage=HIDEL(@"SAVING_MEDIA");HIDESaveDownloadedFile(file,[item[@"video"] boolValue],self.work.count==1 && HIDEPref(kHideShareAfterSave),^(BOOL saved){
-+            if (saved) self.saved++;
-+            if (saved && !self.cancelled) [self fetchNext];else [self finish:NO];
-+        }); }
-+    });
-+}
-+- (void)prepareClip:(NSUInteger)index {
-+    if (self.cancelled) { [self finish:NO];return; }
-+    if (index==self.files.count) { [self compose];return; }
-+    NSDictionary *item=self.items[self.work[index].unsignedIntegerValue];
-+    if ([item[@"video"] boolValue]) { [self.clips addObject:self.files[index]];[self prepareClip:index+1];return; }
-+    self.stage=HIDEL(@"PREPARING_PHOTOS");self.navigationItem.prompt=self.stage;
-+    HIDEStillClip(self.files[index],^BOOL{return self.cancelled;},^(NSURL *clip,NSError *error){
-+        dispatch_async(dispatch_get_main_queue(),^{
-+            if(clip)[self.clips addObject:clip];
-+            if(!clip || self.cancelled)[self finish:NO];else[self prepareClip:index+1];
++        typeof(self) self=weak;if(!self || self.closed){if(file)[NSFileManager.defaultManager removeItemAtURL:file error:nil];return;}
++        self.task=nil;if(!file || error){[self finish:NO];return;}
++        self.status=HIDEL(@"SAVING_MEDIA");[self sync];
++        HIDESaveDownloadedFile(file,[item[@"video"] boolValue],self.work.count==1 && HIDEPref(kHideShareAfterSave),^(BOOL saved){
++            if(self.closed)return;
++            if(!saved){[self finish:NO];return;}
++            self.saved++;self.next++;self.status=HIDEL(@"DOWNLOADING");[self fetchNext];
 +        });
-+    });
-+}
-+- (void)compose {
-+    self.stage=HIDEL(@"MERGING");self.navigationItem.prompt=self.stage;
-+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY,0),^{
-+        AVMutableComposition *composition=[AVMutableComposition composition];
-+        AVMutableCompositionTrack *video=[composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-+        AVMutableCompositionTrack *audio=[composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-+        NSMutableArray *instructions=[NSMutableArray array];CMTime cursor=kCMTimeZero;BOOL valid=YES;
-+        for (NSURL *file in self.clips) {
-+            if(self.cancelled){valid=NO;break;}
-+            AVURLAsset *asset=[AVURLAsset URLAssetWithURL:file options:nil];AVAssetTrack *source=[asset tracksWithMediaType:AVMediaTypeVideo].firstObject;
-+            CMTime start=source ? source.timeRange.start : kCMTimeZero;
-+            CMTime end=source ? CMTimeMinimum(asset.duration,CMTimeRangeGetEnd(source.timeRange)) : kCMTimeZero;
-+            CMTime duration=CMTimeSubtract(end,start);double seconds=CMTimeGetSeconds(duration);NSError *error=nil;
-+            if(!source || !isfinite(seconds) || seconds<=0){valid=NO;break;}
-+            CMTimeRange range=CMTimeRangeMake(start,duration);
-+            if(![video insertTimeRange:range ofTrack:source atTime:cursor error:&error]){valid=NO;break;}
-+            AVAssetTrack *sound=[asset tracksWithMediaType:AVMediaTypeAudio].firstObject;
-+            if(sound) {
-+                CMTimeRange audioRange=CMTimeRangeGetIntersection(range,sound.timeRange);
-+                if(CMTIME_IS_NUMERIC(audioRange.duration) && CMTimeCompare(audioRange.duration,kCMTimeZero)>0 &&
-+                   ![audio insertTimeRange:audioRange ofTrack:sound atTime:CMTimeAdd(cursor,CMTimeSubtract(audioRange.start,start)) error:&error]) {valid=NO;break;}
-+            }
-+            CGRect bounds=CGRectApplyAffineTransform((CGRect){CGPointZero,source.naturalSize},source.preferredTransform);HIDEFit fit;
-+            if(!HIDEAspectFit(fabs(bounds.size.width),fabs(bounds.size.height),1080,1920,&fit)){valid=NO;break;}
-+            CGAffineTransform transform=CGAffineTransformConcat(source.preferredTransform,CGAffineTransformMakeTranslation(-bounds.origin.x,-bounds.origin.y));
-+            transform=CGAffineTransformConcat(transform,CGAffineTransformMakeScale(fit.scale,fit.scale));
-+            transform=CGAffineTransformConcat(transform,CGAffineTransformMakeTranslation(fit.x,fit.y));
-+            AVMutableVideoCompositionLayerInstruction *layer=[AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:video];[layer setTransform:transform atTime:cursor];
-+            AVMutableVideoCompositionInstruction *instruction=[AVMutableVideoCompositionInstruction videoCompositionInstruction];instruction.timeRange=CMTimeRangeMake(cursor,duration);instruction.layerInstructions=@[layer];[instructions addObject:instruction];cursor=CMTimeAdd(cursor,duration);
-+        }
-+        if(!valid || self.cancelled){dispatch_async(dispatch_get_main_queue(),^{[self finish:NO];});return;}
-+        AVMutableVideoComposition *render=[AVMutableVideoComposition videoComposition];render.renderSize=CGSizeMake(1080,1920);render.frameDuration=CMTimeMake(1,30);render.instructions=instructions;
-+        AVAssetExportSession *exporter=[[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-+        NSURL *output=HIDEBatchURL(@"merged");
-+        if(!exporter || ![exporter.supportedFileTypes containsObject:AVFileTypeMPEG4]){dispatch_async(dispatch_get_main_queue(),^{[self finish:NO];});return;}
-+        exporter.outputURL=output;exporter.outputFileType=AVFileTypeMPEG4;exporter.videoComposition=render;
-+        dispatch_async(dispatch_get_main_queue(),^{
-+            if(self.cancelled){[self finish:NO];return;}
-+            self.exporter=exporter;[self.files addObject:output];
-+            [exporter exportAsynchronouslyWithCompletionHandler:^{dispatch_async(dispatch_get_main_queue(),^{
-+                self.exporter=nil;
-+                if(self.cancelled || exporter.status!=AVAssetExportSessionStatusCompleted){[self finish:NO];return;}
-+                HIDESaveDownloadedFile(output,YES,HIDEPref(kHideShareAfterSave),^(BOOL saved){
-+                    // Photos/share now owns this output's lifetime.
-+                    [self.files removeObject:output];self.saved=saved ? 1 : 0;[self finish:saved];
-+                });
-+            });}];
-+        });
-+    });
++    });[self sync];
 +}
 +- (void)finish:(BOOL)success {
-+    [self.timer invalidate];self.timer=nil;self.task=nil;self.exporter=nil;
-+    for (NSURL *file in self.files) [NSFileManager.defaultManager removeItemAtURL:file error:nil];
-+    for (NSURL *file in self.clips) [NSFileManager.defaultManager removeItemAtURL:file error:nil];
-+    [self.files removeAllObjects];[self.clips removeAllObjects];self.busy=NO;[self updateSelection];
-+    if(self.cancelled)return;
-+    NSString *message=success ? [NSString stringWithFormat:HIDEL(@"BATCH_SAVED"),(unsigned long)self.saved] : [NSString stringWithFormat:HIDEL(@"BATCH_FAILED"),(unsigned long)self.saved];
-+    if(self.navigationController.presentedViewController || self.presentedViewController) { HIDEToast(message);return; }
-+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"HIDE" message:message preferredStyle:UIAlertControllerStyleAlert];
-+    [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"OK") style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:alert animated:YES completion:nil];
++    [self.timer invalidate];self.timer=nil;self.task=nil;self.busy=NO;
++    self.status=[NSString stringWithFormat:HIDEL(success ? @"BATCH_SAVED" : @"BATCH_FAILED"),(unsigned long)self.saved];[self sync];
 +}
-+- (void)cancel {
-+    self.cancelled=YES;[self.timer invalidate];self.timer=nil;[self.task cancel];[self.exporter cancelExport];
++- (void)publishThumbnail:(NSData *)jpeg index:(NSUInteger)index {
++    if(!jpeg.length)return;NSString *image=[@"data:image/jpeg;base64," stringByAppendingString:[jpeg base64EncodedStringWithOptions:0]];
++    dispatch_async(dispatch_get_main_queue(),^{if(self.closed)return;
++        NSString *json=[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:@[image] options:0 error:nil] encoding:NSUTF8StringEncoding];
++        [self.web evaluateJavaScript:[NSString stringWithFormat:@"HIDEGalleryThumbnail(%lu,%@[0])",(unsigned long)index,json] completionHandler:nil];
++    });
++}
++- (NSData *)thumbnailData:(NSData *)data {
++    if(!data.length || data.length>16*1024*1024)return nil;
++    CGImageSourceRef source=CGImageSourceCreateWithData((__bridge CFDataRef)data,NULL);if(!source)return nil;
++    CGImageRef small=CGImageSourceCreateThumbnailAtIndex(source,0,(__bridge CFDictionaryRef)@{(id)kCGImageSourceCreateThumbnailFromImageAlways:@YES,(id)kCGImageSourceCreateThumbnailWithTransform:@YES,(id)kCGImageSourceThumbnailMaxPixelSize:@240});
++    CFRelease(source);if(!small)return nil;UIImage *image=[UIImage imageWithCGImage:small];CGImageRelease(small);return UIImageJPEGRepresentation(image,.8);
++}
++- (void)videoFrame:(NSUInteger)index {
++    NSURL *url=self.items[index][@"url"];if(!url || self.closed)return;
++    __weak typeof(self) weak=self;
++    [self.previewQueue addOperationWithBlock:^{
++        typeof(self) self=weak;if(!self || self.closed)return;
++        AVAssetImageGenerator *generator=[AVAssetImageGenerator assetImageGeneratorWithAsset:[AVURLAsset URLAssetWithURL:url options:nil]];
++        generator.appliesPreferredTrackTransform=YES;generator.maximumSize=CGSizeMake(240,320);
++        @synchronized(self.generators){[self.generators addObject:generator];}
++        dispatch_semaphore_t completed=dispatch_semaphore_create(0);
++        [generator generateCGImagesAsynchronouslyForTimes:@[[NSValue valueWithCMTime:CMTimeMakeWithSeconds(1,600)]] completionHandler:^(CMTime requested,CGImageRef image,CMTime actual,AVAssetImageGeneratorResult result,NSError *error){
++            if(image && result==AVAssetImageGeneratorSucceeded && !self.closed)[self publishThumbnail:UIImageJPEGRepresentation([UIImage imageWithCGImage:image],.8) index:index];
++            dispatch_semaphore_signal(completed);
++        }];
++        if(dispatch_semaphore_wait(completed,dispatch_time(DISPATCH_TIME_NOW,20*NSEC_PER_SEC)))[generator cancelAllCGImageGeneration];
++        @synchronized(self.generators){[self.generators removeObject:generator];}
++    }];
++}
++- (void)loadThumbnail:(NSUInteger)index {
++    NSDictionary *item=self.items[index];BOOL video=[item[@"video"] boolValue];
++    NSURL *url=item[@"thumbnailURL"] ?: (video ? nil : item[@"url"]);
++    if(![url isKindOfClass:NSURL.class]){if(video)[self videoFrame:index];return;}
++    __weak typeof(self) weak=self;
++    [[self.session downloadTaskWithURL:url completionHandler:^(NSURL *file,NSURLResponse *response,NSError *error){
++        typeof(self) self=weak;if(!self || self.closed)return;
++        NSInteger status=[response isKindOfClass:NSHTTPURLResponse.class] ? [(NSHTTPURLResponse *)response statusCode] : 0;
++        NSNumber *size=nil;if(file)[file getResourceValue:&size forKey:NSURLFileSizeKey error:nil];
++        NSData *data=(!error && file && size && size.unsignedLongLongValue<=16*1024*1024) ? [NSData dataWithContentsOfURL:file options:NSDataReadingMappedIfSafe error:nil] : nil;
++        NSData *jpeg=(!error && status>=200 && status<300) ? [self thumbnailData:data] : nil;
++        if(jpeg)[self publishThumbnail:jpeg index:index];else if(video)[self videoFrame:index];
++    }] resume];
++}
++- (void)close {
++    self.closed=YES;[self.timer invalidate];self.timer=nil;[self.task cancel];[self.session invalidateAndCancel];[self.previewQueue cancelAllOperations];
++    @synchronized(self.generators){for(AVAssetImageGenerator *g in self.generators)[g cancelAllCGImageGeneration];}
 +    [self dismissViewControllerAnimated:YES completion:nil];
 +}
++- (void)dealloc {[self.timer invalidate];[self.session invalidateAndCancel];[self.previewQueue cancelAllOperations];}
 +@end
 +void HIDEPresentBatch(NSArray<NSDictionary *> *items) {
 +    BOOL available=NO;for(NSDictionary *item in items)if([item[@"url"] isKindOfClass:NSURL.class]){available=YES;break;}
 +    if(!available){HIDEToast(HIDEL(@"NO_MEDIA"));return;}
-+    UINavigationController *navigation=[[UINavigationController alloc] initWithRootViewController:[[HIDEBatchController alloc] initWithItems:items]];
-+    navigation.modalPresentationStyle=UIModalPresentationFormSheet;navigation.overrideUserInterfaceStyle=UIUserInterfaceStyleDark;
-+    [HIDETopViewController() presentViewController:navigation animated:YES completion:nil];
++    if(items.count==1){NSDictionary *item=items.firstObject;HIDEToast(HIDEL(@"DOWNLOADING"));
++        HIDEFetchFile(item[@"url"],[item[@"video"] boolValue]?@"video":@"image",^(NSURL *file,NSError *error){if(file)HIDESaveDownloadedFile(file,[item[@"video"] boolValue],HIDEPref(kHideShareAfterSave),^(BOOL saved){HIDEToast(HIDEL(saved?@"SAVED":@"SAVE_FAILED"));});else HIDEToast(HIDEL(@"SAVE_FAILED"));});return;}
++    HIDEGalleryController *controller=[HIDEGalleryController new];controller.items=items;controller.modalPresentationStyle=UIModalPresentationFullScreen;controller.overrideUserInterfaceStyle=UIUserInterfaceStyleDark;
++    [HIDETopViewController() presentViewController:controller animated:YES completion:nil];
 +}
 --- a/src/HIDEConfirm.m
 +++ b/src/HIDEConfirm.m
@@ -1800,7 +1939,7 @@
  #import <objc/message.h>
  
 -#define HIDE_VERSION @"1.7"
-+#define HIDE_VERSION @"1.9.3"
++#define HIDE_VERSION @"1.9.4"
 +#define HIDE_TARGET_INSTAGRAM @"407.0.0"
  
  // ---- Preferences keys
@@ -1855,7 +1994,7 @@
  
  // ---- Features
  void HIDEInstallSideloadFix(void);
-@@ -55,7 +84,8 @@
+@@ -55,7 +84,10 @@
  void HIDEInstallAppLock(void);
  void HIDEInstallExtras(void);
  void HIDEAttachCopyGestureIfNeeded(UIView *v);
@@ -1865,6 +2004,8 @@
 +void HIDEAppLockPreferenceChanged(BOOL enabled);
  NSInteger HIDELockDelay(void);
  NSString *HIDELockDelayTitle(NSInteger seconds);
++
++void HIDEInstallManualSeen(void);
 --- a/src/HIDECore.m
 +++ b/src/HIDECore.m
 @@ -1,9 +1,12 @@
@@ -1953,7 +2094,21 @@
              @"IG_SETTINGS": @"Instagram Settings",
              @"HIDE_SETTINGS": @"HIDE Settings",
              @"WELCOME": @"You can now download by long pressing on videos or pictures, and enable more features from HIDE Settings (profile ☰ menu).",
-@@ -86,6 +137,7 @@
+@@ -68,6 +119,13 @@
+             @"WHAT_TO_DO": @"What do you want to do?",
+             @"DOWNLOADING": @"Downloading…",
+             @"SAVED": @"Saved to Photos",
++            @"SAVE_FAILED": @"Could not save the media.",
++            @"DELETION_DATE": @"Deletion date and time",
++            @"MANUAL_SEEN_TITLE": @"Send seen status?",
++            @"MANUAL_DM_CONFIRM": @"Ask Instagram to mark this conversation as read? Hidden read receipts stay enabled.",
++            @"MANUAL_STORY_CONFIRM": @"Ask Instagram to mark only this story as seen? Anonymous viewing stays enabled.",
++            @"MANUAL_SEEN_SEND": @"Send read receipt",
++            @"MANUAL_SEEN_REQUESTED": @"Seen request invoked. Delivery is not confirmed.",
+             @"COPIED": @"Copied",
+             @"ERROR": @"An error occurred, please try again.",
+             @"NO_MEDIA": @"Couldn't find media here",
+@@ -86,6 +144,7 @@
              @"LOCK_AFTER": @"Lock",
              @"LOCK_NOW": @"Immediately",
              @"LOCK_1M": @"After 1 minute",
@@ -1961,7 +2116,7 @@
              @"LOCK_15M": @"After 15 minutes",
              @"LOCK_1H": @"After 1 hour",
              @"UNLOCK": @"Unlock",
-@@ -100,6 +152,9 @@
+@@ -100,6 +159,9 @@
              @"FOLLOW_STATUS": @"Show if account follows you",
              @"COPY_TEXT_PREF": @"Copy comments & captions (long press)",
              @"COPY_TEXT": @"Copy text",
@@ -1971,7 +2126,7 @@
              @"SEC_ADS": @"Ads",
              @"NO_ADS": @"Remove sponsored posts",
              @"FOLLOWS_YOU": @"Follows you",
-@@ -108,7 +163,49 @@
+@@ -108,7 +170,49 @@
              @"FOLLOW_NONE": @"You don't follow each other",
          };
          ar = @{
@@ -2021,7 +2176,21 @@
              @"IG_SETTINGS": @"إعدادات إنستقرام",
              @"HIDE_SETTINGS": @"إعدادات HIDE",
              @"WELCOME": @"تقدر الحين تحمّل الصور والفيديو بالضغط المطوّل عليها، وتفعّل ميزات أكثر من إعدادات HIDE (قائمة ☰ في البروفايل).",
-@@ -150,6 +247,7 @@
+@@ -132,6 +236,13 @@
+             @"WHAT_TO_DO": @"وش تبي تسوي؟",
+             @"DOWNLOADING": @"جاري التحميل…",
+             @"SAVED": @"تم الحفظ في الصور",
++            @"SAVE_FAILED": @"تعذّر حفظ الوسائط.",
++            @"DELETION_DATE": @"تاريخ ووقت الحذف",
++            @"MANUAL_SEEN_TITLE": @"إرسال حالة المشاهدة؟",
++            @"MANUAL_DM_CONFIRM": @"طلب تعليم هذه المحادثة كمقروءة؟ يبقى إخفاء القراءة مفعّلًا.",
++            @"MANUAL_STORY_CONFIRM": @"طلب تعليم هذه الستوري فقط كمشاهَدة؟ يبقى إخفاء المشاهدة مفعّلًا.",
++            @"MANUAL_SEEN_SEND": @"إرسال القراءة",
++            @"MANUAL_SEEN_REQUESTED": @"تم استدعاء طلب المشاهدة؛ لم يتأكد وصوله.",
+             @"COPIED": @"تم النسخ",
+             @"ERROR": @"صار خطأ، حاول مرة ثانية.",
+             @"NO_MEDIA": @"ما لقيت ميديا هنا",
+@@ -150,6 +261,7 @@
              @"LOCK_AFTER": @"وقت القفل",
              @"LOCK_NOW": @"فوراً",
              @"LOCK_1M": @"بعد دقيقة",
@@ -2029,7 +2198,7 @@
              @"LOCK_15M": @"بعد ١٥ دقيقة",
              @"LOCK_1H": @"بعد ساعة",
              @"UNLOCK": @"فتح القفل",
-@@ -164,6 +262,9 @@
+@@ -164,6 +276,9 @@
              @"FOLLOW_STATUS": @"إظهار إذا الحساب يتابعك",
              @"COPY_TEXT_PREF": @"نسخ التعليقات والوصف (ضغط مطوّل)",
              @"COPY_TEXT": @"نسخ النص",
@@ -2039,7 +2208,7 @@
              @"SEC_ADS": @"الإعلانات",
              @"NO_ADS": @"إزالة المنشورات الممولة",
              @"FOLLOWS_YOU": @"يتابعك",
-@@ -172,23 +273,114 @@
+@@ -172,23 +287,114 @@
              @"FOLLOW_NONE": @"ما تتابعون بعض",
          };
      });
@@ -2159,7 +2328,7 @@
  }
  
  id HIDEGet(id obj, NSString *selName) {
-@@ -202,6 +394,39 @@
+@@ -202,6 +408,39 @@
      if (method_getNumberOfArguments(m) != 2) return nil;
      @try { return ((id (*)(id, SEL))objc_msgSend)(obj, sel); }
      @catch (__unused id e) { return nil; }
@@ -2199,18 +2368,19 @@
  }
  
  id HIDEIvar(id obj, const char *ivarName) {
-@@ -292,6 +517,8 @@
+@@ -292,6 +531,9 @@
          HIDEInstallVoice();
          HIDEInstallAppLock();
          HIDEInstallExtras();
 +        HIDEInstallDLFeatures();
++        HIDEInstallManualSeen();
 +        HIDEInstallVoiceImport();
          [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification *n) {
              HIDEShowWelcomeIfNeeded();
          }];
 --- /dev/null
 +++ b/src/HIDEDLFeatures.m
-@@ -0,0 +1,360 @@
+@@ -0,0 +1,405 @@
 +// Ports of behavior observed in DLInsta. Every private call is ABI checked.
 +#import "HIDECore.h"
 +#import "HIDE407.h"
@@ -2299,7 +2469,9 @@
 +
 +#pragma mark - Legacy story/Direct receipt and typing backstops
 +static void (*originalStorySeen)(id,SEL,id,id);
++void HIDERecordStoryReceipt(id viewer,id section,id item,IMP original);
 +static void hide_storySeen(id object,SEL selector,id section,id item) {
++    HIDERecordStoryReceipt(object,section,item,(IMP)originalStorySeen);
 +    if(!HIDEPref(kHideAnonStories))originalStorySeen(object,selector,section,item);
 +}
 +static void (*originalVisualSeen)(id,SEL,id,id,long long);
@@ -2340,16 +2512,24 @@
 +
 +#pragma mark - Local preservation of received removal updates
 +// Only affects the local cache. No message contents are copied into preferences.
-+static NSString *HIDEMessageIdentifier(id value) {
-+    if ([value isKindOfClass:NSString.class]) return value;
-+    if ([value isKindOfClass:NSNumber.class]) return [value stringValue];
-+    for (NSString *getter in @[@"messageServerId", @"messageId", @"itemId"]) {
-+        id identifier = HIDEGet(value,getter);
-+        if ([identifier isKindOfClass:NSString.class]) return identifier;
-+        if ([identifier isKindOfClass:NSNumber.class]) return [identifier stringValue];
++static NSString *HIDEMessageIdentifierDepth(id value,NSUInteger depth) {
++    if(!value || depth>4)return nil;
++    if([value isKindOfClass:NSString.class])return value;
++    if([value isKindOfClass:NSNumber.class])return [value stringValue];
++    Class generated=NSClassFromString(@"IGDevirtualizedValueObject");
++    for(NSString *name in @[@"messageServerId",@"messageId",@"itemId",@"serverId",@"serverID",@"messageID",@"value"]) {
++        id part=HIDEGet(value,name);
++        // 407 devirtualizes message-key fields; its verified base class exposes KVC.
++        if(!part && generated && [value isKindOfClass:generated])@try{part=[value valueForKey:name];}@catch(__unused NSException *e){}
++        if(part && part!=value){NSString *identifier=HIDEMessageIdentifierDepth(part,depth+1);if(identifier)return identifier;}
 +    }
-+    id identifier = HIDEIvar(value,"_messageServerId");
-+    return [identifier isKindOfClass:NSString.class] ? identifier : nil;
++    return HIDEMessageIdentifierDepth(HIDEIvar(value,"_messageServerId"),depth+1);
++}
++static NSString *HIDEMessageIdentifier(id value){return HIDEMessageIdentifierDepth(value,0);}
++static id HIDEMessageMetadata(id model){
++    id metadata=HIDEGet(model,@"messageMetadata") ?: HIDEIvar(model,"_messageMetadata");
++    if(!metadata){id cellModel=HIDEGet(model,@"messageCellViewModel");metadata=HIDEGet(cellModel,@"messageMetadata") ?: HIDEIvar(cellModel,"_messageMetadata");}
++    return metadata;
 +}
 +static NSObject *HIDEDeletionLock(void) {
 +    static NSObject *lock; static dispatch_once_t once; dispatch_once(&once,^{lock=[NSObject new];}); return lock;
@@ -2359,7 +2539,8 @@
 +    dispatch_once(&once,^{allowed=[NSMutableDictionary dictionary];}); return allowed;
 +}
 +static void HIDEAllowOwnDeletion(id model) {
-+    id key = HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey") ?: model;
++    id metadata=HIDEMessageMetadata(model);
++    id key=HIDEGet(metadata,@"key") ?: HIDEIvar(metadata,"_key") ?: HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey") ?: model;
 +    NSString *identifier = HIDEMessageIdentifier(key);
 +    if (!identifier) return;
 +    @synchronized (HIDEDeletionLock()) {
@@ -2430,28 +2611,62 @@
 +    HIDEAllowOwnDeletion(model);originalUnsend407(object,selector,model,thread,fbid,subtype,audience);
 +}
 +static const void *deletedBadgeKey=&deletedBadgeKey, *deletedModelKey=&deletedModelKey;
++@interface HIDEDeletedMessageButton : UIButton @end
++@implementation HIDEDeletedMessageButton
++- (CGRect)contentRectForBounds:(CGRect)bounds{return UIEdgeInsetsInsetRect(bounds,UIEdgeInsetsMake(8,12,8,12));}
++@end
++static NSString *HIDEVisibleMessageText(UIView *view,NSUInteger depth) {
++    if(depth>10 || view.hidden)return nil;
++    NSString *best=nil;
++    if([view isKindOfClass:UILabel.class])best=((UILabel *)view).attributedText.string ?: ((UILabel *)view).text;
++    else if([view isKindOfClass:UITextView.class])best=((UITextView *)view).attributedText.string ?: ((UITextView *)view).text;
++    else {id text=HIDEGet(view,@"attributedText") ?: HIDEGet(view,@"attributedString") ?: HIDEGet(view,@"text");
++        if([text isKindOfClass:NSAttributedString.class])best=[text string];
++        else if([text isKindOfClass:NSString.class])best=text;
++    }
++    for(UIView *child in view.subviews){NSString *text=HIDEVisibleMessageText(child,depth+1);if(text.length>best.length)best=text;}
++    return best;
++}
++static BOOL HIDEContainsMessageMedia(UIView *view,NSUInteger depth){
++    if(depth>10 || view.hidden)return NO;
++    NSString *name=NSStringFromClass(view.class);
++    for(NSString *kind in @[@"Voice",@"Audio",@"Video",@"Photo",@"Sticker",@"ImageMessage",@"VisualMedia",@"MediaPreview"])if([name containsString:kind])return YES;
++    for(UIView *child in view.subviews)if(HIDEContainsMessageMedia(child,depth+1))return YES;
++    return NO;
++}
 +static void HIDEUpdateDeletedBadge(UIView *cell) {
 +    UIButton *badge=objc_getAssociatedObject(cell,deletedBadgeKey);
-+    [badge removeFromSuperview]; objc_setAssociatedObject(cell,deletedBadgeKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-+    if (!HIDEPref(kHideKeepDeleted)) return;
-+    id model=objc_getAssociatedObject(cell,deletedModelKey) ?: HIDEGet(cell,@"viewModel") ?: HIDEIvar(cell,"_viewModel");
-+    id key=HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey");
-+    NSString *identifier=HIDEMessageIdentifier(key), *thread=HIDEMessageIdentifier(HIDEGet(model,@"threadId") ?: HIDEIvar(model,"_threadId"));
-+    if (!identifier || !thread) return;
-+    NSDictionary *dates=[NSUserDefaults.standardUserDefaults dictionaryForKey:@"hide_deleted_timestamps"];
-+    NSNumber *timestamp=dates[[NSString stringWithFormat:@"%@:%@",thread,identifier]];
-+    if (![timestamp isKindOfClass:NSNumber.class]) return;
-+    badge=[UIButton buttonWithType:UIButtonTypeSystem]; [badge setTitle:HIDEL(@"DELETED_MESSAGE") forState:UIControlStateNormal];
-+    badge.titleLabel.font=[UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
-+    badge.tintColor=UIColor.systemRedColor; badge.backgroundColor=[UIColor.secondarySystemBackgroundColor colorWithAlphaComponent:0.9]; badge.layer.cornerRadius=6;
-+    [badge addAction:[UIAction actionWithHandler:^(UIAction *action) {
-+        NSString *date=[NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timestamp.doubleValue] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"DELETED_MESSAGE") message:date preferredStyle:UIAlertControllerStyleAlert];
++    [badge removeFromSuperview];objc_setAssociatedObject(cell,deletedBadgeKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    if(!HIDEPref(kHideKeepDeleted))return;
++    id model=objc_getAssociatedObject(cell,deletedModelKey) ?: HIDEGet(cell,@"messageCellViewModel") ?: HIDEIvar(cell,"_viewModel");
++    id metadata=HIDEMessageMetadata(model);
++    id key=HIDEGet(metadata,@"key") ?: HIDEIvar(metadata,"_key") ?: HIDEGet(model,@"messageKey") ?: HIDEIvar(model,"_messageKey");
++    NSString *identifier=HIDEMessageIdentifier(key),*thread=HIDEMessageIdentifier(HIDEGet(metadata,@"threadId") ?: HIDEGet(model,@"threadId") ?: HIDEIvar(model,"_threadId"));
++    if(!thread)for(UIResponder *r=cell;r;r=r.nextResponder){thread=HIDEMessageIdentifier(HIDEGet(r,@"threadId") ?: HIDEIvar(r,"_threadId"));if(thread)break;}
++    if(!identifier || !thread)return;
++    NSNumber *timestamp=[NSUserDefaults.standardUserDefaults dictionaryForKey:@"hide_deleted_timestamps"][[NSString stringWithFormat:@"%@:%@",thread,identifier]];
++    if(![timestamp isKindOfClass:NSNumber.class])return;
++    UIView *content=HIDEIvar(cell,"_messageContentContainerView");
++    if(![content isKindOfClass:UIView.class] || CGRectIsEmpty(content.bounds))return;
++    NSString *text=HIDEContainsMessageMedia(content,0) ? nil : HIDEVisibleMessageText(content,0);
++    badge=[[HIDEDeletedMessageButton alloc] initWithFrame:CGRectZero];badge.backgroundColor=[UIColor colorWithRed:213/255.0 green:45/255.0 blue:64/255.0 alpha:1];
++    [badge setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];badge.titleLabel.numberOfLines=0;
++    badge.titleLabel.font=[UIFont systemFontOfSize:16];badge.titleLabel.textAlignment=NSTextAlignmentNatural;
++    badge.layer.cornerRadius=MIN(22,content.bounds.size.height/2);badge.clipsToBounds=YES;
++    // Overlay text messages only; never replace a photo/video/voice note by a text placeholder.
++    if(text.length){[badge setTitle:text forState:UIControlStateNormal];badge.frame=content.bounds;}
++    else {[badge setImage:[UIImage systemImageNamed:@"clock"] forState:UIControlStateNormal];badge.tintColor=UIColor.whiteColor;badge.frame=CGRectMake(MAX(0,content.bounds.size.width-28),MAX(0,content.bounds.size.height-28),28,28);}
++    badge.accessibilityLabel=[NSString stringWithFormat:@"%@ · %@",text ?: @"",HIDEL(@"DELETED_MESSAGE")];
++    __weak UIView *weakCell=cell;CGRect anchorRect=[content convertRect:content.bounds toView:cell];
++    [badge addAction:[UIAction actionWithHandler:^(UIAction *action){
++        UIView *anchor=weakCell;if(!anchor.window)return;
++        NSString *date=[NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:timestamp.doubleValue] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterMediumStyle];
++        UIAlertController *alert=[UIAlertController alertControllerWithTitle:HIDEL(@"DELETION_DATE") message:date preferredStyle:UIAlertControllerStyleActionSheet];
 +        [alert addAction:[UIAlertAction actionWithTitle:HIDEL(@"OK") style:UIAlertActionStyleCancel handler:nil]];
++        alert.popoverPresentationController.sourceView=anchor;alert.popoverPresentationController.sourceRect=anchorRect;
 +        [HIDETopViewController() presentViewController:alert animated:YES completion:nil];
 +    }] forControlEvents:UIControlEventTouchUpInside];
-+    badge.frame=CGRectMake(MAX(0,cell.bounds.size.width-125),MAX(0,cell.bounds.size.height-20),120,18);
-+    [cell addSubview:badge]; objc_setAssociatedObject(cell,deletedBadgeKey,badge,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    [content addSubview:badge];objc_setAssociatedObject(cell,deletedBadgeKey,badge,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 +}
 +static void (*originalCellLayout)(id,SEL);
 +static void hide_deletedLayout(UIView *cell,SEL selector) { originalCellLayout(cell,selector); HIDEUpdateDeletedBadge(cell); }
@@ -2573,7 +2788,7 @@
 +}
 --- /dev/null
 +++ b/src/HIDEDesignData.h
-@@ -0,0 +1,1556 @@
+@@ -0,0 +1,1838 @@
 +// Generated by tools/embed_design.py. Do not edit.
 +// HIDE_design.html SHA256 dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4
 +static const unsigned char HIDEApprovedHTML[] = {
@@ -4130,18 +4345,301 @@
 +125,10,32,32,125,44,32,116,114,117,101,41,59,10,32,32,72,73,68,69,65,112,112,108,121,78,97,116,105,118,101,40,
 +110,97,116,105,118,101,83,116,97,116,101,41,59,10,125,41,40,41,59,10,
 +};
++// HIDE_gallery.html SHA256 0abedb14d519983477dbb3364585478f46295a4818a8716f991f24f5eaf839c1
++static const unsigned char HIDEGalleryHTML[] = {
++60,33,100,111,99,116,121,112,101,32,104,116,109,108,62,10,60,104,116,109,108,32,108,97,110,103,61,34,97,114,34,62,
++10,60,104,101,97,100,62,10,60,109,101,116,97,32,99,104,97,114,115,101,116,61,34,117,116,102,45,56,34,62,10,60,
++109,101,116,97,32,110,97,109,101,61,34,118,105,101,119,112,111,114,116,34,32,99,111,110,116,101,110,116,61,34,119,105,
++100,116,104,61,100,101,118,105,99,101,45,119,105,100,116,104,44,32,105,110,105,116,105,97,108,45,115,99,97,108,101,61,
++49,34,62,10,60,116,105,116,108,101,62,72,73,68,69,32,68,111,119,110,108,111,97,100,32,65,108,108,60,47,116,105,
++116,108,101,62,10,60,115,116,121,108,101,62,10,42,123,98,111,120,45,115,105,122,105,110,103,58,98,111,114,100,101,114,
++45,98,111,120,59,109,97,114,103,105,110,58,48,59,112,97,100,100,105,110,103,58,48,59,45,119,101,98,107,105,116,45,
++116,97,112,45,104,105,103,104,108,105,103,104,116,45,99,111,108,111,114,58,116,114,97,110,115,112,97,114,101,110,116,125,
++10,98,111,100,121,123,98,97,99,107,103,114,111,117,110,100,58,35,48,98,48,98,49,48,59,102,111,110,116,45,102,97,
++109,105,108,121,58,45,97,112,112,108,101,45,115,121,115,116,101,109,44,34,83,70,32,80,114,111,32,84,101,120,116,34,
++44,34,83,101,103,111,101,32,85,73,34,44,84,97,104,111,109,97,44,115,97,110,115,45,115,101,114,105,102,59,99,111,
++108,111,114,58,35,102,102,102,59,100,105,115,112,108,97,121,58,102,108,101,120,59,102,108,101,120,45,100,105,114,101,99,
++116,105,111,110,58,99,111,108,117,109,110,59,97,108,105,103,110,45,105,116,101,109,115,58,99,101,110,116,101,114,59,112,
++97,100,100,105,110,103,58,50,48,112,120,32,49,50,112,120,59,103,97,112,58,49,52,112,120,125,10,46,98,97,114,123,
++100,105,115,112,108,97,121,58,102,108,101,120,59,103,97,112,58,56,112,120,59,102,108,101,120,45,119,114,97,112,58,119,
++114,97,112,59,106,117,115,116,105,102,121,45,99,111,110,116,101,110,116,58,99,101,110,116,101,114,125,10,46,98,97,114,
++32,98,117,116,116,111,110,123,98,97,99,107,103,114,111,117,110,100,58,35,49,99,49,99,50,52,59,99,111,108,111,114,
++58,35,102,102,102,59,98,111,114,100,101,114,58,49,112,120,32,115,111,108,105,100,32,35,50,99,50,99,51,56,59,98,
++111,114,100,101,114,45,114,97,100,105,117,115,58,49,54,112,120,59,112,97,100,100,105,110,103,58,56,112,120,32,49,54,
++112,120,59,102,111,110,116,45,115,105,122,101,58,49,52,112,120,59,99,117,114,115,111,114,58,112,111,105,110,116,101,114,
++59,102,111,110,116,45,102,97,109,105,108,121,58,105,110,104,101,114,105,116,125,10,46,98,97,114,32,98,117,116,116,111,
++110,46,111,110,123,98,97,99,107,103,114,111,117,110,100,58,35,99,54,102,102,51,100,59,99,111,108,111,114,58,35,48,
++48,48,59,98,111,114,100,101,114,45,99,111,108,111,114,58,116,114,97,110,115,112,97,114,101,110,116,59,102,111,110,116,
++45,119,101,105,103,104,116,58,55,48,48,125,10,46,112,104,111,110,101,123,119,105,100,116,104,58,49,48,48,37,59,109,
++97,120,45,119,105,100,116,104,58,51,57,48,112,120,59,98,97,99,107,103,114,111,117,110,100,58,35,48,48,48,59,98,
++111,114,100,101,114,45,114,97,100,105,117,115,58,52,54,112,120,59,112,97,100,100,105,110,103,58,49,49,112,120,59,98,
++111,120,45,115,104,97,100,111,119,58,48,32,48,32,48,32,50,112,120,32,35,49,99,49,99,50,50,44,48,32,51,48,
++112,120,32,56,48,112,120,32,114,103,98,97,40,48,44,48,44,48,44,46,55,41,125,10,46,115,99,114,101,101,110,123,
++112,111,115,105,116,105,111,110,58,114,101,108,97,116,105,118,101,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,
++51,54,112,120,59,104,101,105,103,104,116,58,55,56,48,112,120,59,111,118,101,114,102,108,111,119,58,104,105,100,100,101,
++110,59,98,97,99,107,103,114,111,117,110,100,58,108,105,110,101,97,114,45,103,114,97,100,105,101,110,116,40,49,54,48,
++100,101,103,44,35,48,100,49,50,51,54,44,35,48,55,48,55,49,97,32,54,48,37,41,59,45,45,97,99,58,35,99,
++54,102,102,51,100,125,10,46,118,105,101,119,123,112,111,115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,105,
++110,115,101,116,58,48,59,100,105,115,112,108,97,121,58,110,111,110,101,125,46,118,105,101,119,46,115,104,111,119,123,100,
++105,115,112,108,97,121,58,98,108,111,99,107,125,10,46,115,119,123,119,105,100,116,104,58,52,54,112,120,59,104,101,105,
++103,104,116,58,50,56,112,120,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,49,52,112,120,59,98,97,99,107,
++103,114,111,117,110,100,58,114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,49,56,41,59,112,111,115,
++105,116,105,111,110,58,114,101,108,97,116,105,118,101,59,102,108,101,120,58,110,111,110,101,59,99,117,114,115,111,114,58,
++112,111,105,110,116,101,114,59,116,114,97,110,115,105,116,105,111,110,58,46,50,115,125,10,46,115,119,58,58,97,102,116,
++101,114,123,99,111,110,116,101,110,116,58,34,34,59,112,111,115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,
++116,111,112,58,50,112,120,59,105,110,115,101,116,45,105,110,108,105,110,101,45,115,116,97,114,116,58,50,112,120,59,119,
++105,100,116,104,58,50,52,112,120,59,104,101,105,103,104,116,58,50,52,112,120,59,98,111,114,100,101,114,45,114,97,100,
++105,117,115,58,53,48,37,59,98,97,99,107,103,114,111,117,110,100,58,35,102,102,102,59,116,114,97,110,115,105,116,105,
++111,110,58,46,50,115,125,10,46,115,119,46,111,110,123,98,97,99,107,103,114,111,117,110,100,58,35,51,51,54,98,102,
++102,125,46,115,119,46,111,110,58,58,97,102,116,101,114,123,116,114,97,110,115,102,111,114,109,58,116,114,97,110,115,108,
++97,116,101,88,40,49,56,112,120,41,125,91,100,105,114,61,114,116,108,93,32,46,115,119,46,111,110,58,58,97,102,116,
++101,114,123,116,114,97,110,115,102,111,114,109,58,116,114,97,110,115,108,97,116,101,88,40,45,49,56,112,120,41,125,10,
++46,110,111,116,101,123,99,111,108,111,114,58,35,56,56,56,59,102,111,110,116,45,115,105,122,101,58,49,51,112,120,59,
++116,101,120,116,45,97,108,105,103,110,58,99,101,110,116,101,114,59,109,97,120,45,119,105,100,116,104,58,51,57,48,112,
++120,59,108,105,110,101,45,104,101,105,103,104,116,58,49,46,54,125,10,10,47,42,32,103,97,108,108,101,114,121,32,42,
++47,10,46,103,104,123,112,97,100,100,105,110,103,58,50,54,112,120,32,50,48,112,120,32,56,112,120,59,100,105,115,112,
++108,97,121,58,102,108,101,120,59,106,117,115,116,105,102,121,45,99,111,110,116,101,110,116,58,115,112,97,99,101,45,98,
++101,116,119,101,101,110,59,97,108,105,103,110,45,105,116,101,109,115,58,102,108,101,120,45,115,116,97,114,116,125,10,46,
++103,104,32,104,50,123,102,111,110,116,45,115,105,122,101,58,50,52,112,120,59,102,111,110,116,45,119,101,105,103,104,116,
++58,56,48,48,125,46,103,104,32,115,109,97,108,108,123,100,105,115,112,108,97,121,58,98,108,111,99,107,59,99,111,108,
++111,114,58,114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,53,41,59,102,111,110,116,45,115,105,122,
++101,58,49,51,112,120,59,109,97,114,103,105,110,45,116,111,112,58,50,112,120,125,10,46,103,120,123,102,111,110,116,45,
++115,105,122,101,58,50,54,112,120,59,99,111,108,111,114,58,114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,
++44,46,52,41,59,99,117,114,115,111,114,58,112,111,105,110,116,101,114,125,10,46,103,114,105,100,123,100,105,115,112,108,
++97,121,58,103,114,105,100,59,103,114,105,100,45,116,101,109,112,108,97,116,101,45,99,111,108,117,109,110,115,58,114,101,
++112,101,97,116,40,51,44,49,102,114,41,59,103,97,112,58,56,112,120,59,112,97,100,100,105,110,103,58,56,112,120,32,
++49,54,112,120,32,48,59,104,101,105,103,104,116,58,53,54,48,112,120,59,111,118,101,114,102,108,111,119,45,121,58,97,
++117,116,111,59,115,99,114,111,108,108,98,97,114,45,119,105,100,116,104,58,110,111,110,101,59,97,108,105,103,110,45,99,
++111,110,116,101,110,116,58,115,116,97,114,116,125,10,46,103,114,105,100,58,58,45,119,101,98,107,105,116,45,115,99,114,
++111,108,108,98,97,114,123,100,105,115,112,108,97,121,58,110,111,110,101,125,10,46,116,104,123,97,115,112,101,99,116,45,
++114,97,116,105,111,58,49,47,49,46,51,53,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,49,52,112,120,59,
++112,111,115,105,116,105,111,110,58,114,101,108,97,116,105,118,101,59,111,118,101,114,102,108,111,119,58,104,105,100,100,101,
++110,59,99,117,114,115,111,114,58,112,111,105,110,116,101,114,59,98,111,114,100,101,114,58,50,46,53,112,120,32,115,111,
++108,105,100,32,116,114,97,110,115,112,97,114,101,110,116,59,116,114,97,110,115,105,116,105,111,110,58,46,49,53,115,125,
++10,46,116,104,58,58,97,102,116,101,114,123,99,111,110,116,101,110,116,58,34,34,59,112,111,115,105,116,105,111,110,58,
++97,98,115,111,108,117,116,101,59,105,110,115,101,116,58,48,59,98,97,99,107,103,114,111,117,110,100,58,114,103,98,97,
++40,48,44,48,44,48,44,46,52,53,41,59,116,114,97,110,115,105,116,105,111,110,58,46,49,53,115,125,10,46,116,104,
++46,111,110,123,98,111,114,100,101,114,45,99,111,108,111,114,58,35,99,54,102,102,51,100,125,46,116,104,46,111,110,58,
++58,97,102,116,101,114,123,98,97,99,107,103,114,111,117,110,100,58,114,103,98,97,40,48,44,48,44,48,44,48,41,125,
++10,46,116,104,32,105,123,112,111,115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,116,111,112,58,54,112,120,
++59,105,110,115,101,116,45,105,110,108,105,110,101,45,115,116,97,114,116,58,54,112,120,59,122,45,105,110,100,101,120,58,
++50,59,119,105,100,116,104,58,50,52,112,120,59,104,101,105,103,104,116,58,50,52,112,120,59,98,111,114,100,101,114,45,
++114,97,100,105,117,115,58,53,48,37,59,98,111,114,100,101,114,58,50,112,120,32,115,111,108,105,100,32,35,102,102,102,
++59,100,105,115,112,108,97,121,58,103,114,105,100,59,112,108,97,99,101,45,105,116,101,109,115,58,99,101,110,116,101,114,
++59,102,111,110,116,45,115,105,122,101,58,49,51,112,120,59,102,111,110,116,45,115,116,121,108,101,58,110,111,114,109,97,
++108,59,99,111,108,111,114,58,35,48,48,48,125,10,46,116,104,46,111,110,32,105,123,98,97,99,107,103,114,111,117,110,
++100,58,35,99,54,102,102,51,100,59,98,111,114,100,101,114,45,99,111,108,111,114,58,35,99,54,102,102,51,100,125,10,
++46,116,104,32,98,123,112,111,115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,98,111,116,116,111,109,58,54,
++112,120,59,105,110,115,101,116,45,105,110,108,105,110,101,45,101,110,100,58,56,112,120,59,122,45,105,110,100,101,120,58,
++50,59,102,111,110,116,45,115,105,122,101,58,49,50,112,120,125,10,46,103,98,97,114,123,112,111,115,105,116,105,111,110,
++58,97,98,115,111,108,117,116,101,59,98,111,116,116,111,109,58,49,52,112,120,59,105,110,115,101,116,45,105,110,108,105,
++110,101,58,49,54,112,120,59,104,101,105,103,104,116,58,55,56,112,120,59,98,111,114,100,101,114,45,114,97,100,105,117,
++115,58,50,56,112,120,59,98,97,99,107,103,114,111,117,110,100,58,114,103,98,97,40,50,53,53,44,50,53,53,44,50,
++53,53,44,46,48,57,41,59,98,111,114,100,101,114,58,49,112,120,32,115,111,108,105,100,32,114,103,98,97,40,50,53,
++53,44,50,53,53,44,50,53,53,44,46,49,53,41,59,98,97,99,107,100,114,111,112,45,102,105,108,116,101,114,58,98,
++108,117,114,40,50,56,112,120,41,59,45,119,101,98,107,105,116,45,98,97,99,107,100,114,111,112,45,102,105,108,116,101,
++114,58,98,108,117,114,40,50,56,112,120,41,59,100,105,115,112,108,97,121,58,102,108,101,120,59,103,97,112,58,49,48,
++112,120,59,97,108,105,103,110,45,105,116,101,109,115,58,99,101,110,116,101,114,59,112,97,100,100,105,110,103,58,48,32,
++49,52,112,120,125,10,46,103,98,97,114,32,98,117,116,116,111,110,123,102,108,101,120,58,49,59,104,101,105,103,104,116,
++58,52,54,112,120,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,50,51,112,120,59,98,111,114,100,101,114,58,
++48,59,102,111,110,116,45,119,101,105,103,104,116,58,55,48,48,59,102,111,110,116,45,115,105,122,101,58,49,53,112,120,
++59,102,111,110,116,45,102,97,109,105,108,121,58,105,110,104,101,114,105,116,59,99,117,114,115,111,114,58,112,111,105,110,
++116,101,114,125,10,46,98,49,123,98,97,99,107,103,114,111,117,110,100,58,114,103,98,97,40,50,53,53,44,50,53,53,
++44,50,53,53,44,46,49,50,41,59,99,111,108,111,114,58,35,102,102,102,125,46,98,50,123,98,97,99,107,103,114,111,
++117,110,100,58,35,99,54,102,102,51,100,59,99,111,108,111,114,58,35,48,48,48,125,10,46,112,114,111,103,123,112,111,
++115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,98,111,116,116,111,109,58,56,112,120,59,105,110,115,101,116,
++45,105,110,108,105,110,101,58,51,48,112,120,59,104,101,105,103,104,116,58,52,112,120,59,98,111,114,100,101,114,45,114,
++97,100,105,117,115,58,50,112,120,59,98,97,99,107,103,114,111,117,110,100,58,114,103,98,97,40,50,53,53,44,50,53,
++53,44,50,53,53,44,46,49,53,41,59,111,118,101,114,102,108,111,119,58,104,105,100,100,101,110,59,100,105,115,112,108,
++97,121,58,110,111,110,101,125,10,46,112,114,111,103,32,100,105,118,123,104,101,105,103,104,116,58,49,48,48,37,59,119,
++105,100,116,104,58,48,59,98,97,99,107,103,114,111,117,110,100,58,35,99,54,102,102,51,100,59,116,114,97,110,115,105,
++116,105,111,110,58,119,105,100,116,104,32,46,50,53,115,125,10,10,47,42,32,108,111,99,107,32,42,47,10,46,108,111,
++99,107,123,100,105,115,112,108,97,121,58,103,114,105,100,59,112,108,97,99,101,45,105,116,101,109,115,58,99,101,110,116,
++101,114,59,116,101,120,116,45,97,108,105,103,110,58,99,101,110,116,101,114,59,98,97,99,107,103,114,111,117,110,100,58,
++114,103,98,97,40,53,44,53,44,49,54,44,46,57,55,41,125,10,46,108,111,99,107,32,46,105,99,123,102,111,110,116,
++45,115,105,122,101,58,53,52,112,120,125,46,108,111,99,107,32,104,51,123,102,111,110,116,45,115,105,122,101,58,50,48,
++112,120,59,109,97,114,103,105,110,58,49,52,112,120,32,48,32,49,56,112,120,125,10,46,108,111,99,107,32,98,117,116,
++116,111,110,123,119,105,100,116,104,58,50,48,48,112,120,59,104,101,105,103,104,116,58,52,52,112,120,59,98,111,114,100,
++101,114,45,114,97,100,105,117,115,58,50,50,112,120,59,98,111,114,100,101,114,58,48,59,98,97,99,107,103,114,111,117,
++110,100,58,35,99,54,102,102,51,100,59,102,111,110,116,45,119,101,105,103,104,116,58,55,48,48,59,102,111,110,116,45,
++115,105,122,101,58,49,54,112,120,59,102,111,110,116,45,102,97,109,105,108,121,58,105,110,104,101,114,105,116,59,99,117,
++114,115,111,114,58,112,111,105,110,116,101,114,125,10,46,100,109,123,112,97,100,100,105,110,103,58,53,48,112,120,32,49,
++54,112,120,125,10,46,100,109,32,46,114,123,100,105,115,112,108,97,121,58,102,108,101,120,59,103,97,112,58,49,50,112,
++120,59,97,108,105,103,110,45,105,116,101,109,115,58,99,101,110,116,101,114,59,98,97,99,107,103,114,111,117,110,100,58,
++114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,48,55,41,59,98,111,114,100,101,114,45,114,97,100,
++105,117,115,58,49,56,112,120,59,112,97,100,100,105,110,103,58,49,50,112,120,59,109,97,114,103,105,110,45,98,111,116,
++116,111,109,58,49,48,112,120,125,10,46,100,109,32,46,97,118,123,119,105,100,116,104,58,52,54,112,120,59,104,101,105,
++103,104,116,58,52,54,112,120,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,53,48,37,59,98,97,99,107,103,
++114,111,117,110,100,58,108,105,110,101,97,114,45,103,114,97,100,105,101,110,116,40,49,51,53,100,101,103,44,35,102,102,
++53,99,97,56,44,35,102,102,57,102,52,51,41,125,10,46,100,109,32,46,108,123,104,101,105,103,104,116,58,49,48,112,
++120,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,53,112,120,59,98,97,99,107,103,114,111,117,110,100,58,114,
++103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,50,41,59,109,97,114,103,105,110,58,53,112,120,32,48,
++125,10,10,47,42,32,115,101,116,116,105,110,103,115,32,42,47,10,46,115,112,123,112,97,100,100,105,110,103,58,50,50,
++112,120,32,49,54,112,120,59,111,118,101,114,102,108,111,119,45,121,58,97,117,116,111,59,104,101,105,103,104,116,58,49,
++48,48,37,59,115,99,114,111,108,108,98,97,114,45,119,105,100,116,104,58,110,111,110,101,125,46,115,112,58,58,45,119,
++101,98,107,105,116,45,115,99,114,111,108,108,98,97,114,123,100,105,115,112,108,97,121,58,110,111,110,101,125,10,46,115,
++112,32,104,49,123,116,101,120,116,45,97,108,105,103,110,58,99,101,110,116,101,114,59,102,111,110,116,45,115,105,122,101,
++58,49,55,112,120,59,109,97,114,103,105,110,45,98,111,116,116,111,109,58,49,52,112,120,125,10,46,115,101,99,123,99,
++111,108,111,114,58,114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,53,41,59,102,111,110,116,45,115,
++105,122,101,58,49,50,112,120,59,102,111,110,116,45,119,101,105,103,104,116,58,55,48,48,59,112,97,100,100,105,110,103,
++58,49,54,112,120,32,49,52,112,120,32,55,112,120,125,10,46,103,114,112,123,98,97,99,107,103,114,111,117,110,100,58,
++114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,48,55,41,59,98,111,114,100,101,114,58,49,112,120,
++32,115,111,108,105,100,32,114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,49,51,41,59,98,111,114,
++100,101,114,45,114,97,100,105,117,115,58,50,48,112,120,59,111,118,101,114,102,108,111,119,58,104,105,100,100,101,110,125,
++10,46,114,111,119,123,100,105,115,112,108,97,121,58,102,108,101,120,59,97,108,105,103,110,45,105,116,101,109,115,58,99,
++101,110,116,101,114,59,103,97,112,58,49,50,112,120,59,112,97,100,100,105,110,103,58,49,50,112,120,32,49,52,112,120,
++59,109,105,110,45,104,101,105,103,104,116,58,53,50,112,120,59,112,111,115,105,116,105,111,110,58,114,101,108,97,116,105,
++118,101,125,10,46,114,111,119,43,46,114,111,119,58,58,98,101,102,111,114,101,123,99,111,110,116,101,110,116,58,34,34,
++59,112,111,115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,116,111,112,58,48,59,105,110,115,101,116,45,105,
++110,108,105,110,101,45,115,116,97,114,116,58,53,52,112,120,59,105,110,115,101,116,45,105,110,108,105,110,101,45,101,110,
++100,58,48,59,104,101,105,103,104,116,58,49,112,120,59,98,97,99,107,103,114,111,117,110,100,58,114,103,98,97,40,50,
++53,53,44,50,53,53,44,50,53,53,44,46,49,41,125,10,46,105,99,111,123,119,105,100,116,104,58,51,48,112,120,59,
++104,101,105,103,104,116,58,51,48,112,120,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,56,112,120,59,100,105,
++115,112,108,97,121,58,103,114,105,100,59,112,108,97,99,101,45,105,116,101,109,115,58,99,101,110,116,101,114,59,102,111,
++110,116,45,115,105,122,101,58,49,53,112,120,59,102,108,101,120,58,110,111,110,101,125,10,46,114,111,119,32,46,116,123,
++102,108,101,120,58,49,59,102,111,110,116,45,115,105,122,101,58,49,53,46,53,112,120,59,102,111,110,116,45,119,101,105,
++103,104,116,58,53,48,48,125,46,114,111,119,32,46,118,123,99,111,108,111,114,58,114,103,98,97,40,50,53,53,44,50,
++53,53,44,50,53,53,44,46,53,41,59,102,111,110,116,45,115,105,122,101,58,49,52,112,120,59,100,105,114,101,99,116,
++105,111,110,58,108,116,114,125,10,60,47,115,116,121,108,101,62,10,60,115,116,121,108,101,62,10,104,116,109,108,44,98,
++111,100,121,123,119,105,100,116,104,58,49,48,48,37,59,104,101,105,103,104,116,58,49,48,48,37,59,111,118,101,114,102,
++108,111,119,58,104,105,100,100,101,110,125,98,111,100,121,123,112,97,100,100,105,110,103,58,48,59,100,105,115,112,108,97,
++121,58,98,108,111,99,107,59,103,97,112,58,48,125,46,112,104,111,110,101,123,119,105,100,116,104,58,49,48,48,37,59,
++104,101,105,103,104,116,58,49,48,48,37,59,109,97,120,45,119,105,100,116,104,58,110,111,110,101,59,112,97,100,100,105,
++110,103,58,48,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,48,59,98,111,120,45,115,104,97,100,111,119,58,
++110,111,110,101,59,98,97,99,107,103,114,111,117,110,100,58,110,111,110,101,125,46,115,99,114,101,101,110,123,104,101,105,
++103,104,116,58,49,48,48,37,59,98,111,114,100,101,114,45,114,97,100,105,117,115,58,48,125,46,110,111,116,101,123,100,
++105,115,112,108,97,121,58,110,111,110,101,125,46,118,105,101,119,46,115,104,111,119,123,100,105,115,112,108,97,121,58,102,
++108,101,120,59,102,108,101,120,45,100,105,114,101,99,116,105,111,110,58,99,111,108,117,109,110,125,46,103,104,123,102,108,
++101,120,58,110,111,110,101,125,46,103,114,105,100,123,102,108,101,120,58,49,59,104,101,105,103,104,116,58,97,117,116,111,
++59,109,105,110,45,104,101,105,103,104,116,58,48,59,112,97,100,100,105,110,103,45,98,111,116,116,111,109,58,49,51,48,
++112,120,125,46,116,104,123,98,97,99,107,103,114,111,117,110,100,58,35,51,53,51,53,51,101,59,112,97,100,100,105,110,
++103,58,48,59,102,111,110,116,45,102,97,109,105,108,121,58,105,110,104,101,114,105,116,59,97,112,112,101,97,114,97,110,
++99,101,58,110,111,110,101,59,99,111,108,111,114,58,119,104,105,116,101,59,102,108,101,120,58,110,111,110,101,125,46,116,
++104,32,105,109,103,123,112,111,115,105,116,105,111,110,58,97,98,115,111,108,117,116,101,59,105,110,115,101,116,58,48,59,
++119,105,100,116,104,58,49,48,48,37,59,104,101,105,103,104,116,58,49,48,48,37,59,111,98,106,101,99,116,45,102,105,
++116,58,99,111,118,101,114,125,46,116,104,32,105,123,122,45,105,110,100,101,120,58,51,125,46,116,104,32,98,123,122,45,
++105,110,100,101,120,58,51,125,46,116,104,58,58,97,102,116,101,114,123,122,45,105,110,100,101,120,58,50,125,46,116,104,
++58,100,105,115,97,98,108,101,100,123,111,112,97,99,105,116,121,58,46,52,53,59,99,117,114,115,111,114,58,100,101,102,
++97,117,108,116,125,46,103,98,97,114,32,98,117,116,116,111,110,58,100,105,115,97,98,108,101,100,123,111,112,97,99,105,
++116,121,58,46,53,125,46,103,120,123,98,111,114,100,101,114,58,48,59,98,97,99,107,103,114,111,117,110,100,58,110,111,
++110,101,59,112,97,100,100,105,110,103,58,48,32,54,112,120,59,102,111,110,116,45,102,97,109,105,108,121,58,105,110,104,
++101,114,105,116,125,46,103,97,108,108,101,114,121,45,115,116,97,116,117,115,123,102,111,110,116,45,115,105,122,101,58,49,
++50,112,120,59,108,105,110,101,45,104,101,105,103,104,116,58,49,46,54,59,112,97,100,100,105,110,103,58,48,32,50,48,
++112,120,32,56,112,120,59,99,111,108,111,114,58,114,103,98,97,40,50,53,53,44,50,53,53,44,50,53,53,44,46,54,
++53,41,59,109,105,110,45,104,101,105,103,104,116,58,50,53,112,120,125,46,103,98,97,114,123,98,111,116,116,111,109,58,
++49,52,112,120,125,46,103,114,105,100,58,102,111,99,117,115,45,118,105,115,105,98,108,101,44,46,116,104,58,102,111,99,
++117,115,45,118,105,115,105,98,108,101,123,111,117,116,108,105,110,101,58,50,112,120,32,115,111,108,105,100,32,119,104,105,
++116,101,59,111,117,116,108,105,110,101,45,111,102,102,115,101,116,58,50,112,120,125,10,60,47,115,116,121,108,101,62,60,
++47,104,101,97,100,62,10,60,98,111,100,121,62,10,60,100,105,118,32,99,108,97,115,115,61,34,112,104,111,110,101,34,
++62,60,100,105,118,32,99,108,97,115,115,61,34,115,99,114,101,101,110,34,32,100,105,114,61,34,114,116,108,34,62,10,
++10,32,32,60,33,45,45,32,71,97,108,108,101,114,121,32,45,45,62,10,32,32,60,100,105,118,32,99,108,97,115,115,
++61,34,118,105,101,119,32,115,104,111,119,34,32,105,100,61,34,118,45,103,97,108,34,62,10,32,32,32,32,60,100,105,
++118,32,99,108,97,115,115,61,34,103,104,34,62,60,100,105,118,62,60,104,50,62,216,170,216,173,217,133,217,138,217,132,
++32,216,167,217,132,217,131,217,132,60,47,104,50,62,60,115,109,97,108,108,32,105,100,61,34,99,110,116,34,62,216,170,
++216,173,217,133,217,138,217,132,32,216,167,217,132,217,136,216,179,216,167,216,166,216,183,226,128,166,60,47,115,109,97,108,
++108,62,60,47,100,105,118,62,60,98,117,116,116,111,110,32,99,108,97,115,115,61,34,103,120,34,32,97,114,105,97,45,
++108,97,98,101,108,61,34,216,165,216,186,217,132,216,167,217,130,34,62,226,156,149,60,47,98,117,116,116,111,110,62,60,
++47,100,105,118,62,10,32,32,32,32,60,100,105,118,32,99,108,97,115,115,61,34,103,97,108,108,101,114,121,45,115,116,
++97,116,117,115,34,32,105,100,61,34,115,116,97,116,117,115,34,32,114,111,108,101,61,34,115,116,97,116,117,115,34,62,
++60,47,100,105,118,62,60,100,105,118,32,99,108,97,115,115,61,34,103,114,105,100,34,32,105,100,61,34,103,114,105,100,
++34,62,60,47,100,105,118,62,10,32,32,32,32,60,100,105,118,32,99,108,97,115,115,61,34,103,98,97,114,34,62,60,
++98,117,116,116,111,110,32,99,108,97,115,115,61,34,98,49,34,32,105,100,61,34,97,108,108,34,62,216,165,217,132,216,
++186,216,167,216,161,32,216,167,217,132,216,170,216,173,216,175,217,138,216,175,60,47,98,117,116,116,111,110,62,60,98,117,
++116,116,111,110,32,99,108,97,115,115,61,34,98,50,34,32,105,100,61,34,100,108,34,62,216,170,216,173,217,133,217,138,
++217,132,60,47,98,117,116,116,111,110,62,60,100,105,118,32,99,108,97,115,115,61,34,112,114,111,103,34,32,105,100,61,
++34,112,114,111,103,34,62,60,100,105,118,62,60,47,100,105,118,62,60,47,100,105,118,62,60,47,100,105,118,62,10,32,
++32,60,47,100,105,118,62,10,10,32,32,60,47,100,105,118,62,60,47,100,105,118,62,10,10,60,47,100,105,118,62,60,
++47,100,105,118,62,10,60,112,32,99,108,97,115,115,61,34,110,111,116,101,34,62,217,133,216,185,216,167,217,138,217,134,
++216,169,32,217,134,216,167,217,129,216,176,216,169,32,194,171,216,170,216,173,217,133,217,138,217,132,32,216,167,217,132,217,
++131,217,132,194,187,46,32,216,167,216,182,216,186,216,183,32,216,185,217,132,217,137,32,216,167,217,132,216,181,217,136,216,
++177,32,217,132,217,132,216,170,216,173,216,175,217,138,216,175,216,140,32,217,136,216,172,216,177,217,145,216,168,32,216,178,
++216,177,32,216,167,217,132,216,170,216,173,217,133,217,138,217,132,46,60,47,112,62,10,60,115,99,114,105,112,116,62,10,
++108,101,116,32,105,116,101,109,115,61,91,93,44,115,101,108,101,99,116,101,100,61,110,101,119,32,83,101,116,40,41,44,
++98,117,115,121,61,102,97,108,115,101,44,108,97,115,116,83,104,97,112,101,61,39,39,59,10,99,111,110,115,116,32,115,
++101,110,100,61,98,111,100,121,61,62,119,105,110,100,111,119,46,119,101,98,107,105,116,46,109,101,115,115,97,103,101,72,
++97,110,100,108,101,114,115,46,104,105,100,101,71,97,108,108,101,114,121,46,112,111,115,116,77,101,115,115,97,103,101,40,
++98,111,100,121,41,59,10,102,117,110,99,116,105,111,110,32,100,114,97,119,40,41,123,10,32,99,111,110,115,116,32,103,
++114,105,100,61,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,103,114,105,
++100,39,41,44,115,99,114,111,108,108,61,103,114,105,100,46,115,99,114,111,108,108,84,111,112,59,10,32,103,114,105,100,
++46,105,110,110,101,114,72,84,77,76,61,105,116,101,109,115,46,109,97,112,40,40,105,116,101,109,44,105,41,61,62,96,
++60,98,117,116,116,111,110,32,116,121,112,101,61,34,98,117,116,116,111,110,34,32,99,108,97,115,115,61,34,116,104,36,
++123,115,101,108,101,99,116,101,100,46,104,97,115,40,105,41,63,39,32,111,110,39,58,39,39,125,34,32,100,97,116,97,
++45,105,61,34,36,123,105,125,34,32,97,114,105,97,45,108,97,98,101,108,61,34,36,123,105,116,101,109,46,118,105,100,
++101,111,63,39,217,129,217,138,216,175,217,138,217,136,39,58,39,216,181,217,136,216,177,216,169,39,125,32,36,123,105,43,
++49,125,34,32,97,114,105,97,45,112,114,101,115,115,101,100,61,34,36,123,115,101,108,101,99,116,101,100,46,104,97,115,
++40,105,41,125,34,32,36,123,105,116,101,109,46,97,118,97,105,108,97,98,108,101,63,39,39,58,39,100,105,115,97,98,
++108,101,100,39,125,62,60,105,62,36,123,115,101,108,101,99,116,101,100,46,104,97,115,40,105,41,63,39,226,156,147,39,
++58,39,39,125,60,47,105,62,36,123,105,116,101,109,46,105,109,97,103,101,63,96,60,105,109,103,32,115,114,99,61,34,
++36,123,105,116,101,109,46,105,109,97,103,101,125,34,32,97,108,116,61,34,34,62,96,58,39,39,125,36,123,105,116,101,
++109,46,118,105,100,101,111,63,39,60,98,62,226,150,182,239,184,142,60,47,98,62,39,58,39,39,125,60,47,98,117,116,
++116,111,110,62,96,41,46,106,111,105,110,40,39,39,41,59,10,32,103,114,105,100,46,115,99,114,111,108,108,84,111,112,
++61,115,99,114,111,108,108,59,10,32,103,114,105,100,46,113,117,101,114,121,83,101,108,101,99,116,111,114,65,108,108,40,
++39,91,100,97,116,97,45,105,93,39,41,46,102,111,114,69,97,99,104,40,101,108,61,62,101,108,46,111,110,99,108,105,
++99,107,61,40,41,61,62,123,105,102,40,98,117,115,121,41,114,101,116,117,114,110,59,115,101,110,100,40,123,97,99,116,
++105,111,110,58,39,115,101,108,101,99,116,39,44,105,110,100,101,120,58,78,117,109,98,101,114,40,101,108,46,100,97,116,
++97,115,101,116,46,105,41,125,41,125,41,59,10,32,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,
++116,66,121,73,100,40,39,99,110,116,39,41,46,116,101,120,116,67,111,110,116,101,110,116,61,96,36,123,105,116,101,109,
++115,46,108,101,110,103,116,104,125,32,216,185,217,134,216,181,216,177,32,194,183,32,216,170,217,133,32,216,170,216,173,216,
++175,217,138,216,175,32,36,123,115,101,108,101,99,116,101,100,46,115,105,122,101,125,96,59,10,32,100,111,99,117,109,101,
++110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,100,108,39,41,46,116,101,120,116,67,111,110,116,
++101,110,116,61,98,117,115,121,63,39,216,172,216,167,216,177,217,138,32,216,167,217,132,216,173,217,129,216,184,226,128,166,
++39,58,96,216,170,216,173,217,133,217,138,217,132,32,40,36,123,115,101,108,101,99,116,101,100,46,115,105,122,101,125,41,
++96,59,10,32,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,100,108,39,
++41,46,100,105,115,97,98,108,101,100,61,98,117,115,121,124,124,33,115,101,108,101,99,116,101,100,46,115,105,122,101,59,
++10,32,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,97,108,108,39,41,
++46,100,105,115,97,98,108,101,100,61,98,117,115,121,59,10,32,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,
++109,101,110,116,66,121,73,100,40,39,97,108,108,39,41,46,116,101,120,116,67,111,110,116,101,110,116,61,115,101,108,101,
++99,116,101,100,46,115,105,122,101,61,61,61,105,116,101,109,115,46,102,105,108,116,101,114,40,105,61,62,105,46,97,118,
++97,105,108,97,98,108,101,41,46,108,101,110,103,116,104,63,39,216,165,217,132,216,186,216,167,216,161,32,216,167,217,132,
++216,170,216,173,216,175,217,138,216,175,39,58,39,216,170,216,173,216,175,217,138,216,175,32,216,167,217,132,217,131,217,132,
++39,59,10,125,10,119,105,110,100,111,119,46,72,73,68,69,71,97,108,108,101,114,121,83,116,97,116,101,61,115,61,62,
++123,99,111,110,115,116,32,115,104,97,112,101,61,74,83,79,78,46,115,116,114,105,110,103,105,102,121,40,91,115,46,105,
++116,101,109,115,44,115,46,115,101,108,101,99,116,101,100,44,115,46,98,117,115,121,93,41,59,99,111,110,115,116,32,112,
++114,101,118,105,111,117,115,61,105,116,101,109,115,59,105,116,101,109,115,61,115,46,105,116,101,109,115,46,109,97,112,40,
++40,105,116,101,109,44,105,41,61,62,40,123,46,46,46,105,116,101,109,44,105,109,97,103,101,58,112,114,101,118,105,111,
++117,115,91,105,93,63,46,105,109,97,103,101,125,41,41,59,115,101,108,101,99,116,101,100,61,110,101,119,32,83,101,116,
++40,115,46,115,101,108,101,99,116,101,100,41,59,98,117,115,121,61,115,46,98,117,115,121,59,100,111,99,117,109,101,110,
++116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,112,114,111,103,39,41,46,115,116,121,108,101,46,100,
++105,115,112,108,97,121,61,98,117,115,121,63,39,98,108,111,99,107,39,58,39,110,111,110,101,39,59,100,111,99,117,109,
++101,110,116,46,113,117,101,114,121,83,101,108,101,99,116,111,114,40,39,35,112,114,111,103,32,100,105,118,39,41,46,115,
++116,121,108,101,46,119,105,100,116,104,61,96,36,123,115,46,112,114,111,103,114,101,115,115,42,49,48,48,125,37,96,59,
++100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,115,116,97,116,117,115,39,
++41,46,116,101,120,116,67,111,110,116,101,110,116,61,115,46,115,116,97,116,117,115,124,124,39,39,59,105,102,40,115,104,
++97,112,101,33,61,61,108,97,115,116,83,104,97,112,101,41,123,108,97,115,116,83,104,97,112,101,61,115,104,97,112,101,
++59,100,114,97,119,40,41,125,125,59,10,119,105,110,100,111,119,46,72,73,68,69,71,97,108,108,101,114,121,84,104,117,
++109,98,110,97,105,108,61,40,105,110,100,101,120,44,105,109,97,103,101,41,61,62,123,105,102,40,33,105,116,101,109,115,
++91,105,110,100,101,120,93,32,124,124,32,33,47,94,100,97,116,97,58,105,109,97,103,101,92,47,106,112,101,103,59,98,
++97,115,101,54,52,44,91,65,45,90,97,45,122,48,45,57,43,47,61,93,43,36,47,46,116,101,115,116,40,105,109,97,
++103,101,41,41,114,101,116,117,114,110,59,105,116,101,109,115,91,105,110,100,101,120,93,46,105,109,97,103,101,61,105,109,
++97,103,101,59,99,111,110,115,116,32,116,105,108,101,61,100,111,99,117,109,101,110,116,46,113,117,101,114,121,83,101,108,
++101,99,116,111,114,40,96,91,100,97,116,97,45,105,61,34,36,123,105,110,100,101,120,125,34,93,96,41,59,105,102,40,
++116,105,108,101,41,123,108,101,116,32,105,109,103,61,116,105,108,101,46,113,117,101,114,121,83,101,108,101,99,116,111,114,
++40,39,105,109,103,39,41,59,105,102,40,33,105,109,103,41,123,105,109,103,61,100,111,99,117,109,101,110,116,46,99,114,
++101,97,116,101,69,108,101,109,101,110,116,40,39,105,109,103,39,41,59,105,109,103,46,97,108,116,61,39,39,59,116,105,
++108,101,46,97,112,112,101,110,100,67,104,105,108,100,40,105,109,103,41,125,105,109,103,46,115,114,99,61,105,109,97,103,
++101,125,125,59,10,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,97,108,
++108,39,41,46,111,110,99,108,105,99,107,61,40,41,61,62,115,101,110,100,40,123,97,99,116,105,111,110,58,39,97,108,
++108,39,125,41,59,10,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,66,121,73,100,40,39,100,
++108,39,41,46,111,110,99,108,105,99,107,61,40,41,61,62,123,105,102,40,33,98,117,115,121,38,38,115,101,108,101,99,
++116,101,100,46,115,105,122,101,41,115,101,110,100,40,123,97,99,116,105,111,110,58,39,100,111,119,110,108,111,97,100,39,
++125,41,125,59,10,100,111,99,117,109,101,110,116,46,113,117,101,114,121,83,101,108,101,99,116,111,114,40,39,46,103,120,
++39,41,46,111,110,99,108,105,99,107,61,40,41,61,62,115,101,110,100,40,123,97,99,116,105,111,110,58,39,99,108,111,
++115,101,39,125,41,59,10,60,47,115,99,114,105,112,116,62,10,60,47,98,111,100,121,62,10,60,47,104,116,109,108,62,
++10,
++};
 --- a/src/HIDEDownloader.m
 +++ b/src/HIDEDownloader.m
-@@ -1,6 +1,8 @@
+@@ -1,6 +1,9 @@
  // Long-press download for feed posts, reels and stories.
  #import "HIDECore.h"
  #import <Photos/Photos.h>
 +#import <math.h>
++#import <float.h>
 +#import <string.h>
  
  static const void *kHideGestureKey = &kHideGestureKey;
  
-@@ -10,60 +12,95 @@
+@@ -10,60 +13,107 @@
  
  #pragma mark - Media resolving
  
@@ -4230,13 +4728,16 @@
 -        for (id u in all) { NSURL *url = HIDEToURL(u); if (url) return url; }
 -    }
 -    return nil;
+-}
+-
+-static NSURL *HIDEPhotoURL(id photo) {
 +    if ([all isKindOfClass:NSArray.class] || [all isKindOfClass:NSSet.class] || [all isKindOfClass:NSOrderedSet.class]) {
 +        for (id value in all) { NSURL *url = HIDEToURL(value); if (url) return url; }
 +    }
 +    return HIDEToURL(video);
- }
- 
- static NSURL *HIDEPhotoURL(id photo) {
++}
++
++static NSURL *HIDEPhotoURLWidth(id photo,double requestedWidth) {
      if (!photo) return nil;
 -    SEL s = NSSelectorFromString(@"imageURLForWidth:");
 -    if ([photo respondsToSelector:s]) {
@@ -4246,7 +4747,7 @@
 +    SEL selector = NSSelectorFromString(@"imageURLForWidth:");
 +    NSMethodSignature *signature = [photo methodSignatureForSelector:selector];
 +    if (signature.numberOfArguments == 3 && signature.methodReturnType[0] == '@') {
-+        double width = HIDEPref(kHideHighQuality) ? 5000 : 1080;
++        double width = requestedWidth;
 +        const char *type = [signature getArgumentTypeAtIndex:2];
 +        while (*type && strchr("rnNoORV", *type)) type++;
 +        id value = nil;
@@ -4264,10 +4765,24 @@
          if (url) return url;
      }
 -    return HIDEToURL(HIDEGet(photo, @"storyImageSpecifier"));
-+    NSURL *version = HIDEBestVersion(HIDEGet(photo, @"imageVersions") ?: HIDEIvar(photo, "_originalImageVersions"));
+-}
+-
++    id versions=HIDEGet(photo,@"imageVersions") ?: HIDEIvar(photo,"_originalImageVersions");
++    NSURL *version=nil;
++    if(requestedWidth<=240 && [versions isKindOfClass:NSArray.class]) {
++        double best=DBL_MAX;for(id item in versions){double width=HIDEDimension(item,@"width");NSURL *candidate=HIDEToURL(item);if(candidate && width>0 && width<best){best=width;version=candidate;}}
++    } else version=HIDEBestVersion(versions);
 +    return version ?: HIDEToURL(HIDEGet(photo, @"storyImageSpecifier")) ?: HIDEToURL(photo);
- }
- 
++}
++
++static NSURL *HIDEPhotoURL(id photo){return HIDEPhotoURLWidth(photo,HIDEPref(kHideHighQuality) ? 5000 : 1080);}
++static NSDictionary *HIDEDownloadItem(NSURL *url,BOOL video,id media) {
++    NSMutableDictionary *item=[@{@"url":url,@"video":@(video)} mutableCopy];
++    id photo=HIDEGet(media,@"photo") ?: HIDEGet(media,@"coverPhoto") ?: HIDEGet(HIDEGet(media,@"video"),@"coverPhoto") ?: HIDEGet(media,@"imageSpecifier");
++    NSURL *preview=HIDEPhotoURLWidth(photo ?: (video ? nil : media),240);
++    if(preview)item[@"thumbnailURL"]=preview;
++    return item;
++}
  // Turns any of IGMedia / IGVideo / IGPhoto / IGImageSpecifier / story item into a URL.
 -static BOOL HIDEResolveObject(id obj, NSURL **outURL, BOOL *outVideo, id *outMedia) {
 -    if (!obj) return NO;
@@ -4276,7 +4791,7 @@
      Class IGMedia = NSClassFromString(@"IGMedia"), IGVideo = NSClassFromString(@"IGVideo"),
            IGPhoto = NSClassFromString(@"IGPhoto"), IGImageSpecifier = NSClassFromString(@"IGImageSpecifier");
      if (IGMedia && ![obj isKindOfClass:IGMedia]) {
-@@ -76,7 +113,6 @@
+@@ -76,7 +126,6 @@
          if (u) { *outURL = u; *outVideo = YES; return YES; }
          u = HIDEPhotoURL(HIDEGet(obj, @"photo"));
          if (u) { *outURL = u; *outVideo = NO; return YES; }
@@ -4284,7 +4799,7 @@
      }
      if (IGVideo && [obj isKindOfClass:IGVideo]) {
          NSURL *u = HIDEVideoURL(obj);
-@@ -90,7 +126,15 @@
+@@ -90,7 +139,15 @@
          NSURL *u = HIDEToURL(obj);
          if (u) { *outURL = u; *outVideo = NO; return YES; }
      }
@@ -4300,7 +4815,7 @@
  }
  
  static BOOL HIDEResolveFromView(UIView *view, NSURL **outURL, BOOL *outVideo, id *outMedia) {
-@@ -106,26 +150,67 @@
+@@ -106,26 +163,67 @@
              if (HIDEResolveObject(HIDEIvar(v, i.UTF8String), outURL, outVideo, outMedia)) return YES;
          }
      }
@@ -4375,7 +4890,7 @@
          }];
      } else {
          save();
-@@ -134,32 +219,25 @@
+@@ -134,32 +232,25 @@
  
  static void HIDEFetch(NSURL *url, BOOL isVideo, void (^done)(NSURL *localFile)) {
      HIDEToast(HIDEL(@"DOWNLOADING"));
@@ -4426,7 +4941,7 @@
  }
  
  static NSString *HIDECaption(id media) {
-@@ -186,44 +264,103 @@
+@@ -186,81 +277,114 @@
  }
  
  static void HIDEDownloadAll(NSArray *items) {
@@ -4442,7 +4957,7 @@
 +    for (id item in items) {
 +        NSURL *url=nil;BOOL video=NO;id media=nil;
 +        if (HIDEResolveObject(item,&url,&video,&media))
-+            [resolved addObject:@{@"url":url,@"video":@(video)}];
++            [resolved addObject:HIDEDownloadItem(url,video,media ?: item)];
 +        else [resolved addObject:@{@"unavailable":@YES}];
 +    }
 +    if (!resolved.count) { HIDEToast(HIDEL(@"NO_MEDIA"));return; }
@@ -4464,23 +4979,17 @@
      return names;
  }
  
--static void HIDEPresentActions(UIView *source) {
--    NSURL *url = nil; BOOL isVideo = NO; id media = nil;
--    if (!HIDEResolveFromView(source, &url, &isVideo, &media)) { HIDEToast(HIDEL(@"NO_MEDIA")); return; }
--
 +static NSArray *HIDEStoryItems(UIView *source) {
-+    BOOL story=NO;
-+    for (UIView *view=source;view;view=view.superview) if ([NSStringFromClass(view.class) containsString:@"Story"]) { story=YES;break; }
-+    if (!story) return nil;
-+    for (UIResponder *responder=source;responder;responder=responder.nextResponder) {
-+        NSMutableArray *models=[NSMutableArray arrayWithObject:responder];
-+        for (NSString *getter in @[@"viewModel",@"storyViewerViewModel",@"reel",@"story"]) { id model=HIDEGet(responder,getter);if(model)[models addObject:model]; }
-+        for (const char **name=(const char *[]) {"_viewModel","_storyViewerViewModel",NULL};*name;name++) { id model=HIDEIvar(responder,*name);if(model)[models addObject:model]; }
-+        for (id model in models) for (NSString *getter in @[@"items",@"storyItems",@"reelItems"]) {
-+            id items=HIDEGet(model,getter);if ([items isKindOfClass:NSArray.class] && [items count]>1) return items;
-+        }
-+    }
-+    return nil;
++    BOOL story=NO;for(UIView *v=source;v;v=v.superview)if([NSStringFromClass(v.class) containsString:@"Story"]){story=YES;break;}
++    if(!story)return nil;
++    NSMutableArray *queue=[NSMutableArray array];NSHashTable *visited=[NSHashTable hashTableWithOptions:NSPointerFunctionsObjectPointerPersonality|NSPointerFunctionsStrongMemory];
++    for(UIResponder *r=source;r;r=r.nextResponder){[queue addObject:r];id delegate=HIDEGet(r,@"delegate");if(delegate)[queue addObject:delegate];}
++    for(NSUInteger index=0;index<queue.count && index<128;index++) {
++        id model=queue[index];if([visited containsObject:model])continue;[visited addObject:model];
++        for(NSString *getter in @[@"items",@"mediaItems",@"sortedItems",@"storyItems",@"reelItems"]){id items=HIDEGet(model,getter);if([items isKindOfClass:NSArray.class] && [items count]>1)return items;}
++        for(NSString *getter in @[@"viewModel",@"storyViewerViewModel",@"story",@"reel"]){id value=HIDEGet(model,getter);if(value && value!=model)[queue addObject:value];}
++        for(NSString *name in @[@"_viewModel",@"_focusedModelItem",@"_storyViewerViewModel",@"_reel"]){id value=HIDEIvar(model,name.UTF8String);if(value && value!=model)[queue addObject:value];}
++    }return nil;
 +}
 +
 +static BOOL HIDEProfileContext(UIView *source,id *user,id *networker) {
@@ -4533,59 +5042,83 @@
 +    });
 +}
 +
++BOOL HIDECanManuallySeeStory(UIView *source,id media);
++void HIDEManuallySeeStory(UIView *source,id media);
 +static void HIDEPresentResolvedActions(UIView *source,NSURL *url,BOOL isVideo,id media) {
-     // Centered alert so the menu never sticks to the bottom edge of tall reels.
-     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"HIDE" message:HIDEL(@"WHAT_TO_DO") preferredStyle:UIAlertControllerStyleAlert];
-     [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_DOWNLOAD") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
++    UIAlertController *sheet=[UIAlertController alertControllerWithTitle:@"HIDE" message:nil preferredStyle:UIAlertControllerStyleAlert];
++    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_DOWNLOAD") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){HIDEPresentBatch(@[HIDEDownloadItem(url,isVideo,media)]);}]];
++    NSArray *items=HIDECarouselItems(source,media) ?: HIDEStoryItems(source);
++    if(items.count>1)[sheet addAction:[UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@ (%lu)",HIDEL(@"ACTION_DOWNLOAD_ALL"),(unsigned long)items.count] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){HIDEDownloadAll(items);}]];
++    if(HIDECanManuallySeeStory(source,media))[sheet addAction:[UIAlertAction actionWithTitle:@"Seen" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){HIDEManuallySeeStory(source,media);}]];
++    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"CANCEL") style:UIAlertActionStyleCancel handler:nil]];
++    sheet.popoverPresentationController.sourceView=source;sheet.popoverPresentationController.sourceRect=source.bounds;
++    [HIDETopViewController() presentViewController:sheet animated:YES completion:nil];
++}
++
+ static void HIDEPresentActions(UIView *source) {
+-    NSURL *url = nil; BOOL isVideo = NO; id media = nil;
+-    if (!HIDEResolveFromView(source, &url, &isVideo, &media)) { HIDEToast(HIDEL(@"NO_MEDIA")); return; }
+-
+-    // Centered alert so the menu never sticks to the bottom edge of tall reels.
+-    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"HIDE" message:HIDEL(@"WHAT_TO_DO") preferredStyle:UIAlertControllerStyleAlert];
+-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_DOWNLOAD") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
 -        HIDEFetch(url, isVideo, ^(NSURL *file) { HIDESaveFile(file, isVideo); });
-+        HIDEPresentBatch(@[@{@"url":url,@"video":@(isVideo)}]);
-     }]];
-     [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_SHARE") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-         HIDEFetch(url, isVideo, ^(NSURL *file) {
+-    }]];
+-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_SHARE") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+-        HIDEFetch(url, isVideo, ^(NSURL *file) {
 -            UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[file] applicationActivities:nil];
 -            UIViewController *top = HIDETopViewController();
 -            avc.popoverPresentationController.sourceView = top.view;
 -            avc.popoverPresentationController.sourceRect = CGRectMake(CGRectGetMidX(top.view.bounds), CGRectGetMidY(top.view.bounds), 1, 1);
 -            [top presentViewController:avc animated:YES completion:nil];
-+            HIDEShareTemporaryFile(file);
-         });
-     }]];
-     NSString *caption = media ? HIDECaption(media) : nil;
-@@ -233,7 +370,14 @@
-             HIDEToast(HIDEL(@"COPIED"));
-         }]];
-     }
--    NSArray *carousel = HIDECarouselItems(source, media);
-+    id user=HIDEGet(media,@"user") ?: HIDEGet(media,@"owner") ?: media;
-+    NSString *username=HIDEGet(user,@"username");
-+    if(HIDEPref(kHideCopyText) && [username isKindOfClass:NSString.class] && username.length) {
-+        [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"COPY_USERNAME") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-+            UIPasteboard.generalPasteboard.string=username;HIDEToast(HIDEL(@"COPIED"));
-+        }]];
-+    }
-+    NSArray *carousel = HIDECarouselItems(source, media) ?: HIDEStoryItems(source);
-     if (carousel.count > 1) {
-         NSString *t = [NSString stringWithFormat:@"%@ (%lu)", HIDEL(@"ACTION_DOWNLOAD_ALL"), (unsigned long)carousel.count];
-         [sheet addAction:[UIAlertAction actionWithTitle:t style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
-@@ -263,6 +407,17 @@
-     [HIDETopViewController() presentViewController:sheet animated:YES completion:nil];
- }
- 
-+static void HIDEPresentActions(UIView *source) {
 +    NSURL *url=nil;BOOL video=NO;id media=nil;
 +    BOOL resolved=HIDEResolveFromView(source,&url,&video,&media);
 +    if(HIDEPref(kHideHighQuality) && HIDEProfileContext(source,NULL,NULL)) {
 +        HIDEProfileURL(source,url,^(NSURL *profile){
 +            if(profile)HIDEPresentResolvedActions(source,profile,NO,media);else HIDEToast(HIDEL(@"NO_MEDIA"));
-+        });
+         });
+-    }]];
+-    NSString *caption = media ? HIDECaption(media) : nil;
+-    if (caption.length) {
+-        [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_COPY_CAPTION") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+-            [UIPasteboard generalPasteboard].string = caption;
+-            HIDEToast(HIDEL(@"COPIED"));
+-        }]];
+-    }
+-    NSArray *carousel = HIDECarouselItems(source, media);
+-    if (carousel.count > 1) {
+-        NSString *t = [NSString stringWithFormat:@"%@ (%lu)", HIDEL(@"ACTION_DOWNLOAD_ALL"), (unsigned long)carousel.count];
+-        [sheet addAction:[UIAlertAction actionWithTitle:t style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+-            HIDEDownloadAll(carousel);
+-        }]];
+-    }
+-    NSArray *mentions = HIDEPref(kHideShowMentions) ? HIDEMentions(media) : nil;
+-    if (mentions.count) {
+-        [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"MENTIONS") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+-            UIAlertController *list = [UIAlertController alertControllerWithTitle:HIDEL(@"MENTIONS") message:nil preferredStyle:UIAlertControllerStyleAlert];
+-            for (NSString *n in mentions) {
+-                [list addAction:[UIAlertAction actionWithTitle:[@"@" stringByAppendingString:n] style:UIAlertActionStyleDefault handler:^(UIAlertAction *x) {
+-                    NSURL *u = [NSURL URLWithString:[@"instagram://user?username=" stringByAppendingString:n]];
+-                    [[UIApplication sharedApplication] openURL:u options:@{} completionHandler:nil];
+-                }]];
+-            }
+-            [list addAction:[UIAlertAction actionWithTitle:HIDEL(@"CANCEL") style:UIAlertActionStyleCancel handler:nil]];
+-            [HIDETopViewController() presentViewController:list animated:YES completion:nil];
+-        }]];
+-    }
+-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"ACTION_COPY_LINK") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+-        [UIPasteboard generalPasteboard].string = url.absoluteString;
+-        HIDEToast(HIDEL(@"COPIED"));
+-    }]];
+-    [sheet addAction:[UIAlertAction actionWithTitle:HIDEL(@"CANCEL") style:UIAlertActionStyleCancel handler:nil]];
+-
+-    [HIDETopViewController() presentViewController:sheet animated:YES completion:nil];
 +    } else if(resolved)HIDEPresentResolvedActions(source,url,video,media);
 +    else HIDEToast(HIDEL(@"NO_MEDIA"));
-+}
-+
- #pragma mark - Gesture attachment
+ }
  
- @implementation HIDEGestureHandler
-@@ -286,7 +441,8 @@
+ #pragma mark - Gesture attachment
+@@ -286,7 +410,8 @@
          for (NSString *n in @[@"IGFeedPhotoView", @"IGFeedItemVideoView",
                                @"IGSundialViewerVideoCell", @"IGSundialViewerPhotoCell",
                                @"IGSundialViewerCarouselVideoCell", @"IGSundialViewerCarouselPhotoCell",
@@ -4595,7 +5128,7 @@
              Class c = NSClassFromString(n);
              if (c) [a addObject:c];
          }
-@@ -314,5 +470,5 @@
+@@ -314,5 +439,5 @@
  }
  
  void HIDEInstallDownloader(void) {
@@ -4652,7 +5185,17 @@
          });
      }
      return r;
-@@ -85,11 +83,14 @@
+@@ -65,7 +63,9 @@
+     return HIDEPref(kHideNoReadReceipts) ? YES : orig_rrStored(self, _cmd);
+ }
+ static BOOL (*orig_mqttSendRR)(id, SEL);
++BOOL HIDEAllowManualReadObject(id object);
+ static BOOL hide_mqttSendRR(id self, SEL _cmd) {
++    if(HIDEAllowManualReadObject(self))return YES;
+     return HIDEPref(kHideNoReadReceipts) ? NO : orig_mqttSendRR(self, _cmd);
+ }
+ 
+@@ -85,11 +85,14 @@
      if (myName && theirName && [myName isEqualToString:theirName]) return;
      if (!theirName) return;
  
@@ -4670,7 +5213,7 @@
      HIDEToast([NSString stringWithFormat:@"@%@ · %@", theirName, msg]);
  }
  
-@@ -115,7 +116,7 @@
+@@ -115,7 +118,7 @@
  @end
  @implementation HIDECopyHandler
  + (instancetype)shared { static HIDECopyHandler *h; static dispatch_once_t o; dispatch_once(&o, ^{ h = [self new]; }); return h; }
@@ -4679,7 +5222,7 @@
  - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)g { return HIDEPref(kHideCopyText); }
  - (void)onLongPress:(UILongPressGestureRecognizer *)g {
      if (g.state != UIGestureRecognizerStateBegan) return;
-@@ -140,7 +141,7 @@
+@@ -140,7 +143,7 @@
      static dispatch_once_t once;
      dispatch_once(&once, ^{
          NSMutableArray *a = [NSMutableArray array];
@@ -4688,7 +5231,7 @@
              Class c = NSClassFromString(n); if (c) [a addObject:c];
          }
          classes = a;
-@@ -159,12 +160,17 @@
+@@ -159,12 +162,17 @@
  
  #pragma mark - Remove sponsored posts from the home feed
  
@@ -4709,7 +5252,7 @@
  }
  
  static NSArray *(*orig_feedObjects)(id, SEL, id);
-@@ -177,12 +183,12 @@
+@@ -177,12 +185,12 @@
  }
  
  void HIDEInstallExtras(void) {
@@ -4730,6 +5273,179 @@
 +    orig_profileDidAppear = (void *)HIDEHookChecked(@"IGProfileViewController", @selector(viewDidAppear:), (IMP)hide_profileDidAppear, "v@:B");
 +    orig_feedObjects = (void *)HIDEHookChecked(@"IGMainFeedListAdapterDataSource", NSSelectorFromString(@"objectsForListAdapter:"), (IMP)hide_feedObjects, "@@:@");
  }
+--- /dev/null
++++ b/src/HIDEManualSeen.m
+@@ -0,0 +1,170 @@
++// Explicit, target-bound manual receipts. Never toggle the user's privacy setting.
++#import "HIDECore.h"
++#import "HIDEReceiptPolicy.h"
++#import <string.h>
++#import <CommonCrypto/CommonDigest.h>
++static const void *receiptURLKey=&receiptURLKey,*receiptPermitKey=&receiptPermitKey,*storyContextKey=&storyContextKey,*eyeKey=&eyeKey;
++static __thread void *manualOwner;
++static NSMutableDictionary *HIDEReceiptIntents(void){static NSMutableDictionary *v;static dispatch_once_t once;dispatch_once(&once,^{v=[NSMutableDictionary dictionary];});return v;}
++static NSString *HIDEReceiptID(id value){if([value isKindOfClass:NSNumber.class])return [value stringValue];return [value isKindOfClass:NSString.class] ? value : nil;}
++static NSString *HIDEStoryID(id value){NSString *v=HIDEReceiptID(HIDEGet(value,@"mediaId") ?: HIDEGet(value,@"mediaID") ?: HIDEGet(value,@"pk") ?: HIDEGetNumber(value,@"pk"));if(!v){id media=HIDEGet(value,@"media");v=HIDEReceiptID(HIDEGet(media,@"pk") ?: HIDEGetNumber(media,@"pk") ?: HIDEGet(media,@"mediaId"));}return [v componentsSeparatedByString:@"_"].firstObject;}
++static NSString *HIDEReceiptAccount(id owner){
++    id session=HIDEGet(owner,@"userSession") ?: HIDEIvar(owner,"_userSession");
++    id networker=HIDEGet(session,@"networker") ?: HIDEIvar(session,"_networker");
++    NSString *identifier=HIDEReceiptID(HIDEIvar(networker,"_userPK"));
++    for(NSString *getter in @[@"userPk",@"userPK",@"userID"])if(!identifier)identifier=HIDEReceiptID(HIDEGet(session,getter) ?: HIDEGetNumber(session,getter));
++    if(!identifier){id user=HIDEGet(session,@"user") ?: HIDEIvar(session,"_user");identifier=HIDEReceiptID(HIDEGet(user,@"pk") ?: HIDEGetNumber(user,@"pk"));}
++    return identifier.length ? identifier : nil;
++}
++static BOOL HIDEInstagramURL(NSURL *url){NSString *host=url.host.lowercaseString;return [host isEqualToString:@"instagram.com"] || [host hasSuffix:@".instagram.com"];}
++void HIDERegisterReceiptURL(id request,NSURL *url){if(request && HIDEInstagramURL(url) && ([url.path hasSuffix:@"/seen/"] || [url.path hasSuffix:@"/seen"]))objc_setAssociatedObject(request,receiptURLKey,url,OBJC_ASSOCIATION_RETAIN_NONATOMIC);}
++static NSDictionary *HIDEReceiptParameters(id request){
++    id params=HIDEGet(request,@"parameters");if([params isKindOfClass:NSDictionary.class] && [params count])return params;
++    id body=HIDEGet(request,@"body");if([body isKindOfClass:NSDictionary.class])return body;
++    id nested=HIDEGet(body,@"parameters");if([nested isKindOfClass:NSDictionary.class])return nested;
++    if([body isKindOfClass:NSData.class]){id json=[NSJSONSerialization JSONObjectWithData:body options:0 error:nil];if([json isKindOfClass:NSDictionary.class])return json;
++        NSString *form=[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];NSURLComponents *c=[NSURLComponents new];@try{c.percentEncodedQuery=form;}@catch(__unused NSException *e){return nil;}NSMutableDictionary *values=[NSMutableDictionary dictionary];for(NSURLQueryItem *q in c.queryItems)if(q.value)values[q.name]=q.value;return values;
++    }return nil;
++}
++static BOOL HIDEEmptyReceiptField(id value){
++    if(!value || value==NSNull.null)return YES;
++    if([value isKindOfClass:NSString.class]){if(![value length])return YES;value=[NSJSONSerialization JSONObjectWithData:[value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];if(!value)return NO;}
++    return ([value isKindOfClass:NSArray.class] || [value isKindOfClass:NSDictionary.class]) && [value count]==0;
++}
++static NSString *HIDEReceiptTarget(id request,NSURL *url){
++    if(!HIDEInstagramURL(url))return nil;
++    NSArray *parts=[[url.path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]] componentsSeparatedByString:@"/"];NSUInteger threads=[parts indexOfObject:@"threads"];
++    if([parts containsObject:@"direct_v2"] && threads!=NSNotFound && threads+1<parts.count && [parts.lastObject isEqualToString:@"seen"])
++        return [@"dm:" stringByAppendingString:parts[threads+1]];
++    if(![url.path hasSuffix:@"/media/seen/"] && ![url.path hasSuffix:@"/media/seen"])return nil;
++    NSDictionary *params=HIDEReceiptParameters(request);id reels=params[@"reels"];
++    if([reels isKindOfClass:NSString.class])reels=[NSJSONSerialization JSONObjectWithData:[reels dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
++    // A batch containing any other story or live view is never authorized.
++    if(![reels isKindOfClass:NSDictionary.class] || [reels count]!=1)return nil;
++    for(NSString *key in @[@"live_vods",@"live_vods_skipped",@"stories",@"reels_media"])if(!HIDEEmptyReceiptField(params[key]))return nil;
++    NSString *identifier=HIDEReceiptID([reels allKeys].firstObject);identifier=[identifier componentsSeparatedByString:@"_"].firstObject;
++    return identifier.length ? [@"story:" stringByAppendingString:identifier] : nil;
++}
++static NSData *HIDEReceiptFingerprint(id request){
++    NSDictionary *params=HIDEReceiptParameters(request);NSData *data=nil;
++    if(params.count && [NSJSONSerialization isValidJSONObject:params])data=[NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingSortedKeys error:nil];
++    if(!data){id body=HIDEGet(request,@"body");if([body isKindOfClass:NSData.class])data=body;}
++    if(!data.length || data.length>1024*1024)return nil;
++    unsigned char hash[CC_SHA256_DIGEST_LENGTH];CC_SHA256(data.bytes,(CC_LONG)data.length,hash);return [NSData dataWithBytes:hash length:sizeof(hash)];
++}
++NSURL *HIDEAuthorizedReceiptURL(id request){
++    NSURL *url=objc_getAssociatedObject(request,receiptURLKey);NSDictionary *permit=objc_getAssociatedObject(request,receiptPermitKey);
++    if(!permit)return nil;
++    NSData *expected=permit[@"fingerprint"],*actual=HIDEReceiptFingerprint(request);
++    NSString *requested=HIDEReceiptTarget(request,url);
++    return HIDEReceiptPermitMatches([permit[@"target"] UTF8String],requested.UTF8String,expected.bytes,expected.length,actual.bytes,actual.length,NSProcessInfo.processInfo.systemUptime,[permit[@"expires"] doubleValue]) ? url : nil;
++}
++static void HIDEPrepareReceipt(id networker,id request){
++    NSString *account=HIDEReceiptID(HIDEIvar(networker,"_userPK"));if(!account.length){objc_setAssociatedObject(request,receiptPermitKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);return;}
++    NSDictionary *existing=objc_getAssociatedObject(request,receiptPermitKey);
++    if(existing && ![existing[@"account"] isEqual:account]){objc_setAssociatedObject(request,receiptPermitKey,nil,OBJC_ASSOCIATION_RETAIN_NONATOMIC);return;}
++    if(HIDEAuthorizedReceiptURL(request))return;
++    NSURL *url=objc_getAssociatedObject(request,receiptURLKey);NSString *target=HIDEReceiptTarget(request,url);if(!target)return;
++    NSData *fingerprint=HIDEReceiptFingerprint(request);if(!fingerprint)return;
++    NSMutableDictionary *intents=HIDEReceiptIntents();@synchronized(intents){NSDictionary *intent=intents[target];if([intent[@"account"] isEqual:account] && [intent[@"expires"] doubleValue]>NSProcessInfo.processInfo.systemUptime){
++        NSDictionary *permit=@{@"target":target,@"account":account,@"fingerprint":fingerprint,@"expires":@(NSProcessInfo.processInfo.systemUptime+30)};
++        objc_setAssociatedObject(request,receiptPermitKey,permit,OBJC_ASSOCIATION_RETAIN_NONATOMIC);[intents removeObjectForKey:target];
++    }}
++}
++static BOOL HIDEIntent(NSString *target,id owner){NSString *account=HIDEReceiptAccount(owner);if(!account.length)return NO;
++    NSMutableDictionary *intents=HIDEReceiptIntents();@synchronized(intents){[intents removeAllObjects];intents[target]=@{@"expires":@(NSProcessInfo.processInfo.systemUptime+15),@"account":account};}return YES;
++}
++typedef id (*HIDERequestCopy)(id,SEL,void *) __attribute__((ns_returns_retained));
++static HIDERequestCopy requestCopy;
++static id __attribute__((ns_returns_retained)) hide_requestCopy(id object,SEL selector,void *zone){
++    id copy=requestCopy(object,selector,zone);if(!copy)return nil;NSURL *url=objc_getAssociatedObject(object,receiptURLKey);
++    if(url)objc_setAssociatedObject(copy,receiptURLKey,url,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    NSDictionary *permit=objc_getAssociatedObject(object,receiptPermitKey);if(permit)objc_setAssociatedObject(copy,receiptPermitKey,permit,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    return copy;
++}
++// Hook all native overloads: policy is an object in 407, not an integer.
++static id (*network4)(id,SEL,id,id,id,id);
++static id hide_network4(id o,SEL s,id request,id policy,id success,id failure){HIDEPrepareReceipt(o,request);return network4(o,s,request,policy,success,failure);}
++static id (*network7)(id,SEL,id,id,id,id,id,id,id);
++static id hide_network7(id o,SEL s,id request,id policy,id queue,id cache,id parse,id success,id failure){HIDEPrepareReceipt(o,request);return network7(o,s,request,policy,queue,cache,parse,success,failure);}
++static id (*network10)(id,SEL,id,id,id,id,id,id,id,id,id,id);
++static id hide_network10(id o,SEL s,id request,id policy,id queue,id cache,id sent,id first,id last,id parse,id success,id failure){HIDEPrepareReceipt(o,request);return network10(o,s,request,policy,queue,cache,sent,first,last,parse,success,failure);}
++
++@interface HIDEStoryReceiptContext : NSObject
++@property(nonatomic,weak) id viewer,section,item;
++@property(nonatomic,copy) NSString *identifier;
++@property(nonatomic) IMP original;
++@end
++@implementation HIDEStoryReceiptContext @end
++void HIDERecordStoryReceipt(id viewer,id section,id item,IMP original){
++    NSString *identifier=HIDEStoryID(item);if(!identifier || !original)return;
++    HIDEStoryReceiptContext *context=[HIDEStoryReceiptContext new];context.viewer=viewer;context.section=section;context.item=item;context.identifier=identifier;context.original=original;
++    objc_setAssociatedObject(viewer,storyContextKey,context,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    objc_setAssociatedObject(section,storyContextKey,context,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++}
++static HIDEStoryReceiptContext *HIDEStoryContext(UIView *source,id media){
++    NSString *expected=HIDEStoryID(media);if(!expected.length)return nil;
++    for(UIResponder *r=source;r;r=r.nextResponder){HIDEStoryReceiptContext *c=objc_getAssociatedObject(r,storyContextKey) ?: objc_getAssociatedObject(HIDEGet(r,@"delegate"),storyContextKey);if(c && c.item && c.section && [c.identifier isEqual:expected])return c;}
++    return nil;
++}
++BOOL HIDECanManuallySeeStory(UIView *source,id media){return HIDEPref(kHideAnonStories) && HIDEStoryContext(source,media)!=nil && HIDEReceiptAccount(HIDEStoryContext(source,media).viewer)!=nil && (network4 || network7 || network10);}
++void HIDEManuallySeeStory(UIView *source,id media){
++    HIDEStoryReceiptContext *context=HIDEStoryContext(source,media);if(!context)return;
++    HIDEConfirm(HIDEL(@"MANUAL_SEEN_TITLE"),HIDEL(@"MANUAL_STORY_CONFIRM"),@"Seen",^{
++        if(!context.viewer || !context.section || !context.item || ![context.identifier isEqual:HIDEStoryID(context.item)])return;
++        if(!HIDEIntent([@"story:" stringByAppendingString:context.identifier],context.viewer)){HIDEToast(HIDEL(@"FEATURE_UNAVAILABLE_SHORT"));return;}
++        ((void (*)(id,SEL,id,id))context.original)(context.viewer,NSSelectorFromString(@"fullscreenSectionController:didMarkItemAsSeen:"),context.section,context.item);
++        HIDEToast(HIDEL(@"MANUAL_SEEN_REQUESTED"));
++    });
++}
++static BOOL HIDEManualScopeMatches(id object){id owner=(__bridge id)manualOwner;return owner && (object==owner || object==HIDEIvar(owner,"_messageListViewController") || object==HIDEIvar(owner,"_messageListDataSource"));}
++BOOL HIDEAllowManualReadObject(id object){
++    if(HIDEManualScopeMatches(object))return YES;
++    id owner=(__bridge id)manualOwner;if(!owner)return NO;
++    NSString *wanted=HIDEReceiptID(HIDEIvar(owner,"_threadId"));
++    id other=HIDEGet(object,@"threadId") ?: HIDEGetNumber(object,@"threadId") ?: HIDEIvar(object,"_threadId");
++    NSString *identifier=HIDEReceiptID(other);
++    return wanted.length && identifier.length && [wanted isEqualToString:identifier];
++}
++static void (*threadMark)(id,SEL),(*listMark)(id,SEL);
++static void hide_threadMark(id o,SEL s){if(!HIDEPref(kHideNoReadReceipts) || HIDEManualScopeMatches(o))threadMark(o,s);}
++static void hide_listMark(id o,SEL s){if(!HIDEPref(kHideNoReadReceipts) || HIDEManualScopeMatches(o))listMark(o,s);}
++static BOOL (*shouldUpdate)(id,SEL);
++static BOOL hide_shouldUpdate(id o,SEL s){if(HIDEManualScopeMatches(o))return YES;return HIDEPref(kHideNoReadReceipts)?NO:shouldUpdate(o,s);}
++@interface HIDEReadEyeAction : NSObject
++@property(nonatomic,weak) UIViewController *owner;
++@end
++@implementation HIDEReadEyeAction
++- (void)pressed:(id)sender {
++    UIViewController *owner=self.owner;NSString *thread=HIDEReceiptID(HIDEIvar(owner,"_threadId"));if(!thread.length || !threadMark)return;
++    HIDEConfirm(HIDEL(@"MANUAL_SEEN_TITLE"),HIDEL(@"MANUAL_DM_CONFIRM"),HIDEL(@"MANUAL_SEEN_SEND"),^{
++        if(!HIDEIntent([@"dm:" stringByAppendingString:thread],owner)){HIDEToast(HIDEL(@"FEATURE_UNAVAILABLE_SHORT"));return;}void *saved=manualOwner;manualOwner=(__bridge void *)owner;
++        @try{threadMark(owner,NSSelectorFromString(@"markLastMessageAsSeen"));}@finally{manualOwner=saved;}
++        HIDEToast(HIDEL(@"MANUAL_SEEN_REQUESTED"));
++    });
++}
++@end
++static void HIDEAttachEye(UIViewController *owner){
++    HIDEReadEyeAction *handler=objc_getAssociatedObject(owner,eyeKey);
++    NSMutableArray *items=[owner.navigationItem.rightBarButtonItems mutableCopy] ?: [NSMutableArray array];
++    NSIndexSet *old=[items indexesOfObjectsPassingTest:^BOOL(UIBarButtonItem *item,NSUInteger i,BOOL *stop){return [item.accessibilityIdentifier isEqual:@"hide.manual-read"];}];[items removeObjectsAtIndexes:old];
++    if(HIDEPref(kHideNoReadReceipts) && threadMark && listMark && HIDEReceiptID(HIDEIvar(owner,"_threadId")).length && HIDEReceiptAccount(owner).length){
++        if(!handler){handler=[HIDEReadEyeAction new];handler.owner=owner;objc_setAssociatedObject(owner,eyeKey,handler,OBJC_ASSOCIATION_RETAIN_NONATOMIC);}
++        UIBarButtonItem *eye=[[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"eye"] style:UIBarButtonItemStylePlain target:handler action:@selector(pressed:)];
++        eye.accessibilityIdentifier=@"hide.manual-read";eye.accessibilityLabel=HIDEL(@"MANUAL_SEEN_SEND");[items addObject:eye];
++    }owner.navigationItem.rightBarButtonItems=items;
++}
++static void (*threadAppear)(id,SEL,BOOL),(*threadNav)(id,SEL);
++static void hide_threadAppear(UIViewController *o,SEL s,BOOL a){threadAppear(o,s,a);HIDEAttachEye(o);}
++static void hide_threadNav(UIViewController *o,SEL s){threadNav(o,s);HIDEAttachEye(o);}
++void HIDEInstallManualSeen(void){
++    requestCopy=(HIDERequestCopy)HIDEHookChecked(@"IGURLRequest",NSSelectorFromString(@"copyWithZone:"),(IMP)hide_requestCopy,"@@:^v");
++    network4=(void *)HIDEHookChecked(@"IGScopedNetworker",NSSelectorFromString(@"startAPIRequest:policy:successHandler:failureHandler:"),(IMP)hide_network4,"@@:@@@@");
++    network7=(void *)HIDEHookChecked(@"IGScopedNetworker",NSSelectorFromString(@"startAPIRequest:policy:completionQueue:cacheHandler:parsingHandler:successHandler:failureHandler:"),(IMP)hide_network7,"@@:@@@@@@@");
++    network10=(void *)HIDEHookChecked(@"IGScopedNetworker",NSSelectorFromString(@"startAPIRequest:policy:completionQueue:cacheHandler:bytesSentHandler:firstByteFlushedHandler:lastByteAckedHandler:parsingHandler:successHandler:failureHandler:"),(IMP)hide_network10,"@@:@@@@@@@@@@");
++    threadMark=(void *)HIDEHookChecked(@"IGDirectThreadViewController",NSSelectorFromString(@"markLastMessageAsSeen"),(IMP)hide_threadMark,"v@:");
++    listMark=(void *)HIDEHookChecked(@"IGDirectMessageListViewController",NSSelectorFromString(@"markLastMessageAsSeen"),(IMP)hide_listMark,"v@:");
++    shouldUpdate=(void *)HIDEHookChecked(@"IGDirectThreadViewListAdapterDataSource",NSSelectorFromString(@"shouldUpdateLastSeenMessage"),(IMP)hide_shouldUpdate,"B@:");
++    threadAppear=(void *)HIDEHookChecked(@"IGDirectThreadViewController",@selector(viewDidAppear:),(IMP)hide_threadAppear,"v@:B");
++    threadNav=(void *)HIDEHookChecked(@"IGDirectThreadViewController",NSSelectorFromString(@"updateThreadNavigationBar"),(IMP)hide_threadNav,"v@:");
++}
 --- a/src/HIDEMedia.m
 +++ b/src/HIDEMedia.m
 @@ -9,9 +9,9 @@
@@ -4862,12 +5578,14 @@
 +#endif
 --- a/src/HIDEPrivacy.m
 +++ b/src/HIDEPrivacy.m
-@@ -1,41 +1,36 @@
+@@ -1,46 +1,43 @@
  // Anonymous stories: Instagram reports a story view with a request to /media/seen/.
  // We rewrite that URL at the moment the IGURLRequest is created (and when it's read back),
 -// so whichever network path sends it, the server never receives a valid "seen".
 +// This covers only the hooked IGURLRequest paths; other transports require device validation.
  #import "HIDECore.h"
++void HIDERegisterReceiptURL(id request,NSURL *url);
++NSURL *HIDEAuthorizedReceiptURL(id request);
  
  #pragma mark - Anonymous stories
  
@@ -4906,24 +5624,33 @@
  
 -static id (*orig_reqInit2)(id, SEL, NSURL *, id);
 -static id hide_reqInit2(id self, SEL _cmd, NSURL *url, id module) {
+-    return orig_reqInit2(self, _cmd, HIDEFilterURL(url), module);
 +static id (*orig_reqInit2)(id __attribute__((ns_consumed)), SEL, NSURL *, id) __attribute__((ns_returns_retained));
 +static id __attribute__((ns_returns_retained)) hide_reqInit2(id __attribute__((ns_consumed)) self, SEL _cmd, NSURL *url, id module) {
-     return orig_reqInit2(self, _cmd, HIDEFilterURL(url), module);
++    id result=orig_reqInit2(self,_cmd,HIDEFilterURL(url),module);HIDERegisterReceiptURL(result,url);return result;
  }
 -static id (*orig_reqInit3)(id, SEL, NSURL *, unsigned long long, id);
 -static id hide_reqInit3(id self, SEL _cmd, NSURL *url, unsigned long long method, id module) {
+-    return orig_reqInit3(self, _cmd, HIDEFilterURL(url), method, module);
 +static id (*orig_reqInit3)(id __attribute__((ns_consumed)), SEL, NSURL *, unsigned long long, id) __attribute__((ns_returns_retained));
 +static id __attribute__((ns_returns_retained)) hide_reqInit3(id __attribute__((ns_consumed)) self, SEL _cmd, NSURL *url, unsigned long long method, id module) {
-     return orig_reqInit3(self, _cmd, HIDEFilterURL(url), method, module);
++    id result=orig_reqInit3(self,_cmd,HIDEFilterURL(url),method,module);HIDERegisterReceiptURL(result,url);return result;
  }
 -static id (*orig_reqInit4)(id, SEL, NSURL *, unsigned long long, id, BOOL);
 -static id hide_reqInit4(id self, SEL _cmd, NSURL *url, unsigned long long method, id module, BOOL force) {
+-    return orig_reqInit4(self, _cmd, HIDEFilterURL(url), method, module, force);
 +static id (*orig_reqInit4)(id __attribute__((ns_consumed)), SEL, NSURL *, unsigned long long, id, BOOL) __attribute__((ns_returns_retained));
 +static id __attribute__((ns_returns_retained)) hide_reqInit4(id __attribute__((ns_consumed)) self, SEL _cmd, NSURL *url, unsigned long long method, id module, BOOL force) {
-     return orig_reqInit4(self, _cmd, HIDEFilterURL(url), method, module, force);
++    id result=orig_reqInit4(self,_cmd,HIDEFilterURL(url),method,module,force);HIDERegisterReceiptURL(result,url);return result;
  }
  static NSURL *(*orig_reqURL)(id, SEL);
-@@ -66,13 +61,15 @@
+ static NSURL *hide_reqURL(id self, SEL _cmd) {
+-    return HIDEFilterURL(orig_reqURL(self, _cmd));
++    return HIDEAuthorizedReceiptURL(self) ?: HIDEFilterURL(orig_reqURL(self,_cmd));
+ }
+ 
+ #pragma mark - Safari links
+@@ -66,13 +63,15 @@
          NSString *scheme = u.scheme.lowercaseString;
          if (u && ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"])) {
              // Unwrap Instagram's l.instagram.com redirect wrapper when present.
@@ -4942,7 +5669,7 @@
              return;
          }
      }
-@@ -80,9 +77,9 @@
+@@ -80,9 +79,9 @@
  }
  
  void HIDEInstallPrivacy(void) {
@@ -4957,6 +5684,23 @@
 +    orig_reqURL = (void *)HIDEHookChecked(@"IGURLRequest", NSSelectorFromString(@"URL"), (IMP)hide_reqURL, "@@:");
 +    orig_presentBrowser = (void *)HIDEHookChecked(@"IGBrowserController", NSSelectorFromString(@"presentBrowserWithBrowserSession:viewController:presentingPanGesture:forceFreshLoad:"), (IMP)hide_presentBrowser, "v@:@@@B");
  }
+--- /dev/null
++++ b/src/HIDEReceiptPolicy.h
+@@ -0,0 +1,14 @@
++#ifndef HIDE_RECEIPT_POLICY_H
++#define HIDE_RECEIPT_POLICY_H
++#include <stdbool.h>
++#include <stddef.h>
++#include <stdint.h>
++#include <string.h>
++#include <math.h>
++// A grant belongs to one target and one immutable request body, for a bounded time.
++static inline bool HIDEReceiptPermitMatches(const char *granted,const char *requested,const uint8_t *expected,size_t expectedSize,const uint8_t *actual,size_t actualSize,double now,double expires) {
++    return granted && requested && expected && actual && expectedSize==32 && actualSize==32 &&
++        isfinite(now) && isfinite(expires) && now>=0 && expires>=now &&
++        strcmp(granted,requested)==0 && memcmp(expected,actual,32)==0;
++}
++#endif
 --- a/src/HIDESettings.m
 +++ b/src/HIDESettings.m
 @@ -1,383 +1,56 @@
@@ -6141,7 +6885,7 @@
 +print('PASS: full viewport at 3 sizes; 5 tabs; 27 native preferences in 28 controls; no mockup; no legacy screen; SVG app-lock icon; persistent settings/theme/language; close/report/link commands')
 --- /dev/null
 +++ b/tests/feature_inventory.py
-@@ -0,0 +1,25 @@
+@@ -0,0 +1,26 @@
 +"""Check coverage from DL inventory through the unified native preference bridge."""
 +from pathlib import Path
 +import json,re
@@ -6166,7 +6910,60 @@
 +assert 'HIDEPresentAdvancedSettingsFromController' not in settings+web
 +assert 'UIModalPresentationFullScreen' in settings
 +assert 'HIDEFeatureAvailable(key)' in web
++assert 'HIDEInstallManualSeen();' in core
 +print('PASS: 26 DL options mapped; all 27 preferences in one unified UI; 11 new defaults off; bilingual native labels; no old settings controller')
+--- /dev/null
++++ b/tests/gallery_smoke.py
+@@ -0,0 +1,49 @@
++"""Gallery UI only: fixture snapshots represent native selection and progress."""
++from pathlib import Path
++import threading,shutil,json
++from functools import partial
++from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
++from playwright.sync_api import sync_playwright
++r=Path(__file__).resolve().parents[1]
++class Quiet(SimpleHTTPRequestHandler):
++ def log_message(self,*args):pass
++server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(r)))
++threading.Thread(target=server.serve_forever,daemon=True).start()
++with sync_playwright() as p:
++ browser=p.chromium.launch(executable_path=shutil.which('chromium'),args=['--no-sandbox'])
++ page=browser.new_page(viewport={'width':390,'height':844});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
++ page.add_init_script('window.rpc=[];window.webkit={messageHandlers:{hideGallery:{postMessage:m=>rpc.push(m)}}}')
++ page.goto(f'http://127.0.0.1:{server.server_port}/assets/HIDE_gallery.html')
++ state={'items':[{'video':i in [1,4],'available':i!=5} for i in range(9)],'selected':[i for i in range(9) if i!=5],'busy':False,'progress':0,'status':''}
++ page.evaluate('s=>HIDEGalleryState(s)',state)
++ for w,h in [(320,568),(390,844),(430,932)]:
++  page.set_viewport_size({'width':w,'height':h})
++  assert page.locator('.screen').bounding_box()=={'x':0,'y':0,'width':w,'height':h}
++  assert page.evaluate('document.documentElement.scrollWidth===innerWidth')
++  assert page.locator('.gbar button').count()==2
++ assert page.locator('.th').count()==9
++ assert page.locator('[data-i="5"]').is_disabled()
++ # No preview is available: a valid download remains selectable.
++ assert page.locator('[data-i="3"] img').count()==0
++ page.locator('[data-i="3"]').click();assert page.evaluate('rpc.at(-1)')=={'action':'select','index':3}
++ assert page.locator('[data-i="3"]').get_attribute('aria-pressed')=='true','await native response'
++ state['selected'].remove(3);page.evaluate('s=>HIDEGalleryState(s)',state)
++ assert page.locator('[data-i="3"]').get_attribute('aria-pressed')=='false'
++ assert page.locator('[data-i="1"] b').inner_text().replace('\ufe0e','')=='▶'
++ image='data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aK8cAAAAASUVORK5CYII='
++ page.evaluate('(image)=>HIDEGalleryThumbnail(0,image)',image)
++ assert page.locator('[data-i="0"] img').count()==1
++ page.locator('#all').click();assert page.evaluate('rpc.at(-1).action')=='all'
++ page.locator('#dl').click();assert page.evaluate('rpc.at(-1).action')=='download'
++ state.update(busy=True,progress=.4,status='جاري الحفظ…');page.evaluate('s=>HIDEGalleryState(s)',state)
++ assert page.locator('#dl').is_disabled()
++ page.wait_for_timeout(600)
++ assert page.locator('#prog div').evaluate('e=>e.style.width')=='40%','progress must not be simulated'
++ state.update(busy=False,status='تم حفظ 7 من الوسائط.');page.evaluate('s=>HIDEGalleryState(s)',state)
++ page.locator('.gx').click();assert page.evaluate('rpc.at(-1).action')=='close'
++ out=r/'build/gallery-verification';out.mkdir(exist_ok=True)
++ page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(out/'gallery.png'))
++ assert not errors,errors
++ browser.close()
++server.shutdown()
++print('PASS: gallery design, no mockup, 3 sizes, gray preview still selectable, video mark, selection acknowledgement, native-only progress, close/download commands')
 --- /dev/null
 +++ b/tests/lock_policy_test.c
 @@ -0,0 +1,41 @@
@@ -6257,8 +7054,29 @@
 +from pathlib import Path
 +runpy.run_path(str(Path(__file__).with_name('design_bridge_smoke.py')),run_name='__main__')
 --- /dev/null
++++ b/tests/receipt_policy_test.c
+@@ -0,0 +1,18 @@
++#include "../src/HIDEReceiptPolicy.h"
++#include <assert.h>
++#include <stdio.h>
++int main(void){
++ uint8_t a[32]={1,2,3},b[32]={1,2,3};
++ assert(HIDEReceiptPermitMatches("dm:A","dm:A",a,32,b,32,100,130));
++ assert(!HIDEReceiptPermitMatches("dm:A","dm:B",a,32,b,32,100,130));
++ assert(!HIDEReceiptPermitMatches("story:1","story:2",a,32,b,32,100,130));
++ assert(!HIDEReceiptPermitMatches("story:1","dm:1",a,32,b,32,100,130));
++ b[31]=7;assert(!HIDEReceiptPermitMatches("dm:A","dm:A",a,32,b,32,100,130));b[31]=0;
++ assert(!HIDEReceiptPermitMatches("dm:A","dm:A",a,31,b,32,100,130));
++ assert(!HIDEReceiptPermitMatches("dm:A","dm:A",a,32,b,32,131,130));
++ assert(!HIDEReceiptPermitMatches("dm:A","dm:A",a,32,b,32,NAN,130));
++ assert(!HIDEReceiptPermitMatches("dm:A","dm:A",a,32,b,32,100,NAN));
++ assert(!HIDEReceiptPermitMatches(NULL,"dm:A",a,32,b,32,100,130));
++ assert(!HIDEReceiptPermitMatches("dm:A","dm:A",NULL,32,b,32,100,130));
++ puts("PASS: receipt target isolation, request-body binding, digest sizes, expiry, invalid clocks and missing grants");
++}
+--- /dev/null
 +++ b/tests/run.sh
-@@ -0,0 +1,11 @@
+@@ -0,0 +1,13 @@
 +#!/usr/bin/env bash
 +set -euo pipefail
 +cd "$(dirname "$0")/.."
@@ -6268,6 +7086,8 @@
 +"$TEST_DIR/lock"
 +"${HOST_CC:-cc}" -std=c11 -Wall -Wextra -Werror tests/media_policy_test.c -lm -o "$TEST_DIR/media"
 +"$TEST_DIR/media"
++"${HOST_CC:-cc}" -std=c11 -Wall -Wextra -Werror tests/receipt_policy_test.c -lm -o "$TEST_DIR/receipts"
++"$TEST_DIR/receipts"
 +python3 tests/feature_inventory.py
 +bash -n build.sh
 --- /dev/null
@@ -6278,7 +7098,7 @@
 +import hashlib
 +root=Path(__file__).resolve().parents[1]
 +rows=['// Generated by tools/embed_design.py. Do not edit.\n']
-+for name,file in [('HIDEApprovedHTML','HIDE_design.html'),('HIDENativeBridge','native-bridge.js')]:
++for name,file in [('HIDEApprovedHTML','HIDE_design.html'),('HIDENativeBridge','native-bridge.js'),('HIDEGalleryHTML','HIDE_gallery.html')]:
 +    data=(root/'assets'/file).read_bytes()
 +    rows.append(f'// {file} SHA256 {hashlib.sha256(data).hexdigest()}\n')
 +    rows.append(f'static const unsigned char {name}[] = {{\n')
@@ -6323,7 +7143,7 @@
 +    print('Generated full-screen preview with',len(model()['features']),'controls; version',model()['version'])
 --- /dev/null
 +++ b/tools/verify_instagram407.py
-@@ -0,0 +1,159 @@
+@@ -0,0 +1,166 @@
 +#!/usr/bin/env python3
 +"""Read-only checks against the user's decrypted 407 executable. Stdlib only.
 +Usage: python3 tools/verify_instagram407.py /path/to/Payload/Instagram.app/Instagram
@@ -6342,12 +7162,12 @@
 +ROOT = Path(__file__).resolve().parents[1]
 +VOICE = '_TtC24IGDirectVoiceRecordingUI33IGDirectVoiceRecordViewController'
 +TARGETS = {'IGLiveViewerCountIntervalPuller', 'IGDirectCache', 'IGDirectMessageUpdate',
-+           'IGDirectThreadUpdate', 'IGDirectCacheThreadUpdate', 'IGDirectMessageMenuActionHandler', VOICE}
++           'IGDirectThreadUpdate', 'IGDirectCacheThreadUpdate', 'IGDirectMessageMenuActionHandler','IGDirectThreadViewController','IGDirectMessageListViewController','IGDirectThreadViewListAdapterDataSource','IGStoryViewerViewController','IGDirectMessageCell', VOICE}
 +EXPECTED_UUID = '4c4c444e-5555-3144-a107-36f95b1dcf25'
 +
 +
 +def verify(path):
-+    source = (ROOT / 'src/HIDEDLFeatures.m').read_text()
++    source = (ROOT / 'src/HIDEDLFeatures.m').read_text() + (ROOT / 'src/HIDEManualSeen.m').read_text()
 +    header = (ROOT / 'src/HIDE407.h').read_text()
 +    with path.open('rb') as file, mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as data:
 +        magic, _, _, kind, count, _, _, _ = struct.unpack_from('<8I', data)
@@ -6437,6 +7257,13 @@
 +            (VOICE, 'startRecordingWithButtonTapFromEntryPoint:', 'hide_record407Start'),
 +            ('IGDirectMessageMenuActionHandler', 'unsendWithMessageViewModel:threadId:consistentThreadFbid:threadSubtype:audienceType:', 'hide_unsend407'),
 +        ]
++        contracts += [
++            ('IGDirectThreadViewController','markLastMessageAsSeen','hide_threadMark'),
++            ('IGDirectMessageListViewController','markLastMessageAsSeen','hide_listMark'),
++            ('IGDirectThreadViewListAdapterDataSource','shouldUpdateLastSeenMessage','hide_shouldUpdate'),
++            ('IGStoryViewerViewController','fullscreenSectionController:didMarkItemAsSeen:','hide_storySeen'),
++        ]
++        assert classes['IGDirectMessageCell']['fields']['_messageContentContainerView']=='@"IGDirectMessageBubbleContainerView"'
 +        encodings = {}
 +        for cls, selector, replacement in contracts:
 +            encoding, _ = classes[cls]['methods'][selector]

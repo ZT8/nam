@@ -250,13 +250,13 @@
     },
     {
       "name": "merge_photos_and_videos",
-      "implementation": "src/HIDEBatch.m",
-      "status": "implemented; 3-second photos, 1080x1920 letterbox, source order and audio"
+      "implementation": null,
+      "status": "removed from the download-only picker in 1.9.4 to match the approved two-button gallery"
     },
     {
       "name": "download_progress_and_cancel",
       "implementation": "src/HIDEBatch.m",
-      "status": "implemented; sequential downloads, real task/export progress, cancellation between Photos saves"
+      "status": "implemented: sequential downloads and real task/Photos callbacks; cancellation stops subsequent items"
     },
     {
       "name": "profile_photo_hd_lookup",
@@ -265,8 +265,13 @@
     },
     {
       "name": "manual_mark_one_story_seen_while_anonymous",
-      "implementation": null,
-      "status": "not ported; requires the 407 story model and seen-request body contract to avoid marking unrelated stories"
+      "implementation": "src/HIDEManualSeen.m + src/HIDEPrivacy.m",
+      "status": "implemented with verified 407 callback and scoped request permissions; device delivery not verified"
+    },
+    {
+      "name": "manual_direct_read_eye",
+      "implementation": "src/HIDEManualSeen.m",
+      "status": "implemented with target-bound native call; device delivery not verified"
     }
   ],
   "analysis_reference_url": "https://github.com/ZT8/nam/tree/main/DLInsta-full"

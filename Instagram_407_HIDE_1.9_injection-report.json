@@ -1,0 +1,23 @@
+{
+  "input": "Instagram_407.0.0_HIDE_original.ipa",
+  "output": "Instagram_407.0.0_HIDE_1.9_unsigned.ipa",
+  "app_version": "407.0.0",
+  "bundle_id": "com.burbn.instagram",
+  "minimum_ios": "15.1",
+  "changed_entries": [
+    "Payload/Instagram.app/Frameworks/HIDE.dylib"
+  ],
+  "unchanged_entries": 2573,
+  "old_library_sha256": "098b8c9701aaf64a586ed5d755cf84d2d5be3fa07de2fa921f802ca852e56165",
+  "new_library_sha256": "c4e4fb5861216ba8877e85f140920ad3247077461a60263b0765bd4103454eb4",
+  "new_library_version": "HIDE 1.9",
+  "original_executable_modified": false,
+  "load_command": "@executable_path/Frameworks/HIDE.dylib (existing, retained)",
+  "duplicate_hide_libraries": false,
+  "zip_crc_verified": true,
+  "valid_app_signature": false,
+  "requires_resigning": true,
+  "device_launch_tested": false,
+  "output_bytes": 277891570,
+  "output_sha256": "d2b99bee0566779afcc9af82f787c06f0434b5d5d4e1398c2bf3c291a98bc5f8"
+}

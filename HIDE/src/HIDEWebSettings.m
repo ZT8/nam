@@ -3,17 +3,22 @@
 #import <WebKit/WebKit.h>
 
 void HIDEReportFromController(UIViewController *controller);
-void HIDEPresentAdvancedSettingsFromController(UIViewController *controller);
 
 static NSDictionary<NSString *,NSArray<NSString *> *> *HIDEWebKeys(void) {
     return @{@"dl":@[kHideDownload],@"hq":@[kHideHighQuality],@"sh":@[kHideShareAfterSave],
         @"rep":@[kHideNoVideoRepeat],@"anon":@[kHideAnonStories],@"adv":@[kHideNoAutoAdvance],
         @"men":@[kHideShowMentions],@"rr":@[kHideNoReadReceipts],@"ty":@[kHideNoTyping],
         @"vm":@[kHideVoiceDownload],@"dlm":@[kHideKeepDeleted],
-        @"ss":@[kHideNoScreenshotNotice,kHideNoReplayNotice],@"sp":@[kHideAllowScreenshots],
+        @"ss":@[kHideNoScreenshotNotice],@"rp":@[kHideNoReplayNotice],@"sp":@[kHideAllowScreenshots],
         @"v2m":@[kHideVoiceImport],@"rec":@[kHideLongVoice],@"lk":@[kHideConfirmLike],
         @"fl":@[kHideConfirmFollow],@"cp":@[kHideCopyText],@"fy":@[kHideFollowStatus],
-        @"lc":@[kHideLikeCounts],@"sf":@[kHideSafariLinks],@"ad":@[kHideNoAds],@"lock":@[kHideAppLock]};
+        @"lc":@[kHideLikeCounts],@"sf":@[kHideSafariLinks],@"ad":@[kHideNoAds],@"lock":@[kHideAppLock],@"live":@[kHideAnonLive],@"sv":@[kHideVideoStickers],@"timer":@[kHideVideoTimer]};
+}
+
+NSArray<NSString *> *HIDEAllWebPreferenceKeys(void) {
+    NSMutableOrderedSet *keys=[NSMutableOrderedSet orderedSet];
+    for(NSArray *group in HIDEWebKeys().allValues)[keys addObjectsFromArray:group];
+    return keys.array;
 }
 
 @interface HIDEWebSettingsController : UIViewController <WKScriptMessageHandler,WKNavigationDelegate>
@@ -48,7 +53,7 @@ static NSDictionary<NSString *,NSArray<NSString *> *> *HIDEWebKeys(void) {
     BOOL glass=[defaults objectForKey:@"hide_ui_glass"] ? [defaults boolForKey:@"hide_ui_glass"] : YES;
     NSArray *delays=@[@0,@60,@300,@900];NSUInteger delay=[delays indexOfObject:@(HIDELockDelay())];
     if(delay==NSNotFound)delay=3; // Preserve existing longer native delays until changed.
-    return @{@"features":features,@"available":available,@"language":language,@"color":@(color),@"glass":@(glass),@"delay":@(delay),@"delaySeconds":@(HIDELockDelay())};
+    return @{@"version":HIDE_VERSION,@"features":features,@"available":available,@"language":language,@"color":@(color),@"glass":@(glass),@"delay":@(delay),@"delaySeconds":@(HIDELockDelay())};
 }
 - (NSString *)snapshotJSON {
     NSData *data=[NSJSONSerialization dataWithJSONObject:[self snapshot] options:0 error:nil];
@@ -67,7 +72,7 @@ static NSDictionary<NSString *,NSArray<NSString *> *> *HIDEWebKeys(void) {
     NSString *script=[NSString stringWithFormat:@"window.__HIDEInitialSnapshot=%@;\n%@",[self snapshotJSON],bridge];
     [config.userContentController addUserScript:[[WKUserScript alloc] initWithSource:script injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES]];
     self.web=[[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
-    self.web.navigationDelegate=self;self.web.opaque=NO;self.web.backgroundColor=self.view.backgroundColor;
+    self.web.alpha=0;self.web.navigationDelegate=self;self.web.opaque=NO;self.web.backgroundColor=self.view.backgroundColor;
     self.web.scrollView.backgroundColor=self.view.backgroundColor;
     self.web.scrollView.contentInsetAdjustmentBehavior=UIScrollViewContentInsetAdjustmentNever;
     self.web.allowsLinkPreview=NO;self.web.translatesAutoresizingMaskIntoConstraints=NO;
@@ -81,12 +86,18 @@ static NSDictionary<NSString *,NSArray<NSString *> *> *HIDEWebKeys(void) {
     [self.web loadHTMLString:html baseURL:nil];
 }
 - (void)viewDidAppear:(BOOL)animated {[super viewDidAppear:animated];[self refresh];}
+- (UIStatusBarStyle)preferredStatusBarStyle {return UIStatusBarStyleLightContent;}
 - (BOOL)accessibilityPerformEscape {[self dismissViewControllerAnimated:YES completion:nil];return YES;}
 - (void)refresh {
     NSString *script=[NSString stringWithFormat:@"window.HIDEApplyNative && window.HIDEApplyNative(%@);",[self snapshotJSON]];
     [self.web evaluateJavaScript:script completionHandler:nil];
 }
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {[self refresh];}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    __weak typeof(self) weak=self;
+    [webView evaluateJavaScript:@"Boolean(window.HIDEApplyNative)" completionHandler:^(id ready,NSError *error) {
+        if(!error && [ready boolValue]) {[weak refresh];weak.web.alpha=1;}
+    }];
+}
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)action decisionHandler:(void (^)(WKNavigationActionPolicy))decision {
     // Only the bundled in-memory document can use the native bridge.
     decision([action.request.URL.absoluteString isEqualToString:@"about:blank"] ? WKNavigationActionPolicyAllow : WKNavigationActionPolicyCancel);
@@ -121,6 +132,8 @@ static NSDictionary<NSString *,NSArray<NSString *> *> *HIDEWebKeys(void) {
     } else if([action isEqualToString:@"language"]) {
         if(![value isKindOfClass:NSString.class] || ![@[@"ar",@"en"] containsObject:value])return;
         [defaults setObject:value forKey:@"hide_ui_language"];
+    } else if([action isEqualToString:@"close"]) {
+        [self dismissViewControllerAnimated:YES completion:nil];return;
     } else if([action isEqualToString:@"report"]) {
         HIDEReportFromController(self);return;
     } else if([action isEqualToString:@"instagram"] || [action isEqualToString:@"whatsapp"]) {

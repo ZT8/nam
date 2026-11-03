@@ -1,74 +1,79 @@
-"""Approved markup is immutable; compare rendered layouts and exercise bridge RPC.
-These are browser checks, not an iOS/WKWebView/device test.
+"""Browser regression checks for the full-screen unified settings design.
+The preview stub tests UI commands/storage, not native iOS or Instagram behavior.
 """
 from pathlib import Path
 import hashlib,json,os,shutil,re
-from PIL import Image, ImageChops
-from io import BytesIO
 from playwright.sync_api import sync_playwright
+from functools import partial
+from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
+import threading
 ROOT=Path(__file__).resolve().parents[1]
-html=(ROOT/'assets/HIDE_design.html').read_bytes()
-APPROVED='dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4'
-assert hashlib.sha256(html).hexdigest()==APPROVED, 'Approved design changed'
+original=(ROOT/'assets/HIDE_design.html').read_bytes()
+assert hashlib.sha256(original).hexdigest()=='dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4'
 header=(ROOT/'src/HIDEDesignData.h').read_text()
 embedded=re.search(r'HIDEApprovedHTML\[\] = \{(.*?)\};',header,re.S)[1]
-assert bytes(map(int,re.findall(r'\d+',embedded)))==html, 'Embedded asset differs from approved HTML'
-bridge=(ROOT/'assets/native-bridge.js').read_text()
+assert bytes(map(int,re.findall(r'\d+',embedded)))==original
+class QuietHandler(SimpleHTTPRequestHandler):
+    def log_message(self,*args):pass
+server=ThreadingHTTPServer(('127.0.0.1',0),partial(QuietHandler,directory=str(ROOT)))
+threading.Thread(target=server.serve_forever,daemon=True).start()
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE') or shutil.which('chromium'),args=['--no-sandbox'])
-    def make_page(integrated):
-        page=browser.new_page(viewport={'width':390,'height':1000},device_scale_factor=1)
-        page.set_content(html.decode())
-        page.evaluate('''window.rpc=[];window.webkit={messageHandlers:{hideSettings:{postMessage:x=>window.rpc.push(x)}}};
-        window.__HIDEInitialSnapshot={features:Object.fromEntries(F.map(f=>[f[0],!!f[6]])),available:Object.fromEntries(F.map(f=>[f[0],f[0]!=='cl'])),language:'ar',color:0,glass:true,delay:0};''')
-        if integrated:page.evaluate(bridge)
-        return page
-    reference=make_page(False);native=make_page(True)
-    errors=[];native.on('pageerror',lambda e:errors.append(str(e)))
+    page=browser.new_page(viewport={'width':390,'height':844})
+    errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+    page.goto(f'http://127.0.0.1:{server.server_port}/HIDE_settings_preview.html');page.evaluate('localStorage.clear()');page.reload()
     out=ROOT/'build/design-verification';out.mkdir(exist_ok=True)
-    results={}
-    for tab in ['home','dl','st','dm','more']:
-        # Global lexical `page` is deliberately set via eval to match the original script.
-        for page in [reference,native]:page.evaluate(f"page='{tab}';render()")
-        native.wait_for_timeout(650)
-        # Report placeholder is replaced by a real action description; normalize its
-        # text in the reference, keeping its CSS/layout untouched.
-        if tab=='more':reference.evaluate("[...document.querySelectorAll('#p .tile.act')].filter(e=>!e.hasAttribute('data-f')&&!e.hasAttribute('data-delay')).at(-1).querySelector('.ds').textContent='اضغط لعرض تقرير التوافق'")
-        a=reference.locator('#scr').screenshot(animations='disabled')
-        b=native.locator('#scr').screenshot(animations='disabled')
-        (out/f'{tab}-reference.png').write_bytes(a)
-        (out/f'{tab}-native.png').write_bytes(b)
-        # GPU backdrop blur can vary a few RGB levels at a handful of edge
-        # pixels across browser contexts. Layout/style must still match exactly.
-        layout="""() => [...document.querySelectorAll('#scr .tile,#scr .tabs,#scr .hero,#scr .top')].map(e=>({rect:e.getBoundingClientRect().toJSON(),color:getComputedStyle(e).color,background:getComputedStyle(e).background,border:getComputedStyle(e).border,radius:getComputedStyle(e).borderRadius,font:getComputedStyle(e).font}))"""
-        assert reference.evaluate(layout)==native.evaluate(layout),f'Layout/style mismatch: {tab}'
-        difference=ImageChops.difference(Image.open(BytesIO(a)).convert('RGB'),Image.open(BytesIO(b)).convert('RGB'))
-        pixels=list(difference.get_flattened_data());changed=sum(x!=(0,0,0) for x in pixels)
-        peak=max(max(x) for x in pixels)
-        assert peak<=8 and changed<=len(pixels)*.001,f'Visual mismatch: {tab}, {changed} pixels, {peak} RGB'
-        results[tab]={'changed_edge_pixels':changed,'max_rgb_difference':peak,'layout_and_css_equal':True}
-        (out/f'{tab}.png').write_bytes(b)
-    native.evaluate("page='home';render()")
-    native.locator('[data-f="dl"]').click()
-    assert native.evaluate('rpc.pop()')=={'action':'feature','id':'dl','value':False}
-    assert native.evaluate('st.dl')==1, 'UI must await native confirmation'
-    native.evaluate("__HIDEInitialSnapshot.features.dl=false;HIDEApplyNative(__HIDEInitialSnapshot)")
-    assert native.evaluate('st.dl')==0
-    native.evaluate("page='dm';render()")
-    before=native.evaluate('rpc.length');native.locator('[data-f="cl"]').click()
-    assert native.evaluate('rpc.length')==before and native.evaluate('st.cl')==0
-    native.evaluate("page='more';render()")
-    native.locator('[data-c="2"]').click();assert native.evaluate('rpc.pop()')=={'action':'color','value':2}
-    native.locator('[data-l="en"]').click();assert native.evaluate('rpc.pop()')=={'action':'language','value':'en'}
-    native.evaluate("__HIDEInitialSnapshot.language='en';HIDEApplyNative(__HIDEInitialSnapshot)")
-    assert native.locator('#scr').get_attribute('dir')=='ltr'
-    native.locator('[data-native-action="report"]').click();assert native.evaluate('rpc.pop()')=={'action':'report'}
-    native.evaluate("page='home';render()")
-    native.locator('[data-t="wa"]').click();assert native.evaluate('rpc.pop()')=={'action':'whatsapp'}
-    for width in [320,390,430]:
-        native.set_viewport_size({'width':width,'height':1000})
-        assert native.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'Horizontal overflow at {width}'
+    assert page.evaluate('F.length')==28
+    declared=page.evaluate('PAGES.filter(p=>p.f).flatMap(p=>p.f)')
+    assert len(declared)==len(set(declared))==28
+    assert not page.get_by_text('الإعدادات الإضافية',exact=True).count()
+    # Each page occupies the actual viewport, with no phone border or body scroll.
+    for width,height in [(320,568),(390,844),(430,932)]:
+        page.set_viewport_size({'width':width,'height':height})
+        for tab in ['home','dl','st','dm','more']:
+            page.evaluate(f"page='{tab}';render()")
+            assert page.evaluate('document.documentElement.scrollWidth===innerWidth')
+            rect=page.locator('#scr').bounding_box()
+            assert rect=={'x':0,'y':0,'width':width,'height':height},rect
+            assert page.evaluate("getComputedStyle(document.querySelector('.phone')).boxShadow")=='none'
+            assert page.evaluate("getComputedStyle(document.querySelector('.phone')).borderRadius")=='0px'
+            assert page.locator('.close-settings').count()==1
+            tabs=page.locator('#tabs').bounding_box()
+            assert tabs['y']+tabs['height']<=height and tabs['y']>height-110
+            if width==390:
+                page.wait_for_timeout(450)
+                page.screenshot(path=str(out/f'{tab}-fullscreen.png'))
+    page.set_viewport_size({'width':390,'height':844})
+    for tab,ids in [('dl',['timer']),('st',['live','sv']),('dm',['ss','rp'])]:
+        page.evaluate(f"page='{tab}';render()")
+        for id in ids:
+            assert page.locator(f'[data-f="{id}"]').count()==1
+            page.locator(f'[data-f="{id}"]').click()
+            assert page.evaluate('HIDEPreviewRPC.at(-1).id')==id
+    page.evaluate("page='dm';render()")
+    count=page.evaluate('HIDEPreviewRPC.length');page.locator('[data-f="cl"]').click()
+    assert page.evaluate('HIDEPreviewRPC.length')==count
+    page.evaluate("page='home';render()")
+    page.locator('[data-f="dl"]').click();page.reload()
+    assert page.evaluate('st.dl')==0
+    page.evaluate("page='more';render()")
+    assert page.locator('[data-f="lock"] .ico svg').count()==1
+    assert '☺' not in page.locator('[data-f="lock"] .ico').inner_text()
+    page.locator('[data-f="lock"]').click()
+    page.locator('[data-delay]').click();page.locator('[data-delay]').click()
+    assert page.evaluate('__HIDEInitialSnapshot.delaySeconds')==300
+    page.locator('[data-c="5"]').click();page.locator('[data-g="0"]').click();page.locator('[data-l="en"]').click()
+    page.reload()
+    assert page.locator('#scr').get_attribute('dir')=='ltr'
+    assert page.evaluate('color===5 && glass===false')
+    page.evaluate("page='more';render()")
+    page.locator('[data-native-action="report"]').click()
+    assert page.evaluate('HIDEPreviewRPC.at(-1).action')=='report'
+    page.locator('.close-settings').click();assert page.evaluate('HIDEPreviewRPC.at(-1).action')=='close'
+    page.evaluate("page='home';render()")
+    page.locator('[data-t="wa"]').click();assert page.evaluate('HIDEPreviewRPC.at(-1).action')=='whatsapp'
     assert not errors,errors
-    (out/'comparison.json').write_text(json.dumps(results,indent=2))
+    (out/'comparison.json').write_text(json.dumps({'fullscreen_sizes':[[320,568],[390,844],[430,932]],'five_tabs_verified':True,'controls':28,'native_preferences':27,'phone_mockup_removed':True,'legacy_settings_removed':True,'app_lock_icon':'inline SVG','preferences_theme_language_persistence':'passed','native_ios_device_tested':False},indent=2))
     browser.close()
-print('PASS: exact approved HTML; embedded hash; five tabs match layout/CSS and rendering within blur-edge precision; native-confirmed toggle; unsupported chat lock; language/color RPC; report; WhatsApp; 320/390/430 widths')
+server.shutdown()
+print('PASS: full viewport at 3 sizes; 5 tabs; 27 native preferences in 28 controls; no mockup; no legacy screen; SVG app-lock icon; persistent settings/theme/language; close/report/link commands')

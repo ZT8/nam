@@ -1,27 +1,24 @@
 {
-  "home": {
-    "changed_edge_pixels": 56,
-    "max_rgb_difference": 5,
-    "layout_and_css_equal": true
-  },
-  "dl": {
-    "changed_edge_pixels": 0,
-    "max_rgb_difference": 0,
-    "layout_and_css_equal": true
-  },
-  "st": {
-    "changed_edge_pixels": 0,
-    "max_rgb_difference": 0,
-    "layout_and_css_equal": true
-  },
-  "dm": {
-    "changed_edge_pixels": 8,
-    "max_rgb_difference": 2,
-    "layout_and_css_equal": true
-  },
-  "more": {
-    "changed_edge_pixels": 0,
-    "max_rgb_difference": 0,
-    "layout_and_css_equal": true
-  }
+  "fullscreen_sizes": [
+    [
+      320,
+      568
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      430,
+      932
+    ]
+  ],
+  "five_tabs_verified": true,
+  "controls": 28,
+  "native_preferences": 27,
+  "phone_mockup_removed": true,
+  "legacy_settings_removed": true,
+  "app_lock_icon": "inline SVG",
+  "preferences_theme_language_persistence": "passed",
+  "native_ios_device_tested": false
 }

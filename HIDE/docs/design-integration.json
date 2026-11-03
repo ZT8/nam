@@ -1,15 +1,16 @@
 {
-  "approved_html_sha256": "dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4",
-  "approved_html_bytes": 43512,
-  "html_unchanged_from_upload": true,
-  "exact_html_embedded_in_compiled_dylib": true,
-  "webkit_dependency_verified": true,
+  "reference_html_sha256": "dce78b8dbf3f8bc6dc51fe2b7b1a625e43c4c91414281b1f3cd09ead356faaa4",
+  "reference_html_preserved": true,
   "renderer": "WKWebView",
-  "bridge": "assets/native-bridge.js",
-  "phone_frame_and_all_css_preserved": true,
-  "native_ios_device_tested": false,
-  "unsupported_design_control": "cl / separate chat lock remains OFF; no backend was added",
-  "combined_control": "ss controls screenshot and replay notification preferences together",
-  "additional_native_settings": "Compatibility report > Additional settings",
-  "whatsapp_url": "https://api.whatsapp.com/send/?phone=971529741121"
+  "app_layout": "full screen without phone mockup or fixed preview height",
+  "native_presentation": "full screen, web view within native safe area",
+  "close_control": "matching inline SVG in header",
+  "app_lock_icon": "inline lock SVG",
+  "legacy_settings_controller_present_in_binary": false,
+  "all_native_preferences_in_web_tabs": 27,
+  "design_controls": 28,
+  "unsupported_design_control": "cl / separate chat lock remains off",
+  "preference_keys_preserved": true,
+  "whatsapp_url": "https://api.whatsapp.com/send/?phone=971529741121",
+  "native_ios_device_tested": false
 }

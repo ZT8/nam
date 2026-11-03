@@ -1,3 +1,14 @@
+# 1.9.3 (full-screen unified settings test build)
+
+- Remove the preview phone frame, fixed 820px canvas and external demo note at runtime. Fill the native safe area in a full-screen presentation with a matching close button.
+- Remove the old UIKit settings controller entirely and remove the Additional settings route from the report dialog.
+- Put all 27 native preferences into the same tab/card UI: add the live, sticker-video and video-timer controls and expose replay notifications separately.
+- Replace the app-lock emoji with an inline lock SVG, preserve stored preference keys/theme/language, and display the actual build version.
+- Wait for the adapted document before revealing WKWebView, avoiding an initial mockup flash.
+- Generate the standalone preview from the exact same reference and adapter; verify five tabs at 320x568, 390x844 and 430x932, preference coverage, persistence and UI commands.
+
+Device launch/visual testing remains pending. The separate chat-lock placeholder is still unsupported and stays off.
+
 # 1.9.2 (approved design integration test build)
 
 - Embed the exact uploaded HIDE_design.html, including its logo, CSS, original script and phone frame. Render with WKWebView; keep native preference binding in a separate injected script.
